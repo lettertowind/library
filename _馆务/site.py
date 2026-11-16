@@ -13,6 +13,7 @@
 from __future__ import annotations
 
 import html
+import hashlib
 import json
 import re
 import shutil
@@ -33,6 +34,9 @@ SITE_TITLE = "知识库"
 
 # 当前渲染页相对 docs 根的深度前缀，渲染前设置
 CUR_ROOT = ""
+
+# 静态资源版本号，取 css/js 内容哈希，内容一改链接就变，绕过 10 分钟缓存
+ASSET_VER = ""
 
 # 链接解析索引：五级，顺序敏感
 INDEX = {"stem": {}, "term": {}, "alias": {}, "moc": {}, "root": {}}
@@ -476,8 +480,9 @@ def page(title, content, root="", desc="", extra_head=""):
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="description" content="{safe_desc}">
 <meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>{esc(title)} · {SITE_TITLE}</title>
-<link rel="stylesheet" href="{root}assets/style.css">
+<link rel="stylesheet" href="{root}assets/style.css?v={ASSET_VER}">
 <script>try{{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}}catch(e){{}}</script>
 {extra_head}</head>
 <body>
@@ -493,9 +498,9 @@ def page(title, content, root="", desc="", extra_head=""):
 </main>
 <footer class="foot">
   <span>{SITE_TITLE}</span>
-  <span>更新于 {datetime.now().strftime('%Y-%m-%d')}</span>
+  <span>更新于 {datetime.now().strftime('%Y-%m-%d %H:%M')}</span>
 </footer>
-<script src="{root}assets/app.js" defer></script>
+<script src="{root}assets/app.js?v={ASSET_VER}" defer></script>
 </body>
 </html>
 """
@@ -777,16 +782,28 @@ def clean_out():
     OUT.mkdir(parents=True, exist_ok=True)
 
 
+def asset_version():
+    """css/js 的内容哈希，作为查询串让浏览器绕过旧缓存"""
+    h = hashlib.md5()
+    for name in ("style.css", "app.js"):
+        p = THEME / name
+        if p.is_file():
+            h.update(p.read_bytes())
+    return h.hexdigest()[:8]
+
+
 def write(path, content):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8", newline="\n")
 
 
 def main():
+    global ASSET_VER
     if not CONCEPTS.is_dir():
         print(f"[!] 找不到概念目录：{CONCEPTS}")
         return 1
 
+    ASSET_VER = asset_version()
     cards_all = load_cards()
     # 概念卡在前、分析卡在后；同组内按领域与名称排，避免翻页时两类穿插
     cards_all.sort(key=lambda c: (0 if c["group"] == "concept" else 1,
