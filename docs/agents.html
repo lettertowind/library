@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="知识库">
+<meta name="color-scheme" content="light dark">
+<title>操作规则 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <span>操作规则</span></nav><article class="card"><h1>知识库操作规则</h1><p class="lede">AGENTS.md —— 任何 AI Agent 打开这个库时遵循的规则</p><blockquote>这个文件是本仓库的操作规则。任何 AI Agent（WorkBuddy / Claude / Codex 等）在这个目录下工作时，先读它，按它办事。 人类不必遵循，但建议了解一下，便于判断 AI 做得对不对。</blockquote><section class="sec"><h2 id="一-这个仓库是什么">一、这个仓库是什么</h2><p>一座用 Obsidian 承载的个人知识库，核心是<strong>概念卡片</strong>，不是文档堆。</p>
+<p>一条视频或文章进来，会被拆成若干张卡片，每张卡讲清一个名词：定义、解释、用处、要点、边界、关联、自测。卡片之间用双链连成网，靠 <code>MOC/</code> 和 <code>概念索引.md</code> 组织，不靠文件夹层级。</p>
+<p>判断做得好不好的标准：<strong>能不能精准调用</strong>。存得多没用，找不到、连不上就是失败。</p></section><section class="sec"><h2 id="二-目录结构">二、目录结构</h2><div class="tablewrap"><table><thead><tr><th>路径</th><th>作用</th><th>谁动</th></tr></thead><tbody><tr><td><code>概念/</code></td><td>概念卡片，平铺，一张卡一个文件</td><td>AI 写，人可改</td></tr><tr><td><code>分析/</code></td><td>问答沉淀、专题综述、深度分析</td><td>AI 写</td></tr><tr><td><code>MOC/</code></td><td>领域地图，一个顶级领域一页</td><td>AI 自动生成，勿手改</td></tr><tr><td><code>_在编/</code></td><td>待摄入的新素材（BiliNote 等工具直接落这里）</td><td>外部工具写入</td></tr><tr><td><code>_典藏/</code></td><td>已摄入的原始素材，按月归档</td><td>AI 移入，勿删</td></tr><tr><td><code>_废弃/</code></td><td>下架或合并掉的卡片</td><td>AI 移入，勿删</td></tr><tr><td><code>_馆务/</code></td><td>脚本、配置、日志、报告</td><td>AI 维护</td></tr><tr><td><code>首页.md</code> / <code>概念索引.md</code></td><td>导航，自动生成</td><td>AI 重新生成</td></tr></tbody></table></div></section><section class="sec"><h2 id="三-概念卡片规范">三、概念卡片规范</h2><p>文件名 = 概念名 + <code>.md</code>，例如 <code>提示工程.md</code>。</p>
+<pre><code class="lang-markdown">---
+term: 提示工程
+aliases: [Prompt Engineering]
+kind: concept
+domain: 计算机/AI/大模型
+tags: [概念/concept, 领域/计算机]
+created: 2026-11-16
+updated: 2026-11-16
+---
+
+# 提示工程
+
+&gt; 别名：Prompt Engineering
+
+**一句话定义（40 字内，加粗）**
+
+## 解释
+2-4 句，说清是什么、解决什么问题
+
+## 有什么用
+- 场景
+
+## 关键要点
+- 3-5 条
+
+## 边界与易混淆
+适用范围、容易搞混的地方（可空）
+
+## 关联
+- [[大语言模型]] — 上位概念
+
+## 自测
+问题::答案（供间隔重复插件识别）
+
+## 出处
+- [标题](url) · 日期</code></pre>
+<p>字段约定：</p>
+<ul><li><code>kind</code>：<code>concept</code> 概念 / <code>method</code> 方法 / <code>tool</code> 工具 / <code>model</code> 模型 / <code>metric</code> 指标 / <code>person</code> 人 / <code>product</code> 产品 / <code>entity</code> 实体（公司、组织）</li><li><code>domain</code>：层级路径，最多 3 段，如 <code>商业/产品/增长</code>。<strong>按学科归类，不按使用场景</strong></li><li><code>aliases</code>：英文名、缩写、常见错写。同名合并靠它命中</li><li><code>tags</code>：至少带一个 <code>概念/{kind}</code> 和 <code>领域/{domain第一段}</code></li></ul></section><section class="sec"><h2 id="四-四个标准操作">四、四个标准操作</h2><h3 id="1-摄入素材">1. 摄入素材</h3>
+<p>触发：用户说「摄入素材」「整理新素材」，或 <code>_在编/</code> 有新文件。</p>
+<p>优先执行托管脚本（一致性更好）：</p>
+<pre><code class="lang-bat">_馆务\整理概念.bat
+_馆务\整理概念.bat --dry-run   :: 只预览</code></pre>
+<p>脚本做的事：读素材 → 抽取 3-8 个概念 → 同名则补充、新名则建卡 → 刷新索引/MOC/首页 → 原件归档到 <code>_典藏</code>。</p>
+<p>如果脚本不可用（环境变了、要特殊处理），可以手动执行，但必须遵守第三章的卡片格式，并在完成后更新索引。</p>
+<h3 id="2-体检">2. 体检</h3>
+<p>触发：用户说「体检」。</p>
+<pre><code class="lang-bat">_馆务\知识库.bat      :: 菜单选 2
+_馆务\维护.bat audit  :: 命令行等价</code></pre>
+<p>检查六类问题：重复、矛盾、失效、错位、孤岛、缺链。<strong>只出报告，不动文件</strong>，报告写到 <code>_馆务/报告/</code>。用户确认后才执行合并或下架。</p>
+<h3 id="3-问答与沉淀">3. 问答与沉淀</h3>
+<p>触发：用户提问。</p>
+<p>先检索相关卡片（术语命中优先），只根据卡片内容回答。<strong>卡片里没有的，明确说没有，不许编</strong>。</p>
+<p>高质量回答要沉淀成 <code>分析/</code> 下的卡片，格式：</p>
+<pre><code class="lang-markdown">---
+title: 问题式标题
+kind: analysis
+domain: 所属领域
+created: 日期
+---
+
+# 标题
+
+&gt; 问题：原始提问
+
+## 结论
+
+## 展开
+
+## 依据
+- [[相关概念]]
+
+## 出处</code></pre>
+<p>沉淀后要在相关概念卡的「关联」里补一条指向这篇分析。</p>
+<h3 id="4-合并与下架">4. 合并与下架</h3>
+<pre><code class="lang-bat">_馆务\维护.bat merge 保留的词条 被并入的词条
+_馆务\维护.bat prune 词条</code></pre>
+<p><strong>永不物理删除。</strong> 合并的下场是移到 <code>_废弃/</code>，同时全库把 <code>[[被并入]]</code> 改写成 <code>[[主卡]]</code>，别名补进主卡 <code>aliases</code>。</p></section><section class="sec"><h2 id="五-硬性规则">五、硬性规则</h2><ol><li><strong>按学科归类，不按场景归类。</strong> 禁止 <code>学习</code> <code>生活</code> <code>干货</code> <code>杂谈</code> <code>其他</code> 这类类目。</li><li><strong>一个概念一张卡。</strong> 观点、论述写进卡片的要点，不单独建卡。</li><li><strong>同名即合并。</strong> 匹配顺序：文件名 → <code>term</code> → <code>aliases</code>。命中就追加，不新建。</li><li><strong>不删只废。</strong> 任何卡片、素材都移到对应目录，不 <code>rm</code>。</li><li><strong>改动前先说方案。</strong> 批量操作、合并、下架，先打印将要做什么，等用户确认。</li><li><strong>双链可以指向不存在的卡。</strong> 允许 <code>[[注意力机制]]</code> 这种待建链接，<code>首页.md</code> 会汇总成「待补全词条」。</li><li><strong>不覆盖人的手写内容。</strong> 补充只能追加章节，改写定义要用户明确同意。</li></ol></section><section class="sec"><h2 id="六-不要做">六、不要做</h2><ul><li>不要把所有视频笔记塞进一张「视频笔记」卡</li><li>不要为了让数字好看而硬凑概念</li><li>不要在 <code>MOC/</code> <code>首页.md</code> <code>概念索引.md</code> 里手写内容（会被覆盖）</li><li>不要把 <code>_典藏/</code> <code>_废弃/</code> 当垃圾清空，那是追溯凭据</li><li>不要在没确认的情况下批量删改超过 5 张卡片</li></ul></section><section class="sec"><h2 id="七-脚本清单">七、脚本清单</h2><div class="tablewrap"><table><thead><tr><th>脚本</th><th>作用</th></tr></thead><tbody><tr><td><code>_馆务\知识库.bat</code></td><td>中文菜单，六个功能的总入口</td></tr><tr><td><code>_馆务\整理概念.bat</code></td><td>摄入（可加 <code>--dry-run</code>）</td></tr><tr><td><code>_馆务\维护.bat</code></td><td><code>audit</code> / <code>merge</code> / <code>prune</code> / <code>ask</code> / <code>rebuild</code></td></tr><tr><td><code>_馆务\后台整理.bat</code></td><td>常驻监听 <code>_在编</code>，自动摄入</td></tr><tr><td><code>_馆务\config.json</code></td><td>模型配置（api_key / base_url / model）</td></tr></tbody></table></div>
+<p>脚本用的是打包在 <code>BiliNote\backend\.venv</code> 里的 Python 环境，里面有 openai SDK。</p></section></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-16</span>
+</footer>
+<script src="../assets/app.js" defer></script>
+</body>
+</html>
