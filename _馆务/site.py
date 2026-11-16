@@ -553,6 +553,8 @@ def backlinks_block(card, root):
 # ---------------------------------------------------------------- 生成各类页面
 
 def gen_card(cards, i):
+    global CUR_ROOT
+    CUR_ROOT = "../"          # 正文在 page() 之前渲染，必须提前设好前缀
     card = cards[i]
     root = "../"
     sections = []
@@ -597,6 +599,8 @@ def gen_card(cards, i):
 
 
 def gen_home(cards, domains):
+    global CUR_ROOT
+    CUR_ROOT = ""
     root = ""
     total = len(cards)
     dom_count = len({c["domain"].split("/")[0] for c in cards if c["domain"]})
@@ -654,6 +658,8 @@ def gen_home(cards, domains):
 
 
 def gen_all(cards):
+    global CUR_ROOT
+    CUR_ROOT = ""
     root = ""
     groups = defaultdict(list)
     for c in cards:
@@ -670,6 +676,8 @@ def gen_all(cards):
 
 
 def gen_domain(dom, items):
+    global CUR_ROOT
+    CUR_ROOT = "../"
     root = "../"
     groups = defaultdict(list)
     for c in items:
@@ -694,10 +702,12 @@ def gen_domain(dom, items):
 
 
 def gen_agents():
+    global CUR_ROOT
+    CUR_ROOT = ""
     f = BASE / "AGENTS.md"
     if not f.is_file():
         return None
-    root = "../"
+    root = ""
     meta, body = parse_frontmatter(f.read_text(encoding="utf-8", errors="replace"))
     sections = split_sections(body)
     parts = [f'<nav class="crumb"><a href="{root}index.html">首页</a> '
@@ -752,6 +762,21 @@ def build_search(cards):
     return out
 
 
+def clean_out():
+    """清掉上一次的产物。逐个删文件而不是 rmtree ——
+    整目录删除在部分环境下会走回收站并失败，这里失败也继续，宁可留旧文件也不中断生成。"""
+    if not OUT.exists():
+        OUT.mkdir(parents=True, exist_ok=True)
+        return
+    for p in sorted(OUT.rglob("*"), key=lambda x: len(x.parts), reverse=True):
+        try:
+            if p.is_file():
+                p.unlink()
+        except OSError:
+            pass
+    OUT.mkdir(parents=True, exist_ok=True)
+
+
 def write(path, content):
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(content, encoding="utf-8", newline="\n")
@@ -770,8 +795,9 @@ def main():
     collect_backlinks(cards_all)
 
     if OUT.exists():
-        shutil.rmtree(OUT)
-    OUT.mkdir(parents=True)
+        clean_out()
+    else:
+        OUT.mkdir(parents=True, exist_ok=True)
     (OUT / ".nojekyll").write_text("", encoding="utf-8")
 
     # 资源

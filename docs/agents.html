@@ -6,19 +6,19 @@
 <meta name="description" content="知识库">
 <meta name="color-scheme" content="light dark">
 <title>操作规则 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css">
+<link rel="stylesheet" href="assets/style.css">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <header class="top">
-  <a class="brand" href="../index.html">知识库</a>
+  <a class="brand" href="index.html">知识库</a>
   <nav class="topnav">
-    <a href="../all.html">全部</a>
+    <a href="all.html">全部</a>
     <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <span>操作规则</span></nav><article class="card"><h1>知识库操作规则</h1><p class="lede">AGENTS.md —— 任何 AI Agent 打开这个库时遵循的规则</p><blockquote>这个文件是本仓库的操作规则。任何 AI Agent（WorkBuddy / Claude / Codex 等）在这个目录下工作时，先读它，按它办事。 人类不必遵循，但建议了解一下，便于判断 AI 做得对不对。</blockquote><section class="sec"><h2 id="一-这个仓库是什么">一、这个仓库是什么</h2><p>一座用 Obsidian 承载的个人知识库，核心是<strong>概念卡片</strong>，不是文档堆。</p>
+<nav class="crumb"><a href="index.html">首页</a> <span class="sep">/</span> <span>操作规则</span></nav><article class="card"><h1>知识库操作规则</h1><p class="lede">AGENTS.md —— 任何 AI Agent 打开这个库时遵循的规则</p><blockquote>这个文件是本仓库的操作规则。任何 AI Agent（WorkBuddy / Claude / Codex 等）在这个目录下工作时，先读它，按它办事。 人类不必遵循，但建议了解一下，便于判断 AI 做得对不对。</blockquote><section class="sec"><h2 id="一-这个仓库是什么">一、这个仓库是什么</h2><p>一座用 Obsidian 承载的个人知识库，核心是<strong>概念卡片</strong>，不是文档堆。</p>
 <p>一条视频或文章进来，会被拆成若干张卡片，每张卡讲清一个名词：定义、解释、用处、要点、边界、关联、自测。卡片之间用双链连成网，靠 <code>MOC/</code> 和 <code>概念索引.md</code> 组织，不靠文件夹层级。</p>
 <p>判断做得好不好的标准：<strong>能不能精准调用</strong>。存得多没用，找不到、连不上就是失败。</p></section><section class="sec"><h2 id="二-目录结构">二、目录结构</h2><div class="tablewrap"><table><thead><tr><th>路径</th><th>作用</th><th>谁动</th></tr></thead><tbody><tr><td><code>概念/</code></td><td>概念卡片，平铺，一张卡一个文件</td><td>AI 写，人可改</td></tr><tr><td><code>分析/</code></td><td>问答沉淀、专题综述、深度分析</td><td>AI 写</td></tr><tr><td><code>MOC/</code></td><td>领域地图，一个顶级领域一页</td><td>AI 自动生成，勿手改</td></tr><tr><td><code>_在编/</code></td><td>待摄入的新素材（BiliNote 等工具直接落这里）</td><td>外部工具写入</td></tr><tr><td><code>_典藏/</code></td><td>已摄入的原始素材，按月归档</td><td>AI 移入，勿删</td></tr><tr><td><code>_废弃/</code></td><td>下架或合并掉的卡片</td><td>AI 移入，勿删</td></tr><tr><td><code>_馆务/</code></td><td>脚本、配置、日志、报告</td><td>AI 维护</td></tr><tr><td><code>首页.md</code> / <code>概念索引.md</code></td><td>导航，自动生成</td><td>AI 重新生成</td></tr></tbody></table></div></section><section class="sec"><h2 id="三-概念卡片规范">三、概念卡片规范</h2><p>文件名 = 概念名 + <code>.md</code>，例如 <code>提示工程.md</code>。</p>
 <pre><code class="lang-markdown">---
@@ -104,6 +104,6 @@ _馆务\维护.bat prune 词条</code></pre>
   <span>知识库</span>
   <span>更新于 2026-11-16</span>
 </footer>
-<script src="../assets/app.js" defer></script>
+<script src="assets/app.js" defer></script>
 </body>
 </html>
