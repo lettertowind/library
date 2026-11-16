@@ -1,0 +1,27 @@
+# ===== 密钥（绝对不能提交）=====
+_馆务/config.json
+_馆务/config.local.json
+*.key
+*.pem
+
+# ===== Obsidian 本地状态（窗口布局各设备不同，同步会冲突）=====
+# 注意：插件的 data.json 故意不排除，因为复习进度和命令配置存在里面
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+.obsidian/appearance.json
+.trash/
+
+# ===== 系统与缓存 =====
+.DS_Store
+Thumbs.db
+desktop.ini
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+
+# ===== 临时产物 =====
+*.tmp
+*.log
+_馆务/报告/*.tmp
