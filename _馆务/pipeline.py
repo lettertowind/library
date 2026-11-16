@@ -334,7 +334,7 @@ def main():
         say(f"  [!] {e}")
         return 1
 
-    say("\n[√] 完成。网站会在 1-2 分钟后更新：")
+    say("\n[√] 完成。约 30 秒后线上生效（手机上拉刷新即可）：")
     say("    https://lettertowind.github.io/library/")
     return 0
 
