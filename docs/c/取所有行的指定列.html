@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用冒号取全部行、用整数数组取指定列，得到列子集。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>取所有行的指定列 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>取所有行的指定列</h1><div class="aliases">数组[: · [列索引]] · 列子集抽取 · d[: · [1 · 2]]</div><p class="lede">用冒号取全部行、用整数数组取指定列，得到列子集。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>写法 d[:, [1,2]] 中逗号前的冒号表示所有行，逗号后的整数数组表示要保留的列。它等价于连续切片 d[:, 1:3]，但列可以不连续，适合从表格数据中抽取指定列。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>从二维数组或表格中抽取指定列</li><li>选取不连续的若干列</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>冒号 : 表示取该维全部</li><li>列索引数组可以任意指定、不必连续</li><li>d[:, 1:3] 是连续列时的等价写法</li><li>第 0 列不取时结果只保留第 1、2 列</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>列索引数组与切片混用时要分清哪边是行、哪边是列。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%A5%9E%E5%A5%87%E7%B4%A2%E5%BC%95.html">神奇索引</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/Numpy%20%E5%88%87%E7%89%87.html">Numpy 切片</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>d 为 9 行 4 列，d[:, [1,2]] 的结果是什么形状？第一行是什么？</summary><div class="quiz-a">9 行 2 列；第一行是 [1,2]。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%97%E5%90%91%E9%87%8F%E5%B9%BF%E6%92%AD.html"><small>上一张</small>列向量广播</a><a class="next" href="../c/%E5%90%8C%E5%BD%A2%E6%95%B0%E7%BB%84%E8%BF%90%E7%AE%97.html"><small>下一张</small>同形数组运算</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在 loc 中用英文冒号连接起止日期，取出该区间内的记录。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>日期范围查询 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>日期范围查询</h1><div class="aliases">日期切片 · loc 日期区间</div><p class="lede">在 loc 中用英文冒号连接起止日期，取出该区间内的记录。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>把日期设为索引后，df.loc[&#x27;起始日期&#x27;:&#x27;结束日期&#x27;] 可取出区间内实际存在的记录。它属于范围切片，比逐个列日期更高效。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>取某几年间的所有记录</li><li>按时间段统计成绩</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>前提是日期已设为索引</li><li>冒号必须是英文冒号</li><li>返回表中实际存在的区间内记录</li><li>区间跨多年时更接近筛选思路</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>日期字符串格式要与数据中一致，否则可能查不到或报错。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/loc.html">loc</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/set_index.html">set_index</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df.loc[&#x27;1983-10-27&#x27;:&#x27;1990-12-31&#x27;] 取的是什么？</summary><div class="quiz-a">取出生日期在 1983-10-27 到 1990-12-31 之间的所有记录。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/truncate.html">truncate</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%97%A5%E6%9C%9F%E7%AD%9B%E9%80%89%E4%B8%89%E9%83%A8%E6%9B%B2.html">日期筛选三部曲</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%97%A5%E6%9C%9F%E7%AD%9B%E9%80%89%E4%B8%89%E9%83%A8%E6%9B%B2.html"><small>上一张</small>日期筛选三部曲</a><a class="next" href="../c/%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E5%8C%96.html"><small>下一张</small>条件变量化</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="根据已有数组的形状创建元素全为 1 的新数组。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>np.ones_like · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.ones_like</h1><div class="aliases">ones_like · 按形状创建全 1 数组</div><p class="lede">根据已有数组的形状创建元素全为 1 的新数组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>与 np.ones 需要手动传形状不同，ones_like 直接读取传入数组的 shape，生成同形状的全 1 数组，原数组不受影响。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要与现有数组同形状的占位/掩码数组时</li><li>避免手写 shape 元组出错</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法：np.ones_like(a)，不要漏写 np 前缀</li><li>新数组形状与 a 完全一致，元素全为 1</li><li>不修改原数组 a</li><li>默认 dtype 可能为 float64，可用 dtype 参数指定</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 np.ones 的区别：ones 手动指定形状，ones_like 复用已有数组形状。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.ones.html">np.ones</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/np.zeros_like.html">np.zeros_like</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.full_like.html">np.full_like</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>a 是 2 行 3 列数组，np.ones_like(a) 的结果形状和内容是什么？</summary><div class="quiz-a">形状仍为 (2, 3)，所有元素为 1</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.full_like.html">np.full_like</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/np.zeros_like.html">np.zeros_like</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.ones.html"><small>上一张</small>np.ones</a><a class="next" href="../c/np.prod.html"><small>下一张</small>np.prod</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

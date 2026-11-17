@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 merge 左连接从另一张表按关键列取回目标字段，等价 Excel 的 VLOOKUP。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>VLOOKUP 式匹配 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>VLOOKUP 式匹配</h1><div class="aliases">VLOOKUP · Excel 查找匹配 · 纵向查找</div><p class="lede">用 merge 左连接从另一张表按关键列取回目标字段，等价 Excel 的 VLOOKUP。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Excel 的 VLOOKUP 按关键列在另一张表查找并返回指定列的值。Pandas 中通过 merge 左连接实现：主表保留全部行，右表只取关键列和目标列，按关键列连接。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>跨工作表/跨表补全字段</li><li>用一张表的数据给另一张表打标签</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>右表先用 loc[:, [&#x27;键&#x27;,&#x27;目标列&#x27;]] 只取需要的列，避免带入无关字段</li><li>how=&#x27;left&#x27; 保证主表记录一条不少</li><li>on=&#x27;键列&#x27; 指定连接键，两表键名不同时用 left_on/right_on</li><li>匹配结果列默认追加在最后，需要移动时用 insert</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>VLOOKUP 只能向右查找且默认近似匹配；merge 无方向限制，但需注意键重复导致的多对多展开。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0.html">how 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/on%20%E5%8F%82%E6%95%B0.html">on 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/loc.html">loc</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么右表要先 loc[:, [&#x27;学号&#x27;,&#x27;总分&#x27;]] 再 merge，而不是整表连接？</summary><div class="quiz-a">避免把右表无关列全部带入结果，减少冗余字段和列名冲突。</div></details>
+<details class="quiz"><summary>如果主表有而右表没有的学号，how=&#x27;left&#x27; 后该行总分是什么？</summary><div class="quiz-a">NaN，因为左连接保留主表全部行，匹配不到就填空值。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/Timedelta.html"><small>上一张</small>Timedelta</a><a class="next" href="../c/agg.html"><small>下一张</small>agg</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

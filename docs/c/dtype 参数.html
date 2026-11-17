@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="创建数组时用于指定或查看元素数据类型的参数/属性，如 int32、float64。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>dtype 参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>dtype 参数</h1><div class="aliases">dtype · 数据类型参数 · 元素数据类型</div><p class="lede">创建数组时用于指定或查看元素数据类型的参数/属性，如 int32、float64。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>dtype 既可作为创建函数的参数（dtype=float、dtype=np.int32）指定元素类型，也可作为数组属性（a.dtype）查看当前类型。不指定时 NumPy 自动探测，整数可能得到 int32 或 int64。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>控制数组元素是整数还是浮点、多少位</li><li>查看已有数组的元素类型</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>作为参数：np.arange(1,8,dtype=float)</li><li>作为属性：a.dtype 返回元素类型</li><li>常见形式为类型名加位数：int32、int64、float32、float64</li><li>不指定时自动探测，结果可能与预期不完全一致</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>dtype 描述元素类型，type(a) 描述对象类型（numpy.ndarray），两者不要混淆。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.array.html">np.array</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/shape%20%E5%B1%9E%E6%80%A7.html">shape 属性</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>a.dtype 和 type(a) 分别返回什么？</summary><div class="quiz-a">a.dtype 返回元素数据类型（如 int64）；type(a) 返回对象类型 &lt;class &#x27;numpy.ndarray&#x27;&gt;。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.array.html">np.array</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/axis%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>axis 参数</a><a class="next" href="../c/import%20numpy%20as%20np.html"><small>下一张</small>import numpy as np</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

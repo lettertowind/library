@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="将 DataFrame 的一列或多列设置为行索引的方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>set_index · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>set_index</h1><div class="aliases">df.set_index · 设置索引</div><p class="lede">将 DataFrame 的一列或多列设置为行索引的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>set_index 在读取数据后调用，传入列名列表即可把多列设为多层行索引。它与读取时用 index_col 指定索引列效果等价，适合先读数据再调整索引结构的场景。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>读取后设置单层或多层行索引</li><li>把普通列转为索引以方便查询</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>传入列名列表可设置多层索引</li><li>与 read_excel 的 index_col 效果等价</li><li>默认返回新 DataFrame，不修改原对象</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 index_col 的区别只在调用时机：一个读取时设置，一个读取后设置。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/index_col%20%E5%8F%82%E6%95%B0.html">index_col 参数</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>set_index([&#x27;班级&#x27;,&#x27;学号&#x27;]) 和 read_excel(index_col=[0,1]) 有什么区别？</summary><div class="quiz-a">效果等价，只是设置时机不同：前者读取后设置，后者读取时直接指定。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>set_index 将指定业务字段提升为行索引，替代默认的 0、1、2 整数索引。写出文件时默认索引列就不会作为多余的一列出现，常用于让导出结果更干净。</p>
+<p>- set 是设置、index 是索引，合起来即设置索引</p>
+<p>- 默认返回新对象，需重新赋值或加 inplace</p>
+<p>- 设为索引的列不再是普通数据列</p>
+<details class="quiz"><summary>导出 Excel 时多出一列 0、1、2，用 set_index 怎么解决？</summary><div class="quiz-a">把某个业务字段设为索引，如 data.set_index(&#x27;序号&#x27;)，默认整数索引就不再作为列写出。</div></details>
+<details class="quiz"><summary>set_index 之后原来的那一列还在普通列里吗？</summary><div class="quiz-a">不在了，它变成了行索引，需通过 index 访问。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/level%20%E5%8F%82%E6%95%B0%EF%BC%88groupby%EF%BC%89.html">level 参数（groupby）</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/reset_index.html">reset_index</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/right_index%20%E5%8F%82%E6%95%B0.html">right_index 参数</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/truncate.html">truncate</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%AD%97%E5%85%B8%E6%9E%84%E9%80%A0%20DataFrame.html">字典构造 DataFrame</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%97%A5%E6%9C%9F%E7%AD%9B%E9%80%89%E4%B8%89%E9%83%A8%E6%9B%B2.html">日期筛选三部曲</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2.html">日期范围查询</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85.html">自动填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%BB%98%E8%AE%A4%E7%B4%A2%E5%BC%95%E5%88%97.html">默认索引列</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sep%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>sep 参数</a><a class="next" href="../c/shape%20%E5%B1%9E%E6%80%A7.html"><small>下一张</small>shape 属性</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

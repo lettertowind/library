@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="按指定字符把字符串拆分成列表的方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>str.split · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.split</h1><div class="aliases">split · 字符串拆分</div><p class="lede">按指定字符把字符串拆分成列表的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.split 将每个字符串按分隔符切开，默认返回列表形式。可通过 n 控制拆分次数，通过 expand=True 把拆分结果展开成多列，效果类似 Excel 的分列。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把“满血激活”拆成状态和动作</li><li>按分隔符把一列拆成多列</li><li>只拆分前 N 个分隔符</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认 n=-1，全部分隔符都参与拆分</li><li>n=1 表示只拆分第一个分隔符</li><li>expand=True 将列表展开为多列</li><li>分隔符本身不出现在结果中</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>expand=True 时列数由最大拆分数量决定；空值仍保持为空。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/str.rsplit.html">str.rsplit</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/str.partition.html">str.partition</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.split(&#x27;血&#x27;, expand=True) 和 str.split(&#x27;血&#x27;) 的结果差异是什么？</summary><div class="quiz-a">前者把拆分结果展开成多列，后者每行仍是一个列表。</div></details>
+<details class="quiz"><summary>n 参数默认值是多少，含义是什么？</summary><div class="quiz-a">默认 -1，表示所有分隔符都参与拆分。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.partition.html">str.partition</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.rsplit.html">str.rsplit</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.slice_replace.html"><small>上一张</small>str.slice_replace</a><a class="next" href="../c/str.startswith.html"><small>下一张</small>str.startswith</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

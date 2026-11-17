@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="read_csv/read_table 中指定字段分隔符的参数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>sep 参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>sep 参数</h1><div class="aliases">sep · 分隔符参数 · delimiter</div><p class="lede">read_csv/read_table 中指定字段分隔符的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>sep 决定 Pandas 如何切分每行文本。可传单个字符如 &#x27;,&#x27;、&#x27;\t&#x27;，也可传正则表达式如 r&#x27;\s+&#x27; 处理混合空白分隔。分隔符选错会导致整行被当成一列。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>匹配文件实际分隔方式</li><li>处理空格与制表符混合的复杂文本</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>read_csv 默认 &#x27;,&#x27;，read_table 默认 &#x27;\t&#x27;</li><li>sep=r&#x27;\s+&#x27; 匹配一个或多个空白字符</li><li>正则分隔符可处理混合分隔场景</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>正则分隔符需注意转义与性能；简单固定分隔符优先用普通字符。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">正则表达式</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/pd.read_csv.html">pd.read_csv</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>文件里既有空格又有制表符，sep 该怎么写？</summary><div class="quiz-a">sep=r&#x27;\s+&#x27;，匹配一个或多个空白字符。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/pd.read_table.html">pd.read_table</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/right_index%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>right_index 参数</a><a class="next" href="../c/set_index.html"><small>下一张</small>set_index</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

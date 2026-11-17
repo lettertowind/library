@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把 DataFrame 作为第一个参数传入指定函数，实现链式调用。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>pipe · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pipe</h1><div class="aliases">DataFrame.pipe · 管道方法 · 表格函数</div><p class="lede">把 DataFrame 作为第一个参数传入指定函数，实现链式调用。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>pipe 让「函数式」操作也能接入 Pandas 的链式写法。它把当前对象传给任意函数，适合把自定义函数或 groupby 这类类方法串进流水线。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>链式调用中插入自定义函数</li><li>把 groupby 等类方法接入管道</li><li>提高多步处理的可读性</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>df.pipe(pd.DataFrame.groupby, &#x27;班级&#x27;).sum() 等价于 df.groupby(&#x27;班级&#x27;).sum()</li><li>pipe 传的是整个 DataFrame，apply 传的是行或列，map 传的是元素</li><li>适合把复杂处理拆成可复用的函数步骤</li><li>后续可接 .sum() 等聚合完成链式调用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>简单操作直接用方法链更直观；pipe 的价值在接入外部函数时体现。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/map.html">map</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>pipe、apply、map 三者的作用对象分别是什么？</summary><div class="quiz-a">pipe 作用于整个 DataFrame，apply 作用于行/列，map 作用于单个元素。</div></details>
+<details class="quiz"><summary>df.pipe(pd.DataFrame.groupby, &#x27;班级&#x27;).sum() 等价于什么？</summary><div class="quiz-a">df.groupby(&#x27;班级&#x27;).sum()。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/pd.to_datetime.html"><small>上一张</small>pd.to_datetime</a><a class="next" href="../c/pivot_table.html"><small>下一张</small>pivot_table</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

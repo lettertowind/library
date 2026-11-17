@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="按起止范围和步长截取字符串片段的方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>str.slice · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.slice</h1><div class="aliases">slice · 字符串切片</div><p class="lede">按起止范围和步长截取字符串片段的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.slice(start, stop, step) 类似 Python 切片，从 start 到 stop（不含 stop）截取字符，可设置步长。越界位置显示为空字符，原值为 NaN 的仍为空值。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>截取字符串前几位</li><li>隔位取字符</li><li>按固定位置提取编码片段</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>stop 位置不包含在结果中</li><li>支持 step 步长</li><li>越界显示空字符，不是 NaN</li><li>空字符与空值要区分</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不支持替换；需要替换切片范围时用 str.slice_replace。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.slice_replace.html">str.slice_replace</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/str.get.html">str.get</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Numpy%20%E5%88%87%E7%89%87.html">Numpy 切片</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.slice(0, 3) 取的是哪几个索引？</summary><div class="quiz-a">索引 0、1、2，共三个字符，不包含 3。</div></details>
+<details class="quiz"><summary>切片越界时结果是什么？</summary><div class="quiz-a">越界位置显示为空字符，原值为 NaN 的仍为空值。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.get.html">str.get</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.slice_replace.html">str.slice_replace</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.rstrip.html"><small>上一张</small>str.rstrip</a><a class="next" href="../c/str.slice_replace.html"><small>下一张</small>str.slice_replace</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

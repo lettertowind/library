@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="创建用指定数值填充的数组，形状和填充值都由参数给出。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>np.full · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.full</h1><div class="aliases">full · 指定值数组</div><p class="lede">创建用指定数值填充的数组，形状和填充值都由参数给出。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>np.full(shape, fill_value) 是 np.ones/np.zeros 的泛化版：第一个参数是形状，第二个参数是填充值。例如 np.full(3,520) 得到三个 520。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>生成任意常量填充的数组</li><li>需要非 0/1 默认值的初始化</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法 np.full(shape, fill_value)</li><li>一维：np.full(3,520)</li><li>二维：np.full((3,3),520)</li><li>可指定 dtype，order 默认 C</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>fill_value 是第二个位置参数，不要与形状参数顺序写反。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.ones.html">np.ones</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.full((3,3),520) 生成什么？</summary><div class="quiz-a">3 行 3 列、每个元素都是 520 的二维数组。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>np.full 需要两个参数：形状元组和填充值，例如 np.full((3, 3), 520) 创建 3 行 3 列、元素全为 520 的数组。</p>
+<p>- 语法：np.full((3, 3), 520)</p>
+<p>- 第一个参数是形状元组，第二个是填充值</p>
+<p>- 支持多维形状</p>
+<details class="quiz"><summary>np.full((3, 3), 520) 生成什么数组？</summary><div class="quiz-a">3 行 3 列、所有元素都是 520 的二维数组</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.full_like.html">np.full_like</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.ones.html">np.ones</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.exp.html"><small>上一张</small>np.exp</a><a class="next" href="../c/np.full_like.html"><small>下一张</small>np.full_like</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用布尔条件序列筛选 DataFrame 中符合条件的行。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>布尔索引筛选 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>布尔索引筛选</h1><div class="aliases">布尔索引 · 条件筛选 · 数据[部门]==i</div><p class="lede">用布尔条件序列筛选 DataFrame 中符合条件的行。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>把条件表达式（如 数据[&#x27;部门&#x27;]==i）作为索引传给 DataFrame，返回条件为真的行。它是拆分任务中“取出某一组数据”的标准写法，比较必须用 ==。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按部门取出子表</li><li>按条件过滤数据行</li><li>拆分前筛选目标分组</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>写法：数据[数据[&#x27;部门&#x27;] == i]</li><li>比较相等用 ==，= 是赋值会报错或出错</li><li>多个条件用 &amp; 连接并加括号</li><li>返回的是原数据的子集副本</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>条件列含缺失值时该行不会被选中；字符串比较对空格和大小写敏感。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/drop_duplicates.html">drop_duplicates</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>写 数据[数据[&#x27;部门&#x27;] = i] 会有什么后果？正确写法是什么？</summary><div class="quiz-a">= 是赋值，会报语法错误或产生错误结果；正确写法是 数据[数据[&#x27;部门&#x27;] == i]。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>布尔索引先用条件表达式生成与原数组形状相同的布尔数组，再用它作为下标。True 位置被保留或赋值，False 位置被过滤或跳过。它是 Numpy 中按条件批量定位元素的核心手段。</p>
+<p>- 本质：条件表达式生成布尔数组，再作为下标使用</p>
+<p>- 一维筛选写法：arr[arr &gt; 5]</p>
+<p>- 条件赋值写法：arr[arr &gt; 5] = 1、arr[arr &gt; 5] += 520</p>
+<details class="quiz"><summary>arr2d[arr2d &gt; 10] 返回的形状是什么？为什么？</summary><div class="quiz-a">返回一维数组，因为布尔筛选会把所有满足条件的元素提取出来并压平，不保留原二维形状。</div></details>
+<details class="quiz"><summary>要把二维数组第三列中大于 5 的元素改为 520，直接写 arr2d[arr2d &gt; 5] = 520 有什么问题？</summary><div class="quiz-a">会把整个数组中所有大于 5 的元素都改成 520，而不只是第三列，作用范围错误。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.in1d.html">np.in1d</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E4%BA%8C%E6%AC%A1%E5%88%87%E7%89%87.html">二次切片</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%A4%9A%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88.html">多条件组合</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html">布尔数组</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html">布尔数组</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html">条件赋值</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html">条件赋值</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E9%9B%B6%E4%B8%80%E5%8C%96.html">零一化</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/drop_duplicates.html">drop_duplicates</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/duplicated.html">duplicated</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/isin.html">isin</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/isna.html">isna</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/query%20%E6%96%B9%E6%B3%95.html">query 方法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.contains.html">str.contains</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E5%88%86%E7%BB%84%E9%94%AE.html">布尔分组键</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2.html">数据查询</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E7%AD%9B%E9%80%89.html">数据筛选</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%9D%A1%E4%BB%B6%E5%8F%98%E9%87%8F%E5%8C%96.html">条件变量化</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%B8%83%E5%B0%94%E5%88%86%E7%BB%84%E9%94%AE.html"><small>上一张</small>布尔分组键</a><a class="next" href="../c/%E6%8C%87%E5%AE%9A%E5%88%97%E7%BB%9F%E8%AE%A1.html"><small>下一张</small>指定列统计</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

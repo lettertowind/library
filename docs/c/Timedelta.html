@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="pandas 中表示两个时间点之差的类型，可直接取 .days 得整数天数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Timedelta · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>Timedelta</h1><div class="aliases">时间差类型 · 时间间隔类型 · days</div><p class="lede">pandas 中表示两个时间点之差的类型，可直接取 .days 得整数天数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>两个日期列相减得到 Timedelta 对象，显示形如 7 days、190 days。它不是普通字符串，而是专门的时间差类型，可通过 .days 属性提取整数天数，便于后续计算。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>计算保质期、账龄、间隔天数</li><li>日期列相减后转整数</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>日期列相减自动得到 Timedelta</li><li>用 .days 取整数天数</li><li>是否含当天需业务决定，含当天则 +1</li><li>可直接用 apply(lambda x: x.days) 转换</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>Timedelta 与 datetime 不同：前者是差值，后者是时间点；.days 只取整天数，忽略时分秒。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.to_datetime.html">pd.to_datetime</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>结束日期减起始日期得到什么类型？怎么变成整数天数？</summary><div class="quiz-a">得到 Timedelta，用 .days 属性取整数天数。</div></details>
+<details class="quiz"><summary>保质期计算中“当天算不算”由谁决定？</summary><div class="quiz-a">由业务逻辑决定，含当天就在结果上加 1，不是 pandas 固定规则。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>timedelta 用来做日期加减，例如起始日期 + timedelta(days=i) 得到第 i 天。它把“间隔”封装成可运算对象，避免手工拆分年月日。</p>
+<p>- 支持 days、seconds、microseconds、milliseconds、minutes、hours、weeks</p>
+<p>- 不支持 months 和 years 参数</p>
+<p>- 日期 + timedelta 得到新日期</p>
+<details class="quiz"><summary>timedelta(days=30) 和“加一个月”在 2 月场景下结果一样吗？</summary><div class="quiz-a">不一样，30 天是固定长度，加一个月要按日历月份算，2 月只有 28/29 天。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E7%B4%AF%E5%8A%A0%E6%9C%88%E7%AE%97%E6%B3%95.html">累加月算法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85.html">自动填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/datetime%20%E6%A8%A1%E5%9D%97.html">datetime 模块</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html"><small>上一张</small>Series.str 访问器</a><a class="next" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html"><small>下一张</small>VLOOKUP 式匹配</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用多个一维列表的笛卡尔积创建多层索引的方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>pd.MultiIndex.from_product · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.MultiIndex.from_product</h1><div class="aliases">from_product · 笛卡尔积创建 MultiIndex</div><p class="lede">用多个一维列表的笛卡尔积创建多层索引的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>from_product 接收一个列表的列表，生成各层元素的所有组合，是创建 MultiIndex 最推荐的方式。它适合层级取值需要两两组合的场景，如年份×月份、类别×品名。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>创建行或列的多层索引</li><li>构造总计结果的多层列索引</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数是列表的列表，每层一个列表</li><li>生成各层元素的所有笛卡尔积组合</li><li>可用 names 参数给各层命名</li><li>是三种创建方式中最推荐的一种</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>注意参数外层要再套一层列表，嵌套写错会导致层级错误。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/pd.MultiIndex.from_arrays.html">pd.MultiIndex.from_arrays</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/pd.MultiIndex.from_tuples.html">pd.MultiIndex.from_tuples</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>from_product([[&#x27;a&#x27;,&#x27;b&#x27;],[1,2]]) 会生成哪些索引组合？</summary><div class="quiz-a">(&#x27;a&#x27;,1)、(&#x27;a&#x27;,2)、(&#x27;b&#x27;,1)、(&#x27;b&#x27;,2) 四组。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/pd.MultiIndex.from_arrays.html">pd.MultiIndex.from_arrays</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/pd.MultiIndex.from_tuples.html">pd.MultiIndex.from_tuples</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pd.MultiIndex.from_arrays.html"><small>上一张</small>pd.MultiIndex.from_arrays</a><a class="next" href="../c/pd.MultiIndex.from_tuples.html"><small>下一张</small>pd.MultiIndex.from_tuples</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

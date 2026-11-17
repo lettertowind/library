@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="pandas 中向同一个 Excel 文件写入多个工作表的写入器对象。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>pd.ExcelWriter · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.ExcelWriter</h1><div class="aliases">ExcelWriter · Excel 写入对象</div><p class="lede">pandas 中向同一个 Excel 文件写入多个工作表的写入器对象。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>ExcelWriter 打开一个 Excel 文件作为写入目标，之后多次调用 DataFrame.to_excel(writer, sheet_name=...) 可把不同数据写进同一文件的不同 sheet，最后 save/close 落盘。没有它，多次 to_excel 会互相覆盖。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把一个工作表按某列拆成同一文件的多个 sheet</li><li>向一个 Excel 追加多个数据表</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>必须先创建 writer，再逐表 to_excel 写入</li><li>sheet_name 参数决定写入哪个工作表</li><li>最后要 save() 和 close()，新版建议用上下文管理器</li><li>拆成多个独立工作簿时不需要它</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只管写入，不负责拆分逻辑；新版 pandas 中 writer.save() 已弃用，应使用 close() 或 with 语句。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>不用 ExcelWriter，循环里直接对同一路径调用 to_excel 会怎样？</summary><div class="quiz-a">后一次写入会覆盖前一次，最终文件只剩最后一个工作表的数据。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/Pandas%20Excel%20%E5%90%88%E5%B9%B6%E6%8B%86%E5%88%86.html">Pandas Excel 合并拆分</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%86%99%E5%9B%9E%E5%8E%9F%20Excel%20%E6%96%87%E4%BB%B6.html">写回原 Excel 文件</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/on%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>on 参数</a><a class="next" href="../c/pd.MultiIndex.from_arrays.html"><small>下一张</small>pd.MultiIndex.from_arrays</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

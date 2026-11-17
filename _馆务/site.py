@@ -151,6 +151,22 @@ def link_html(raw_name):
     return f'<span class="wl-dead" title="尚未建立这张卡片">{esc(display)}</span>'
 
 
+def _looks_like_wikilink(name):
+    """区分真双链与代码里的索引语法。
+
+    numpy 神奇索引 a[[2,3,5]]、pandas 多列选择 df[["a","b"]] 都是双中括号，
+    但它们不是双链：带逗号、引号、& 或者以数字开头的，一律当普通文本。
+    """
+    s = name.strip()
+    if not s or len(s) > 40:
+        return False
+    if any(ch in s for ch in ',"&[]'):
+        return False
+    if s[0].isdigit():
+        return False
+    return True
+
+
 def inline(text):
     """行内渲染：先保护行内代码（其内的 [[..]] 不能被解析），再处理双链/外链/加粗"""
     t = esc(text)
@@ -161,7 +177,11 @@ def inline(text):
         return f"\x00{len(codes) - 1}\x00"
 
     t = re.sub(r"`([^`]+)`", stash, t)
-    t = re.sub(r"\[\[([^\]]+)\]\]", lambda m: link_html(m.group(1)), t)
+    t = re.sub(
+        r"\[\[([^\[\]]+)\]\]",
+        lambda m: link_html(m.group(1)) if _looks_like_wikilink(m.group(1)) else m.group(0),
+        t,
+    )
     t = re.sub(
         r"\[([^\]]+)\]\((https?://[^)\s]+)\)",
         r'<a href="\2" target="_blank" rel="noopener noreferrer">\1</a>',

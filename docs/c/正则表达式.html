@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用特定语法描述字符串模式、用于匹配/提取/替换的文本处理工具。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>正则表达式 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>正则表达式</h1><div class="aliases">regex · 正则 · Regular Expression</div><p class="lede">用特定语法描述字符串模式、用于匹配/提取/替换的文本处理工具。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>正则表达式通过元字符（\d、{2}、括号分组等）描述文本模式，广泛用于匹配、提取和替换。Pandas 的 match/extract/replace 都建立在正则之上，不掌握正则则文本处理能力受限。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>文本模式匹配与筛选</li><li>分组提取字段</li><li>复杂格式替换</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>\d 表示数字，{n} 表示重复次数</li><li>括号表示捕获组</li><li>反向引用 \1、\2 引用捕获组</li><li>Python、VBA、Excel 中均可用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>Pandas 课程只讲如何在字符串方法中使用正则，不系统讲正则本身，需先学 Python 正则基础。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.match.html">str.match</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/str.extract.html">str.extract</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/str.replace%20%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2.html">str.replace 正则替换</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>正则中 (\d{4}) 的括号作用是什么？</summary><div class="quiz-a">表示捕获组，extract 时只提取括号内内容，replace 时可用 \1 反向引用。</div></details>
+<details class="quiz"><summary>为什么说不学正则 Pandas 文本处理会受限？</summary><div class="quiz-a">match/extract/replace 的复杂用法都依赖正则模式与捕获组。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>正则表达式通过字符类、范围、量词等语法描述一类字符串，如 [A-Z] 表示任意大写字母、[A-G] 表示 A 到 G 范围。在 pandas 替换中配合 regex=True 可大幅简化范围匹配和模式匹配类替换。</p>
+<p>- [A-Z] 匹配任意大写字母，[A-G] 匹配 A 到 G 范围</p>
+<p>- [A-Za-z] 同时匹配大小写字母</p>
+<p>- 正则要写在引号内作为字符串传入</p>
+<details class="quiz"><summary>要匹配任意一个大写字母或小写字母，正则字符类怎么写？</summary><div class="quiz-a">[A-Za-z]</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/case%20%E5%8F%82%E6%95%B0.html">case 参数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/regex%20%E5%8F%82%E6%95%B0.html">regex 参数</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/sep%20%E5%8F%82%E6%95%B0.html">sep 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/str.contains.html">str.contains</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%89%B9%E9%87%8F%E5%A4%84%E7%90%86%E6%9B%BF%E4%BB%A3%E6%89%8B%E5%B7%A5.html"><small>上一张</small>批量处理替代手工</a><a class="next" href="../c/%E8%B4%9F%E7%B4%A2%E5%BC%95.html"><small>下一张</small>负索引</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

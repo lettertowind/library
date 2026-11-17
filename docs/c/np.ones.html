@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="创建元素全为 1 的数组，形状由参数指定。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>np.ones · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.ones</h1><div class="aliases">ones · 全 1 数组</div><p class="lede">创建元素全为 1 的数组，形状由参数指定。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>np.ones(shape) 生成全 1 数组，默认浮点型。一维传一个整数，二维及以上传元组如 (2,3)。可选 dtype 指定类型，order 默认 C 无需改动。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>生成全 1 的占位数组</li><li>构造掩码或初始化矩阵</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>一维：np.ones(3) 得 [1. 1. 1.]</li><li>二维：np.ones((2,3)) 需传元组</li><li>默认 dtype 为浮点型</li><li>order 参数默认 C，基础阶段忽略</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>二维及以上形状必须用元组，写成 np.ones(2,3) 会报错。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/np.full.html">np.full</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/shape%20%E5%B1%9E%E6%80%A7.html">shape 属性</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.ones((2,3)) 和 np.ones(3) 有什么区别？</summary><div class="quiz-a">前者是 2 行 3 列全 1 二维数组，后者是 3 个元素的全 1 一维数组。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>np.ones 接收形状元组，可创建一维、二维、三维乃至更高维的全 1 数组；默认 dtype 常为 float64，可用 dtype 参数改为整型。</p>
+<p>- 语法：np.ones((3, 3))，形状必须传元组</p>
+<p>- np.ones((2, 3, 3)) 创建三维全 1 数组</p>
+<p>- 默认 dtype 可能为 float64，即使显示为 1</p>
+<details class="quiz"><summary>np.ones((2, 3, 3)) 创建的是什么形状的数组？</summary><div class="quiz-a">三维数组，2 块 3 行 3 列，形状 (2, 3, 3)</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.full.html">np.full</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/np.ones_like.html">np.ones_like</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%BD%A2%E7%8A%B6%E5%8F%82%E6%95%B0.html">形状参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.minimum.html"><small>上一张</small>np.minimum</a><a class="next" href="../c/np.ones_like.html"><small>下一张</small>np.ones_like</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="read_excel 中指定哪一行或哪些行作为表头的参数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>header 参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>header 参数</h1><div class="aliases">header · 表头参数</div><p class="lede">read_excel 中指定哪一行或哪些行作为表头的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>header 默认取第 0 行作表头。遇到两行表头时传 header=[0,1]，pandas 会生成多层列索引。不设置会导致表头错乱、数据行被误当表头。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>读取多行表头的 Excel</li><li>修正表头错位问题</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认 header=0，即第一行作表头</li><li>header=[0,1] 表示前两行都作表头</li><li>写几就表示把第几行当表头</li><li>多表头不设置会导致每行都像表头</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>多层表头会带来多层列索引，后续取列和合并时需按元组访问列名。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/sheet_name%20%E5%8F%82%E6%95%B0.html">sheet_name 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>Excel 前两行都是表头，不设 header 直接读取会出现什么问题？</summary><div class="quiz-a">表头错乱，第二行表头会被当成数据行，列名也不正确。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>header 默认把第 0 行当表头。文件无表头时设 header=None，Pandas 自动生成 0、1、2… 数字列名，第一行数据才被当作数据。常与 names 配合自定义列名。</p>
+<p>- 默认 header=0，第一行当列名</p>
+<p>- header=None 表示无表头，自动生成数字列名</p>
+<p>- 无表头时若不设 header=None，会少一行数据</p>
+<details class="quiz"><summary>一个 7 行无表头文件直接 read_csv，shape 显示几行？为什么？</summary><div class="quiz-a">6 行；第一行被默认当表头，未计入数据行。</div></details>
+<p>header 参数默认取第 0 行为表头；传入列表如 [0,1] 可把前两行设为多层列索引，从而读取带合并单元格的多层表头 Excel。它是处理多层表头数据的关键入口。</p>
+<p>- 默认 header=0，取第一行为表头</p>
+<p>- header=[0,1] 表示前两行作为多层列索引</p>
+<p>- 与 index_col 配合可同时设置行、列索引</p>
+<details class="quiz"><summary>Excel 前两行是合并单元格的多层表头，read_excel 应怎么设置？</summary><div class="quiz-a">设置 header=[0,1]，把前两行作为多层列索引。</div></details>
+<p>header 默认取第 0 行作列名；设为 None 表示文件没有表头，Pandas 会自动生成 0、1、2… 的整数列名，等待 names 覆盖。它是处理“脏表头”文件的第一道开关。</p>
+<p>- header=None 表示原文件无表头</p>
+<p>- 无表头时列名自动变为 0、1、2…</p>
+<p>- 参数名大小写敏感，写错会报错或失效</p>
+<details class="quiz"><summary>header=None 之后列名是什么？还需要做什么？</summary><div class="quiz-a">列名变成 0、1、2… 的整数，通常再用 names=[...] 指定有意义的列名。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Excel%20%E6%97%A0%E8%A1%A8%E5%A4%B4%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86.html">Excel 无表头文件处理</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/names%20%E5%8F%82%E6%95%B0.html">names 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pd.read_csv.html">pd.read_csv</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/shape%20%E5%B1%9E%E6%80%A7.html">shape 属性</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/sheet_name%20%E5%8F%82%E6%95%B0.html">sheet_name 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/head%28%29.html"><small>上一张</small>head()</a><a class="next" href="../c/how%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>how 参数</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

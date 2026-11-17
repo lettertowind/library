@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="衡量两个变量同向或反向变化程度的指标。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>协方差 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>统计</span></nav><article class="card"><h1>协方差</h1><div class="aliases">cov · Covariance</div><p class="lede">衡量两个变量同向或反向变化程度的指标。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>协方差为正说明两变量同向变化，为负说明反向变化。Pandas 中用 cov() 计算，是相关系数的基础。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>判断两个数值列是否同向变化</li><li>作为相关系数的前置计算</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>Pandas 用 df[&#x27;列1&#x27;].cov(df[&#x27;列2&#x27;]) 计算</li><li>正负表示变化方向</li><li>数值大小受量纲影响</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>数值大小不能直接比较相关强弱，需转成相关系数。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0.html">相关系数</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>协方差为负说明什么？</summary><div class="quiz-a">两个变量大致反向变化，一个增大时另一个倾向于减小。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E7%9B%B8%E5%85%B3%E7%B3%BB%E6%95%B0.html">相关系数</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%86%E4%BD%8D%E6%95%B0.html"><small>上一张</small>分位数</a><a class="next" href="../c/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80.html"><small>下一张</small>数据分析的数学基础</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

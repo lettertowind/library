@@ -82,30 +82,41 @@ def _follow(url):
 
 def normalize_link(text):
     """从手机分享文本里提取并规范成电脑可用的 B站地址。
+    合集的 ?p=N 会保留，否则只会拿到第一集。
     返回 (标准网址, BV号或av号, 原始输入)"""
     raw = text.strip()
     m = re.search(r"https?://[^\s，,。、）)\"']+", raw)
     url = m.group(0) if m else raw
 
+    def _p_of(s):
+        """从链接里取分P序号，没有则返回空串"""
+        mm = re.search(r"[?&]p=(\d+)", s)
+        return f"?p={mm.group(1)}" if mm else ""
+
     bv = re.search(r"(BV[0-9A-Za-z]{10})", url)
     if bv:
-        return f"https://www.bilibili.com/video/{bv.group(1)}", bv.group(1), raw
+        return (f"https://www.bilibili.com/video/{bv.group(1)}{_p_of(url)}",
+                bv.group(1), raw)
 
     av = re.search(r"/av(\d+)", url, re.I)
     if av:
-        return f"https://www.bilibili.com/video/av{av.group(1)}", f"av{av.group(1)}", raw
+        return (f"https://www.bilibili.com/video/av{av.group(1)}{_p_of(url)}",
+                f"av{av.group(1)}", raw)
 
     if "b23.tv" in url or "bili2233" in url or "bili" in url:
         try:
             final = _follow(url)
         except Exception as e:
             raise RuntimeError(f"短链还原失败：{type(e).__name__} {e}")
+        # 分P可能藏在短链参数或跳转后的地址里，两处都找
+        p = _p_of(url) or _p_of(final)
         bv = re.search(r"(BV[0-9A-Za-z]{10})", final)
         if bv:
-            return f"https://www.bilibili.com/video/{bv.group(1)}", bv.group(1), raw
+            return f"https://www.bilibili.com/video/{bv.group(1)}{p}", bv.group(1), raw
         av = re.search(r"/av(\d+)", final, re.I)
         if av:
-            return f"https://www.bilibili.com/video/av{av.group(1)}", f"av{av.group(1)}", raw
+            return (f"https://www.bilibili.com/video/av{av.group(1)}{p}",
+                    f"av{av.group(1)}", raw)
         raise RuntimeError(f"短链还原后没找到 BV 号：{final}")
 
     raise RuntimeError("没能从这段文字里认出 B站 链接")

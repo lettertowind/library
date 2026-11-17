@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="从首元素开始逐步累加，返回与展平后等长的一维数组。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>np.cumsum · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.cumsum</h1><div class="aliases">cumsum · 累计和</div><p class="lede">从首元素开始逐步累加，返回与展平后等长的一维数组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>np.cumsum 返回每一步的累计和，而不是最终总和。二维数组调用时按行优先展平后累计，结果是一维数组，长度等于元素总数。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>观察累计增长过程</li><li>计算累计销售额、累计收益</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回数组长度等于元素总数</li><li>二维数组按展平顺序累计，结果降为一维</li><li>首元素为 0 时第一项为 0，后续正常累加</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不要与 np.sum 混淆：cumsum 保留每一步中间结果，sum 只给最终值。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.sum.html">np.sum</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/np.cumprod.html">np.cumprod</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>对 3x3 数组调用 np.cumsum 不指定 axis，返回几个元素？</summary><div class="quiz-a">9 个，按行优先展平后逐步累加。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.cumprod.html">np.cumprod</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.sum.html">np.sum</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.cumprod.html"><small>上一张</small>np.cumprod</a><a class="next" href="../c/np.exp.html"><small>下一张</small>np.exp</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

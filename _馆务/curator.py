@@ -18,7 +18,7 @@ from pathlib import Path
 from datetime import datetime
 
 try:
-    sys.stdout.reconfigure(encoding="utf-8")
+    sys.stdout.reconfigure(encoding="utf-8", line_buffering=True)
 except Exception:
     pass
 
@@ -39,9 +39,10 @@ SYSTEM_PROMPT = """你是个人知识库的概念整理员。用户在看视频�
 1. 只抽「值得单独查阅的概念」，不是所有词。优先抽：专门术语、方法、工具、框架、模型、指标、关键人物/产品。
 2. 一个概念 = 一个名词。不要把一句话、一个观点当成概念。观点写进概念的「要点」里。
 3. 一篇笔记通常抽 3-8 个概念。宁可少而准，不要凑数。
-4. 概念之间要有真实关联（上下位、前置、对比、组合），不要硬拉。
-5. 定义必须一句话说清，不要"XX是指……的一个过程"这种空转。
-6. 自测题要能检验是否真懂，不要考记忆性细节。
+4. **不要给单个函数参数或单个 API 调用建卡**。像「sep 参数」「ignore_index 参数」这类，写进所属函数或主题卡的「关键要点」里；「np.exp」「head()」「dtypes 属性」这类单个调用也并入主题卡（如「Numpy 通用函数」「Pandas 数据查看」）。只有当一个函数本身就是一整套方法体系时（如 groupby、pivot_table、merge、loc/iloc），才单独建卡。
+5. 概念之间要有真实关联（上下位、前置、对比、组合），不要硬拉。
+6. 定义必须一句话说清，不要"XX是指……的一个过程"这种空转。
+7. 自测题要能检验是否真懂，不要考记忆性细节。
 
 领域用层级路径，如 "计算机/AI/大模型"、"商业/产品/增长"。层级不要超过 3 段。
 
@@ -105,22 +106,54 @@ def scan_concepts():
 
 
 def pick_meta(md_path):
-    for cand in (md_path.with_suffix(".json"),
-                 md_path.parent / (md_path.stem.replace("_markdown", "") + ".json")):
-        if cand.exists():
-            try:
-                d = json.loads(cand.read_text(encoding="utf-8", errors="ignore"))
-                if isinstance(d, dict):
-                    return (d.get("video_title") or d.get("title") or "",
-                            d.get("video_url") or d.get("url") or "")
-            except Exception:
-                pass
+    """取这篇笔记的来源标题与链接。
+
+    BiliNote 的产物是 <task>.json + <task>_audio.json：
+    标题在 audio_meta.title，BV号与分P在 audio_meta.video_id（形如 BVxxx_p7），
+    正文首行还有「> 来源链接：…」。三处依次兜底，别再让卡片写成「来源未知」。
+    """
+    stem = md_path.stem.replace("_markdown", "")
+    for cand in (md_path.with_suffix(".json"), md_path.parent / (stem + ".json"),
+                 md_path.parent / (stem + "_audio.json")):
+        if not cand.exists():
+            continue
+        try:
+            d = json.loads(cand.read_text(encoding="utf-8", errors="ignore"))
+        except Exception:
+            continue
+        if not isinstance(d, dict):
+            continue
+        title = d.get("video_title") or d.get("title") or ""
+        url = d.get("video_url") or d.get("url") or ""
+        am = d.get("audio_meta") or {}
+        if isinstance(am, dict):
+            title = title or am.get("title") or ""
+            vid = am.get("video_id") or ""
+            if not url and vid:
+                bv, _, page = vid.partition("_p")
+                url = f"https://www.bilibili.com/video/{bv}"
+                if page.isdigit():
+                    url += f"?p={page}"
+        if title or url:
+            return title, url
+
+    # 最后兜底：正文首行的「> 来源链接：https://…」
+    try:
+        head = md_path.read_text(encoding="utf-8", errors="ignore")[:600]
+        m = re.search(r"来源链接[:：]\s*(https?://\S+)", head)
+        if m:
+            return "", m.group(1)
+    except Exception:
+        pass
     return "", ""
 
 
 def call_llm(cfg, prompt):
     from openai import OpenAI
-    c = OpenAI(api_key=cfg["api_key"], base_url=cfg.get("base_url") or "https://api.deepseek.com")
+    # timeout 必须设：机器休眠会断掉连接，不设时 SDK 会永久挂起
+    c = OpenAI(api_key=cfg["api_key"],
+               base_url=cfg.get("base_url") or "https://api.deepseek.com",
+               timeout=180.0, max_retries=2)
     r = c.chat.completions.create(
         model=cfg.get("model") or "deepseek-chat",
         messages=[{"role": "system", "content": SYSTEM_PROMPT},
@@ -222,30 +255,43 @@ def build_card(c, meta, existing=False):
 
 
 def append_to_card(path, c, meta):
-    """已有概念：追加新来源和补充要点，不改原有定义"""
+    """已有概念：追加新来源和补充要点，不改原有定义
+
+    同一天多次补充会合并进同一个「### 补充 · 日期」小节，
+    否则批量整理时同一张卡会出现十几个同名标题。
+    """
     today = datetime.now().strftime("%Y-%m-%d")
     title, url = meta
     text = path.read_text(encoding="utf-8", errors="ignore")
     text = re.sub(r"(?m)^updated:.*$", f"updated: {today}", text, count=1)
 
-    add = [f"", f"### 补充 · {today}", ""]
+    body = []
     if c.get("explain"):
-        add.append(c["explain"])
-        add.append("")
+        body.append(c["explain"])
+        body.append("")
     for p in (c.get("points") or [])[:3]:
-        add.append(f"- {p}")
+        body.append(f"- {p}")
     for q in (c.get("quiz") or [])[:2]:
         if q.get("q"):
-            add.append(f"{q['q']}::{q.get('a','')}")
+            body.append(f"{q['q']}::{q.get('a','')}")
     if url:
-        add.append(f"- 出处：[{title or '来源'}]({url}) · {today}")
-    add.append("")
+        body.append(f"- 出处：[{title or '来源'}]({url}) · {today}")
 
-    block = "\n".join(add)
-    if "## 出处" in text:
-        text = text.replace("## 出处", block + "\n## 出处", 1)
+    heading = f"### 补充 · {today}"
+    chunk = "\n".join(body).strip("\n")
+
+    if heading in text:
+        # 已有今天的补充小节：插到该小节末尾
+        start = text.index(heading) + len(heading)
+        m = re.search(r"(?m)^#{2,3} ", text[start:])
+        end = start + m.start() if m else len(text)
+        text = text[:end].rstrip("\n") + "\n\n" + chunk + "\n\n" + text[end:].lstrip("\n")
     else:
-        text = text + "\n" + block
+        block = "\n".join(["", heading, ""] + body + [""])
+        if "## 出处" in text:
+            text = text.replace("## 出处", block + "\n## 出处", 1)
+        else:
+            text = text + "\n" + block
     path.write_text(text, encoding="utf-8")
 
 

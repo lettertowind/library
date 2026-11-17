@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="指定聚合运算沿哪个方向进行的参数，0 轴为行，1 轴为列。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>axis 参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>axis 参数</h1><div class="aliases">axis · 轴 · 轴向</div><p class="lede">指定聚合运算沿哪个方向进行的参数，0 轴为行，1 轴为列。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>axis 决定 sum、mean、max 等函数是跨行汇总还是行内汇总。0 轴代表行方向，跨行按位置相加得到每列结果；1 轴代表列方向，行内横向相加得到每行结果。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>控制按行或按列聚合</li><li>理解二维数组统计结果形状</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>0 轴代表行，1 轴代表列</li><li>axis=0 跨行汇总，结果长度等于列数</li><li>axis=1 行内汇总，结果长度等于行数</li><li>不指定 axis 时通常对全部元素运算</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>“0 轴是行”指汇总方向沿行，不是结果按行排列，初学最容易记反。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.sum.html">np.sum</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.mean.html">np.mean</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.sum(A, axis=1) 的结果长度等于行数还是列数？</summary><div class="quiz-a">等于行数，因为每行内部汇总得到一个值。</div></details>
+<details class="quiz"><summary>为什么说 axis=0 的结果看起来像每列的和？</summary><div class="quiz-a">因为跨行按位置相加，每个位置对应一列。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>轴的数量等于数组维度数：一维数组只有 0 轴，二维数组有 0 轴（行）和 1 轴（列），三维数组有 0 轴（块）、1 轴（行）、2 轴（列）。理解轴的关键是先看数组维度，再看索引顺序。</p>
+<p>- 轴编号从 0 开始，与 shape 元组索引对应</p>
+<p>- 一维数组只有 0 轴；二维数组 0 轴为行、1 轴为列</p>
+<p>- 三维数组 0 轴为块、1 轴为行、2 轴为列</p>
+<details class="quiz"><summary>一个 shape 为 (4, 3, 2) 的三维数组，1 轴对应什么方向？</summary><div class="quiz-a">1 轴对应每块内部的行方向，即三行。</div></details>
+<details class="quiz"><summary>为什么说轴编号与 shape 元组索引一一对应？</summary><div class="quiz-a">因为 shape 元组中第 i 个元素表示第 i 个轴的长度，轴编号就是元组索引。</div></details>
+<p>在 Pandas 中行索引对应 0 轴、列名对应 1 轴。apply 等函数用 axis 决定把每一列还是每一行作为整体传入。理解 axis 是掌握 DataFrame 聚合与行级计算的前提。</p>
+<p>- 行标签是 0 轴，列标签是 1 轴</p>
+<p>- axis=0 对每列执行，axis=1 对每行执行</p>
+<p>- axis=0 不是把一行横向相加</p>
+<details class="quiz"><summary>df.apply(sum, axis=0) 得到的是什么？</summary><div class="quiz-a">每一列的和，即按列向下汇总。</div></details>
+<details class="quiz"><summary>行索引和列名分别对应哪个轴？</summary><div class="quiz-a">行索引对应 0 轴，列名对应 1 轴。</div></details>
+<p>axis 决定函数作用的方向。在 DataFrame.apply 中，axis=0（默认）把每一列当作一个 Series 处理，axis=1 把每一行当作一个 Series 处理。记忆口诀：零轴看列，一轴看行。</p>
+<p>- axis=0 按列操作（默认）</p>
+<p>- axis=1 按行操作</p>
+<p>- 对列计算通常不用改轴，对行计算必须 axis=1</p>
+<details class="quiz"><summary>想对 DataFrame 的每一行套函数，axis 应设多少？</summary><div class="quiz-a">axis=1。</div></details>
+<details class="quiz"><summary>为什么说“零轴看列，一轴看行”？</summary><div class="quiz-a">axis=0 时函数把每列当一个 Series 处理，axis=1 时把每行当一个 Series 处理。</div></details>
+<p>在排序中，axis=0（默认）表示按列值对行排序；axis=1 表示按行值对列排序。按行或行索引排序时必须设为 1。</p>
+<p>- 默认 axis=0，按列值排行</p>
+<p>- axis=1 时按行值排序列顺序</p>
+<p>- 按行索引排序时 by 写行索引名并设 axis=1</p>
+<details class="quiz"><summary>想按某一行索引对列顺序排序，axis 要设成多少？</summary><div class="quiz-a">axis=1</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/ndarray.sort.html">ndarray.sort</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/np.sum.html">np.sum</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%B2%BF%E8%BD%B4%E5%88%87%E7%89%87.html">沿轴切片</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%BD%AC%E7%BD%AE.html">转置</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%BD%B4%E8%BD%AC%E7%BD%AE.html">轴转置</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/axis%3D1%20%E6%8C%89%E5%88%97%E5%88%86%E7%BB%84.html">axis=1 按列分组</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/drop.html">drop</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/labels%20%E5%8F%82%E6%95%B0.html">labels 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/m.name%20%E5%88%97%E5%90%8D%E8%A1%8C%E5%90%8D%E5%88%A4%E6%96%AD.html">m.name 列名行名判断</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html">method 参数（fillna）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/BMI%20%E8%AE%A1%E7%AE%97.html">BMI 计算</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E6%A0%B7%E6%9C%AC%E4%B8%8E%E7%89%B9%E5%BE%81.html">样本与特征</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/argsort.html"><small>上一张</small>argsort</a><a class="next" href="../c/dtype%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>dtype 参数</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="对数组每个元素计算非负平方根的一元通用函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>np.sqrt · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.sqrt</h1><div class="aliases">sqrt · 平方根函数</div><p class="lede">对数组每个元素计算非负平方根的一元通用函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>np.sqrt 接收一个数组，返回同形状数组，每个元素为原元素的平方根。它是典型的一元通用函数，常用于数值变换和统计计算。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>对数据做开方变换</li><li>标准差等统计公式中的开方步骤</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>逐元素计算平方根</li><li>返回非负平方根</li><li>输入输出形状一致</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>负数输入会得到 nan 并告警，需先处理负值。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E4%B8%80%E5%85%83%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html">一元通用函数</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.sqrt 对含负数的数组会怎样？</summary><div class="quiz-a">负数元素返回 nan 并触发运行时警告，因为实数范围内无平方根。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/NumPy%20%E5%87%BD%E6%95%B0%E5%9C%A8%20pandas%20%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8.html">NumPy 函数在 pandas 中的应用</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.random.rand.html"><small>上一张</small>np.random.rand</a><a class="next" href="../c/np.sum.html"><small>下一张</small>np.sum</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 09:14</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>
