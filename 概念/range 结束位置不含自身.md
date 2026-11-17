@@ -2,8 +2,8 @@
 term: range 结束位置不含自身
 aliases: [range 左闭右开, range(1, n+1)]
 kind: concept
-domain: 计算机/数据分析/Python
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S01E02 · 体验Numpy与for循环的区别"

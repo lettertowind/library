@@ -2,8 +2,8 @@
 term: Pandas Excel 合并拆分
 aliases: [Excel 拆分与合并, 多工作簿合并, 按列拆分]
 kind: method
-domain: 计算机/数据分析/Pandas
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 40

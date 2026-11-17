@@ -2,9 +2,11 @@
 term: Embedding
 aliases: [向量化, 嵌入, embedding]
 kind: method
-domain: 计算机/AI/大模型
-tags: [概念/method, 领域/计算机]
-stage: "与模型沟通"
+domain: AI/大模型
+tags: [概念/method, 领域/AI]
+
+stage: "与模型沟通"
+
 order: 391
 created: 2026-11-17
 updated: 2026-11-17

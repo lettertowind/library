@@ -2,8 +2,8 @@
 term: BMI 计算
 aliases: [BMI, 身体质量指数, 体重身高指数]
 kind: method
-domain: 计算机/数据分析/指标
-tags: [概念/method, 领域/商业]
+domain: 数据分析/指标
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E11 · 列与列之间的计算"

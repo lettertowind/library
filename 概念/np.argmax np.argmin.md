@@ -2,8 +2,8 @@
 term: np.argmax np.argmin
 aliases: [argmax, argmin, 最大值下标, 最小值下标]
 kind: method
-domain: 计算机/数据分析/Numpy
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Numpy
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 13

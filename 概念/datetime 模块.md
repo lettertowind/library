@@ -2,8 +2,8 @@
 term: datetime 模块
 aliases: [datetime, Python 日期时间模块]
 kind: tool
-domain: 计算机/数据分析/Python
-tags: [概念/tool, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/tool, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E10 · 各种数据自动填充"

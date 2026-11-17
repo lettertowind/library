@@ -2,8 +2,8 @@
 term: str.maketrans
 aliases: [maketrans, 字符映射表]
 kind: method
-domain: 计算机/数据分析/Python
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E24 · 字符串操作（下）"

@@ -2,9 +2,11 @@
 term: 推理（inference）
 aliases: [inference, 模型推理]
 kind: concept
-domain: 计算机/AI/大模型
-tags: [概念/concept, 领域/计算机]
-stage: "AI 基础"
+domain: AI/大模型
+tags: [概念/concept, 领域/AI]
+
+stage: "AI 基础"
+
 order: 261
 created: 2026-11-17
 updated: 2026-11-17

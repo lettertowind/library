@@ -2,8 +2,8 @@
 term: 写回原 Excel 文件
 aliases: [ExcelWriter 写回, 覆盖原表, save 与 close]
 kind: method
-domain: 计算机/数据分析/Pandas
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 40

@@ -2,8 +2,8 @@
 term: axis 参数
 aliases: [axis, 轴, 轴向]
 kind: concept
-domain: 计算机/数据分析/Numpy
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Numpy
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 10

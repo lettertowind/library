@@ -2,8 +2,8 @@
 term: inf 与 -inf
 aliases: [无穷大, 正无穷, 负无穷, Infinity]
 kind: concept
-domain: 计算机/数据分析/Pandas
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 34

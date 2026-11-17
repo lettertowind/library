@@ -2,8 +2,8 @@
 term: lambda 表达式
 aliases: [匿名函数, lambda]
 kind: concept
-domain: 计算机/数据分析/Python
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E11 · 列与列之间的计算"

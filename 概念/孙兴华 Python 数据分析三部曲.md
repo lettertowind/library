@@ -2,8 +2,8 @@
 term: 孙兴华 Python 数据分析三部曲
 aliases: [孙兴华数据分析, 数据分析三部曲, 孙兴华 Python 教程]
 kind: concept
-domain: 计算机/数据分析/Python
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-16
 updated: 2026-11-17
 ---

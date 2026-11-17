@@ -19,7 +19,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>数据分析</span> <span class="sep">/</span> <span>统计</span></nav><article class="card"><h1>方差</h1><div class="aliases">Variance · Var(X) · σ²</div><p class="lede">各数据与均值之差的平方的平均值，衡量数据离散程度。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>方差是描述数据分布离散程度的核心统计量，数值越大说明数据越分散。它与标准差互为平方关系，是标准差计算的基础。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>描述数据波动大小</li><li>作为标准差、协方差等统计量的计算基础</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>方差 = 标准差的平方（σ² = Var(X)）</li><li>计算时对偏差取平方，避免正负抵消</li><li>单位是原数据单位的平方，解释性不如标准差直观</li><li>易与标准差说反，需重点核对公式</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>方差单位是原单位的平方，实际描述波动时常用标准差；不要与标准差混用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%A0%87%E5%87%86%E5%B7%AE.html">标准差</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>已知一组数据的标准差为 4，其方差是多少？</summary><div class="quiz-a">16（方差 = 标准差² = 4²）</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>统计</span></nav><article class="card"><h1>方差</h1><div class="aliases">Variance · Var(X) · σ²</div><p class="lede">各数据与均值之差的平方的平均值，衡量数据离散程度。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>方差是描述数据分布离散程度的核心统计量，数值越大说明数据越分散。它与标准差互为平方关系，是标准差计算的基础。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>描述数据波动大小</li><li>作为标准差、协方差等统计量的计算基础</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>方差 = 标准差的平方（σ² = Var(X)）</li><li>计算时对偏差取平方，避免正负抵消</li><li>单位是原数据单位的平方，解释性不如标准差直观</li><li>易与标准差说反，需重点核对公式</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>方差单位是原单位的平方，实际描述波动时常用标准差；不要与标准差混用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%A0%87%E5%87%86%E5%B7%AE.html">标准差</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>已知一组数据的标准差为 4，其方差是多少？</summary><div class="quiz-a">16（方差 = 标准差² = 4²）</div></details>
 <details class="quiz"><summary>为什么方差计算要对偏差取平方而不是取绝对值？</summary><div class="quiz-a">平方可消除正负号并放大较大偏差，且便于后续求导与代数运算，是标准差的定义基础。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>方差越大说明数据越分散。Pandas 中用 var() 计算，describe() 不直接输出方差但输出其平方根标准差。</p>
@@ -30,7 +30,7 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 10:24</span>
+  <span>更新于 2026-11-17 10:35</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

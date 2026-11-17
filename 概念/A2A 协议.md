@@ -2,9 +2,11 @@
 term: A2A 协议
 aliases: [Agent2Agent, A2A]
 kind: concept
-domain: 计算机/AI/智能体
-tags: [概念/concept, 领域/计算机]
-stage: "让 AI 干活"
+domain: AI/智能体
+tags: [概念/concept, 领域/AI]
+
+stage: "让 AI 干活"
+
 order: 511
 created: 2026-11-17
 updated: 2026-11-17

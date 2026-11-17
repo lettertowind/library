@@ -2,8 +2,8 @@
 term: ignore_index 参数
 aliases: [ignore_index, 忽略索引, ignore_index=True]
 kind: concept
-domain: 计算机/数据分析/Pandas
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 24

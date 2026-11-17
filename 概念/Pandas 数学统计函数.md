@@ -2,8 +2,8 @@
 term: Pandas 数学统计函数
 aliases: [统计函数家族, count/sum/mean/median/min/max/mode/prod/var/std/quantile/cummax/cummin/cov/corr]
 kind: concept
-domain: 计算机/数据分析/Pandas
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 32

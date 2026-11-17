@@ -2,9 +2,11 @@
 term: TTS
 aliases: [语音合成, Text to Speech]
 kind: concept
-domain: 计算机/AI/语音
-tags: [概念/concept, 领域/计算机]
-stage: "模型能力"
+domain: AI/语音
+tags: [概念/concept, 领域/AI]
+
+stage: "模型能力"
+
 order: 261
 created: 2026-11-17
 updated: 2026-11-17

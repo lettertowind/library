@@ -2,9 +2,11 @@
 term: AGI
 aliases: [通用人工智能, Artificial General Intelligence]
 kind: concept
-domain: 计算机/AI/大模型
-tags: [概念/concept, 领域/计算机]
-stage: "评价与未来"
+domain: AI/大模型
+tags: [概念/concept, 领域/AI]
+
+stage: "评价与未来"
+
 order: 521
 created: 2026-11-17
 updated: 2026-11-17

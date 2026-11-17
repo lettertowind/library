@@ -2,8 +2,8 @@
 term: SQL 查询语句
 aliases: [SQL, select 语句, 结构化查询语言]
 kind: concept
-domain: 计算机/数据分析/数据库
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/数据库
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E03 · 读取Mysql文件"

@@ -2,8 +2,8 @@
 term: pymysql.connect()
 aliases: [connect, 建立数据库连接, 连接对象]
 kind: method
-domain: 计算机/数据分析/Python
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E03 · 读取Mysql文件"

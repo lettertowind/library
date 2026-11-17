@@ -2,8 +2,8 @@
 term: AI Agent
 aliases: [智能体, Agent]
 kind: concept
-domain: 计算机/AI/智能体
-tags: [概念/concept, 领域/计算机]
+domain: AI/智能体
+tags: [概念/concept, 领域/AI]
 created: 2026-11-16
 updated: 2026-11-17
 ---

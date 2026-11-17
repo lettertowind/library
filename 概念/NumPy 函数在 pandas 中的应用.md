@@ -2,8 +2,8 @@
 term: NumPy 函数在 pandas 中的应用
 aliases: [np.sqrt, NumPy 函数, 整表计算]
 kind: method
-domain: 计算机/数据分析/Pandas
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 26

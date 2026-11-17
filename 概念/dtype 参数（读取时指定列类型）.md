@@ -2,8 +2,8 @@
 term: dtype 参数（读取时指定列类型）
 aliases: [dtype, 读取时指定类型, dtype={'序号': str}]
 kind: concept
-domain: 计算机/数据分析/Pandas
-tags: [概念/concept, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/concept, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 25

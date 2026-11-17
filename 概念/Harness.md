@@ -2,9 +2,11 @@
 term: Harness
 aliases: [智能体框架, Agent 框架, harness]
 kind: concept
-domain: 计算机/AI/智能体
-tags: [概念/concept, 领域/计算机]
-stage: "让 AI 干活"
+domain: AI/智能体
+tags: [概念/concept, 领域/AI]
+
+stage: "让 AI 干活"
+
 order: 461
 created: 2026-11-17
 updated: 2026-11-17

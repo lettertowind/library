@@ -2,9 +2,11 @@
 term: RLHF
 aliases: [人类反馈强化学习, Reinforcement Learning from Human Feedback]
 kind: method
-domain: 计算机/AI/大模型
-tags: [概念/method, 领域/计算机]
-stage: "AI 基础"
+domain: AI/大模型
+tags: [概念/method, 领域/AI]
+
+stage: "AI 基础"
+
 order: 251
 created: 2026-11-17
 updated: 2026-11-17

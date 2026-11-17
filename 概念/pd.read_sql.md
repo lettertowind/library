@@ -2,8 +2,8 @@
 term: pd.read_sql
 aliases: [read_sql, 读取 SQL 数据, pandas 读数据库]
 kind: method
-domain: 计算机/数据分析/Pandas
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 18

@@ -2,9 +2,11 @@
 term: AIGC
 aliases: [AI 生成内容, AI Generated Content]
 kind: concept
-domain: 计算机/AI/基础
-tags: [概念/concept, 领域/计算机]
-stage: "AI 基础"
+domain: AI/基础
+tags: [概念/concept, 领域/AI]
+
+stage: "AI 基础"
+
 order: 151
 created: 2026-11-17
 updated: 2026-11-17

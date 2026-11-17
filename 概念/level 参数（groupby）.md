@@ -2,8 +2,8 @@
 term: level 参数（groupby）
 aliases: [level, 按索引层级分组, groupby(level=...)]
 kind: method
-domain: 计算机/数据分析/Pandas
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 41

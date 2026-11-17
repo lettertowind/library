@@ -2,8 +2,8 @@
 term: xlrd
 aliases: [xlrd 库, Excel 读取库]
 kind: tool
-domain: 计算机/数据分析/Python
-tags: [概念/tool, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/tool, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E04 · 读取与修改Excel文件"

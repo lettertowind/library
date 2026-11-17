@@ -2,8 +2,8 @@
 term: pip
 aliases: [pip3, pip install, 包管理器]
 kind: tool
-domain: 计算机/数据分析/Python
-tags: [概念/tool, 领域/计算机]
+domain: 数据分析/Python
+tags: [概念/tool, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S02E00 · 安装pandas.numpy.xlrd"

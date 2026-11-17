@@ -2,9 +2,11 @@
 term: Token
 aliases: [词元, 词块]
 kind: concept
-domain: 计算机/AI/大模型
-tags: [概念/concept, 领域/计算机]
-stage: "AI 基础"
+domain: AI/大模型
+tags: [概念/concept, 领域/AI]
+
+stage: "AI 基础"
+
 order: 191
 created: 2026-11-17
 updated: 2026-11-17

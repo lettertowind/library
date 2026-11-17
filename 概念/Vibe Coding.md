@@ -2,9 +2,11 @@
 term: Vibe Coding
 aliases: [氛围编程, vibe coding]
 kind: concept
-domain: 计算机/AI/大模型
-tags: [概念/concept, 领域/计算机]
-stage: "让 AI 干活"
+domain: AI/大模型
+tags: [概念/concept, 领域/AI]
+
+stage: "让 AI 干活"
+
 order: 531
 created: 2026-11-17
 updated: 2026-11-17

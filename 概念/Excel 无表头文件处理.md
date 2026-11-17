@@ -2,8 +2,8 @@
 term: Excel 无表头文件处理
 aliases: [无表头读取, header=None 组合写法, Excel 表头修复]
 kind: method
-domain: 计算机/数据分析/Pandas
-tags: [概念/method, 领域/计算机]
+domain: 数据分析/Pandas
+tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 19

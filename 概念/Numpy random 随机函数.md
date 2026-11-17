@@ -2,8 +2,8 @@
 term: Numpy random 随机函数
 aliases: [np.random, random 模块, 随机数生成]
 kind: tool
-domain: 计算机/数据分析/Numpy
-tags: [概念/tool, 领域/计算机]
+domain: 数据分析/Numpy
+tags: [概念/tool, 领域/数据分析]
 created: 2026-11-17
 updated: 2026-11-17
 order: 11
