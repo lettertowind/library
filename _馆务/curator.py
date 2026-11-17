@@ -456,13 +456,54 @@ def split_body(body, max_chars=8000):
     return chunks
 
 
+def useful_key(s):
+    """能用于匹配的关键字：英文至少 3 字母（避开 AI/df 这类噪声），中文至少 2 字"""
+    s = (s or "").strip()
+    if not s:
+        return None
+    if re.match(r"^[a-zA-Z]+$", s):
+        return s if len(s) >= 3 else None
+    return s if len(s) >= 2 else None
+
+
+def related_known(chunk, known, limit=80):
+    """从全量概念里挑出与本篇素材相关的，作为提示词里的「已有概念」。
+
+    只影响喂给模型看的清单，不影响 known 本身——
+    新旧判断仍用全量 known，避免漏判同名而重复建卡。
+    纯本地字符串匹配，不额外调用模型。
+    """
+    text = chunk.lower()
+    scored = []
+    for key, info in known.items():
+        score = 0
+        term = useful_key(info.get("term") or key)
+        if term and term.lower() in text:
+            score += 10
+        for a in info.get("aliases") or []:
+            k = useful_key(a)
+            if k and k.lower() in text:
+                score += 8
+                break                      # 多个别名命中不重复加分
+        for seg in (info.get("domain") or "").split("/"):
+            k = useful_key(seg)
+            if k and k.lower() in text:
+                score += 2
+        if score:
+            scored.append((score, key, info))
+
+    if not scored:
+        # 素材与现有库完全无关：给最近入库的少量卡片作参照，不空手让模型猜
+        recent = sorted(known.items(), key=lambda kv: -kv[1].get("order", 9999))[:12]
+        return dict(recent)
+
+    scored.sort(key=lambda x: (-x[0], x[1]))
+    return {k: info for _, k, info in scored[:limit]}
+
+
 def process(cfg, md_path, known, dry_run=False):
     body = md_path.read_text(encoding="utf-8", errors="ignore")
     meta = pick_meta(md_path)
-
-    exist_lines = "\n".join(
-        f"- {v['term']}（{v['domain']}）{' 别名:' + '、'.join(v['aliases']) if v['aliases'] else ''}"
-        for v in known.values()) or "_（空库）_"
 
     chunks = split_body(body)
     concepts = []
@@ -470,6 +511,14 @@ def process(cfg, md_path, known, dry_run=False):
     for i, chunk in enumerate(chunks, 1):
         if len(chunks) > 1:
             print(f"    分段 {i}/{len(chunks)}（{len(chunk)} 字）", flush=True)
+
+        # 每段单独筛一次：只把相关的已有概念喂给模型，降低 token、提高同名命中率
+        near = related_known(chunk, known)
+        exist_lines = "\n".join(
+            f"- {v['term']}（{v['domain']}）{' 别名:' + '、'.join(v['aliases']) if v['aliases'] else ''}"
+            for v in near.values()) or "_（空库）_"
+        print(f"    参照已有概念 {len(near)}/{len(known)} 张", flush=True)
+
         prompt = f"""已有概念（用于判断哪些是新的、哪些要补充）：
 {exist_lines}
 
