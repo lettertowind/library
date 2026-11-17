@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="通过 Figure/Axes 对象的方法绘图，而不是调用 pyplot 全局函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>面向对象绘图接口（Axes 方法） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>面向对象绘图接口（Axes 方法）</h1><div class="aliases">面向对象接口 · Axes 绘图方法 · ax.bar · ax.plot · OOP 接口</div><p class="lede">通过 Figure/Axes 对象的方法绘图，而不是调用 pyplot 全局函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Matplotlib 有两套接口：pyplot 状态机式（如 plt.plot）和面向对象式（如 ax.plot）。在多子图、子区域场景中，明确指定在哪个 Axes 上绘图更可靠。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>多图布局</li><li>在子图或子区域中分别绘图和设置标题</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>常见方法：ax.bar、ax.plot、ax.set_title、ax.set_xlabel。</li><li>每个 Axes 独立管理自己的图形元素和标题。</li><li>与 plt.bar、plt.plot 对应，但作用于指定轴。</li><li>复杂布局中优先用面向对象接口，避免“画错轴”。</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>简单单图可用 plt.* 快速绘制；多图时混用两套接口容易搞混“当前轴”。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/figure%20%E4%B8%8E%20axes%EF%BC%88%E7%94%BB%E5%B8%83%E4%B8%8E%E5%AD%90%E5%9B%BE%EF%BC%89.html">figure 与 axes（画布与子图）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E5%AD%90%E5%8C%BA%E5%9F%9F%EF%BC%88%E7%94%BB%E4%B8%AD%E7%94%BB%EF%BC%89.html">子区域（画中画）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>图一.bar(...) 和 plt.bar(...) 有什么区别？</summary><div class="quiz-a">前者在指定的 Axes 对象上绘图，后者在“当前轴”上绘图。</div></details>
+<details class="quiz"><summary>多子图场景中为什么更推荐 ax.set_title 而不是 plt.title？</summary><div class="quiz-a">因为 ax.set_title 明确作用于指定子图，不会把标题设到错误的当前轴上。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=60" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p60 S03E12.新增子图或区域</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fig.add_axes%EF%BC%88%E6%8C%89%E7%9F%A9%E5%BD%A2%E6%B7%BB%E5%8A%A0%E8%BD%B4%EF%BC%89.html">fig.add_axes（按矩形添加轴）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/fill%20%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html">fill 区域填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.title%EF%BC%88%E5%9B%BE%E8%A1%A8%E6%A0%87%E9%A2%98%EF%BC%89.html">plt.title（图表标题）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%AD%90%E5%8C%BA%E5%9F%9F%EF%BC%88%E7%94%BB%E4%B8%AD%E7%94%BB%EF%BC%89.html">子区域（画中画）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E9%9B%B7%E8%BE%BE%E5%9B%BE%E9%A6%96%E5%B0%BE%E9%97%AD%E5%90%88.html"><small>上一张</small>雷达图首尾闭合</a><a class="next" href="../c/%E9%A2%9C%E8%89%B2%E6%98%A0%E5%B0%84.html"><small>下一张</small>颜色映射</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

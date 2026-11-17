@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.repeat
@@ -16,6 +15,43 @@ order: 38
 > 别名：repeat、字符串重复
 
 **把每个字符串重复指定次数的方法。**
+
+## 用法
+**语法**：`Series.str.repeat(repeats)`
+
+**参数**：
+- `repeats`：每个字符串重复的次数，整数；也可传入与 Series 等长的整数列表，逐个元素指定次数
+- 空值默认返回 NaN，需要填充时可先用 `fillna()` 处理，或用 `str.repeat(n)` 配合 `fillna('')`
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['张三', 'ab', '数据分析', None])
+out = s.str.repeat(3)
+print(out)
+# 0    张三张三张三
+# 1    ababab
+# 2    数据分析数据分析数据分析
+# 3    None
+# dtype: object
+
+# 按元素指定不同次数
+print(s.str.repeat([1, 2, 3, 1]))
+# 0       张三
+# 1       abab
+# 2    数据分析数据分析数据分析
+# 3     None
+# dtype: object
+
+# 空值填充后再重复
+print(s.fillna('空').str.repeat(2))
+# 0          张三张三
+# 1          abab
+# 2    数据分析数据分析数据分析数据分析
+# 3            空空
+# dtype: object
+```
 
 ## 解释
 

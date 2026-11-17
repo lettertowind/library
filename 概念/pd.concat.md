@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 24
 stage: "S02E09 · 连接查询之concat"
-order: 24
 ---
 
 # pd.concat
@@ -16,6 +15,45 @@ order: 24
 > 别名：concat、pandas 连接、纵向连接
 
 **pandas 中沿指定轴把多个 DataFrame 拼接成一个的方法。**
+
+## 用法
+**语法**：`pd.concat(objs, axis=0, join='outer', ignore_index=False, keys=None)`
+**参数**：
+- `objs`：待拼接对象的列表或字典，如 `[df1, df2]`，不是两个位置参数
+- `axis`：拼接方向，`0` 表示纵向堆叠（默认），`1` 表示横向按行索引对齐
+- `join`：索引对齐方式，`'outer'` 保留并集（默认），`'inner'` 只保留交集
+- `ignore_index`：为 `True` 时重建 0..n-1 连续索引，默认 `False` 保留原索引
+- `keys`：传入列表可为结果增加层次索引，标识每块数据来源
+**示例**：
+```python
+import pandas as pd
+
+df1 = pd.DataFrame({'城市': ['北京', '上海'], '销量': [100, 200]})
+df2 = pd.DataFrame({'城市': ['广州', '深圳'], '销量': [300, 400]})
+
+# 纵向堆叠，列名需一致
+print(pd.concat([df1, df2], ignore_index=True))
+#    城市   销量
+# 0  北京  100
+# 1  上海  200
+# 2  广州  300
+# 3  深圳  400
+
+# 横向拼接：行索引对齐，不匹配处填 NaN
+df3 = pd.DataFrame({'总计': [300, 600]})
+print(pd.concat([df1, df3], axis=1))
+#    城市   销量   总计
+# 0  北京  100  300.0
+# 1  上海  200  600.0
+
+# keys 标识来源
+print(pd.concat([df1, df2], keys=['一店', '二店']).loc['一店'])
+#    城市   销量
+# 0  北京  100
+# 1  上海  200
+```
+
+注意：如果列名不一致，纵向拼接会产生 NaN 列；如果只需要按键匹配，应改用 `pd.merge`。
 
 ## 解释
 
@@ -64,6 +102,15 @@ pd.concat 是 Pandas 数据合并的核心工具，通过 axis 参数控制纵�
 - join 参数控制对齐方式：inner 交集，outer 并集
 pd.concat([df1, df2], axis=1) 时，如果两个 DataFrame 的行索引不完全相同，结果会怎样？::按行索引对齐，不匹配的位置填充 NaN。
 concat 的 join='inner' 和 join='outer' 有什么区别？::inner 只保留共同索引（交集），outer 保留所有索引（并集），缺失处填 NaN。
+
+默认 axis=0 做纵向首尾相接（类似 Excel 上下拼表）；axis=1 做横向拼接并按行索引对齐，索引不一致处补 NaN。它按轴工作而非按键匹配，这是与 merge 的根本区别。
+
+- 默认 axis=0，等价于把第二张表放到第一张下面
+- axis=1 按行索引对齐，索引不同处补 NaN
+- keys 参数加一层来源索引；也可直接传字典，字典键即分组键
+pd.concat([s1, s2]) 与 pd.concat([s1, s2], axis=1) 结果差在哪？::前者纵向首尾相接、索引可能重复；后者横向并排、按索引对齐并出现 NaN。
+为什么建议写成 frames = [df1, df2, df3]; pd.concat(frames)？::表列表集中在一个变量里，便于后续增删、复用和排查问题。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p24 S02E09.连接查询之concat](https://www.bilibili.com/video/BV1ji4y157uB?p=24) · 2026-11-17
 
 ## 出处
 

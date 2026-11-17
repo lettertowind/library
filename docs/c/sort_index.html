@@ -18,17 +18,46 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>sort_index</h1><div class="aliases">sort_index() · 按索引排序</div><p class="lede">按索引从小到大对 Series 或 DataFrame 进行排序的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>sort_index() 用于将数据按照索引顺序重新排列，常用于索引顺序被打乱后恢复有序。与 Excel 的排序功能类似。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>索引顺序混乱时恢复排序</li><li>按索引整理数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>按索引从小到大排序</li><li>适用于 Series 和 DataFrame</li><li>与 sort_values() 区别：一个按索引，一个按值</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只按索引排序，不改变数据值本身；按值排序需用 sort_values()。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/sort_values.html">sort_values</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>sort_index() 和 sort_values() 有什么区别？</summary><div class="quiz-a">sort_index() 按索引排序，sort_values() 按数据值排序。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>sort_index</h1><div class="aliases">sort_index() · 按索引排序</div><p class="lede">按索引从小到大对 Series 或 DataFrame 进行排序的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.sort_index(axis=0, ascending=True, inplace=False)</code> / <code>Series.sort_index(ascending=True, inplace=False)</code> <strong>参数</strong>：</p>
+<ul><li><code>axis</code>：排序轴，默认 0 表示按行索引排序；1 表示按列名排序</li><li><code>ascending</code>：默认 True 升序，设为 False 则为降序</li><li><code>inplace</code>：默认 False 返回新对象；True 直接修改原表</li><li><code>level</code>：多层索引时指定按哪一层排序，可传层级名或序号</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([90, 75, 88], index=[&quot;c&quot;, &quot;a&quot;, &quot;b&quot;])
+print(s.sort_index())
+# a    75
+# b    88
+# c    90
+
+df = pd.DataFrame({&quot;语文&quot;: [90, 75]}, index=[&quot;b&quot;, &quot;a&quot;])
+print(df.sort_index(ascending=False))
+#    语文
+# b   90
+# a   75
+
+# 多层索引按指定层排序后再查询，避免无序报错
+mi = pd.DataFrame({&quot;分&quot;: [1, 2, 3, 4]},
+                  index=pd.MultiIndex.from_tuples(
+                      [(&quot;数学&quot;, 2), (&quot;语文&quot;, 1), (&quot;数学&quot;, 1), (&quot;语文&quot;, 2)],
+                      names=[&quot;科目&quot;, &quot;班&quot;]))
+print(mi.sort_index(level=&quot;科目&quot;).index.tolist())
+# [(&#x27;数学&#x27;, 1), (&#x27;数学&#x27;, 2), (&#x27;语文&#x27;, 1), (&#x27;语文&#x27;, 2)]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>sort_index() 用于将数据按照索引顺序重新排列，常用于索引顺序被打乱后恢复有序。与 Excel 的排序功能类似。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>索引顺序混乱时恢复排序</li><li>按索引整理数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>按索引从小到大排序</li><li>适用于 Series 和 DataFrame</li><li>与 sort_values() 区别：一个按索引，一个按值</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只按索引排序，不改变数据值本身；按值排序需用 sort_values()。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/sort_values.html">sort_values</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>sort_index() 和 sort_values() 有什么区别？</summary><div class="quiz-a">sort_index() 按索引排序，sort_values() 按数据值排序。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>sort_index 不需要 by 参数，因为它直接按已设置的索引排序。常用于 set_index 之后恢复有序行号，或按列名排序。</p>
 <p>- 不需要 by，按现有索引排序</p>
 <p>- 同样支持 ascending 控制升降序</p>
 <p>- 支持 inplace=True 直接修改原表</p>
-<details class="quiz"><summary>sort_index 为什么不需要写 by？</summary><div class="quiz-a">它按已设置的索引排序，索引本身就是要排序的键</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/is_lexsorted.html">is_lexsorted</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html">sort 参数（concat）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/sort_values.html">sort_values</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/truncate.html">truncate</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html"><small>上一张</small>sort 参数（concat）</a><a class="next" href="../c/sort_values.html"><small>下一张</small>sort_values</a></nav></article>
+<details class="quiz"><summary>sort_index 为什么不需要写 by？</summary><div class="quiz-a">它按已设置的索引排序，索引本身就是要排序的键</div></details>
+<p>sort_index 针对已设置好的索引排序，常用于把数据恢复到原始顺序（例如打乱或筛选后按序号归位）。它不需要 by 参数，因为索引就是唯一确定的排序依据；默认 axis=0 排索引，同样支持 inplace 控制是否修改原对象。</p>
+<p>- 按索引排，不按数据值排，与 sort_values 分工明确</p>
+<p>- 不需要 by，因为它已明确按索引排序</p>
+<p>- 前提是索引已通过 set_index 设置好</p>
+<details class="quiz"><summary>为什么 sort_index 不用写 by？</summary><div class="quiz-a">排序依据是已经设置好的索引，本身唯一确定。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=27" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p27 S02E12.数据排序【已修证】</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/is_lexsorted.html">is_lexsorted</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html">sort 参数（concat）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/sort_values.html">sort_values</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/truncate.html">truncate</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E7%B4%A2%E5%BC%95%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E6%A3%80%E6%9F%A5.html">索引单调递增检查</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%B4%A2%E5%BC%95%E6%9C%89%E5%BA%8F%E6%80%A7.html">索引有序性</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html"><small>上一张</small>sort 参数（concat）</a><a class="next" href="../c/sort_values.html"><small>下一张</small>sort_values</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

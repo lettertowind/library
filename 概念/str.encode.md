@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.encode
@@ -16,6 +15,31 @@ order: 38
 > 别名：encode、编码转换
 
 **把字符串按指定格式编码为字节的方法。**
+
+## 用法
+
+**语法**：`str.encode(encoding='utf-8', errors='strict')`
+**参数**：
+- `encoding`：目标字符集，默认 `'utf-8'`，中文场景常用 `'utf-8'`、`'gbk'`
+- `errors`：编码出错时的处理策略，默认 `'strict'` 直接抛异常，也可用 `'ignore'`、`'replace'`
+**示例**：
+
+```python
+import pandas as pd
+
+s = pd.Series(['张三', '李四'])
+b = s.str.encode('utf-8')
+print(b)
+# 0    b'\xe5\xbc\xa0\xe4\xb8\x89'
+# 1    b'\xe6\x9d\x8e\xe5\x9b\x9b'
+# dtype: object
+print(b.str.decode('utf-8').tolist())
+# ['张三', '李四']
+
+# 编码与解码格式不一致会报错或乱码，必须配对
+print(s.str.encode('gbk').str.decode('gbk').tolist())
+# ['张三', '李四']
+```
 
 ## 解释
 

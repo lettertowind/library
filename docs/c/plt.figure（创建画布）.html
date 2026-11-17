@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="创建一块承载所有子图的画布，并同时设定它的名称、尺寸、分辨率与底色。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.figure（创建画布） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.figure（创建画布）</h1><div class="aliases">plt.figure() · figure() · 创建画布 · 画布参数</div><p class="lede">创建一块承载所有子图的画布，并同时设定它的名称、尺寸、分辨率与底色。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>画布（figure）是绘图的底层容器，子图都挂在这块画布上。调用 plt.figure() 时不带参数就用默认配置新建一块空白画布；带参数则一次性确定窗口标题、宽高、清晰度和背景色，避免出图后再改。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要在同一窗口布局多张子图之前先建画布</li><li>统一调整输出图片的尺寸、清晰度与背景色</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>num 设置窗口名称，如 plt.figure(num=&#x27;孙兴华&#x27;)</li><li>figsize 用元组设宽高，单位为英寸</li><li>dpi 控制分辨率，实战建议不低于 200</li><li>facecolor 设背景色，可写 &#x27;blue&#x27;、&#x27;b&#x27; 或十六进制</li><li>edgecolor 设边框色，一般看不出来，不必设置</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>plt.figure() 负责建画布但不建子图；fig, axes = plt.subplots(2,2) 则把画布与子图一次建好，两者是替代关系。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/figure%20%E4%B8%8E%20axes%EF%BC%88%E7%94%BB%E5%B8%83%E4%B8%8E%E5%AD%90%E5%9B%BE%EF%BC%89.html">figure 与 axes（画布与子图）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/figsize%EF%BC%88%E7%94%BB%E5%B8%83%E5%B0%BA%E5%AF%B8%EF%BC%89.html">figsize（画布尺寸）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/dpi%EF%BC%88%E5%9B%BE%E5%83%8F%E5%88%86%E8%BE%A8%E7%8E%87%EF%BC%89.html">dpi（图像分辨率）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.subplots.html">plt.subplots</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想让绘图窗口顶部的标题显示成“销售分析”，应该调哪个参数？</summary><div class="quiz-a">plt.figure(num=&#x27;销售分析&#x27;) 中的 num 参数</div></details>
+<details class="quiz"><summary>plt.figure(facecolor=&#x27;b&#x27;) 和 plt.figure(edgecolor=&#x27;b&#x27;) 改的是同一处颜色吗？</summary><div class="quiz-a">不是，前者改画布背景色，后者改画布边框色</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>必须先有画布，才能在上面添加子图和绘图，否则 plt 会隐式创建一张默认画布。显式写成 fig = plt.figure() 的好处是拿到 fig 变量，之后用 fig.add_subplot 精确地把子图挂在这张画布上。</p>
+<p>- 返回 Figure 对象，通常用 fig 变量接收</p>
+<p>- 刚创建时是空白画布，不含任何图形</p>
+<p>- 所有子图都通过 fig.add_subplot 挂到这张画布上</p>
+<details class="quiz"><summary>不写 plt.figure() 直接 plt.plot() 会怎样？</summary><div class="quiz-a">Matplotlib 自动创建一张默认画布并画上去，但你就拿不到 fig，不便继续做多子图布局。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=58" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p58 S03E10.画布和子图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=59" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p59 S03E11.创建多个子图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fig.add_subplot%EF%BC%88%E5%9C%A8%E7%94%BB%E5%B8%83%E4%B8%8A%E6%B7%BB%E5%8A%A0%E5%AD%90%E5%9B%BE%EF%BC%89.html">fig.add_subplot（在画布上添加子图）</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/figsize%EF%BC%88%E7%94%BB%E5%B8%83%E5%B0%BA%E5%AF%B8%EF%BC%89.html">figsize（画布尺寸）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.colorbar.html"><small>上一张</small>plt.colorbar</a><a class="next" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html"><small>下一张</small>plt.gca 与 plt.gcf</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

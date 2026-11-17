@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 中绘制直方图的函数，自动完成分组与计数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.hist · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.hist</h1><div class="aliases">hist · Matplotlib 直方图函数</div><p class="lede">Matplotlib 中绘制直方图的函数，自动完成分组与计数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>只需传入一列连续数值，plt.hist 就会自动分箱、统计每箱样本数并画出长条，无需自己先做 value_counts。它的样式参数集中在分箱（bins）与长条外观（facecolor、edgecolor、alpha）两类上。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>一行代码画出某列数值的分布</li><li>快速探索数值型字段的集中趋势与异常</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>bins 指定分箱数量或分箱边界，视频中口头称为“组距”，官方含义是分箱</li><li>facecolor 设填充色（&#x27;b&#x27; 蓝），edgecolor 设边框色（&#x27;white&#x27; 白、&#x27;r&#x27; 红）</li><li>颜色值必须写英文名或色值，写成中文“白色”会报错</li><li>alpha 控制透明度，长条粘连或颜色过深时配合边框使用</li><li>传入的是原始数值列（如 data[&#x27;身高&#x27;]），不是已统计好的频数</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不能用来画类别频数对比，那属于 plt.bar；bins 与 pd.cut 的分箱思想相同，但一个是画图参数、一个生成区间标签。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%9B%B4%E6%96%B9%E5%9B%BE.html">直方图</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%88%86%E7%AE%B1.html">离散化与分箱</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>长条彼此粘连看不清边界，改哪个参数最直接？</summary><div class="quiz-a">加 edgecolor（如 edgecolor=&#x27;white&#x27;）设置边框色，也可用 alpha 降低透明度。</div></details>
+<details class="quiz"><summary>plt.hist(data[&#x27;身高&#x27;], bins=30) 里的 30 是什么意思？</summary><div class="quiz-a">把身高的取值范围切成 30 个分箱，不是 30 这个数值本身。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=66" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p66 S03E17.直方图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E7%9B%B4%E6%96%B9%E5%9B%BE.html">直方图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.grid%EF%BC%88%E7%BD%91%E6%A0%BC%E7%BA%BF%EF%BC%89.html"><small>上一张</small>plt.grid（网格线）</a><a class="next" href="../c/plt.legend%20%E5%9B%BE%E4%BE%8B.html"><small>下一张</small>plt.legend 图例</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

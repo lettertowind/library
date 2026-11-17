@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="两条曲线交叉后，按交叉区间分别填充曲线间区域。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>交叉填充 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>交叉填充</h1><div class="aliases">交叉区域填充 · cross fill</div><p class="lede">两条曲线交叉后，按交叉区间分别填充曲线间区域。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>交叉填充用来突出两条曲线的相对高低变化。它先判断每段区间哪条曲线在上方，再对两条曲线之间的区域着色。不同交叉区间用不同颜色，表达上下或正负关系。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>比较两条趋势线的相对强弱</li><li>突出差值正负区间</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>核心是判断 y1 与 y2 谁在上方</li><li>通常分两次调用 fill_between 完成</li><li>两个 where 条件应互补，避免漏填或重叠</li><li>先绘制两条曲线，再做区域填充</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不是一次 fill_between 同时填两种颜色；多种颜色需按条件分开调用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/fill_between.html">fill_between</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%9D%A1%E4%BB%B6%E5%88%86%E6%AE%B5%E5%A1%AB%E5%85%85.html">条件分段填充</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>交叉填充时为什么通常要调用两次 fill_between？</summary><div class="quiz-a">因为一次调用只能指定一个 where 条件和一种填充颜色，两种交叉区间需分开着色。</div></details>
+<details class="quiz"><summary>两个 where 条件如果不互补会怎样？</summary><div class="quiz-a">可能出现某些区间漏填，或同一区间被重复填充。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=75" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p75 S03E26.交差及填充</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fill_between.html">fill_between</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%9D%A1%E4%BB%B6%E5%88%86%E6%AE%B5%E5%A1%AB%E5%85%85.html">条件分段填充</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E4%B8%BB%E6%AC%A1%E5%9D%90%E6%A0%87%E8%BD%B4.html"><small>上一张</small>主次坐标轴</a><a class="next" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E5%BD%A2%E5%9B%BE.html"><small>下一张</small>分组柱形图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

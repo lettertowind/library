@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 35
 stage: "S02E20 · 多层索引与多层索引计算"
-order: 35
 ---
 
 # pd.MultiIndex.from_tuples
@@ -16,6 +15,27 @@ order: 35
 > 别名：from_tuples、元组创建 MultiIndex
 
 **用元组列表创建多层索引的方法。**
+
+## 用法
+**语法**：`pd.MultiIndex.from_tuples(tuples, sortorder=None, names=None)`
+**参数**：
+- `tuples`：由元组组成的列表，每个元组对应一个索引组合，元组内元素按顺序对应各层
+- `names`：列表，给各层索引命名，长度需与索引层数一致
+- `sortorder`：整数，指定索引排序的层级；一般留空即可
+**示例**：
+```python
+import pandas as pd
+
+mi = pd.MultiIndex.from_tuples(
+    [("a", 1), ("a", 2), ("b", 1), ("b", 2)],
+    names=["x", "y"]
+)
+print(mi)
+# MultiIndex([('a', 1), ('a', 2), ('b', 1), ('b', 2)], names=['x', 'y'])
+
+s = pd.Series([10, 20, 30, 40], index=mi)
+print(s.loc[("a", 1)])  # 10
+```
 
 ## 解释
 

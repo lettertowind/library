@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 41
 stage: "S02E26 · 分组与聚合 groupby基础部分"
-order: 41
 ---
 
 # groupby.apply
@@ -16,6 +15,42 @@ order: 41
 > 别名：分组应用、groupby(...).apply(...)
 
 **按分组对每个子表调用自定义函数并合并结果。**
+
+## 用法
+**语法**：`DataFrameGroupBy.apply(func, *args, include_groups=True, **kwargs)`
+
+**参数**：
+- `func`：对每个分组子表调用的函数，接收子 DataFrame 并返回标量、Series 或 DataFrame
+- `group_keys`：为 True（默认）时结果外层带分组键索引；设 False 可避免多出索引层
+- `include_groups`：pandas 2.2 起新增，默认 True 会把分组列一并传入 func；设 False 则剔除分组列，留空会更安全，因为显式写出该参数也有助于避免未来行为变化的提示
+- `*args, **kwargs`：原样透传给 `func`
+
+**示例**：
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    "city": ["北京", "北京", "北京", "上海", "上海", "上海"],
+    "month": [1, 2, 3, 1, 2, 3],
+    "sales": [100, 120, 150, 200, 180, 220],
+})
+
+def mom(g):
+    g = g.copy()                    # 先 copy，避免修改原数据告警
+    g["环比"] = g["sales"].pct_change().round(3)
+    return g
+
+df = df.sort_values(["city", "month"])          # 先排序，保证组内月份有序
+res = df.groupby("city", group_keys=False).apply(mom, include_groups=False)
+print(res)
+#    month  sales     环比
+# 0      1    100    NaN
+# 1      2    120  0.200
+# 2      3    150  0.250
+# 3      1    200    NaN
+# 4      2    180 -0.100
+# 5      3    220  0.222
+```
 
 ## 解释
 

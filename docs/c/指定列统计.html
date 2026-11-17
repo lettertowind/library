@@ -18,11 +18,29 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>指定列统计</h1><div class="aliases">列选择后统计 · df[[列1 · 列2]].describe()</div><p class="lede">先选取单列或多列再调用统计函数，控制统计范围。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>面对几百列的数据表，先选列再统计可以只看关心的字段。单列用 df[&#x27;列名&#x27;]，多列用 df[[&#x27;列1&#x27;,&#x27;列2&#x27;]]。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>宽表只统计部分数值列</li><li>对比指定几列的统计摘要</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>单列：df[&#x27;语文&#x27;].describe()</li><li>多列：df[[&#x27;语文&#x27;,&#x27;数学&#x27;]].describe()</li><li>多列需双层方括号</li><li>选列后可接任意统计函数</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>列名拼写错误会直接报 KeyError。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/describe%28%29.html">describe()</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要同时看语文和数学两列的统计摘要，代码怎么写？</summary><div class="quiz-a">df[[&#x27;语文&#x27;,&#x27;数学&#x27;]].describe()，注意双层方括号。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html"><small>上一张</small>布尔索引筛选</a><a class="next" href="../c/%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2.html"><small>下一张</small>数据查询</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>指定列统计</h1><div class="aliases">列选择后统计 · df[[列1 · 列2]].describe()</div><p class="lede">先选取单列或多列再调用统计函数，控制统计范围。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>df[&#x27;列名&#x27;].describe()</code> / <code>df[[&#x27;列1&#x27;, &#x27;列2&#x27;]].describe()</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>describe()</code> 本身无必填参数；常用 <code>include=&#x27;all&#x27;</code>（含非数值列）、<code>percentiles=[.25, .5, .75]</code>（自定义分位点）</li><li>选列时：单列传字符串 <code>df[&#x27;语文&#x27;]</code>，多列传列表 <code>df[[&#x27;语文&#x27;, &#x27;数学&#x27;]]</code>（双层方括号）</li><li>选列后可接 <code>mean()</code>、<code>sum()</code>、<code>count()</code> 等任意统计函数</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;语文&#x27;: [88, 92, 75], &#x27;数学&#x27;: [95, 78, 84], &#x27;姓名&#x27;: [&#x27;张三&#x27;, &#x27;李四&#x27;, &#x27;王五&#x27;]})
+print(df[[&#x27;语文&#x27;, &#x27;数学&#x27;]].describe())
+#             语文         数学
+# count   3.000000   3.000000
+# mean   85.000000  85.666667
+# std     8.888194   8.504901
+# min    75.000000  78.000000
+# 25%    81.500000  81.000000
+# 50%    88.000000  84.000000
+# 75%    90.000000  89.500000
+# max    92.000000  95.000000
+
+print(df[&#x27;语文&#x27;].mean())   # 85.0</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>面对几百列的数据表，先选列再统计可以只看关心的字段。单列用 df[&#x27;列名&#x27;]，多列用 df[[&#x27;列1&#x27;,&#x27;列2&#x27;]]。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>宽表只统计部分数值列</li><li>对比指定几列的统计摘要</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>单列：df[&#x27;语文&#x27;].describe()</li><li>多列：df[[&#x27;语文&#x27;,&#x27;数学&#x27;]].describe()</li><li>多列需双层方括号</li><li>选列后可接任意统计函数</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>列名拼写错误会直接报 KeyError。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/describe%28%29.html">describe()</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要同时看语文和数学两列的统计摘要，代码怎么写？</summary><div class="quiz-a">df[[&#x27;语文&#x27;,&#x27;数学&#x27;]].describe()，注意双层方括号。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%8B%86%E5%88%86%E2%80%94%E5%BA%94%E7%94%A8%E2%80%94%E5%90%88%E5%B9%B6.html"><small>上一张</small>拆分—应用—合并</a><a class="next" href="../c/%E6%95%B0%E6%8D%AE%E5%90%88%E5%B9%B6%E4%B8%8E%E9%87%8D%E5%A1%91.html"><small>下一张</small>数据合并与重塑</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

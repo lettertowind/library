@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 printf 风格格式串（如 &#x27;%.2f&#x27;）控制数值刻度文字的格式器。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>FormatStrFormatter · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>FormatStrFormatter</h1><div class="aliases">FormatStrFormatter · 刻度格式字符串 · %.2f · 百分比刻度</div><p class="lede">用 printf 风格格式串（如 &#x27;%.2f&#x27;）控制数值刻度文字的格式器。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>把它传给 set_major_formatter，刻度数字就按格式串渲染：%.2f 保留两位小数，%.1f、%.3f 改数字即可。要显示百分号须写成 &#x27;%.2f%%&#x27;，其中第一个百分号是转义。它只处理数值型刻度。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>刻度保留固定小数位</li><li>把比例刻度显示成百分比</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>&#x27;%.2f&#x27; 保留两位小数，&#x27;%.1f&#x27;/&#x27;%.3f&#x27; 改数字即可</li><li>百分比写法 &#x27;%.2f%%&#x27;，少一个 % 会报错或丢百分号</li><li>导入：from matplotlib.ticker import FormatStrFormatter</li><li>用法：ax.xaxis.set_major_formatter(FormatStrFormatter(&#x27;%.2f&#x27;))</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只管数值刻度；日期刻度要用 DateFormatter，用 %f 处理日期无效。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E5%AE%9A%E4%BD%8D%E5%99%A8%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%99%A8%EF%BC%88Locator%20Formatter%EF%BC%89.html">刻度定位器与格式器（Locator Formatter）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/DateFormatter.html">DateFormatter</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/MultipleLocator.html">MultipleLocator</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想把刻度显示为带两位小数的百分比，格式串怎么写？</summary><div class="quiz-a">&#x27;%.2f%%&#x27;</div></details>
+<details class="quiz"><summary>日期轴上用 FormatStrFormatter(&#x27;%.2f&#x27;) 会怎样？</summary><div class="quiz-a">无效，日期刻度必须用 DateFormatter。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>通过 axis.set_major_formatter(mtick.FormatStrFormatter(&#x27;%.2f%%&#x27;)) 使用，格式串里的 %.2f 控制小数位，%% 转义为一个真实的百分号。它把刻度值原样套进格式串输出，因此不会自动把 0.38 变成 38%。</p>
+<p>- 格式串中 %% 才输出一个实际的百分号，单个 % 会报错</p>
+<p>- %.2f%% 表示保留两位小数并追加百分号</p>
+<p>- 它只格式化，不会把 0.38 乘成 38%</p>
+<details class="quiz"><summary>为什么 FormatStrFormatter(&#x27;%.2f%%&#x27;) 用在 0~1 小数上会显示成 0.38%？</summary><div class="quiz-a">它只把刻度值套进格式串并加百分号，不做“乘 100”的换算。</div></details>
+<details class="quiz"><summary>格式串里写 %.2f% 会出什么问题？</summary><div class="quiz-a">单个 % 在格式串中是转义起始符，会报错，必须写 %% 才能输出一个百分号。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=62" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p62 S03E13.组合图：柱形图+折线图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=68" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p68 S03E19.坐标轴【下】</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/DateFormatter.html">DateFormatter</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/MultipleLocator.html">MultipleLocator</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/PercentFormatter.html">PercentFormatter</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/matplotlib.ticker%20%E6%A8%A1%E5%9D%97.html">matplotlib.ticker 模块</a><span class="rel rel-plain">下位概念</span></li><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E5%AE%9A%E4%BD%8D%E5%99%A8%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%99%A8%EF%BC%88Locator%20Formatter%EF%BC%89.html">刻度定位器与格式器（Locator Formatter）</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/DateFormatter.html"><small>上一张</small>DateFormatter</a><a class="next" href="../c/Matplotlib.html"><small>下一张</small>Matplotlib</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="plt.pie 的布尔参数，控制是否给饼图加阴影以模拟立体感。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>shadow 参数（阴影） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>shadow 参数（阴影）</h1><div class="aliases">shadow · shadow=True · 阴影参数 · 3D 饼图效果</div><p class="lede">plt.pie 的布尔参数，控制是否给饼图加阴影以模拟立体感。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认 shadow=False，不显示阴影；设为 True 后，Matplotlib 会在扇区边缘绘制一层投影，使二维饼图看起来凸起。视频里所说的“Matplotlib 3D 饼图”就是把它设为 True，本质只是阴影装饰，不是三维坐标变换。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>让二维饼图快速产生立体观感</li><li>模仿 Excel 中饼图的 3D 效果</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认值为 False，写 shadow=True 才出现阴影</li><li>所谓“3D 饼图”只有一个开关：shadow=True</li><li>阴影不改变扇区角度、位置或任何数据，纯属视觉装饰</li><li>与 C4D 等三维软件渲染的真三维图形有本质区别</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>它不是真 3D：没有透视、旋转、深度坐标，不能用于三维可视化需求；真三维需用 mplot3d 或专业三维软件。易与 explode 混淆——explode 改位置，shadow 只改外观。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E9%A5%BC%E5%9B%BE.html">饼图</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/explode%20%E5%8F%82%E6%95%B0%EF%BC%88%E6%89%87%E5%8C%BA%E5%88%86%E7%A6%BB%EF%BC%89.html">explode 参数（扇区分离）</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>有人问“Matplotlib 怎么画 3D 饼图”，最准确的回答是什么？</summary><div class="quiz-a">Matplotlib 没有真正的 3D 饼图，只有 plt.pie(shadow=True) 的阴影效果，只是视觉上的立体感。</div></details>
+<details class="quiz"><summary>把 shadow 从 False 改成 True，饼图各扇区的角度会变化吗？</summary><div class="quiz-a">不会，只增加阴影装饰，几何和数据都不变。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p55 S03E07.[补充]3D饼图](https://www.bilibili.com/video/BV1ji4y157uB?p=55) · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/explode%20%E5%8F%82%E6%95%B0%EF%BC%88%E6%89%87%E5%8C%BA%E5%88%86%E7%A6%BB%EF%BC%89.html">explode 参数（扇区分离）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E9%A5%BC%E5%9B%BE.html">饼图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/set_ticks_position%EF%BC%88%E5%88%BB%E5%BA%A6%E4%BD%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE%EF%BC%89.html"><small>上一张</small>set_ticks_position（刻度位置设置）</a><a class="next" href="../c/squarify.html"><small>下一张</small>squarify</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

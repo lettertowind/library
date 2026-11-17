@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="手动设置子图四周留白和子图之间横纵间距的布局调整函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.subplots_adjust · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.subplots_adjust</h1><div class="aliases">subplots_adjust · 手动调整边距 · wspace · hspace · left/top/bottom 参数</div><p class="lede">手动设置子图四周留白和子图之间横纵间距的布局调整函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>它暴露布局的四个外边距（left、right、top、bottom）和两个间距（wspace、hspace），取值都是画布比例。想精确定位标题位置、给某侧留出大量空白时用它，数值靠反复试调确定。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要精细控制边距、自动布局不满足时</li><li>给大标题或图例预留固定空白</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>left/top/bottom/right 用 0~1 的比例控制画布四周留白</li><li>wspace、hspace 控制子图之间的水平与垂直间距</li><li>top 调小可给标题腾出空间，bottom 调大会压缩下方空间</li><li>没有唯一正确数值，需按画布大小和子图数量试调</li><li>通常在绘图结束、show 之前调用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 tight_layout 作用目标相同但方式相反（手动 vs 自动），混用时以最后一次调用为准。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.tight_layout.html">plt.tight_layout</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/plt.subplot%20%E5%AD%90%E5%9B%BE%E5%B8%83%E5%B1%80.html">plt.subplot 子图布局</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>标题仍然和上方子图挤在一起，想手动把顶部留白加大，应调哪个参数？</summary><div class="quiz-a">调小 top 的值（如 0.8），给顶部让出更多空间，必要时再配合 hspace。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>当刻度标签被裁掉或图例贴边时，用 fig.subplots_adjust 手动留白。参数取 0–1 的比例值，表示图形距画布边缘或子图之间保留的空间。</p>
+<p>- 用法：fig = plt.gcf(); fig.subplots_adjust(left=0.1, bottom=0.3)</p>
+<p>- left=0.1 表示图形距画布左边约 10%，bottom=0.3 距下边约 30%</p>
+<p>- 一般只调左边距和下边距，其余交给自动布局</p>
+<details class="quiz"><summary>标签旋转 45 度后被裁掉，该加什么参数？</summary><div class="quiz-a">增大 bottom 边距，如 fig.subplots_adjust(bottom=0.3)。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=50" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p50 S03E03.分组柱状图</a> · 2026-11-17</p>
+<p>通过 wspace、hspace 控制子图之间的水平和垂直间距，通过 left、right、top、bottom 控制子图区域与画布边缘的距离。适合对布局有精确要求的场景。</p>
+<p>- wspace 控制子图水平间距，hspace 控制垂直间距，数值越大分得越开。</p>
+<p>- left、right、top、bottom 是子图区域相对画布的边界比例（0~1），right 表示右边界位置而非右侧留白。</p>
+<p>- 示例取值：wspace=0.5、hspace=0.3、left=0.125、right=0.9、bottom=0.1。</p>
+<details class="quiz"><summary>plt.subplots_adjust 中哪个参数控制子图之间的垂直间距？</summary><div class="quiz-a">hspace</div></details>
+<details class="quiz"><summary>right 参数表示子图右侧留白还是子图区域的右边界位置？</summary><div class="quiz-a">右边界位置（0~1 的比例值）</div></details>
+<p>- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p61 S03E12.[补充]调整边框与子图间距](https://www.bilibili.com/video/BV1ji4y157uB?p=61) · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=72" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p72 S03E23.标题及轴标签</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.tight_layout.html">plt.tight_layout</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.subplots.html"><small>上一张</small>plt.subplots</a><a class="next" href="../c/plt.text%20%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE.html"><small>下一张</small>plt.text 数据标签</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -18,18 +18,50 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.contains</h1><div class="aliases">contains · 包含判断</div><p class="lede">判断每个字符串是否包含指定内容并返回布尔值的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.contains(&#x27;血&#x27;) 对每个元素判断是否包含指定子串，返回 True 或 False。空值默认返回 NaN，可用 na 参数指定空值结果。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选包含关键词的行</li><li>标记数据中是否出现某内容</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回布尔型结果</li><li>空值默认返回 NaN</li><li>na 参数可设为 False、True 或自定义值</li><li>常与布尔索引筛选组合使用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>默认按子串匹配；需要正则匹配时需注意参数设置。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/str.startswith.html">str.startswith</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">正则表达式</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.contains 遇到空值默认返回什么？</summary><div class="quiz-a">NaN。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.contains</h1><div class="aliases">contains · 包含判断</div><p class="lede">判断每个字符串是否包含指定内容并返回布尔值的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.contains(pat, case=True, flags=0, na=None, regex=True)</code> <strong>参数</strong>：</p>
+<ul><li><code>pat</code>：要查找的字符序列或正则表达式；默认按正则解释</li><li><code>case</code>：默认 True 区分大小写；设为 False 则忽略大小写</li><li><code>flags</code>：传给正则引擎的标志位，如 <code>re.IGNORECASE</code></li><li><code>na</code>：空值处填什么，默认 None 保留 NaN；常设 <code>na=False</code></li><li><code>regex</code>：默认 True 把 pat 当正则；只想按纯文本匹配时设 False</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&#x27;河南省信阳市&#x27;, &#x27;信阳市&#x27;, &#x27;郑州市&#x27;, None])
+print(s.str.contains(&#x27;信阳市&#x27;).tolist())
+# [True, True, False, nan]
+
+print(s.str.contains(&#x27;信阳市&#x27;, na=False).tolist())
+# [True, True, False, False]
+
+print(s.str.contains(&#x27;^信阳市&#x27;, regex=True).tolist())
+# [False, True, False, nan]
+
+df = pd.DataFrame({&#x27;地址&#x27;: s})
+print(df[df[&#x27;地址&#x27;].str.contains(&#x27;信阳市&#x27;, na=False)])
+#           地址
+# 0  河南省信阳市
+# 1      信阳市</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>str.contains(&#x27;血&#x27;) 对每个元素判断是否包含指定子串，返回 True 或 False。空值默认返回 NaN，可用 na 参数指定空值结果。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选包含关键词的行</li><li>标记数据中是否出现某内容</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回布尔型结果</li><li>空值默认返回 NaN</li><li>na 参数可设为 False、True 或自定义值</li><li>常与布尔索引筛选组合使用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>默认按子串匹配；需要正则匹配时需注意参数设置。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/str.startswith.html">str.startswith</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">正则表达式</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.contains 遇到空值默认返回什么？</summary><div class="quiz-a">NaN。</div></details>
 <details class="quiz"><summary>如何让空值在 contains 结果中显示为 False？</summary><div class="quiz-a">设置 na=False。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>contains 用于“包含”匹配，弥补 startswith/endswith 只能匹配首尾的不足。第一个参数可为普通字符串或正则表达式，配合 case 控制大小写。</p>
 <p>- 写法：数据[&#x27;地址&#x27;].str.contains(&#x27;信阳市&#x27;)</p>
 <p>- 参数可为字符串或正则表达式</p>
 <p>- 默认区分大小写，case=False 忽略</p>
-<details class="quiz"><summary>地址有“河南省信阳市”和“信阳市”两种写法，该用 startswith 还是 contains？</summary><div class="quiz-a">用 contains，因为“河南省信阳市”不以“信阳市”开头。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/case%20%E5%8F%82%E6%95%B0.html">case 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/isin.html">isin</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.startswith.html">str.startswith</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.cat.html"><small>上一张</small>str.cat</a><a class="next" href="../c/str.decode.html"><small>下一张</small>str.decode</a></nav></article>
+<details class="quiz"><summary>地址有“河南省信阳市”和“信阳市”两种写法，该用 startswith 还是 contains？</summary><div class="quiz-a">用 contains，因为“河南省信阳市”不以“信阳市”开头。</div></details>
+<p>默认按正则表达式处理，可用于文本包含筛选。支持大小写敏感控制。</p>
+<p>- 第一个参数 pat 可以是普通字符串或正则表达式</p>
+<p>- case=True 默认大小写敏感，case=False 不敏感</p>
+<p>- 默认按正则处理，普通文本含特殊字符需转义</p>
+<details class="quiz"><summary>str.contains 默认是否区分大小写？</summary><div class="quiz-a">是，case 默认为 True。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=29" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p29 S02E14.筛选</a> · 2026-11-17</p>
+<p>返回的布尔序列可以直接作为筛选掩码使用，是文本条件过滤的主力方法。参数默认按正则解释，空值位置的取值由 na 参数决定。</p>
+<p>- 返回布尔 Series，可直接用于 df[...] 过滤</p>
+<p>- case 参数控制是否区分大小写</p>
+<p>- na 参数指定空值处返回 True 还是 False</p>
+<details class="quiz"><summary>空值行默认会让 contains 报错吗？怎么处理？</summary><div class="quiz-a">不报错，可用 na 参数指定这些位置返回 True 还是 False</div></details>
+<details class="quiz"><summary>contains 与 startswith 的差别在哪？</summary><div class="quiz-a">contains 匹配任意位置，startswith 只匹配开头</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=38" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p38 S02E23.字符串操作（上）</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/case%20%E5%8F%82%E6%95%B0.html">case 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/isin.html">isin</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/na%20%E5%8F%82%E6%95%B0.html">na 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/str.startswith.html">str.startswith</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.center.html"><small>上一张</small>str.center</a><a class="next" href="../c/str.decode.html"><small>下一张</small>str.decode</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 43
 stage: "S02E28 · 数据透视表"
-order: 43
 ---
 
 # crosstab
@@ -16,6 +15,32 @@ order: 43
 > 别名：pd.crosstab、交叉表
 
 **按行、列两个维度统计频数的交叉计数表。**
+
+
+## 用法
+**语法**：`pd.crosstab(index, columns, values=None, aggfunc=None, margins=False, margins_name='All', normalize=False)`
+**参数**：
+- `index`：行分组条件，可传列名或列名列表实现多层行索引。
+- `columns`：列分组条件，即被计数的对象列。
+- `values`：可选，指定要聚合的数值列；不传时统计记录条数。
+- `aggfunc`：可选，聚合函数，默认按记录计数；需非计数聚合时改用 pivot_table。
+- `margins`：是否添加行列小计/总计，默认 False。
+- `margins_name`：小计总计的行列名称，默认 'All'。
+- `normalize`：按行/列/全部归一化为比例，可传 'all'、'index'、'columns' 或布尔值。
+**示例**：
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    '月份': ['1月','1月','1月','2月','2月','2月'],
+    '区域': ['东','东','西','东','西','西'],
+    '部门': ['A','B','A','A','B','A']
+})
+result = pd.crosstab(index=[df['月份'], df['区域']], columns=df['部门'])
+print(result.columns.tolist())  # ['A', 'B']
+print(result.index.tolist())    # [('1月', '东'), ('1月', '西'), ('2月', '东'), ('2月', '西')]
+print(result.values.tolist())   # [[1, 1], [1, 0], [1, 0], [2, 1]]
+```
 
 ## 解释
 
@@ -47,6 +72,17 @@ crosstab 可以看作 pivot_table 的计数特例，默认就是计数，不需�
 
 要统计每个月份、每个区域下各部门出现多少条记录，用哪个方法最直接？::pd.crosstab，index 传 [月份, 区域]，columns 传部门。
 crosstab 结果里的数字代表什么？::记录条数/频数，不是人数或金额。
+
+
+### 补充 · 2026-11-17
+
+pd.crosstab 用于统计不同分类组合下的记录条数，默认就是计数。多条件分组时第一个参数写成列表。它没有 aggfunc 那样的多聚合能力，需要求和或平均时应改用 pivot_table。
+
+- 本质是数据透视表的一部分，主要只做计数。
+- 多条件时第一个参数用列表，如 [月份, 区域]。
+- margins=True 可给行列加小计。
+crosstab 统计出的 30 表示 30 个人吗？::不一定，通常表示 30 条记录或订单笔数。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p43 S02E28.数据透视表](https://www.bilibili.com/video/BV1ji4y157uB?p=43) · 2026-11-17
 
 ## 出处
 

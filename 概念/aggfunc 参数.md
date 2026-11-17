@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 43
 stage: "S02E28 · 数据透视表"
-order: 43
 ---
 
 # aggfunc 参数
@@ -47,6 +46,17 @@ len 是特例，不能写成 np.len；不确定时统一用 np.函数名但须�
 
 想让数量列求和、金额列求平均，aggfunc 怎么写？::aggfunc={'数量': 'sum', '金额': 'mean'}。
 为什么 np.len 会报错？::NumPy 没有 len 函数，应使用 Python 内置的 len。
+
+
+### 补充 · 2026-11-17
+
+aggfunc 决定对 values 中的数值列做求和、平均还是计数。它可以接收函数列表，从而一次输出多种聚合结果。不要依赖默认聚合方式，业务分析中应显式设置。
+
+- 可传列表，如 ['sum', np.mean]。
+- Python 自带 sum 可直接写，也可写 np.sum。
+- NumPy 的 mean 需先 import numpy as np 再写 np.mean。
+在 aggfunc 中写 np.len 为什么不对？::len 是 Python 内置函数，不能加 np.，应直接写 len。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p43 S02E28.数据透视表](https://www.bilibili.com/video/BV1ji4y157uB?p=43) · 2026-11-17
 
 ## 出处
 

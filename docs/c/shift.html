@@ -18,11 +18,48 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>shift</h1><div class="aliases">shift() · 数据位移 · 向下移动</div><p class="lede">把序列整体上下移动若干行，用于构造上期/前期数据。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>shift(1) 把整列向下移一格，使每行对应上一行数据，是计算环比的标准手段。首行移动后为空，正好对应没有上期。多组数据时须在组内 shift，不能整列直接移。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>构造上期金额列</li><li>计算环比、差分、滞后特征</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>shift(1) 向下移一格，shift(-1) 向上移</li><li>首行移位后为空，对应无上期</li><li>多分组数据要先 groupby 再在组内 shift</li><li>常配合 astype(float) 处理空值类型</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>整列 shift 会跨组错位，多城市/多分组时必须组内使用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%8E%AF%E6%AF%94.html">环比</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>多城市数据直接对整列 shift(1) 会出什么问题？</summary><div class="quiz-a">会把上海 1 月与北京 12 月错误对应，产生跨城市的假环比。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/groupby.apply.html">groupby.apply</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html">method 参数（fillna）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%8E%AF%E6%AF%94.html">环比</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sheet_name%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>sheet_name 参数</a><a class="next" href="../c/skiprows%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>skiprows 参数</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>shift</h1><div class="aliases">shift() · 数据位移 · 向下移动</div><p class="lede">把序列整体上下移动若干行，用于构造上期/前期数据。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.shift(periods=1, freq=None, axis=0, fill_value=None)</code> / <code>Series.shift(periods=1, fill_value=None)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>periods</code>：移动的行数，正数表示向下移动（取上期），负数表示向上移动，默认 1</li><li><code>freq</code>：只用于时间索引，按时间频率整体平移索引；普通的构造上期列场景不用传</li><li><code>axis</code>：0 或 &#x27;index&#x27; 表示沿行移动，默认 0；不要传 1</li><li><code>fill_value</code>：移位后空出来的位置用该值填充，默认留空（NaN）</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({
+    &quot;city&quot;: [&quot;北京&quot;, &quot;北京&quot;, &quot;北京&quot;, &quot;上海&quot;, &quot;上海&quot;, &quot;上海&quot;],
+    &quot;month&quot;: [1, 2, 3, 1, 2, 3],
+    &quot;amount&quot;: [100, 120, 150, 200, 180, 210],
+})
+
+# 整列 shift 会跨组错位：上海 1 月会对应到北京 3 月
+print(df[&quot;amount&quot;].shift(1).tolist())
+# [nan, 100.0, 120.0, 150.0, 200.0, 180.0]
+
+# 正确做法：先 groupby 再组内 shift
+df[&quot;prev_amount&quot;] = df.groupby(&quot;city&quot;)[&quot;amount&quot;].shift(1)
+print(df)
+#   city  month  amount  prev_amount
+# 0   北京      1     100          NaN
+# 1   北京      2     120        100.0
+# 2   北京      3     150        120.0
+# 3   上海      1     200          NaN
+# 4   上海      2     180        200.0
+# 5   上海      3     210        180.0
+
+# 环比 = 本期 / 上期 - 1，首行无上期为 NaN
+df[&quot;mom&quot;] = (df[&quot;amount&quot;] / df[&quot;prev_amount&quot;] - 1).round(4)
+print(df[&quot;mom&quot;].tolist())
+# [nan, 0.2, 0.25, nan, -0.1, 0.1667]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>shift(1) 把整列向下移一格，使每行对应上一行数据，是计算环比的标准手段。首行移动后为空，正好对应没有上期。多组数据时须在组内 shift，不能整列直接移。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>构造上期金额列</li><li>计算环比、差分、滞后特征</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>shift(1) 向下移一格，shift(-1) 向上移</li><li>首行移位后为空，对应无上期</li><li>多分组数据要先 groupby 再在组内 shift</li><li>常配合 astype(float) 处理空值类型</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>整列 shift 会跨组错位，多城市/多分组时必须组内使用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%8E%AF%E6%AF%94.html">环比</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>多城市数据直接对整列 shift(1) 会出什么问题？</summary><div class="quiz-a">会把上海 1 月与北京 12 月错误对应，产生跨城市的假环比。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>shift() 默认向下移动一行，原第一行位置变为 NaN。在环比中用它构造“上期金额”，再用本期减 shift 后的上期。多城市计算时需先分组，在组内 shift 才不会串城市。</p>
+<p>- 默认 periods=1，向下移动一行</p>
+<p>- 移动后首行出现 NaN，表示没有上期</p>
+<p>- 多组数据先 groupby 再 shift，避免串组</p>
+<details class="quiz"><summary>多城市数据直接对整个表 shift 会有什么问题？</summary><div class="quiz-a">可能把上一个城市的最后一行当成下一个城市的第一行上期，导致串组。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=46" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p46 S02E31.数据的转置、计算环比与同比</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/groupby.apply.html">groupby.apply</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html">method 参数（fillna）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%8E%AF%E6%AF%94.html">环比</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sheet_name%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>sheet_name 参数</a><a class="next" href="../c/skiprows%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>skiprows 参数</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

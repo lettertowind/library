@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="SQL 中按指定字段分组并对每组聚合的子句。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>GROUP BY · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>数据库</span></nav><article class="card"><h1>GROUP BY</h1><div class="aliases">SQL 分组子句 · GROUPBY · 分组查询</div><p class="lede">SQL 中按指定字段分组并对每组聚合的子句。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>GROUP BY 把分组键相同的行归为一组，再配合 COUNT、SUM、AVG 等聚合函数得到每组汇总结果。Pandas 的 groupby 在思路上与它相近。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>SQL 中的分组汇总</li><li>按维度统计数量、金额、均值等</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>通常与 COUNT、SUM、AVG 等聚合函数连用</li><li>SELECT 中的非聚合列一般必须出现在 GROUP BY 中</li><li>可写多个字段实现多级分组</li><li>Pandas 用 groupby 对应其分组思路</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>GROUP BY 会把多行压缩为每组一行；窗口函数则保留明细行，两者不要混淆。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/SQL%20%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.html">SQL 查询语句</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>SQL 中 SELECT 里的非聚合列通常要满足什么条件？</summary><div class="quiz-a">必须出现在 GROUP BY 子句中，或由聚合函数包裹。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=41" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p41 S02E26.分组与聚合 groupby基础部分</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E6%8B%86%E5%88%86%E2%80%94%E5%BA%94%E7%94%A8%E2%80%94%E5%90%88%E5%B9%B6.html">拆分—应用—合并</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%8B%86%E5%88%86-%E5%BA%94%E7%94%A8-%E5%90%88%E5%B9%B6.html">拆分-应用-合并</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/SUMIF.html">SUMIF</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.html"><small>上一张</small>数据清洗</a><a class="next" href="../c/MySQL.html"><small>下一张</small>MySQL</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

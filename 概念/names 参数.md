@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 17
 stage: "S02E02 · 读取txt与csv文件"
-order: 17
 ---
 
 # names 参数
@@ -54,6 +53,14 @@ names=[...] 让读取阶段就带上正确列名，避免读进来再改 columns
 - 列表长度应与实际列数一致
 - 与 header=None 组合是处理无表头文件的标准写法
 names 列表长度和实际列数不一致会怎样？::列名与数据对不齐，通常报错或产生错位的列名，必须先确认列数。
+
+当原文件没有表头或表头不规范时，用 names=[...] 直接给出规范列名，一步得到可用 DataFrame，不必读入后再改 columns。
+
+- 传入列表，长度要与数据列数一致
+- 与 header=None 是标准搭配：先声明无表头，再给新列名
+- 会覆盖文件原有的列名
+names 与 header 各自管什么？::header 指定哪一行当表头（或声明没有表头），names 指定最终列名叫什么。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p19 S02E04.读取与修改Excel文件](https://www.bilibili.com/video/BV1ji4y157uB?p=19) · 2026-11-17
 
 ## 出处
 

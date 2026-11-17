@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把字符串左对齐、在右侧补齐到指定宽度。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>str.ljust · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.ljust</h1><div class="aliases">ljust · 左侧对齐右侧填充</div><p class="lede">把字符串左对齐、在右侧补齐到指定宽度。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.ljust(width, fillchar=&#x27; &#x27;)</code> <strong>参数</strong>：</p>
+<ul><li><code>width</code>：目标总宽度（按字符数计），小于原字符串长度时原样返回、不截断</li><li><code>fillchar</code>：填充字符，默认空格 <code>&#x27; &#x27;</code>，只能是单个字符，填充加在右侧</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&#x27;ab&#x27;, &#x27;python&#x27;, &#x27;数据分析&#x27;])
+print(s.str.ljust(8, fillchar=&#x27;*&#x27;))
+# 0    ab******
+# 1    python**
+# 2    数据分析****
+# dtype: object</code></pre>
+<p>等价写法（课程中的 pad 形式）：<code>s.str.pad(8, side=&#x27;right&#x27;, fillchar=&#x27;*&#x27;)</code>；若只需补 0 到定宽、左侧填充，用 <code>s.str.zfill(8)</code> 更直接。</p></section><section class="sec"><h2 id="解释">解释</h2><p>ljust 是 pad 的衍生写法，等价于 pad(..., side=&#x27;right&#x27;)：内容靠左，空白（或指定字符）加在右边。常用于生成定宽编码、对齐报表输出。</p></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>ljust(width, fillchar=&#x27;*&#x27;)，无需写 side</li><li>内容靠左，填充加在右侧</li><li>等价于 pad(..., side=&#x27;right&#x27;)</li><li>填充字符只能是单个字符</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只补 0 且固定左填时用 zfill；任意方向任意字符用 pad。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.pad.html">str.pad</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/str.rjust.html">str.rjust</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要让姓名靠左、星号补在右边到 5 位，用 pad 和用 ljust 分别怎么写？</summary><div class="quiz-a">pad(5, side=&#x27;right&#x27;, fillchar=&#x27;*&#x27;)；ljust(5, fillchar=&#x27;*&#x27;)</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=38" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p38 S02E23.字符串操作（上）</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.center.html">str.center</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.rjust.html">str.rjust</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.join.html"><small>上一张</small>str.join</a><a class="next" href="../c/str.lstrip.html"><small>下一张</small>str.lstrip</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

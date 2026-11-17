@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="通过轴对象设置 x 轴刻度标签的旋转角度与水平对齐方式，防止标签相互重叠。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>刻度标签旋转 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>刻度标签旋转</h1><div class="aliases">set_xticklabels · rotation=45 · ha 参数 · 标签倾斜 · xticklabels</div><p class="lede">通过轴对象设置 x 轴刻度标签的旋转角度与水平对齐方式，防止标签相互重叠。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>类别较多时标签会挤在一起，把标签倾斜一定角度就能错开。标准写法是先用 plt.xticks() 设置位置和文字，再取轴对象调 set_xticklabels 指定 rotation 与 ha。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>分组柱状图/柱形图人名或类目过多时</li><li>长文本类目标签防重叠</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>顺序固定：先 plt.xticks(x, labels)，再 ax.set_xticklabels(...)</li><li>rotation=45 表示标签旋转 45 度</li><li>ha=&#x27;center&#x27; 表示以标签中心为旋转轴，可换 left/right 改变效果</li><li>用 set_xticklabels 设旋转时若漏写 rotation，设置不生效甚至报错</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>类目实在过多时旋转仍会重叠，应改用横向条形图或抽样展示，而非一味加大角度。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%95%B0%E5%80%BC%E7%B4%A2%E5%BC%95%E6%9B%BF%E4%BB%A3%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B1%BB%E5%88%AB%E8%BD%B4.html">数值索引替代字符串类别轴</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E7%8A%B6%E5%9B%BE.html">分组柱状图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>rotation 和 ha 分别控制什么？</summary><div class="quiz-a">rotation 控制标签旋转角度，ha 控制水平对齐方式（即绕哪个点旋转）。</div></details>
+<details class="quiz"><summary>只写 ax.set_xticklabels(df.姓名) 不写 rotation，会旋转吗？</summary><div class="quiz-a">不会，必须显式传入 rotation 参数。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>类别较多（如二三十个姓名）时，水平排列的刻度文字会挤在一起互相遮挡。给 xticks 传 rotation 角度后标签按角度倾斜排布，占用横向空间变小。参数名是 rotation，常被简写口述为 rot，写错会报错。</p>
+<p>- 写法：plt.xticks(数据.姓名, rotation=45)</p>
+<p>- 第一个参数是刻度位置/文本，与 x 轴数据保持一致</p>
+<p>- 45 度是通用折中值，30~60 度均可用</p>
+<details class="quiz"><summary>刻度标签旋转解决了什么问题，又解决不了什么问题？</summary><div class="quiz-a">解决水平排列时的文字重叠；解决不了类别数量本身过多导致的图形拥挤。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=48" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p48 S03E01.柱状图</a> · 2026-11-17</p>
+<p>通过 plt.xticks(rotation=...) 或 set_xticklabels 的参数，让刻度文字倾斜显示。日期、长文本、类别多的时候，标签横向排队会挤在一起，旋转是最省事的解法之一。</p>
+<p>- plt.xticks(rotation=45) 旋转的是刻度文字，不是数据点</p>
+<p>- 可与 fontsize 同时设置：plt.xticks(rotation=45, fontsize=10)</p>
+<p>- 旋转后常配合 ha=&#x27;right&#x27; 让文字与刻度对齐</p>
+<details class="quiz"><summary>旋转刻度标签会改变数据点的位置吗？</summary><div class="quiz-a">不会，只改变刻度文字的显示角度。</div></details>
+<details class="quiz"><summary>日期标签旋转 45 度后仍然重叠或超出画布，还应该做什么？</summary><div class="quiz-a">减小字号、减少刻度数量，或调用 tight_layout / fig.autofmt_xdate() 自动调整布局。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=63" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p63 S03E14.坐标轴上面的日期格式</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=50" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p50 S03E03.分组柱状图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E7%8A%B6%E5%9B%BE.html">分组柱状图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/strftime%20%E6%97%A5%E6%9C%9F%E6%A0%BC%E5%BC%8F%E5%8C%96.html">strftime 日期格式化</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%BB%E5%BA%A6%E5%AE%9A%E4%BD%8D%E5%99%A8%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%99%A8%EF%BC%88Locator%20Formatter%EF%BC%89.html"><small>上一张</small>刻度定位器与格式器（Locator Formatter）</a><a class="next" href="../c/%E5%88%BB%E5%BA%A6%E6%A0%87%E7%AD%BE%EF%BC%88ticklabels%EF%BC%89.html"><small>下一张</small>刻度标签（ticklabels）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

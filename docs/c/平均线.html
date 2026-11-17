@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在图表上表示数据平均值的水平参考线。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>平均线 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>平均线</h1><div class="aliases">均值线 · mean line · average line</div><p class="lede">在图表上表示数据平均值的水平参考线。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>平均线把一组数据的均值可视化为一条横线，帮助读者快速判断各柱或各点相对平均水平的高低。它和柱形图同量纲，可直接画在同一坐标轴，不需要主次坐标。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>柱形图旁标注整体平均销量</li><li>折线图中标出均值水平</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>均值用 np.mean 从原始数据算，不用手工求和加辅助列</li><li>用 plt.axhline 绘制，通常配虚线</li><li>数值应随数据变化（写活），避免硬编码</li><li>与毛利率折线不同，平均线不需要次坐标轴</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>平均线是参考线，不是数据系列；不要用 plt.plot 逐点画，否则范围受数据点限制。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.axhline%20%E6%B0%B4%E5%B9%B3%E5%8F%82%E8%80%83%E7%BA%BF.html">plt.axhline 水平参考线</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.mean.html">np.mean</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E4%B8%BB%E6%AC%A1%E5%9D%90%E6%A0%87%E8%BD%B4.html">主次坐标轴</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么平均线不需要设置主次坐标？</summary><div class="quiz-a">平均线与销售量同量纲，可直接共用同一纵轴；毛利率与销量量级差异大才需要次坐标</div></details>
+<details class="quiz"><summary>平均线的数值应该从哪里来？</summary><div class="quiz-a">应从数据用 np.mean 计算得到，而不是在代码里写死常量</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=57" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p57 S03E09.平均线</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.axhline%20%E6%B0%B4%E5%B9%B3%E5%8F%82%E8%80%83%E7%BA%BF.html">plt.axhline 水平参考线</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E4%B8%BB%E6%AC%A1%E5%9D%90%E6%A0%87%E8%BD%B4.html">主次坐标轴</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%BB%98%E5%9B%BE.html">数据驱动绘图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%AD%90%E5%9B%BE%EF%BC%88subplot%EF%BC%89.html"><small>上一张</small>子图（subplot）</a><a class="next" href="../c/%E5%BC%A7%E5%BA%A6%E5%88%B6.html"><small>下一张</small>弧度制</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

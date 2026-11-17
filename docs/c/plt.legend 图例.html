@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 中根据各绘图函数的 label 参数自动生成图例说明的函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.legend 图例 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.legend 图例</h1><div class="aliases">legend · 图例 · plt.legend() · loc=upper left</div><p class="lede">Matplotlib 中根据各绘图函数的 label 参数自动生成图例说明的函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>在 plt.bar()、plt.plot() 等函数里写 label 只是登记名称，不会自动显示；必须再调用 plt.legend() 才会绘制图例。loc 参数控制图例摆放位置。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>图中存在两条及以上数据系列时标明各颜色含义</li><li>调整图例位置避免遮挡数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>只写 label 不调 plt.legend()，图例不会出现（可能报错提示）</li><li>loc 控制位置，默认自动择优（通常右上角），&#x27;upper left&#x27; 为左上角</li><li>单条数据的柱形图/折线图不需要图例，多条数据必须加</li><li>未设置 label 或以 _ 开头的图元不会进入图例</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>此处 loc 是图例定位参数，与 Pandas 的标签索引器 df.loc 是完全不同的东西，不要混淆。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E7%8A%B6%E5%9B%BE.html">分组柱状图</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/Matplotlib%20%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E9%85%8D%E7%BD%AE.html">Matplotlib 中文显示配置</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/loc.html">loc</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>两次 plt.bar() 都写了 label，但图上没有图例，最可能漏了什么？</summary><div class="quiz-a">漏了 plt.legend()，label 只登记名称，需 legend 才渲染。</div></details>
+<details class="quiz"><summary>什么情况下不加图例反而是正确做法？</summary><div class="quiz-a">只有一条数据系列时，颜色含义唯一，加图例属于多此一举。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>只有绘图时写了 label，legend() 才有内容可显示。默认往往竖排成一列，占用画布侧边；用 loc 挪位置、用 ncol 改成横排，能让图面更紧凑。堆叠柱图三层三个颜色，图例是必需的说明。</p>
+<p>- plt.legend(loc=&#x27;center&#x27;, ncol=3) 表示图例居中且一行三列</p>
+<p>- ncol 控制列数，三系列设 3 即排成一行</p>
+<p>- loc 还可取 upper left、lower right、center left 等位置字符串</p>
+<details class="quiz"><summary>想让三个系列图例从默认的一列三行变成一行三列，加什么参数？</summary><div class="quiz-a">plt.legend(ncol=3)，需要居中再加 loc=&#x27;center&#x27;</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=52" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p52 S03E05.叠加柱状图</a> · 2026-11-17</p>
+<p>图例分两步：先在绘图函数里用 label 参数给这组数据起名，再调用 plt.legend() 把名字画出来。只写 label 不调 legend 不会有图例，只调 legend 而没写 label 则图例为空。位置由 loc 控制，默认右上角。</p>
+<p>- 两步走：label=&#x27;成绩&#x27; 传入 plt.bar，再 plt.legend()</p>
+<p>- loc 控制位置：&#x27;upper left&#x27; 左上、&#x27;lower right&#x27; 右下等</p>
+<p>- loc 位置字符串不必死记，用时查表即可</p>
+<details class="quiz"><summary>代码里写了 plt.legend()，但图例框是空的，原因是什么？</summary><div class="quiz-a">绘图函数里没有传 label 参数，没有可显示的名称。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=48" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p48 S03E01.柱状图</a> · 2026-11-17</p>
+<p>图例文本来自绘图函数中的 label 参数，先设置 label 再调用 plt.legend() 才会显示。它让读者分清柱子、折线、平均线各自代表什么。</p>
+<p>- 图例文本来自绘图函数的 label 参数</p>
+<p>- 必须先设 label，再调用 plt.legend()</p>
+<p>- 可同时展示柱形与平均线的含义</p>
+<details class="quiz"><summary>为什么调用 plt.legend() 后某些线条没有出现在图例里？</summary><div class="quiz-a">绘制该线条时没有设置 label 参数，图例没有可显示的文本</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=57" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p57 S03E09.平均线</a> · 2026-11-17</p>
+<p>plt.legend 把各图形元素的名称集中标注，避免读者靠猜颜色对应用。除 loc 定位置外，还可用 bbox_to_anchor 做精确偏移、ncol 控制分列、fontsize 控字号。</p>
+<p>- loc=&#x27;upper right&#x27; 等定大致方位</p>
+<p>- bbox_to_anchor=(1.1, 1.05) 微调图例相对坐标轴的偏移</p>
+<p>- ncol=3 让图例横向分成三列排列</p>
+<details class="quiz"><summary>想让图例三项并排横排，用哪个参数？</summary><div class="quiz-a">ncol=3。</div></details>
+<details class="quiz"><summary>图例默认位置挡住了图形，最直接的两种解法是什么？</summary><div class="quiz-a">改 loc 换方位，或用 bbox_to_anchor 把它挪到画布外侧。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=54" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p54 S03E07.饼图</a> · 2026-11-17</p>
+<p>绘图时用 label= 给每条曲线或柱子起名，再调用 legend() 把名称与图形样式对应展示。单图可用 plt.legend()，多轴组合图则要在各自坐标轴上分别调用 ax1.legend / ax2.legend。loc 决定图例位置（如 &#x27;upper left&#x27;、&#x27;upper right&#x27;），用来避开图形和数据。</p>
+<p>- label= 命名，legend() 显式打开，缺一不可</p>
+<p>- loc 控制位置，常用 &#x27;upper left&#x27;、&#x27;upper right&#x27;</p>
+<p>- 双轴图中要分别为 ax1 和 ax2 设置图例</p>
+<details class="quiz"><summary>双 y 轴组合图里，为什么调一次 plt.legend() 可能漏标？</summary><div class="quiz-a">两条轴的图形分属不同 axes，需分别在 ax1 与 ax2 上调用 legend。</div></details>
+<details class="quiz"><summary>图例压在柱子上方怎么处理最省事？</summary><div class="quiz-a">把该轴 ylim 上限抬高留白，而不是去改图例大小。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=62" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p62 S03E13.组合图：柱形图+折线图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=50" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p50 S03E03.分组柱状图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Matplotlib%20%E9%A2%9C%E8%89%B2%E7%AE%80%E5%86%99.html">Matplotlib 颜色简写</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E7%8A%B6%E5%9B%BE.html">分组柱状图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%9B%BE%E4%BE%8B%E4%BD%BF%E7%94%A8%E6%97%B6%E6%9C%BA.html">图例使用时机</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E7%BB%84%E5%90%88%E5%9B%BE.html">组合图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.hist.html"><small>上一张</small>plt.hist</a><a class="next" href="../c/plt.locator_params%EF%BC%88%E5%88%BB%E5%BA%A6%E6%95%B0%E9%87%8F%E6%8E%A7%E5%88%B6%EF%BC%89.html"><small>下一张</small>plt.locator_params（刻度数量控制）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

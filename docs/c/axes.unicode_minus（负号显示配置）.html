@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="控制 Matplotlib 是否使用 Unicode 减号的 rcParams 开关，关闭后负数才能正常显示。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>axes.unicode_minus（负号显示配置） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>axes.unicode_minus（负号显示配置）</h1><div class="aliases">unicode_minus · 负号显示为方块 · 负号乱码 · axes.unicode_minus=False</div><p class="lede">控制 Matplotlib 是否使用 Unicode 减号的 rcParams 开关，关闭后负数才能正常显示。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认 True 时负号用 Unicode 减号，中文字体常缺这个字形，于是负数刻度显示成方块甚至抛错。设 plt.rcParams[&#x27;axes.unicode_minus&#x27;] = False 改用 ASCII 连字符即可恢复正常。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>刻度或数据含负数时出现方块或报错</li><li>中文绘图环境的初始化配置</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>写法：plt.rcParams[&#x27;axes.unicode_minus&#x27;] = False</li><li>典型现象：-4、-17 的负号变成方块或报错</li><li>需在绘图前设置，且与中文字体配置常成对出现</li><li>只修负号字形，不解决中文乱码</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 font.sans-serif 中文字体设置是两件独立的事，中文乱码要靠后者解决。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Matplotlib%20%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E9%85%8D%E7%BD%AE.html">Matplotlib 中文显示配置</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/MultipleLocator.html">MultipleLocator</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>图上负数刻度显示成小方块，改哪一行配置？</summary><div class="quiz-a">plt.rcParams[&#x27;axes.unicode_minus&#x27;] = False</div></details>
+<details class="quiz"><summary>设了 unicode_minus=False 中文标题还是乱码，说明什么？</summary><div class="quiz-a">中文乱码由字体配置决定，需另设 font.sans-serif 等中文字体。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=68" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p68 S03E19.坐标轴【下】</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/MultipleLocator.html">MultipleLocator</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.rcParams.html">plt.rcParams</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/ax.spines%EF%BC%88%E5%9D%90%E6%A0%87%E8%BD%B4%E8%BE%B9%E6%A1%86%EF%BC%89.html"><small>上一张</small>ax.spines（坐标轴边框）</a><a class="next" href="../c/bbox%20%E6%96%87%E6%9C%AC%E8%BE%B9%E6%A1%86.html"><small>下一张</small>bbox 文本边框</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

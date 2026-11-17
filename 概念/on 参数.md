@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 22
 stage: "S02E07 · 连接查询之Merge"
-order: 22
 ---
 
 # on 参数
@@ -58,6 +57,15 @@ on=['k1','k2'] 表示什么？::用 k1 和 k2 两列的组合作为复合连接�
 - on=['姓名','班级'] 为多键连接，需全部键相等
 - 同名列存在时 Pandas 可自动识别，但显式写更清楚
 两表都有姓名和班级列，只想「姓名+班级」同时相同才匹配，怎么写？::pd.merge(a, b, on=['姓名','班级'])。
+
+在 merge 中，on 直接写出左右表共有的列名，可传列表做多键连接；列名必须两边都存在，否则报错。在 join 中，on 的含义不同：它指定左表的某一列，去匹配右表的索引。
+
+- merge 的 on 必须是两表都存在的同名列
+- 多键连接写成 on=['k1','k2']，只有两键同时相等才算匹配
+- 列名不一致时不能靠 on 解决，需先 rename 或改用 left_on/right_on
+左表列叫 user_id、右表列叫 id，用 on='user_id' 能连上吗？::不能，会报错说右表没有该列；应改用 left_on='user_id', right_on='id'。
+on=['k1','k2'] 时，只要 k1 相等就算匹配吗？::不是，必须 k1 和 k2 同时相等才算匹配成功。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p23 S02E08.连接查询之join与Merge总结](https://www.bilibili.com/video/BV1ji4y157uB?p=23) · 2026-11-17
 
 ## 出处
 

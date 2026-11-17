@@ -18,11 +18,35 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>写回原 Excel 文件</h1><div class="aliases">ExcelWriter 写回 · 覆盖原表 · save 与 close</div><p class="lede">用 pd.ExcelWriter 打开目标文件，to_excel 写入后 save 并 close。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>to_excel 直接给路径会新建/覆盖文件，但要写回原工作簿并控制写入过程，需用 ExcelWriter 作为上下文对象，写完调用 save() 和 close() 落盘。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把处理结果覆盖写回原 Excel</li><li>一次写入多个工作表</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>writer = pd.ExcelWriter(&#x27;文件.xlsx&#x27;) 创建写入器</li><li>to_excel(writer, index=False) 不写行索引</li><li>必须 writer.save() 再 writer.close() 才真正落盘</li><li>拼写是 writer 不是 waiter</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>新版 Pandas 推荐 with pd.ExcelWriter(...) as writer 上下文写法，自动关闭。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.ExcelWriter.html">pd.ExcelWriter</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>只调用 to_excel(writer) 不 save/close 会怎样？</summary><div class="quiz-a">数据可能没有真正写入文件，文件内容不完整或为空。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/value_counts.html"><small>上一张</small>value_counts</a><a class="next" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html"><small>下一张</small>分层索引</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>写回原 Excel 文件</h1><div class="aliases">ExcelWriter 写回 · 覆盖原表 · save 与 close</div><p class="lede">用 pd.ExcelWriter 打开目标文件，to_excel 写入后 save 并 close。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.ExcelWriter(path, engine=None, mode=&#x27;w&#x27;, if_sheet_exists=None)</code> <strong>参数</strong>：</p>
+<ul><li><code>path</code>：目标 Excel 文件路径，直接给原文件名即表示写回原工作簿</li><li><code>engine</code>：写入引擎，常用 <code>&#x27;openpyxl&#x27;</code>（.xlsx）；不写则由 pandas 按后缀推断</li><li><code>mode</code>：<code>&#x27;w&#x27;</code> 覆盖原文件（默认）；<code>&#x27;a&#x27;</code> 在原有内容上追加，适合保留原表其他工作表</li><li><code>if_sheet_exists</code>：仅 <code>mode=&#x27;a&#x27;</code> 时生效，同名工作表可选 <code>&#x27;error&#x27;</code>／<code>&#x27;new&#x27;</code>／<code>&#x27;replace&#x27;</code>／<code>&#x27;overlay&#x27;</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;姓名&#x27;: [&#x27;杨过&#x27;, &#x27;小龙女&#x27;], &#x27;分数&#x27;: [90, 95]})
+path = &#x27;demo.xlsx&#x27;
+
+with pd.ExcelWriter(path, engine=&#x27;openpyxl&#x27;) as writer:  # 上下文写法，退出自动 close
+    df.to_excel(writer, sheet_name=&#x27;原表&#x27;, index=False)
+    df.to_excel(writer, sheet_name=&#x27;备份&#x27;, index=False)
+
+print(list(pd.read_excel(path, sheet_name=None)))
+# 输出：[&#x27;原表&#x27;, &#x27;备份&#x27;]
+
+# 旧版写法：writer = pd.ExcelWriter(path); df.to_excel(writer, index=False); writer.save(); writer.close()
+# pandas 2.0 起 writer.save() 已移除，用 with 上下文或 writer.close() 落盘</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>to_excel 直接给路径会新建/覆盖文件，但要写回原工作簿并控制写入过程，需用 ExcelWriter 作为上下文对象，写完调用 save() 和 close() 落盘。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把处理结果覆盖写回原 Excel</li><li>一次写入多个工作表</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>writer = pd.ExcelWriter(&#x27;文件.xlsx&#x27;) 创建写入器</li><li>to_excel(writer, index=False) 不写行索引</li><li>必须 writer.save() 再 writer.close() 才真正落盘</li><li>拼写是 writer 不是 waiter</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>新版 Pandas 推荐 with pd.ExcelWriter(...) as writer 上下文写法，自动关闭。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.ExcelWriter.html">pd.ExcelWriter</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>只调用 to_excel(writer) 不 save/close 会怎样？</summary><div class="quiz-a">数据可能没有真正写入文件，文件内容不完整或为空。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>流程固定四步：writer = pd.ExcelWriter(路径) 打开写入器，df.to_excel(writer, index=False) 写入内容，writer.save() 落盘，writer.close() 释放文件句柄。save 和 close 缺一不可，否则文件可能为空或被占用。index=False 用来避免把行号也写进表格。</p>
+<p>- 路径传原文件即为覆盖写回，传新路径则为另存</p>
+<p>- index=False 一定要加，否则多出一列无意义的行号</p>
+<p>- save() 与 close() 都不能省，两步都执行完才算写完</p>
+<details class="quiz"><summary>只调用 save() 不调用 close() 会有什么风险？</summary><div class="quiz-a">文件句柄未释放，文件可能被占用，后续读写异常。</div></details>
+<details class="quiz"><summary>index=False 不加会怎样？</summary><div class="quiz-a">会把 RangeIndex 当成一列写进 Excel，多出无意义的行号列。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=44" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p44 S02E29.vlookup</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/values%20%E5%B1%9E%E6%80%A7.html"><small>上一张</small>values 属性</a><a class="next" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html"><small>下一张</small>分层索引</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

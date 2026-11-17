@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把数组元素取负后再调用 argsort，使最大值排到最前，从而得到从大到小的排列。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>降序排序 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>降序排序</h1><div class="aliases">argsort 取负 · np.argsort(-x) · 倒序排列</div><p class="lede">把数组元素取负后再调用 argsort，使最大值排到最前，从而得到从大到小的排列。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>x[np.argsort(-x)]</code> <strong>参数</strong>：</p>
+<ul><li><code>x</code>：要降序排列的一维或多维数值型数组，必须支持取负运算（int、float 等），字符串数组不适用</li><li><code>-x</code>：取负后，原最大值变成最小值，<code>argsort</code> 返回的升序索引即原数组的降序顺序</li><li><code>np.argsort(...)</code>：返回从小到大排序后的原下标数组，默认使用快速排序</li><li><code>[::-1]</code>：非数值数组的替代方案，即 <code>x[np.argsort(x)[::-1]]</code>，直接反转升序索引</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+x = np.array([3, 1, 7, 5])
+print(np.argsort(-x))      # [2 3 0 1]
+print(x[np.argsort(-x)])   # [7 5 3 1]
+
+# 非数值数组改用索引反转
+s = np.array([&#x27;b&#x27;, &#x27;d&#x27;, &#x27;a&#x27;])
+print(s[np.argsort(s)[::-1]])  # [&#x27;d&#x27; &#x27;b&#x27; &#x27;a&#x27;]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>argsort 本身只提供升序，取负后原来的最大值变成最小值，升序索引就等价于原数组的降序顺序；再用该索引回取原数组即可。这是 NumPy 中最常用的降序技巧。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要从大到小排列数值时</li><li>排行榜、Top-N 取值等场景</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>x[np.argsort(-x)] 一步得到降序数组</li><li>原理是取负改变了元素间的大小关系，索引顺序自然反转</li><li>只适用于数值型数组，字符串无法取负</li><li>也可用 np.argsort(x)[::-1] 反转索引，但取负法更直观</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>非数值数组不能取负；此时改用索引反转。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/argsort.html">argsort</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/Numpy%20%E7%B4%A2%E5%BC%95.html">Numpy 索引</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>写出用 argsort 得到数组 x 降序结果的一行代码，并说明原理。</summary><div class="quiz-a">x[np.argsort(-x)]。取负后最大值变最小，升序索引即原数组的降序顺序。</div></details>
+<details class="quiz"><summary>为什么不能对字符串数组用取负法降序？</summary><div class="quiz-a">字符串不支持取负运算，需要改用 argsort 结果反转索引的方式。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=14" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p14 S01E13.条件计算，排序，深潜拷贝【本季完】</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html"><small>上一张</small>通用函数</a><a class="next" href="../c/%E9%9B%B6%E4%B8%80%E5%8C%96.html"><small>下一张</small>零一化</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

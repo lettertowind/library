@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 24
 stage: "S02E09 · 连接查询之concat"
-order: 24
 ---
 
 # ignore_index 参数
@@ -46,6 +45,18 @@ ignore_index 不改变数据内容和对齐逻辑，仅重置索引。
 ## 自测
 
 concat 时设置 ignore_index=True，字段不同的表合并后列如何对齐？::仍按列名对齐，缺失字段填 NaN，ignore_index 只影响索引。
+
+
+### 补充 · 2026-11-17
+
+直接连接两张索引不同的表会保留原索引，导致编号重复或不连续。设 ignore_index=True 后索引不参与对齐，只按列名对齐，行号重新编号。
+
+- 只重置索引，不改变列对齐方式
+- 与 sort 不是一回事：前者重编号，后者控制排序
+- 字段不同的表合并时仍按列并集对齐并补 NaN
+两张表索引都是 0~3，纵向合并后不设 ignore_index 会出现什么现象？::结果索引重复出现 0~3 两遍，无法唯一定位行。
+ignore_index=True 会让原本对不齐的列自动对齐吗？::不会，它只重置索引；列对齐由列名并集机制完成。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p24 S02E09.连接查询之concat](https://www.bilibili.com/video/BV1ji4y157uB?p=24) · 2026-11-17
 
 ## 出处
 

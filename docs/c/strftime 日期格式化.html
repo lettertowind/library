@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把 Timestamp/datetime 对象按格式符转成自定义字符串的方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>strftime 日期格式化 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>strftime 日期格式化</h1><div class="aliases">strftime · strftime() · 日期格式化 · 时间转字符串</div><p class="lede">把 Timestamp/datetime 对象按格式符转成自定义字符串的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Timestamp.strftime(format)</code>（datetime 对象同此法）</p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>format</code>：格式字符串，定义输出的日期文本样式；<code>%Y</code> 表示四位年份、<code>%m</code> 表示月份、<code>%d</code> 表示日期，这三位必须用大写 Y 和小写 m、d，且可在字符串中直接夹入普通字符（如「年」「月」「日」）</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+d = pd.Timestamp(&#x27;2020-12-01&#x27;)
+print(d.strftime(&#x27;%Y年%m月%d日&#x27;))  # 2020年12月01日
+print(d.strftime(&#x27;%m-%d&#x27;))         # 12-01
+
+df = pd.DataFrame({&#x27;日期&#x27;: pd.to_datetime([&#x27;2020-12-01&#x27;, &#x27;2020-12-02&#x27;])})
+labels = [x.strftime(&#x27;%m-%d&#x27;) for x in df[&#x27;日期&#x27;]]  # 列表推导式批量处理整列
+print(labels)          # [&#x27;12-01&#x27;, &#x27;12-02&#x27;]
+print(df[&#x27;日期&#x27;].dtype)  # datetime64[ns]，原始日期列未被修改</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>strftime 是 Timestamp 和 datetime 对象自带的方法，接收一个格式字符串，返回排版好的日期文本。它解决的是「数据里存的是日期类型，图上却要显示成特定写法」的问题，比反复调图表参数更直接、更可控。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把日期列转成「2020年12月1日」「12-01」等自定义文本</li><li>作为 plt.plot 的 x 轴数据，控制坐标轴上日期的显示样式</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>%Y 四位年份、%m 月份、%d 日期，大小写不可混用</li><li>格式串中可夹普通字符：年、月、日、-、*</li><li>%m-%d 得 12-01；%Y年%m月%d日 得 2020年12月01日</li><li>转换后元素由 Timestamp 变为 str，原始日期列不被修改</li><li>常配合列表推导式一次性处理整列日期</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只改显示文本，不保留时间轴语义；x 轴变成字符串分类轴后，原生日期刻度（间隔、定位器）不再生效，需要真正的时间轴控制时应改用 DateFormatter + Locator。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Timestamp.html">Timestamp</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F.html">列表推导式</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DateFormatter.html">DateFormatter</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E6%A0%87%E7%AD%BE%E6%97%8B%E8%BD%AC.html">刻度标签旋转</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么格式化后的日期列表要作为 plt.plot 的第一个参数传入，而不是继续用 data[&#x27;日期&#x27;]？</summary><div class="quiz-a">因为 Matplotlib 默认按原始数据形式显示刻度；传入字符串列表后，x 轴按列表中的文本显示，格式才生效。</div></details>
+<details class="quiz"><summary>想把 2020-12-01 显示成「2020年12月01日」，格式字符串该怎么写？其中哪个字母必须大写？</summary><div class="quiz-a">用 %Y年%m月%d日；%Y 的 Y 必须大写，m 和 d 用小写。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=63" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p63 S03E14.坐标轴上面的日期格式</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Timestamp.html">Timestamp</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.zfill.html"><small>上一张</small>str.zfill</a><a class="next" href="../c/subset%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>subset 参数</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

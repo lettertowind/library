@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.join
@@ -16,6 +15,28 @@ order: 38
 > 别名：join、字符连接
 
 **用指定字符连接字符串中每个字符的方法。**
+
+## 用法
+**语法**：`Series.str.join(sep)`
+**参数**：
+- `sep`：str，插入到每个字符串**内部相邻字符之间**的连接符；传 `''` 等于原样返回，传 `None` 会报错
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['满血激活', 'abc'])
+print(s.str.join('-').tolist())   # 每个字符之间插入 -
+# ['满-血-激-活', 'a-b-c']
+
+print(s.str.join('').tolist())    # 连接符为空 = 原样返回
+# ['满血激活', 'abc']
+
+# 与 str.cat 对比：cat 拼接的是多个字符串，join 拆分的是单个字符串
+print(s.str.join('|').str.cat(sep=','))   # 先逐字连接，再横向拼接
+# 满|血|激|活,a|b|c
+```
+注：元素为 `NaN` 时结果仍为 `NaN`（不报错）；等价于对每个元素执行 `'-'.join(x)`。
 
 ## 解释
 

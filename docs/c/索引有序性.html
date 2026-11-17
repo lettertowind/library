@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="索引标签是否按升序单调排列的性质。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>索引有序性 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>索引有序性</h1><div class="aliases">索引单调性 · is_monotonic_increasing · 有序索引与无序索引</div><p class="lede">索引标签是否按升序单调排列的性质。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>它决定 MultiIndex 能否被 loc 稳定定位。有序索引可直接按层级查询；无序索引建议先用 sort_index(level=...) 排序再查。is_monotonic_increasing 可快速检查是否单调递增。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>判断多层索引能否直接 loc 查询</li><li>决定查询前是否要先按层级排序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>data.index.is_monotonic_increasing 返回 True 表示升序有序。</li><li>有序索引可直接 loc 查询，无序索引可能报错。</li><li>无序时推荐 sort_index(level=...) 先排序再查询。</li><li>并非所有无序索引都会报错，排序后查询更安全。</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>有序性针对索引标签排列，不是数据值大小；sort_index 按索引排序，sort_values 按值排序。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/sort_index.html">sort_index</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/loc.html">loc</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么无序的 MultiIndex 建议先 sort_index(level=...) 再 loc 查询？</summary><div class="quiz-a">排序后该层索引单调，loc 能稳定定位；无序直接查可能报错或结果不符合预期。</div></details>
+<details class="quiz"><summary>is_monotonic_increasing 返回 False 一定意味着不能查询吗？</summary><div class="quiz-a">不一定，但说明索引非单调递增，直接 loc 有风险，排序后查询更安全。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=35" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p35 S02E20.多层索引与多层索引计算</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%B4%A2%E5%BC%95%E5%AF%B9%E9%BD%90.html"><small>上一张</small>索引对齐</a><a class="next" href="../c/%E7%B4%AF%E5%8A%A0%E6%9C%88%E7%AE%97%E6%B3%95.html"><small>下一张</small>累加月算法</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

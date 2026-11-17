@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="极坐标中目标点相对极轴旋转的角度，常用 θ 表示。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>极角 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>极角</h1><div class="aliases">theta · θ · polar angle · 角度参数</div><p class="lede">极坐标中目标点相对极轴旋转的角度，常用 θ 表示。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>极角决定点在圆盘上的方向，从极轴（0° 方向）逆时针旋转得到。Matplotlib 中它必须以弧度传入，例如 45° 要写 0.25 * np.pi。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>确定极坐标点在圆周方向上的位置</li><li>与极径配对唯一定位一个点</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>0° 起点是极轴，默认逆时针方向旋转</li><li>Matplotlib 极角单位是弧度，不能直接写 45</li><li>常用换算：0.25π=45°、0.75π=135°、π=180°、1.5π=270°</li><li>多个极角用数组一次传入，点数与极径数组一一对应</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>极角只管方向，不管远近；远近由极径决定，二者不能混用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%EF%BC%88polar%EF%BC%89.html">极坐标系（polar）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E6%9E%81%E5%BE%84.html">极径</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%BC%A7%E5%BA%A6%E5%88%B6.html">弧度制</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>theta = 1.5 * np.pi 时，点落在圆盘的哪个方向？</summary><div class="quiz-a">270° 方向，即从极轴逆时针转四分之三圈，位于圆盘正下方。</div></details>
+<details class="quiz"><summary>为什么 theta 写 45 画出来的点位置不对？</summary><div class="quiz-a">Matplotlib 把极角当弧度解释，45 表示 45 弧度而不是 45 度，正确写法是 0.25 * np.pi。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=70" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p70 S03E21.极坐标</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.polar.html">plt.polar</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%BC%A7%E5%BA%A6%E5%88%B6.html">弧度制</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E6%9E%81%E5%BE%84.html">极径</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%9E%81%E5%BE%84.html"><small>上一张</small>极径</a><a class="next" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html"><small>下一张</small>柱形图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

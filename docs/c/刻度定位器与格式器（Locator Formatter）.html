@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 中分别决定“刻度画在哪”和“刻度显示成什么文字”的两套对象。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>刻度定位器与格式器（Locator Formatter） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>刻度定位器与格式器（Locator Formatter）</h1><div class="aliases">Locator · Formatter · set_major_locator · set_major_formatter · 主刻度定位器 · 主刻度格式器</div><p class="lede">Matplotlib 中分别决定“刻度画在哪”和“刻度显示成什么文字”的两套对象。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>每个轴（xaxis/yaxis）都配有 major/minor 的 locator 与 formatter。定位器管位置，格式器管文本，通过 set_major_locator、set_major_formatter 替换默认实现即可自定义刻度。两者互不干扰：换定位器不会改变文字样式，换格式器也不会移动刻度。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把刻度改成某数的倍数</li><li>把刻度显示成小数、百分比或日期</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>ax.xaxis.set_major_locator(...) 决定刻度位置</li><li>ax.xaxis.set_major_formatter(...) 决定刻度文字</li><li>定位器与格式器多需从 matplotlib.ticker 导入</li><li>方法名写错不会报错，只是设置静默失效，务必核对拼写</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易混：定位器管位置、格式器管文本，二者不可互换；对 y 轴操作要把 xaxis 换成 yaxis。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/MultipleLocator.html">MultipleLocator</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/FormatStrFormatter.html">FormatStrFormatter</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/DateFormatter.html">DateFormatter</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>刻度位置没问题但数字显示成 3.141593，该换定位器还是格式器？</summary><div class="quiz-a">换格式器，用 set_major_formatter 设置显示格式。</div></details>
+<details class="quiz"><summary>写了 set_major_formater 程序不报错但图没变化，原因？</summary><div class="quiz-a">方法名拼写错误，设置未生效。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=68" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p68 S03E19.坐标轴【下】</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/DateFormatter.html">DateFormatter</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/FormatStrFormatter.html">FormatStrFormatter</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/MultipleLocator.html">MultipleLocator</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/PercentFormatter.html">PercentFormatter</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/matplotlib.ticker%20%E6%A8%A1%E5%9D%97.html">matplotlib.ticker 模块</a><span class="rel rel-plain">下位概念</span></li><li><a class="wl" href="../c/plt.locator_params%EF%BC%88%E5%88%BB%E5%BA%A6%E6%95%B0%E9%87%8F%E6%8E%A7%E5%88%B6%EF%BC%89.html">plt.locator_params（刻度数量控制）</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E7%8A%B6%E5%9B%BE.html"><small>上一张</small>分组柱状图</a><a class="next" href="../c/%E5%88%BB%E5%BA%A6%E6%A0%87%E7%AD%BE%E6%97%8B%E8%BD%AC.html"><small>下一张</small>刻度标签旋转</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把连续数据按区间分组计数，用长条面积表示频数的分布图。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>直方图 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>直方图</h1><div class="aliases">Histogram · hist · 分布图</div><p class="lede">把连续数据按区间分组计数，用长条面积表示频数的分布图。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>直方图先把一列连续数值切成若干个等距区间（分箱），再统计落入每个区间的样本数。它用来观察数据的分布形态——集中在哪、是否偏斜、有没有长尾，而不是比较不同类别的数值大小。相机里的曝光直方图是同一逻辑：横轴是明暗区间，纵轴是像素数量。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>看身高、体重、客单价等连续指标的分布</li><li>判断数据是否集中、偏斜或存在极端值</li><li>分析不同区间的顾客人数（如 20~50 元有多少人）</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>横轴是连续等距区间，相邻长条紧密相接、无空隙</li><li>长条面积=频数；当各箱等宽时，长度也可代表频数</li><li>长条宽度=组距，由分组方式决定，不是随意调整的样式</li><li>用途是看分布形态，不是比较各别类别的多少</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只适用于连续且等距的数据；类别数据（一班/二班）或顺序数据应使用柱形图、条形图，其长条之间留有空隙。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.hist.html">plt.hist</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E9%A2%91%E6%95%B0%E5%AF%86%E5%BA%A6.html">频数密度</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%88%86%E7%AE%B1.html">离散化与分箱</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么直方图的长条之间没有空隙，而条形图有？</summary><div class="quiz-a">直方图横轴是连续的等距区间，相邻区间首尾相接；条形图横轴是彼此独立的类别。</div></details>
+<details class="quiz"><summary>两份数据的组距不同，能直接比较长条高度吗？</summary><div class="quiz-a">不能。高度是单位组距上的密度，面积才等于频数，组距一变高度就会变。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=66" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p66 S03E17.直方图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.hist.html">plt.hist</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E9%A2%91%E6%95%B0%E5%AF%86%E5%BA%A6.html">频数密度</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%8E%AB%E7%91%B0%E5%9B%BE.html"><small>上一张</small>玫瑰图</a><a class="next" href="../c/%E7%BB%84%E5%90%88%E5%9B%BE.html"><small>下一张</small>组合图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

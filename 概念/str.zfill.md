@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.zfill
@@ -16,6 +15,25 @@ order: 38
 > 别名：zfill、零填充
 
 **用字符 0 从左侧把字符串填充到指定宽度的方法。**
+
+## 用法
+**语法**：`Series.str.zfill(width)`
+**参数**：
+- `width`：填充后的目标总宽度（int）。原字符串长度不足时在左侧补 0，长度已达或超过 width 时原样返回，不截断。
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['7', '42', '2024', '张三'])
+print(s.str.zfill(5).tolist())
+# ['00007', '00042', '02024', '000张三']
+print(s.str.zfill(5).str.len().tolist())
+# [5, 5, 5, 5]  —— 长度按字符数计，中文同样算 1 位
+print(s.str.zfill(2).tolist())
+# ['7', '42', '2024', '张三']  —— 已超宽则原样保留
+```
+> 只能补 0、只能左补；要自定义填充字符或方向请改用 `str.pad(width, side='left', fillchar='x')`。
 
 ## 解释
 

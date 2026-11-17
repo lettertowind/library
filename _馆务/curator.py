@@ -163,7 +163,7 @@ def call_llm(cfg, prompt):
         messages=[{"role": "system", "content": SYSTEM_PROMPT},
                   {"role": "user", "content": prompt}],
         temperature=0.3,
-        max_tokens=8000,
+        max_tokens=16000,
     )
     return r.choices[0].message.content.strip()
 
@@ -199,6 +199,19 @@ def parse_json(raw):
         items.append(obj)
         i = end
     if not items:
+        # 最后兜底：连完整对象都没有时，至少把出现过的 term 捞出来，
+        # 用最小字段建卡，避免这一整段笔记的知识被丢掉。
+        terms = []
+        for mm in re.finditer(r'"term"\s*:\s*"([^"]+)"', text):
+            t = mm.group(1).strip()
+            if t and t not in terms:
+                terms.append(t)
+        if terms:
+            return {"concepts": [
+                {"term": t, "definition": t, "explain": "（模型输出被截断，本条仅恢复概念名）",
+                 "points": [], "boundary": "", "related": [], "quiz": []}
+                for t in terms
+            ]}
         raise ValueError("JSON 截断且无可恢复的对象")
     return {"concepts": items}
 

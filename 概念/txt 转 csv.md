@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 17
 stage: "S02E02 · 读取txt与csv文件"
-order: 17
 ---
 
 # txt 转 csv
@@ -16,6 +15,36 @@ order: 17
 > 别名：txt 转 csv、文本转 csv、to_csv 转换
 
 **用 read_csv 读 txt 再 to_csv 写出为 csv 的两步转换法。**
+
+## 用法
+**语法**：`pd.read_csv(filepath_or_buffer, sep=',', encoding=None)` → `DataFrame.to_csv(path_or_buf, sep=',', index=True, encoding=None)`
+**参数**：
+- `read_csv` 的 `filepath_or_buffer`：txt 文件路径
+- `read_csv` 的 `sep`：分隔符，txt 常见用 `'\t'` 或逗号，默认 `','`
+- `read_csv` 的 `encoding`：读入编码，乱码时设 `'utf-8'` 或 `'gbk'`
+- `to_csv` 的 `path_or_buf`：输出的 csv 文件路径
+- `to_csv` 的 `index`：是否写出索引列，默认 `True`，不需要时设 `False`
+- `to_csv` 的 `encoding`：写出编码，同样可设 `'utf-8'`
+**示例**：
+```python
+import pandas as pd
+
+# 先造一个 txt 数据文件（实际使用时换成你自己的 txt 路径）
+with open('data.txt', 'w', encoding='utf-8') as f:
+    f.write('姓名,分数\n杨过,90\n小龙女,95\n')
+
+data = pd.read_csv('data.txt', encoding='utf-8')   # 第一步：读入 txt
+data.to_csv('data.csv', index=False, encoding='utf-8')  # 第二步：写出 csv
+
+print(data)
+#    姓名  分数
+# 0  杨过  90
+# 1  小龙女 95
+print(pd.read_csv('data.csv'))
+#    姓名  分数
+# 0  杨过  90
+# 1  小龙女 95
+```
 
 ## 解释
 

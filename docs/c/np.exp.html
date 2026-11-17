@@ -28,11 +28,18 @@ a = np.array([0, 1, 2])
 print(np.exp(a))          # [1.         2.71828183 7.3890561 ]
 print(np.exp(0))          # 1.0
 print(np.exp(a).shape)    # (3,)，输入输出形状一致
-print(np.exp(np.array([1000.0])))  # [inf]，大数值溢出</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>np.exp 接收一个数组，返回每个元素的自然指数 e^x。常见于概率论、统计模型和科学计算中的指数变换。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>概率与统计计算中的指数运算</li><li>对数据做指数变换</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>逐元素计算 e 的 x 次方</li><li>e 为自然对数底数</li><li>输入输出形状一致</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>大数值输入易溢出为 inf，需注意数值范围。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E4%B8%80%E5%85%83%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html">一元通用函数</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.exp([0,1]) 的结果是什么？</summary><div class="quiz-a">[1., e]，即 [1., 2.718...]。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/np.cumsum.html"><small>上一张</small>np.cumsum</a><a class="next" href="../c/np.full.html"><small>下一张</small>np.full</a></nav></article>
+print(np.exp(np.array([1000.0])))  # [inf]，大数值溢出</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>np.exp 接收一个数组，返回每个元素的自然指数 e^x。常见于概率论、统计模型和科学计算中的指数变换。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>概率与统计计算中的指数运算</li><li>对数据做指数变换</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>逐元素计算 e 的 x 次方</li><li>e 为自然对数底数</li><li>输入输出形状一致</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>大数值输入易溢出为 inf，需注意数值范围。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E4%B8%80%E5%85%83%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html">一元通用函数</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.exp([0,1]) 的结果是什么？</summary><div class="quiz-a">[1., e]，即 [1., 2.718...]。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>np.exp 是常用的一元通用函数，计算 e^x。它与概率论、指数增长模型关系密切，是逻辑回归 sigmoid、softmax 等公式里的常见构件。</p>
+<p>- 输入一个数组，逐元素计算 e^x</p>
+<p>- 输出形状与输入一致</p>
+<p>- 与概率论、指数分布等内容相关</p>
+<details class="quiz"><summary>np.exp(0) 和 np.exp(np.array([0,1])) 分别返回什么？</summary><div class="quiz-a">前者返回标量 1.0；后者返回数组 [1.0, 2.718...]，形状随输入。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=12" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p12 S01E11.通用函数：快速的逐元素数组函数</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/np.degrees.html"><small>上一张</small>np.degrees</a><a class="next" href="../c/np.full.html"><small>下一张</small>np.full</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

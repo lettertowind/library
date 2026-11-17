@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="分别控制扇区标签与百分比数字到圆心距离倍数的一对饼图参数">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>labeldistance 与 pctdistance（标签与百分比距离） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>labeldistance 与 pctdistance（标签与百分比距离）</h1><div class="aliases">labeldistance · pctdistance · 标签距离 · 百分比距离</div><p class="lede">分别控制扇区标签与百分比数字到圆心距离倍数的一对饼图参数</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>两个参数都按半径倍数定位文字：labeldistance 管姓名之类的扇区标签，默认约 1.1；pctdistance 管 autopct 生成的百分比数字，默认 0.6。数值越小越靠圆心，小于 1 就进入饼图内部。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>标签与饼图重叠、或文字压到内层图形时做微调</li><li>把百分比数字放到扇区内部或外侧</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>labeldistance 默认约 1.1，调到 0.8 标签就落进饼图内部</li><li>pctdistance 默认 0.6，调小则百分比向圆心移动</li><li>两者的区别是控制的文字对象不同，不是方向不同</li><li>饼图套饼时常用调大 labeldistance 避免与外层文字重叠</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>radius 改的是饼图本身的半径，这两个参数只移动文字，不要混淆。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/autopct%EF%BC%88%E9%A5%BC%E5%9B%BE%E7%99%BE%E5%88%86%E6%AF%94%E6%98%BE%E7%A4%BA%EF%BC%89.html">autopct（饼图百分比显示）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/radius%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%A5%BC%E5%9B%BE%E5%8D%8A%E5%BE%84%EF%BC%89.html">radius 参数（饼图半径）</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>百分比数字挤在圆心附近，想让它往外走该调哪个参数？</summary><div class="quiz-a">把 pctdistance 调大，默认是 0.6。</div></details>
+<details class="quiz"><summary>labeldistance=0.8 会有什么效果？</summary><div class="quiz-a">扇区标签移到饼图内部。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=54" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p54 S03E07.饼图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/autopct%EF%BC%88%E9%A5%BC%E5%9B%BE%E7%99%BE%E5%88%86%E6%AF%94%E6%98%BE%E7%A4%BA%EF%BC%89.html">autopct（饼图百分比显示）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%A5%BC%E5%9B%BE%E5%A5%97%E9%A5%BC.html">饼图套饼</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/height%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>height 参数</a><a class="next" href="../c/left%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>left 参数</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 23
 stage: "S02E08 · 连接查询之join与Merge总结"
-order: 23
 ---
 
 # DataFrame 合并
@@ -16,6 +15,30 @@ order: 23
 > 别名：merge、连接查询、DataFrame join
 
 **按共同键把两个 DataFrame 连接成一张表的方法。**
+
+## 用法
+**语法**：`pd.merge(left, right, how='inner', on=None, left_on=None, right_on=None, left_index=False, right_index=False, suffixes=('_x', '_y'))`
+
+**参数**：
+- `left` / `right`：要连接的两个 DataFrame，左右顺序决定 left/right 连接的基准表
+- `how`：连接方式，`'inner'`（默认，只保留键匹配的行）、`'left'`、`'right'`、`'outer'`（全外连接，两侧全保留）
+- `on`：连接键列名，单列名做单键连接，传列表如 `['姓名','门派']` 做多键连接；不写时默认取两表同名列
+- `left_on` / `right_on`：两表连接列名不同时分别指定
+- `left_index` / `right_index`：设为 `True` 时用索引作连接键，如左表列连右表索引写 `left_on='姓名', right_index=True`
+- `suffixes`：两表存在同名非键列时加的后缀，默认 `('_x', '_y')`
+
+**示例**：
+```python
+import pandas as pd
+
+left = pd.DataFrame({'姓名': ['叶问', '李小龙', '孙兴华'], '次数一': [0, 1, 2]})
+right = pd.DataFrame({'姓名': ['李小龙', '孙兴华', '黄飞鸿'], '次数二': [1, 2, 3]})
+
+print(pd.merge(left, right))                  # 默认 how='inner'：2 行，李小龙、孙兴华
+print(pd.merge(left, right, on='姓名', how='left'))   # 3 行，叶问的次数二为 NaN
+print(pd.merge(left, right, on='姓名', how='outer'))  # 4 行，叶问与黄飞鸿各缺一侧
+# 键有重复值会膨胀：左表姓名重复时，匹配行按组合展开，需先去重
+```
 
 ## 解释
 
@@ -72,6 +95,32 @@ pd.merge 是 Pandas 中最常用的表连接方法，思想与 SQL 的 JOIN 一�
 - 左表列连右表索引用 left_on + right_index=True
 左表 6 行、右表 3 行，按姓名内连接后结果有 5 行，可能是什么原因？::连接键存在重复值，匹配时按组合展开，行数不等于任一原表行数。
 为什么说左连接类似 VLOOKUP？::都以左表为基准保留全部记录，再从右表把匹配到的字段「取」过来，取不到则为空。
+
+pd.merge(左表, 右表, how=..., on=...) 按共同字段对齐两表行，并把右表列追加到左表列后面。它是 Pandas 里实现 Excel VLOOKUP 的标准手段：左表作标准，右表提供要匹配的列。右表通常先用 loc[:, ['键','目标列']] 裁到最少列，再参与合并。
+
+- 第一参数为左表（基准表），第二参数为右表（供数列）
+- on 指定连接键，how 指定连接方式，二者共同决定结果行集
+- 右表先 loc[:, ['学号','总分']] 裁剪，避免无关列混入结果
+merge 与 concat 的核心区别是什么？::merge 按连接键对内容做对齐（类 SQL JOIN），concat 按轴方向直接堆叠，不关心内容是否对得上。
+为什么 merge 前通常先用 loc 裁剪右表？::merge 会带入右表全部列，裁到连接键+目标列可让结果干净、避免列名冲突。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p44 S02E29.vlookup](https://www.bilibili.com/video/BV1ji4y157uB?p=44) · 2026-11-17
+
+Pandas 提供三条路径：concat 沿轴拼接、merge 按键（字段）连接、join 按索引连接。日常优先 concat，其次 merge，join 相对弱、不优先使用。
+
+- concat 按轴拼，不需要键；merge 按字段键拼
+- join 方法基于索引，能力较弱，一般不优先
+- concat 的 join 参数 ≠ DataFrame.join 方法，别混
+要按共同的“学号”字段把两张表关联起来，应该用哪个工具？::merge（按字段键连接），而不是 concat。
+三张同字段的表要上下叠成一张，用 concat 还是 merge？::concat，默认 axis=0 纵向堆叠即可。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p24 S02E09.连接查询之concat](https://www.bilibili.com/video/BV1ji4y157uB?p=24) · 2026-11-17
+
+merge 是把两张表按连接键做行匹配的操作，思路与 SQL 的 join 一致。它默认是内连接、默认用同名共有列作键，因此最简单的写法 pd.merge(左表, 右表) 就能跑通；要改变行为就显式给 on 和 how。
+
+- 默认按同名共有列做内连接，on 与 how='inner' 可省略
+- 改写为非内连接时必须显式写 how
+- concat 是行/列方向的拼接合并，merge 是按键的连接查询，二者不同
+同事说「把两张表 merge 一下」，和「concat 一下」是同一件事吗？::不是。concat 是沿行或列方向拼接，merge 是按连接键做匹配，逻辑上对应 SQL 的 join。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p22 S02E07.连接查询之Merge](https://www.bilibili.com/video/BV1ji4y157uB?p=22) · 2026-11-17
 
 ## 出处
 

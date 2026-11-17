@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把多个维度画在极坐标射线上并用折线连接闭合的多变量对比图。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>雷达图 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>雷达图</h1><div class="aliases">Radar Chart · 蜘蛛图 · spider chart</div><p class="lede">把多个维度画在极坐标射线上并用折线连接闭合的多变量对比图。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>雷达图每个维度对应一条从圆心出发的射线，在各射线上按取值取点后连成折线；要形成完整多边形，同样需要把第一个值补到末尾来闭合首尾。玫瑰图就是沿用这套极坐标思路，只是把折线换成柱形。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>多维度能力/指标对比（如选手能力、产品评分）</li><li>讲解极坐标绘图时的入门图形</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>各维度角度均分，首尾需补第一个值闭合</li><li>维度过多会显得杂乱，一般控制在 5-8 个</li><li>与玫瑰图区别：折线成面 vs 柱形成圈</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>多边形面积受维度顺序影响，不宜直接用面积比较优劣。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%8E%AB%E7%91%B0%E5%9B%BE.html">玫瑰图</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%EF%BC%88polar%EF%BC%89.html">极坐标系（polar）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E9%A6%96%E5%B0%BE%E9%97%AD%E5%90%88%EF%BC%88%E5%B0%81%E5%8F%A3%EF%BC%89.html">首尾闭合（封口）</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>雷达图与玫瑰图在实现上的共同难点是什么？</summary><div class="quiz-a">两者都在极坐标上作图，都需要把第一个值补到末尾才能让图形首尾闭合。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>雷达图把每个科目/维度铺在圆周上的一个角度，分数决定该方向的半径长度，连线后形成多边形，面积与形状直观反映对象的强弱结构。绘制需要先闭合数据、生成角度、极坐标绘图、填充、设标签五个步骤。</p>
+<p>- 数据准备：分数与科目序列末尾都要追加首项做闭合</p>
+<p>- 角度：np.linspace(0, 2π, len(科目), endpoint=False) 再闭合首角度</p>
+<p>- 绘图：fig.add_subplot(111, polar=True) + ax.plot/ax.fill</p>
+<details class="quiz"><summary>为什么雷达图最多只放 3 个对象？</summary><div class="quiz-a">多个半透明多边形与线条叠加后颜色互相污染，轮廓难以分辨，失去对比价值。</div></details>
+<details class="quiz"><summary>两人的科目列表可以各用各的吗？</summary><div class="quiz-a">不可以，维度必须一致，科目列表取任意一个人的即可，顺序也要与分数一一对应。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=71" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p71 S03E22.雷达图</a> · 2026-11-17</p>
+<p>雷达图本质就是极坐标上的多点连线：每个维度占一个极角，数值大小表现为极径，按顺序用线连起来即为多边形。要在 Matplotlib 中手绘，需要先在数组末尾重复首点的角度和极径让图形闭合。</p>
+<p>- 维度数 = 极角数组长度 = 极径数组长度</p>
+<p>- 用 &#x27;-&#x27; 把各点按数组顺序连线，形成多边形轮廓</p>
+<p>- Matplotlib 不会自动闭合，必须在数组末尾重复首点的 θ 与 r</p>
+<details class="quiz"><summary>为什么 plt.polar(theta, r, &#x27;o-&#x27;) 画出来的多边形少了一条边？</summary><div class="quiz-a">Matplotlib 只按数组顺序连接相邻点，末点不会自动连回首点；需在 theta 和 r 数组末尾各追加首个点的值。</div></details>
+<details class="quiz"><summary>一个五维雷达图，theta 和 r 数组至少要几个元素？</summary><div class="quiz-a">要闭合就得 6 个：5 个维度点 + 重复的首点。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=70" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p70 S03E21.极坐标</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=79" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p79 S03E30.玫瑰图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fill%20%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html">fill 区域填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.polar.html">plt.polar</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/set_thetagrids%20%E8%A7%92%E5%BA%A6%E6%A0%87%E7%AD%BE%E7%BD%91%E6%A0%BC.html">set_thetagrids 角度标签网格</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%EF%BC%88polar%EF%BC%89.html">极坐标系（polar）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%8E%AB%E7%91%B0%E5%9B%BE.html">玫瑰图</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E9%9B%B7%E8%BE%BE%E5%9B%BE%E9%A6%96%E5%B0%BE%E9%97%AD%E5%90%88.html">雷达图首尾闭合</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%BB%84%E5%90%88%E5%9B%BE.html"><small>上一张</small>组合图</a><a class="next" href="../c/%E9%9B%B7%E8%BE%BE%E5%9B%BE%E9%A6%96%E5%B0%BE%E9%97%AD%E5%90%88.html"><small>下一张</small>雷达图首尾闭合</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

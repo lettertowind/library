@@ -43,6 +43,17 @@ VBA 是 Excel 原生工具，能直接操作单元格格式、颜色、合并单
 
 需要保留原表颜色和合并单元格做批量处理，选 pandas 还是 VBA？为什么？::选 VBA，因为 pandas 读写 Excel 不保留格式样式，VBA 是 Excel 原生工具能操作这些对象。
 
+
+### 补充 · 2026-11-17
+
+VBA 是 Excel 原生工具，能直接操作单元格、格式、事件与窗体，处理复杂交互和保留格式时优势明显。Python/pandas 的优势在批量数据处理和与 PDF 等外部格式协作。
+
+- 简单拆分合并用 pandas 代码更短、更省事
+- 操作复杂后 VBA 往往更方便，尤其涉及格式和原有结构
+- VBA 生态主要面向 Excel，操作 Word/PPT 的资料较少
+要在一个已有颜色和公式的 Excel 里继续加工数据，为什么更推荐 VBA 而不是 pandas？::pandas 读写会丢失或破坏原有格式与公式，而 VBA 在原文件内操作，能保留格式和结构。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p40 S02E25.Excel文件的拆分与合并](https://www.bilibili.com/video/BV1ji4y157uB?p=40) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

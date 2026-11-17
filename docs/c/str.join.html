@@ -18,12 +18,27 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.join</h1><div class="aliases">join · 字符连接</div><p class="lede">用指定字符连接字符串中每个字符的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.join(sep) 在字符串的每个字符之间插入指定内容，像用胶水把字符粘起来。与 str.cat 不同，它作用于单个字符串内部的字符之间。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给字符之间插入分隔符</li><li>格式化输出字符串</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>作用于字符串内部每个字符之间</li><li>参数是连接符</li><li>与 str.cat 的拼接对象不同</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易与 str.cat 混淆：cat 拼接多个字符串，join 连接单个字符串内部的字符。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.cat.html">str.cat</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.join(&#x27;a&#x27;) 对“满血激活”的结果是什么？</summary><div class="quiz-a">“满a血a激a活”，每个字符之间插入 a。</div></details>
-<details class="quiz"><summary>str.join 和 str.cat 的核心区别是什么？</summary><div class="quiz-a">join 连接单个字符串内部的字符，cat 拼接多个字符串或序列。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.cat.html">str.cat</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.get.html"><small>上一张</small>str.get</a><a class="next" href="../c/str.lstrip.html"><small>下一张</small>str.lstrip</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.join</h1><div class="aliases">join · 字符连接</div><p class="lede">用指定字符连接字符串中每个字符的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.join(sep)</code> <strong>参数</strong>：</p>
+<ul><li><code>sep</code>：str，插入到每个字符串<strong>内部相邻字符之间</strong>的连接符；传 <code>&#x27;&#x27;</code> 等于原样返回，传 <code>None</code> 会报错</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&#x27;满血激活&#x27;, &#x27;abc&#x27;])
+print(s.str.join(&#x27;-&#x27;).tolist())   # 每个字符之间插入 -
+# [&#x27;满-血-激-活&#x27;, &#x27;a-b-c&#x27;]
+
+print(s.str.join(&#x27;&#x27;).tolist())    # 连接符为空 = 原样返回
+# [&#x27;满血激活&#x27;, &#x27;abc&#x27;]
+
+# 与 str.cat 对比：cat 拼接的是多个字符串，join 拆分的是单个字符串
+print(s.str.join(&#x27;|&#x27;).str.cat(sep=&#x27;,&#x27;))   # 先逐字连接，再横向拼接
+# 满|血|激|活,a|b|c</code></pre>
+<p>注：元素为 <code>NaN</code> 时结果仍为 <code>NaN</code>（不报错）；等价于对每个元素执行 <code>&#x27;-&#x27;.join(x)</code>。</p></section><section class="sec"><h2 id="解释">解释</h2><p>str.join(sep) 在字符串的每个字符之间插入指定内容，像用胶水把字符粘起来。与 str.cat 不同，它作用于单个字符串内部的字符之间。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给字符之间插入分隔符</li><li>格式化输出字符串</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>作用于字符串内部每个字符之间</li><li>参数是连接符</li><li>与 str.cat 的拼接对象不同</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易与 str.cat 混淆：cat 拼接多个字符串，join 连接单个字符串内部的字符。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.cat.html">str.cat</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.join(&#x27;a&#x27;) 对“满血激活”的结果是什么？</summary><div class="quiz-a">“满a血a激a活”，每个字符之间插入 a。</div></details>
+<details class="quiz"><summary>str.join 和 str.cat 的核心区别是什么？</summary><div class="quiz-a">join 连接单个字符串内部的字符，cat 拼接多个字符串或序列。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.cat.html">str.cat</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.get.html"><small>上一张</small>str.get</a><a class="next" href="../c/str.ljust.html"><small>下一张</small>str.ljust</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

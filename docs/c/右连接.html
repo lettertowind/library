@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="以右表为基准保留其全部行，左表只保留能按键匹配上的行。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>右连接 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>数据库</span></nav><article class="card"><h1>右连接</h1><div class="aliases">right join · right · how=right</div><p class="lede">以右表为基准保留其全部行，左表只保留能按键匹配上的行。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>在 merge 中用 how=&#x27;right&#x27; 指定。右表的每一行都会出现在结果里，左表按连接键去匹配，匹配不到的位置填空值。它和左连接是镜像关系：把左右表顺序对调、改用 how=&#x27;left&#x27;，结果内容等价。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要保证右表数据一条不丢，同时给右表补上左表字段时</li><li>从按业务主表在右侧的数据源回填描述字段</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>以右表为基准，右表行全部保留</li><li>左表匹配不到的位置显示为空（NaN）</li><li>与左连接互为镜像，交换左右表即等价</li><li>存在左右基准问题，写代码前必须明确谁在左、谁在右</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>左右连接只是书写习惯差异，结果可互相转换；实际业务中多用 left join，因为人习惯以主表在左阅读。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B7%A6%E8%BF%9E%E6%8E%A5.html">左连接</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%86%85%E8%BF%9E%E6%8E%A5.html">内连接</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%85%A8%E5%A4%96%E8%BF%9E%E6%8E%A5.html">全外连接</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0.html">how 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>把左右两张表对调后，how=&#x27;left&#x27; 和原来的 how=&#x27;right&#x27; 结果有什么不同？</summary><div class="quiz-a">数据内容一致，只是结果中列的先后顺序不同。</div></details>
+<details class="quiz"><summary>为什么说右连接和左连接存在“基准问题”，而全外连接没有？</summary><div class="quiz-a">左右连接指定了一张表为基准，谁在左谁在右会改变保留哪些行；全外连接两张表的行都保留，不受左右顺序影响。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=23" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p23 S02E08.连接查询之join与Merge总结</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%86%85%E8%BF%9E%E6%8E%A5%E4%B8%8E%E5%A4%96%E8%BF%9E%E6%8E%A5.html"><small>上一张</small>内连接与外连接</a><a class="next" href="../c/%E5%B7%A6%E8%BF%9E%E6%8E%A5.html"><small>下一张</small>左连接</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

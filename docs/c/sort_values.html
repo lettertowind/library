@@ -18,18 +18,56 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>sort_values</h1><div class="aliases">sort_values() · 按值排序</div><p class="lede">按数据值对 Series 或 DataFrame 进行排序的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>sort_values() 用于将数据按照值的大小或顺序排列。在 DataFrame 中通常配合 by 参数指定按哪一列排序，例如 df.sort_values(by=&#x27;入职日期&#x27;)。功能类似 Excel 的排序。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按某列的值排序</li><li>对日期、数值等排序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>按数据值排序</li><li>DataFrame 中用 by= 指定排序列</li><li>与 Excel 的排序功能类似</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>按索引排序需用 sort_index()；多列排序可传列表给 by。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/sort_index.html">sort_index</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>在 DataFrame 中按“入职日期”列排序应该怎么写？</summary><div class="quiz-a">df.sort_values(by=&#x27;入职日期&#x27;)</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>sort_values</h1><div class="aliases">sort_values() · 按值排序</div><p class="lede">按数据值对 Series 或 DataFrame 进行排序的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.sort_values(by, ascending=True, inplace=False)</code>；<code>Series.sort_values(ascending=True, inplace=False)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>by</code>：DataFrame 用于指定排序键，单个字段传字符串，多字段传列表（列表顺序即优先级）；Series 没有此参数</li><li><code>ascending</code>：默认 <code>True</code> 表示升序，<code>False</code> 表示降序；多个排序字段时传入与 <code>by</code> 等长的布尔值列表</li><li><code>inplace</code>：默认 <code>False</code>，返回新的对象；<code>True</code> 时直接修改原对象并返回 <code>None</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;姓名&#x27;: [&#x27;张三&#x27;, &#x27;李四&#x27;, &#x27;王五&#x27;],
+                   &#x27;语文&#x27;: [85, 92, 85],
+                   &#x27;数学&#x27;: [90, 78, 88]})
+
+print(df.sort_values(by=&#x27;语文&#x27;))
+#    姓名  语文  数学
+# 0  张三  85  90
+# 2  王五  85  88
+# 1  李四  92  78
+
+print(df.sort_values(by=[&#x27;语文&#x27;, &#x27;数学&#x27;], ascending=[False, True]))
+#    姓名  语文  数学
+# 1  李四  92  78
+# 2  王五  85  88
+# 0  张三  85  90</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>sort_values() 用于将数据按照值的大小或顺序排列。在 DataFrame 中通常配合 by 参数指定按哪一列排序，例如 df.sort_values(by=&#x27;入职日期&#x27;)。功能类似 Excel 的排序。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按某列的值排序</li><li>对日期、数值等排序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>按数据值排序</li><li>DataFrame 中用 by= 指定排序列</li><li>与 Excel 的排序功能类似</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>按索引排序需用 sort_index()；多列排序可传列表给 by。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/sort_index.html">sort_index</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>在 DataFrame 中按“入职日期”列排序应该怎么写？</summary><div class="quiz-a">df.sort_values(by=&#x27;入职日期&#x27;)</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>sort_values 是 Pandas 最常用的排序方法，默认按列值对行排序。通过 by 指定排序键，ascending 控制方向，inplace 控制是否改原表。</p>
 <p>- by 单字段写字符串，多字段写列表，列表顺序即优先级</p>
 <p>- ascending 默认 True 升序，False 为降序</p>
 <p>- 多字段时 ascending 也写列表，与 by 一一对应</p>
 <details class="quiz"><summary>按语文降序、数学升序排序，by 和 ascending 怎么写？</summary><div class="quiz-a">by=[&#x27;语文&#x27;,&#x27;数学&#x27;], ascending=[False, True]</div></details>
-<details class="quiz"><summary>多字段排序后数学列看起来不是全局升序，为什么？</summary><div class="quiz-a">数学只在前一字段语文相同的分组内排序，不保证整列独立有序</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/ascending%20%E5%8F%82%E6%95%B0.html">ascending 参数</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/by%20%E5%8F%82%E6%95%B0.html">by 参数</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/sort_index.html">sort_index</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sort_index.html"><small>上一张</small>sort_index</a><a class="next" href="../c/str.cat.html"><small>下一张</small>str.cat</a></nav></article>
+<details class="quiz"><summary>多字段排序后数学列看起来不是全局升序，为什么？</summary><div class="quiz-a">数学只在前一字段语文相同的分组内排序，不保证整列独立有序</div></details>
+<p>sort_values() 关心的是数据内容而不是行号，参数写排序依据的列名即可。例如按「入职日期」排序后，日期会从 1 月 1 日到 1 月 7 日依次排列，而索引保持跟着原行走。</p>
+<p>- 参数写列名：数据.sort_values(&quot;入职日期&quot;)</p>
+<p>- 方法后面必须带括号，不带括号不会执行</p>
+<p>- 默认升序，方向由 ascending 控制</p>
+<details class="quiz"><summary>想按「入职日期」从早到晚排列表格用哪个方法？</summary><div class="quiz-a">sort_values(&quot;入职日期&quot;)，默认升序。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=20" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p20 S02E05.数据结构之Series</a> · 2026-11-17</p>
+<p>画条形图或柱形图前常用它排序，让条形按分数从高到低排列，图形更易读。用 by 指定排序列，用 ascending 指定升降序，用 inplace 决定是否直接修改原表。</p>
+<p>- by 指定排序列名，多列排序传入列名列表</p>
+<p>- ascending=False 为降序，默认 True 为升序</p>
+<p>- inplace=True 原地修改并返回 None，否则返回新表</p>
+<details class="quiz"><summary>执行 df.sort_values(&#x27;分数&#x27;, ascending=False) 之后，df 本身变了吗？</summary><div class="quiz-a">没变，返回的是排序后的新表；要改原表需 inplace=True 或把结果重新赋值给 df。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=49" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p49 S03E02.条形图</a> · 2026-11-17</p>
+<p>sort_values 是 Pandas 最常用的排序方法，按「值」而非「索引」排序，用 by 指定排序依据，ascending 控制方向，inplace 控制是否修改原对象。它既能做单字段排序，也能通过 by 传列表做多字段优先级排序，还能配合 axis=1 做横向排序。</p>
+<p>- 单字段：by=&#x27;语文&#x27;；多字段：by=[&#x27;语文&#x27;,&#x27;数学&#x27;]，优先级从左到右</p>
+<p>- ascending=False 降序、True 升序，多字段时可传列表逐列控制</p>
+<p>- inplace=True 直接改原数据，False 返回新对象</p>
+<details class="quiz"><summary>sort_values 和 sort_index 的核心区别一句话说清？</summary><div class="quiz-a">前者按数据值排序，后者按索引排序。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=27" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p27 S02E12.数据排序【已修证】</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E7%8A%B6%E5%9B%BE.html">分组柱状图</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/ascending%20%E5%8F%82%E6%95%B0.html">ascending 参数</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/by%20%E5%8F%82%E6%95%B0.html">by 参数</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/sort_index.html">sort_index</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%A4%9A%E5%AD%97%E6%AE%B5%E6%8E%92%E5%BA%8F.html">多字段排序</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E6%A8%AA%E5%90%91%E6%8E%92%E5%BA%8F.html">横向排序</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sort_index.html"><small>上一张</small>sort_index</a><a class="next" href="../c/str.cat.html"><small>下一张</small>str.cat</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

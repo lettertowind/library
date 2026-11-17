@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 33
 stage: "S02E18 · 删除重复和提取重复"
-order: 33
 ---
 
 # drop_duplicates
@@ -16,6 +15,24 @@ order: 33
 > 别名：去重、删除重复值
 
 **pandas 中删除重复行或重复值、返回去重结果的方法。**
+
+## 用法
+**语法**：`DataFrame.drop_duplicates(subset=None, keep='first', inplace=False)` / `Series.drop_duplicates(keep='first', inplace=False)`
+**参数**：
+- `subset`：用于判断重复的列名；单列传字符串，多列传列表，默认 `None` 表示比较所有列
+- `keep`：保留策略，`'first'` 保留首次出现，`'last'` 保留最后一次出现，`False` 删除所有重复项
+- `inplace`：为 `True` 时直接修改原数据，默认 `False` 返回新对象
+**示例**：
+```python
+import pandas as pd
+
+df = pd.DataFrame({'姓名': ['张三', '李四', '张三', '王五', '李四'],
+                   '班级': ['一班', '一班', '二班', '二班', '一班']})
+print(df.drop_duplicates(subset='姓名'))          # 按姓名去重，保留首条
+print(df.drop_duplicates(subset='姓名', keep=False))  # 删除所有重复的姓名
+print(list(df['班级'].drop_duplicates()))          # 唯一分组键转列表
+print(df.drop_duplicates(subset=['姓名', '班级']).shape)  # 多列组合去重
+```
 
 ## 解释
 
@@ -56,6 +73,15 @@ drop_duplicates() 按 subset 指定的列判断重复并删除，keep 控制保�
 - keep='last' 保留最后一次出现
 df.drop_duplicates(subset='姓名', keep=False) 的结果里还剩哪些人？::只剩从未在姓名列重复过的人，所有出现过重复的姓名整组都被删除。
 按姓名和班级两列去重，subset 应该怎么写？::subset=['姓名', '班级']，多列必须用列表。
+
+drop_duplicates 是 Pandas 中最常用的去重函数，返回去掉重复行后的新表。它默认保留每条重复记录第一次出现的那一行，也可以通过 keep 参数改为保留最后一次或全部删除。相比 unique 只返回一列值的列表，它能把整行其他字段一起带出来。
+
+- 默认 keep='first'，即保留第一次出现的那一行
+- keep='last' 保留最后一次出现，keep=False 只留完全没重复的行
+- subset 传列表可做多列组合去重，如 subset=['姓名','班级']
+数据里同一姓名出现多次、分数不同，要只留每人最后一次的记录，怎么写？::tt.drop_duplicates(subset='姓名', keep='last')
+为什么有了 unique 还需要 drop_duplicates？::unique 只返回某列的唯一值列表，丢失分数等其他列；drop_duplicates 按行去重，能保留整行其他字段
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p33 S02E18.删除重复和提取重复](https://www.bilibili.com/video/BV1ji4y157uB?p=33) · 2026-11-17
 
 ## 出处
 

@@ -25,11 +25,24 @@
 <p>- 默认后缀为 (&#x27;_x&#x27;,&#x27;_y&#x27;)，_x 对应左表</p>
 <p>- 只对非连接键的同名列生效</p>
 <p>- 可传元组自定义，如 suffixes=(&#x27;_左&#x27;,&#x27;_右&#x27;)</p>
-<details class="quiz"><summary>结果里出现「分数_x」和「分数_y」，分别来自哪张表？</summary><div class="quiz-a">_x 来自左表，_y 来自右表。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/on%20%E5%8F%82%E6%95%B0.html">on 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/subset%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html"><small>上一张</small>subset 参数（dropna）</a><a class="next" href="../c/tail.html"><small>下一张</small>tail</a></nav></article>
+<details class="quiz"><summary>结果里出现「分数_x」和「分数_y」，分别来自哪张表？</summary><div class="quiz-a">_x 来自左表，_y 来自右表。</div></details>
+<p>连接后若两表都有「分数」这类非键同名列，pandas 无法用同一个列名同时表示两份数据，于是给左表列加 _x、右表列加 _y。想换成更可读的名字，可用 suffixes 参数自定义。</p>
+<p>- _x 对应 merge 的第一个参数（左表），_y 对应第二个参数（右表）</p>
+<p>- 只有非连接键的同名列才加后缀，键列合并后只保留一列</p>
+<p>- 可用 suffixes=(&#x27;_左&#x27;, &#x27;_右&#x27;) 自定义后缀</p>
+<details class="quiz"><summary>连接后出现「分数_x」和「分数_y」，怎么判断哪个是右表的？</summary><div class="quiz-a">看传入顺序：第二个参数是右表，其同名列加 _y，所以「分数_y」来自右表。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=22" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p22 S02E07.连接查询之Merge</a> · 2026-11-17</p>
+<p>两张表除连接键外若有同名非键列（如都叫 v），合并后会出现两个 v 无法分辨。suffixes=(&#x27;_l&#x27;,&#x27;_r&#x27;) 会分别给左表、右表的重名列加后缀，变成 v_l 与 v_r。后缀内容可自定义，只要写在引号里即可。</p>
+<p>- 只作用于非连接列的同名列，连接键不会加后缀</p>
+<p>- 元组第一位给左表、第二位给右表，约定用 _l/_r 表达左右</p>
+<p>- 后缀可任意自定义，如 (&#x27;_x&#x27;,&#x27;_y&#x27;) 或 (&#x27;_old&#x27;,&#x27;_new&#x27;)</p>
+<details class="quiz"><summary>连接键 k1 在两表中都叫 k1，合并后会变成 k1_l 和 k1_r 吗？</summary><div class="quiz-a">不会，连接键列只保留一列，后缀只加在非键的重复列上。</div></details>
+<details class="quiz"><summary>不写 suffixes 时同名列会怎样？为什么建议显式指定？</summary><div class="quiz-a">pandas 自动加 _x、_y 后缀，虽然能运行但来源不直观，显式写 _l/_r 更易读。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=23" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p23 S02E08.连接查询之join与Merge总结</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/on%20%E5%8F%82%E6%95%B0.html">on 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/subset%20%E5%8F%82%E6%95%B0%EF%BC%88%E5%8E%BB%E9%87%8D%EF%BC%89.html"><small>上一张</small>subset 参数（去重）</a><a class="next" href="../c/tail.html"><small>下一张</small>tail</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -79,6 +79,14 @@ np.full 需要两个参数：形状元组和填充值，例如 np.full((3, 3), 5
 - 支持多维形状
 np.full((3, 3), 520) 生成什么数组？::3 行 3 列、所有元素都是 520 的二维数组
 
+np.full(shape, fill_value) 的第一个参数是形状，第二个参数是要填满数组的数值，弥补了 ones 只能填 1、zeros 只能填 0 的限制。
+
+- np.full(3, 520) 得到三个 520
+- np.full((3,3), 520) 得到三行三列全为 520
+- 第一参数是形状，写法与 ones、zeros 完全一致
+np.full((2,3), 7) 和 np.ones((2,3)) * 7 有什么区别？::结果数值相同，但 full 一步创建，不需要额外的乘法运算，更直观。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p04 S01E03.创建数组](https://www.bilibili.com/video/BV1ji4y157uB?p=4) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

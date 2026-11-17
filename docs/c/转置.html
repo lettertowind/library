@@ -32,11 +32,19 @@ print(a.transpose(1, 0).shape)  # (3, 2)
 b = np.arange(24).reshape(2, 3, 4)
 print(b.shape)              # (2, 3, 4)
 print(b.transpose(1, 0, 2).shape)  # (3, 2, 4)，只交换 0 轴与 1 轴</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>二维数组原轴顺序为 (0,1)，转置后变为 (1,0)，形状由 (m,n) 变为 (n,m)。常用 arr.T 属性或 arr.transpose() 方法完成；轴转置可传入新的轴顺序元组。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>行列互换，调整数据排布</li><li>改变高维数组的轴顺序以适配后续运算</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>转置改变轴顺序和元素排布，不改变元素值</li><li>二维数组转置后形状由 (m,n) 变为 (n,m)</li><li>arr.T 是最常用的二维转置属性</li><li>arr.transpose((1,0)) 通过传入轴顺序实现轴转置</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>转置与 reshape 都能改变形状，但转置是通过交换轴顺序实现，reshape 是按新形状重新排布元素。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/Numpy%20reshape.html">Numpy reshape</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E8%BD%AC%E7%BD%AE.html">数据转置</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>二维数组转置后形状如何变化？</summary><div class="quiz-a">形状由 (m,n) 变为 (n,m)。</div></details>
-<details class="quiz"><summary>arr.T 和 arr.transpose((1,0)) 对二维数组的效果是否一致？</summary><div class="quiz-a">一致，都是交换 0 轴和 1 轴，实现行列转置。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E8%BD%B4%E8%BD%AC%E7%BD%AE.html">轴转置</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%A5%9E%E5%A5%87%E7%B4%A2%E5%BC%95.html"><small>上一张</small>神奇索引</a><a class="next" href="../c/%E8%BD%B4%E8%BD%AC%E7%BD%AE.html"><small>下一张</small>轴转置</a></nav></article>
+<details class="quiz"><summary>arr.T 和 arr.transpose((1,0)) 对二维数组的效果是否一致？</summary><div class="quiz-a">一致，都是交换 0 轴和 1 轴，实现行列转置。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>直接数组转置类似 Excel 的单元格转置：行变列、列变行。它不改变元素值，但会改变数组形状和元素排列；二维 4 行 6 列数组转置后变成 6 行 4 列。</p>
+<p>- 二维转置效果是行变列、列变行。</p>
+<p>- NumPy 常用 arr.T 或 arr.transpose() 实现直接转置。</p>
+<p>- 转置不改变元素值，但改变数组形状和元素排列。</p>
+<details class="quiz"><summary>一个 4 行 6 列的二维数组直接转置后形状是什么？</summary><div class="quiz-a">变成 6 行 4 列。</div></details>
+<details class="quiz"><summary>转置会改变数组中的元素值吗？</summary><div class="quiz-a">不会改变元素值，但会改变数组形状和元素排列顺序。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=10" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p10 S01E09.数组的轴和转置</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E8%BD%B4%E8%BD%AC%E7%BD%AE.html">轴转置</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%A5%9E%E5%A5%87%E7%B4%A2%E5%BC%95.html"><small>上一张</small>神奇索引</a><a class="next" href="../c/%E8%BD%B4%E8%BD%AC%E7%BD%AE.html"><small>下一张</small>轴转置</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

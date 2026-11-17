@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="内连接只保留两边都匹配的行，外连接保留两边所有行、缺的一侧补空。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>内连接与外连接 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>数据库</span></nav><article class="card"><h1>内连接与外连接</h1><div class="aliases">inner join / outer join · 交集连接与并集连接</div><p class="lede">内连接只保留两边都匹配的行，外连接保留两边所有行、缺的一侧补空。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>本质是集合运算：inner 取交集，outer 取并集。concat 里用 join=&#x27;inner&#x27;/&#x27;outer&#x27; 控制，merge 里用 how= 参数控制，SQL 里对应 INNER JOIN / FULL OUTER JOIN。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>只想要两表都有的记录时用内连接</li><li>要保留全部主体记录、缺的补空时用外连接</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>inner = 交集，只留两边都存在的索引/键</li><li>outer = 并集，缺的一侧填 NaN，通常是默认值</li><li>concat 用 join 参数，merge 用 how 参数</li><li>选错连接方式会导致数据悄悄变少或变多</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>concat 的 join 参数只控制对齐方式，不涉及键匹配；按键匹配的对齐要走 merge。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/join%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html">join 参数（concat）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E7%B4%A2%E5%BC%95%E5%AF%B9%E9%BD%90.html">索引对齐</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>两表索引分别为 0,1,2,3 和 2,3,6,7，横向 concat 用 join=&#x27;inner&#x27; 后剩哪些索引？</summary><div class="quiz-a">只剩 2、3 两个共同索引。</div></details>
+<details class="quiz"><summary>外连接后某行只有左表有值，右表的列会是什么？</summary><div class="quiz-a">NaN 空值。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=24" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p24 S02E09.连接查询之concat</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%86%85%E8%BF%9E%E6%8E%A5.html"><small>上一张</small>内连接</a><a class="next" href="../c/%E5%8F%B3%E8%BF%9E%E6%8E%A5.html"><small>下一张</small>右连接</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -40,11 +40,19 @@ print(c)
 # [[1 2]
 #  [3 4]]</code></pre>
 <p>注意：<code>sort</code> 会直接改写原数组，且没有可用的返回值。如果希望保留原数组并得到排序结果，应改用 <code>np.sort</code>。</p></section><section class="sec"><h2 id="解释">解释</h2><p>ndarray.sort(axis=-1, kind=None, order=None) 是原地排序方法，调用后原数组被改写，不需要重新赋值。axis 决定沿哪个方向排序。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>对一维数组升序排序</li><li>对二维数组按行或按列分别排序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>原地修改，无返回值可用</li><li>axis=0 每列内部排序，axis=1 每行内部排序</li><li>默认 axis=-1 即最后一个轴</li><li>kind 选排序算法，order 用于结构化数组</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>要保留原数组需先 copy；与 np.sort 不同，后者返回新数组。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/argsort.html">argsort</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>a.sort() 之后原数组 a 会变吗？</summary><div class="quiz-a">会，sort 是原地排序。</div></details>
-<details class="quiz"><summary>二维数组 axis=0 排序是按行还是按列？</summary><div class="quiz-a">按列，即每一列内部各自排序。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/import%20numpy%20as%20np.html"><small>上一张</small>import numpy as np</a><a class="next" href="../c/ndim%20%E5%B1%9E%E6%80%A7.html"><small>下一张</small>ndim 属性</a></nav></article>
+<details class="quiz"><summary>二维数组 axis=0 排序是按行还是按列？</summary><div class="quiz-a">按列，即每一列内部各自排序。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>调用后原数组内部顺序被改变，无返回值，因此不要写 a = a.sort()。一维默认升序；二维要靠 axis 指定按行还是按列排序。</p>
+<p>- 原地修改，调用后打印原数组即可看到结果</p>
+<p>- 一维数组默认从小到大升序</p>
+<p>- axis=0 每列内部排序，axis=1 每行内部排序</p>
+<details class="quiz"><summary>执行 a.sort() 后，a 本身变了吗？应该怎么接住结果？</summary><div class="quiz-a">变了，是原地排序；不需要接返回值，直接打印 a 即可，写 a = a.sort() 会得到 None。</div></details>
+<details class="quiz"><summary>对二维数组按每一行内部排序，axis 应设为多少？</summary><div class="quiz-a">axis=1，默认的 axis=-1 在二维下同样等价于 1。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=14" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p14 S01E13.条件计算，排序，深潜拷贝【本季完】</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/import%20numpy%20as%20np.html"><small>上一张</small>import numpy as np</a><a class="next" href="../c/ndim%20%E5%B1%9E%E6%80%A7.html"><small>下一张</small>ndim 属性</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

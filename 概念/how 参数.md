@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 22
 stage: "S02E07 · 连接查询之Merge"
-order: 22
 ---
 
 # how 参数
@@ -57,6 +56,14 @@ how 决定哪些行被保留：inner 取交集，left 以左表为准，right �
 - left：左表全保留，右表无匹配处为 NaN
 - right：右表全保留，左表无匹配处为 NaN
 想保留右表全部记录并带出左表信息，how 应设为什么？::how='right'。
+
+how 决定结果保留哪一侧的记录：inner 取交集、left 保左表、right 保右表、outer 取并集，缺失处统一补 NaN。它是关键语义开关，一旦不是内连接就必须写明，不能依赖默认。
+
+- 默认值为 inner，等价于不写
+- 取值 left/right/outer 时必须显式写出
+- 连接类型只影响保留哪些行，不影响匹配规则本身
+为什么 how='left' 时行数可能比左表还多？::因为保留的是左表行的匹配结果：左表某键在右表匹配到多行时，该行会被展开成多行。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p22 S02E07.连接查询之Merge](https://www.bilibili.com/video/BV1ji4y157uB?p=22) · 2026-11-17
 
 ## 出处
 

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用长条长度比较各类别数值大小的图表，长条间留有空隙。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>柱形图 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>柱形图</h1><div class="aliases">柱状图 · Bar Chart · plt.bar</div><p class="lede">用长条长度比较各类别数值大小的图表，长条间留有空隙。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>柱形图横轴是互不相干的类别，如一班、二班、张三、李四，长度表示该类别对应的频数或数值。它是条形图竖放的形式，横放即条形图。宽度只是样式，可以随意调粗细而不影响读数，这与直方图按组距决定宽度完全不同。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>比较不同班级、不同产品、不同人员的数值大小</li><li>展示类别计数结果（value_counts 后直接画）</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>横轴是孤立类别，长条之间有明显空隙以示区分</li><li>主要靠长条长度读取数值，宽度可随意设置</li><li>竖放叫柱形图，横放叫条形图，本质相同</li><li>与直方图的差别在数据性质：类别 vs 连续区间</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>连续数值想看分布形态时应改用直方图，硬切成类别柱形图会丢失分布信息。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%9B%B4%E6%96%B9%E5%9B%BE.html">直方图</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要展示“一班 45 人、二班 38 人”，为什么不该用直方图？</summary><div class="quiz-a">班级是彼此独立的类别而非连续区间，直方图要求横轴是连续等距的分箱。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>Matplotlib 中由 plt.bar() 绘制，横轴为类别、纵轴为数值。通过控制位置、高度、颜色、宽度等参数支持单系列与多系列（分组、堆积）等多种形态。</p>
+<p>- plt.bar(x, height, width, color, label) 核心五参数</p>
+<p>- x 为柱子位置（建议数值索引），height 为柱高即数据值</p>
+<p>- width 控制柱宽，分组柱需按其做位置偏移</p>
+<details class="quiz"><summary>plt.bar 的 height 参数放什么？</summary><div class="quiz-a">放每根柱子对应的数值（如某年的成绩序列），决定柱高。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=50" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p50 S03E03.分组柱状图</a> · 2026-11-17</p>
+<p>plt.bar(x, y) 第一个参数是 x 轴的类别（如姓名），第二个是 y 轴的数值（如分数）。它只是把图形构造出来，还要 plt.show() 才会显示。柱形图参数很多，基础形式之外可通过 label、width 等逐项修饰。</p>
+<p>- 最简写法：plt.bar(数据.姓名, 数据.分数)</p>
+<p>- x 传类别、y 传数值，顺序错会画出怪图</p>
+<p>- 加 label=&#x27;成绩&#x27; 后再调用 plt.legend() 才出图例</p>
+<details class="quiz"><summary>plt.bar 的 x 传数值、y 传类别名，会出现什么结果？</summary><div class="quiz-a">类别名无法按数值比例定位，坐标轴取值异常甚至报错，柱子排布毫无意义——参数顺序必须 x=类别、y=数值。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=48" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p48 S03E01.柱状图</a> · 2026-11-17</p>
+<p>柱形图以类别为横轴、数值为柱高，适合比较不同类别的总量。在 Matplotlib 中用 plt.bar 绘制，并可叠加平均线等参考线增强解读。</p>
+<p>- plt.bar(x, height) 中 x 为类别、height 为柱高数值</p>
+<p>- color 设柱子颜色，label 为图例提供文本</p>
+<p>- alpha=0.6 可让红色变粉，叠加参考线更清晰</p>
+<details class="quiz"><summary>plt.bar 中 height 参数对应什么？</summary><div class="quiz-a">每根柱子的高度，即该类别的数值大小</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=57" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p57 S03E09.平均线</a> · 2026-11-17</p>
+<p>横轴放分类（如班级），纵轴放数值（如销售量），适合比较不同类别之间的量级差异。label 参数为图例提供文字，alpha 控制透明度，让图形在多子图环境中更易读。</p>
+<p>- plt.bar(x, y) 中 x 为分类、y 为数值</p>
+<p>- label 设置图例标签，便于读者识别</p>
+<p>- alpha 调透明度，柱体重叠时尤其有用</p>
+<details class="quiz"><summary>同一张画布上第 4 个子图画柱形图，第 3 个子图画折线图，代码该怎么摆？</summary><div class="quiz-a">在 ax3 = fig.add_subplot(223) 后写 plt.plot(...)，在 ax4 = fig.add_subplot(224) 后写 plt.bar(...)。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=58" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p58 S03E10.画布和子图</a> · 2026-11-17</p>
+<p>plt.bar(x, y) 在指定位置画柱子，高度对应数值。通过 width、bottom、color、label 等参数可扩展出堆积图、瀑布图、分组图等变体，是分类数据对比的基础图形。</p>
+<p>- 核心参数：x 位置、y 高度、width 柱宽、bottom 起点、color 颜色、label 图例名</p>
+<p>- width 控制柱宽，也决定相邻柱的合理间距</p>
+<p>- label 只对图例生效，同一语义的柱子可重复传同一 label</p>
+<details class="quiz"><summary>想在同一个坐标系里画红绿两组柱子，需要调用几次 plt.bar？</summary><div class="quiz-a">每个分组各调一次，颜色和 label 分开传，Matplotlib 会自动叠加在同一坐标轴。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=77" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p77 S03E28.瀑布图</a> · 2026-11-17</p>
+<p>### 补充 · 2026-11-17</p>
+<p>用矩形柱高度表示各类别数值大小的统计图。</p>
+<p>- Axes 对象也有 bar 方法，可在指定轴上绘图。</p>
+<p>- 在子图/子区域中用 ax.bar 可避免画错位置。</p>
+<p>- 常与折线图组合：主图柱形图、小图折线图。</p>
+<p>- 可通过 bottom、left 等参数实现堆叠或水平条形图。</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=66" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p66 S03E17.直方图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Matplotlib.html">Matplotlib</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/Matplotlib%20%E9%A2%9C%E8%89%B2%E7%AE%80%E5%86%99.html">Matplotlib 颜色简写</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/alpha%20%E9%80%8F%E6%98%8E%E5%BA%A6.html">alpha 透明度</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/bottom%20%E5%8F%82%E6%95%B0%EF%BC%88plt.bar%20%E5%A0%86%E5%8F%A0%E8%B5%B7%E5%A7%8B%E4%BD%8D%E7%BD%AE%EF%BC%89.html">bottom 参数（plt.bar 堆叠起始位置）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/height%20%E5%8F%82%E6%95%B0.html">height 参数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plt.axhline%20%E6%B0%B4%E5%B9%B3%E5%8F%82%E8%80%83%E7%BA%BF.html">plt.axhline 水平参考线</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.barh.html">plt.barh</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plt.legend%20%E5%9B%BE%E4%BE%8B.html">plt.legend 图例</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.show.html">plt.show</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E4%B8%BB%E6%AC%A1%E5%9D%90%E6%A0%87%E8%BD%B4.html">主次坐标轴</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">分组柱形图</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E7%8A%B6%E5%9B%BE.html">分组柱状图</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%A0%86%E7%A7%AF%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">堆积柱形图</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%B9%B3%E5%9D%87%E7%BA%BF.html">平均线</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%80%91%E5%B8%83%E5%9B%BE.html">瀑布图</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E7%8E%AB%E7%91%B0%E5%9B%BE.html">玫瑰图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%9B%B4%E6%96%B9%E5%9B%BE.html">直方图</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%BB%84%E5%90%88%E5%9B%BE.html">组合图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE%E6%8E%A5%E5%8F%A3%EF%BC%88Axes%20%E6%96%B9%E6%B3%95%EF%BC%89.html">面向对象绘图接口（Axes 方法）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E9%A5%BC%E5%9B%BE.html">饼图</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%9E%81%E8%A7%92.html"><small>上一张</small>极角</a><a class="next" href="../c/%E6%A0%87%E8%AE%B0%E7%82%B9%EF%BC%88marker%EF%BC%89.html"><small>下一张</small>标记点（marker）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

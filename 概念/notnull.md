@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 20
 stage: "S02E05 · 数据结构之Series"
-order: 20
 ---
 
 # notnull
@@ -16,6 +15,29 @@ order: 20
 > 别名：notnull()、判断非空
 
 **判断数据是否不为空，返回布尔值（非空为 True）。**
+
+## 用法
+**语法**：`DataFrame.notnull()` / `Series.notnull()`
+**参数**：无
+**示例**：
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({'姓名': ['张三', '李四', '王五'], '分数': [90, np.nan, 75]})
+print(df.notnull())
+#    姓名   分数
+# 0  True  True
+# 1  True  False
+# 2  True  True
+
+print(df[df['分数'].notnull()])
+#    姓名    分数
+# 0  张三  90.0
+# 2  王五  75.0
+
+print(df['分数'].notnull().sum())  # 2
+```
 
 ## 解释
 

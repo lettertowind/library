@@ -39,11 +39,17 @@ print(np.full((2, 3), 1.5).dtype)
 <p>- 语法：np.full((3, 3), 520)</p>
 <p>- 第一个参数是形状元组，第二个是填充值</p>
 <p>- 支持多维形状</p>
-<details class="quiz"><summary>np.full((3, 3), 520) 生成什么数组？</summary><div class="quiz-a">3 行 3 列、所有元素都是 520 的二维数组</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.full_like.html">np.full_like</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.ones.html">np.ones</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.exp.html"><small>上一张</small>np.exp</a><a class="next" href="../c/np.full_like.html"><small>下一张</small>np.full_like</a></nav></article>
+<details class="quiz"><summary>np.full((3, 3), 520) 生成什么数组？</summary><div class="quiz-a">3 行 3 列、所有元素都是 520 的二维数组</div></details>
+<p>np.full(shape, fill_value) 的第一个参数是形状，第二个参数是要填满数组的数值，弥补了 ones 只能填 1、zeros 只能填 0 的限制。</p>
+<p>- np.full(3, 520) 得到三个 520</p>
+<p>- np.full((3,3), 520) 得到三行三列全为 520</p>
+<p>- 第一参数是形状，写法与 ones、zeros 完全一致</p>
+<details class="quiz"><summary>np.full((2,3), 7) 和 np.ones((2,3)) * 7 有什么区别？</summary><div class="quiz-a">结果数值相同，但 full 一步创建，不需要额外的乘法运算，更直观。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=4" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p04 S01E03.创建数组</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.full_like.html">np.full_like</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.ones.html">np.ones</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.exp.html"><small>上一张</small>np.exp</a><a class="next" href="../c/np.full_like.html"><small>下一张</small>np.full_like</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

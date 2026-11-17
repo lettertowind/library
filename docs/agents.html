@@ -58,7 +58,7 @@ updated: 2026-11-16
 ## 出处
 - [标题](url) · 日期</code></pre>
 <p>字段约定：</p>
-<ul><li><code>kind</code>：<code>concept</code> 概念 / <code>method</code> 方法 / <code>tool</code> 工具 / <code>model</code> 模型 / <code>metric</code> 指标 / <code>person</code> 人 / <code>product</code> 产品 / <code>entity</code> 实体（公司、组织）</li><li><code>domain</code>：层级路径，最多 3 段，如 <code>AI/大模型</code>、<code>数据分析/Pandas</code>。<strong>按学科归类，不按使用场景</strong></li><li><code>aliases</code>：英文名、缩写、常见错写。同名合并靠它命中</li><li><code>tags</code>：至少带一个 <code>概念/{kind}</code> 和 <code>领域/{domain第一段}</code></li><li><strong>领域独立规则</strong>：术语/概念极多的类别可以从上位学科中独立出来，直接做顶级领域。当前顶级领域：<code>AI</code>（74 张）、<code>数据分析</code>（273 张）、<code>知识管理</code>（10 张）、<code>计算机</code>（3 张）。新素材若属于这些领域，直接用顶级域名开头，不要再挂 <code>计算机/</code> 下；某个子域长到几十张卡时，考虑按此规则再次上移。</li></ul></section><section class="sec"><h2 id="四-四个标准操作">四、四个标准操作</h2><h3 id="1-摄入素材">1. 摄入素材</h3>
+<ul><li><code>kind</code>：<code>concept</code> 概念 / <code>method</code> 方法 / <code>tool</code> 工具 / <code>model</code> 模型 / <code>metric</code> 指标 / <code>person</code> 人 / <code>product</code> 产品 / <code>entity</code> 实体（公司、组织）</li><li><code>domain</code>：层级路径，最多 3 段，如 <code>AI/大模型</code>、<code>数据分析/Pandas</code>。<strong>按学科归类，不按使用场景</strong></li><li><code>aliases</code>：英文名、缩写、常见错写。同名合并靠它命中</li><li><code>tags</code>：至少带一个 <code>概念/{kind}</code> 和 <code>领域/{domain第一段}</code></li><li><strong>领域独立规则</strong>：术语/概念极多的类别可以从上位学科中独立出来，直接做顶级领域。当前顶级领域：<code>数据分析</code>（372 张）、<code>Matplotlib</code>（118 张）、<code>AI</code>（74 张）、<code>计算机</code>（14 张）、<code>知识管理</code>（10 张）。新素材若属于这些领域，直接用顶级域名开头，不要再挂 <code>计算机/</code> 或 <code>数据分析/</code> 这类上位域下（Matplotlib 已是顶级域）；某个子域长到几十张卡时，考虑按此规则再次上移。</li></ul></section><section class="sec"><h2 id="四-四个标准操作">四、四个标准操作</h2><h3 id="1-摄入素材">1. 摄入素材</h3>
 <p>触发：用户说「摄入素材」「整理新素材」，或 <code>_在编/</code> 有新文件。</p>
 <p>优先执行托管脚本（一致性更好）：</p>
 <pre><code class="lang-bat">_馆务\整理概念.bat
@@ -102,7 +102,7 @@ _馆务\维护.bat prune 词条</code></pre>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="assets/app.js?v=cf795595" defer></script>
 </body>

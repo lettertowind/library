@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="两个 Pandas 对象运算时先按索引标签配对，未匹配的位置自动补 NaN。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>数据对齐 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>数据对齐</h1><div class="aliases">alignment · 索引对齐 · 自动对齐</div><p class="lede">两个 Pandas 对象运算时先按索引标签配对，未匹配的位置自动补 NaN。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Pandas 的算术运算不按元素位置逐格计算，而是先按行索引和列名把两边数据对齐，再逐元素运算。标签对不上的位置不会报错，而是静默产生 NaN。理解这一点，才能解释为什么两列看着正常的数据相加后会出现大量空值。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>解释两个 Series / DataFrame 运算后出现意外 NaN</li><li>对不同来源、索引顺序不一致的数据做计算前的预判</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>对齐依据是索引标签（行索引、列名），不是元素位置</li><li>对齐后缺失的位置结果为 NaN，不抛异常</li><li>普通运算符留下 NaN，灵活算术方法可用 fill_value 填补</li><li>索引完全一致时对齐“无感”，最容易被忽略</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只在 Pandas 的 Series / DataFrame 运算中生效；NumPy 数组按位置计算，不做标签对齐。本视频两列数据同索引，对齐效果并不直观。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%81%B5%E6%B4%BB%E7%AE%97%E6%9C%AF%E6%96%B9%E6%B3%95.html">灵活算术方法</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/NaN.html">NaN</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>两个 Series 的索引分别是 [a, b] 和 [b, c]，直接相加后 a 和 c 位置是什么结果？为什么？</summary><div class="quiz-a">都是 NaN。按标签对齐时 a 只在左边存在、c 只在右边存在，另一方缺失，运算结果即为 NaN。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>当多个 Series 或 DataFrame 一起参与构造或运算时，Pandas 不会按先后顺序硬拼，而是按标签配对。标签相同的行对齐到同一行，某一方缺失的位置自动补 NaN。这避免了错位拼接。</p>
+<p>- 对齐依据是标签，不是元素顺序</p>
+<p>- 标签集合取并集，缺失一侧填 NaN</p>
+<p>- 索引顺序不同也能正确对上，不必先排序</p>
+<details class="quiz"><summary>s1 索引 [1,2,3]、s3 索引 [2,3,4]，按字典拼成 DataFrame 后长什么样？</summary><div class="quiz-a">行索引取并集 1~4；索引 1 只有 s1 有值，索引 4 只有 s3 有值，缺的位置都是 NaN</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=21" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p21 S02E06.数据结构之DataFrame</a> · 2026-11-17</p>
+<p>pandas 做算术运算时，先按行索引标签匹配行，再按列标签匹配列，只有行标签和列标签都相同的单元格才会参与计算。多层索引下这一规则同样成立：两个子表的行、列标签完全一致时，可以直接相加；不一致的位置会变成 NaN。</p>
+<p>- 行按索引标签对齐，列按列标签对齐，与行的物理顺序无关</p>
+<p>- 标签对不上的位置结果为 NaN</p>
+<p>- 多层索引时，需要行标签和列标签都一致，才能逐元素相加</p>
+<details class="quiz"><summary>两张表行顺序相反但索引标签相同，直接相加会错位吗？</summary><div class="quiz-a">不会，按索引标签对齐后逐元素相加，顺序不影响结果。</div></details>
+<details class="quiz"><summary>两表相加后某列整列变 NaN，最可能的原因是什么？</summary><div class="quiz-a">该列的列标签在另一张表里不存在，对齐失败。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=35" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p35 S02E20.多层索引与多层索引计算</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=34" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p34 S02E19.算数运算与数据对齐</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E6%8D%AE%E5%A4%84%E7%90%86%E4%B8%89%E6%9D%BF%E6%96%A7.html"><small>上一张</small>数据处理三板斧</a><a class="next" href="../c/%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2.html"><small>下一张</small>数据查询</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

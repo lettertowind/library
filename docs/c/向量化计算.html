@@ -19,11 +19,25 @@
 </header>
 <main>
 <nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>向量化计算</h1><div class="aliases">vectorization · 向量化运算</div><p class="lede">对整个数组直接做整体运算，替代显式循环逐元素处理。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>向量化让 a + b 直接完成逐元素相加，无需 for 循环和下标追加。底层由编译好的 C 代码执行，代码更短、速度更快。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>数组逐元素运算</li><li>替代 Python for 循环提升性能</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>写法上省去 for 循环和 append</li><li>数据量越大，相对普通循环的优势越明显</li><li>是 NumPy 高效的核心原因之一</li><li>可与通用函数、广播机制组合使用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>小数据量时性能差距不明显，不必为微小数据强行改写。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html">通用函数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6.html">广播机制</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.arange.html">np.arange</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 NumPy 的 a + b 比 Python 的 for 循环逐项相加快？</summary><div class="quiz-a">因为它在底层用编译代码对整个数组整体运算，避免了 Python 层的循环开销。</div></details>
-<details class="quiz"><summary>数据量很小时，向量化的优势是否明显？</summary><div class="quiz-a">不明显，数据量增大后优势才突出。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F.html">列表推导式</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%90%8C%E5%BD%A2%E6%95%B0%E7%BB%84%E8%BF%90%E7%AE%97.html"><small>上一张</small>同形数组运算</a><a class="next" href="../c/%E5%A4%9A%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88.html"><small>下一张</small>多条件组合</a></nav></article>
+<details class="quiz"><summary>数据量很小时，向量化的优势是否明显？</summary><div class="quiz-a">不明显，数据量增大后优势才突出。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>向量化把循环下沉到编译好的底层代码中执行，既让代码更短，也大幅提升速度。通用函数正是向量化的具体实现：写的是函数调用，跑的是整数组并行式运算。</p>
+<p>- 以数组为单位书写，代码中不再出现显式循环</p>
+<p>- 底层由编译代码执行，速度远快于 Python 循环</p>
+<p>- 通用函数是向量化最直接的表现形式</p>
+<details class="quiz"><summary>用 np.sqrt(a) 和用 for 循环逐元素开方，结果一样，为什么还推荐前者？</summary><div class="quiz-a">前者把循环放到编译层执行，代码更短且在大数据量下明显更快，也更容易与广播等机制组合。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=12" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p12 S01E11.通用函数：快速的逐元素数组函数</a> · 2026-11-17</p>
+<p>NumPy 把循环下沉到 C 层执行，并对连续内存做批量处理，所以写起来更短、跑起来更快。它解决的是 Python 原生 for 循环做数值计算又慢又啰嗦的问题。数据量越大，与纯 Python 写法的差距越明显。</p>
+<p>- 代码层面看不到 for，循环由底层 C 完成</p>
+<p>- 相比列表 + for + append，省去建函数、建空列表、逐项追加</p>
+<p>- 数据量越大优势越明显，可能快几倍到十几倍</p>
+<details class="quiz"><summary>向量化为什么比 Python for 循环快？</summary><div class="quiz-a">因为循环在 C 层对连续内存批量执行，避免了逐元素的 Python 解释器开销。</div></details>
+<details class="quiz"><summary>什么情况下向量化不一定更快？</summary><div class="quiz-a">数据结构不规则、类型混杂或无法用连续数组表示时，向量化优势会消失。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=3" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p03 S0102.体验Numpy与for循环的区别</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E9%80%90%E5%85%83%E7%B4%A0%E8%BF%90%E7%AE%97.html">逐元素运算</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F.html">列表推导式</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80.html">数据分析数学基础</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%90%8E%E7%BC%98%E7%BB%B4%E5%BA%A6.html"><small>上一张</small>后缘维度</a><a class="next" href="../c/%E5%A4%9A%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88.html"><small>下一张</small>多条件组合</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

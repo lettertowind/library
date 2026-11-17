@@ -18,12 +18,34 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.cat</h1><div class="aliases">cat · 字符串拼接 · concatenate</div><p class="lede">将 Series 中字符串与指定字符或等长序列拼接的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.cat 用于把一列字符串与另一列、列表或固定字符连接起来，类似“穿糖葫芦”。不传参时把整列所有值首尾相连成一个长字符串；传参时可逐行拼接，但额外数据必须与目标列等长。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把多个姓名合并成一个长文本</li><li>给每行数据追加固定后缀</li><li>按分隔符拼接多列内容</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>不传参时整列平行连接成一个字符串</li><li>sep 参数指定连接符</li><li>额外拼接数据必须与目标列等长</li><li>na_rep 参数替换空值，避免结果出现 NaN</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>逐行拼接时额外数据长度必须等于行数，否则报错；空值需用 na_rep 显式处理。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/str.join.html">str.join</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/NaN.html">NaN</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df[&#x27;姓名&#x27;].str.cat([&#x27;变身&#x27;]*len(df), sep=&#x27;&#x27;) 中为什么必须乘 len(df)？</summary><div class="quiz-a">因为逐行拼接要求额外数据与姓名列等长，长度不等会报错。</div></details>
-<details class="quiz"><summary>str.cat 不传任何参数时结果是什么？</summary><div class="quiz-a">把整列所有字符串首尾相连成一个长字符串。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.join.html">str.join</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sort_values.html"><small>上一张</small>sort_values</a><a class="next" href="../c/str.contains.html"><small>下一张</small>str.contains</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.cat</h1><div class="aliases">cat · 字符串拼接 · concatenate</div><p class="lede">将 Series 中字符串与指定字符或等长序列拼接的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.cat(others=None, sep=None, na_rep=None, join=&#x27;left&#x27;)</code> <strong>参数</strong>：</p>
+<ul><li><code>others</code>：要拼接的另一列、列表或固定字符，必须与目标列等长；不传时把整列首尾相连成一个长字符串</li><li><code>sep</code>：连接符，不传时字符串直接紧贴拼接</li><li><code>na_rep</code>：空值的替代文本，不指定时空值会让整条结果变成 NaN</li><li><code>join</code>：<code>others</code> 为 Series 时的索引对齐方式，默认 <code>&#x27;left&#x27;</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&#x27;张&#x27;, &#x27;李&#x27;, &#x27;王&#x27;])
+print(s.str.cat())            # 张李王
+print(s.str.cat(sep=&#x27;-&#x27;))     # 张-李-王
+
+df = pd.DataFrame({&#x27;姓&#x27;: [&#x27;张&#x27;, &#x27;李&#x27;], &#x27;名&#x27;: [&#x27;三&#x27;, &#x27;四&#x27;]})
+print(df[&#x27;姓&#x27;].str.cat(df[&#x27;名&#x27;], sep=&#x27;&#x27;).tolist())        # [&#x27;张三&#x27;, &#x27;李四&#x27;]
+print(df[&#x27;姓&#x27;].str.cat([&#x27;变身&#x27;] * len(df), sep=&#x27;&#x27;).tolist())  # [&#x27;张变身&#x27;, &#x27;李变身&#x27;]
+
+s2 = pd.Series([&#x27;A&#x27;, None])
+print(s2.str.cat(na_rep=&#x27;?&#x27;))  # A?</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>str.cat 用于把一列字符串与另一列、列表或固定字符连接起来，类似“穿糖葫芦”。不传参时把整列所有值首尾相连成一个长字符串；传参时可逐行拼接，但额外数据必须与目标列等长。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把多个姓名合并成一个长文本</li><li>给每行数据追加固定后缀</li><li>按分隔符拼接多列内容</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>不传参时整列平行连接成一个字符串</li><li>sep 参数指定连接符</li><li>额外拼接数据必须与目标列等长</li><li>na_rep 参数替换空值，避免结果出现 NaN</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>逐行拼接时额外数据长度必须等于行数，否则报错；空值需用 na_rep 显式处理。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/str.join.html">str.join</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/NaN.html">NaN</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df[&#x27;姓名&#x27;].str.cat([&#x27;变身&#x27;]*len(df), sep=&#x27;&#x27;) 中为什么必须乘 len(df)？</summary><div class="quiz-a">因为逐行拼接要求额外数据与姓名列等长，长度不等会报错。</div></details>
+<details class="quiz"><summary>str.cat 不传任何参数时结果是什么？</summary><div class="quiz-a">把整列所有字符串首尾相连成一个长字符串。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>Series.str.cat 默认把一列所有元素首尾相连（像穿糖葫芦），用 sep 加分隔符，用 na_rep 给空值一个替代文本。若要与另一组内容逐行拼接，传入的序列必须与原列等长。</p>
+<p>- 无参数调用时整列元素直接连成一串，难以辨认</p>
+<p>- sep 指定元素之间的分隔符，如 sep=&#x27;、&#x27;</p>
+<p>- 逐行追加内容时必须等长，用 [&#x27;内容&#x27;] * len(df) 构造</p>
+<details class="quiz"><summary>给每个姓名后加「变身」，为什么不能只写 str.cat(&#x27;变身&#x27;)？</summary><div class="quiz-a">因为要提供与原列等长的序列，如 [&#x27;变身&#x27;] * len(df)，否则长度不匹配</div></details>
+<details class="quiz"><summary>姓名列有空值时拼出来是 NaN，怎么让空位显示「无名」？</summary><div class="quiz-a">加参数 na_rep=&#x27;无名&#x27;</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=38" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p38 S02E23.字符串操作（上）</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/na%20%E5%8F%82%E6%95%B0.html">na 参数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.join.html">str.join</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sort_values.html"><small>上一张</small>sort_values</a><a class="next" href="../c/str.center.html"><small>下一张</small>str.center</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

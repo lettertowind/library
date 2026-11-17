@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Axes 上按 top/right/left/bottom 索引的四条边框线集合，可单独设色或隐藏。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>ax.spines（坐标轴边框） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>ax.spines（坐标轴边框）</h1><div class="aliases">spines · ax.spines · spine · 坐标轴边框集合</div><p class="lede">Axes 上按 top/right/left/bottom 索引的四条边框线集合，可单独设色或隐藏。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>绘图区四周的线不是坐标轴本身，而是 spines 边框，因此可逐条控制。用 ax.spines[&#x27;top&#x27;].set_color(&#x27;none&#x27;) 即可隐藏某条边框，用其他颜色则更换样式。最常见的用法是去掉上、右边框，只留下、左两条，使统计图更简洁。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>隐藏上/右边框，做出简洁的趋势图、统计图</li><li>给某条边框换颜色，配合刻度位置的调整</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>四个键 top/right/left/bottom 分别对应上右下左四条边框</li><li>set_color(&#x27;none&#x27;) 才是真正隐藏；设成白色在彩色背景下仍可见</li><li>隐藏边框不等于隐藏刻度，刻度要另用 plt.xticks([])/plt.yticks([])</li><li>移动刻度位置后必须同步改边框颜色，否则刻度落在被隐藏的线上</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>spines 只控制边框线，不管刻度刻线、刻度文字和轴标签；&#x27;none&#x27; 是无颜色，不是白色也不是透明填充。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/set_ticks_position%EF%BC%88%E5%88%BB%E5%BA%A6%E4%BD%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE%EF%BC%89.html">set_ticks_position（刻度位置设置）</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E6%A0%87%E7%AD%BE%EF%BC%88ticklabels%EF%BC%89.html">刻度标签（ticklabels）</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想把上边框去掉，把颜色设成 &#x27;white&#x27; 能达到目的吗？</summary><div class="quiz-a">不能，白色只是把线画成背景色，背景一换就露出来，应设为 &#x27;none&#x27;。</div></details>
+<details class="quiz"><summary>已经隐藏了左、下边框，为什么图上还有刻度？</summary><div class="quiz-a">spines 只管边框线，刻度由 ticks 控制，需要另外调用 plt.xticks([]) / plt.yticks([])。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=67" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p67 S03E18.坐标轴【上】</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/set_ticks_position%EF%BC%88%E5%88%BB%E5%BA%A6%E4%BD%8D%E7%BD%AE%E8%AE%BE%E7%BD%AE%EF%BC%89.html">set_ticks_position（刻度位置设置）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E6%A0%87%E7%AD%BE%EF%BC%88ticklabels%EF%BC%89.html">刻度标签（ticklabels）</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/ax.axis%EF%BC%88%E4%B8%80%E6%AC%A1%E8%AE%BE%E7%BD%AE%E5%9D%90%E6%A0%87%E8%BD%B4%E5%9B%9B%E8%BE%B9%E7%95%8C%EF%BC%89.html"><small>上一张</small>ax.axis（一次设置坐标轴四边界）</a><a class="next" href="../c/axes.unicode_minus%EF%BC%88%E8%B4%9F%E5%8F%B7%E6%98%BE%E7%A4%BA%E9%85%8D%E7%BD%AE%EF%BC%89.html"><small>下一张</small>axes.unicode_minus（负号显示配置）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

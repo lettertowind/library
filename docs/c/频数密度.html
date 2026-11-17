@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="直方图长条的高度，表示单位组距上分摊到的频数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>频数密度 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>统计</span></nav><article class="card"><h1>频数密度</h1><div class="aliases">density · 频率密度 · 长条高度</div><p class="lede">直方图长条的高度，表示单位组距上分摊到的频数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>为了让不同组距的直方图可以互相比较，纵轴并不直接放频数，而放“频数÷组距”（归一化时还要除以样本总量）。这样长条的面积才等于该区间的频数，整体面积为样本量或 1。视频里简化为“高度=频数/组数”，严格说分母应是组距（或组距×样本量）。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>对比组距不同的两份直方图</li><li>把直方图当作概率密度曲线使用</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>面积=频数，是直方图最核心的读图原则</li><li>所有箱等宽时，高度与频数成正比，才能“看高矮即看多少”</li><li>组距改变时高度随之变化，不能跨组距直接比高度</li><li>归一化（density=True）后总面积为 1，便于与概率分布对照</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只有直方图适用；柱形图、条形图用长度表示数值，不存在面积含义，勿混用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%9B%B4%E6%96%B9%E5%9B%BE.html">直方图</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>某个箱的频数是 200、组距是 10，画出的长条高度代表什么？</summary><div class="quiz-a">代表该区间每单位组距分摊的频数（200/10=20），面积才等于频数 200。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=66" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p66 S03E17.直方图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E7%9B%B4%E6%96%B9%E5%9B%BE.html">直方图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%AE%97%E6%9C%AF%E5%B9%B3%E5%9D%87%E6%95%B0.html"><small>上一张</small>算术平均数</a><a class="next" href="../c/%E7%AC%AC%E4%BA%8C%E5%A4%A7%E8%84%91.html"><small>下一张</small>第二大脑</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

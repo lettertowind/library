@@ -18,12 +18,30 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>通过函数分组</h1><div class="aliases">groupby(len) · 函数作为分组键 · 函数分组</div><p class="lede">把函数作为 groupby 的分组键，对索引值逐个调用函数并按返回值分组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>groupby(len) 会按索引字符串长度分组，效果类似把连续值离散分箱。也可把函数与列表组合成多条件分组。视频明确说这属于了解性内容，实际工作不常用。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按名称长度等派生规则分组</li><li>函数 + 列表做多条件分组</li><li>理解分组键的灵活性</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>前提是把分组依据设为索引，如 index_col=&#x27;城市&#x27;</li><li>df.groupby(len).sum() 按城市名长度分组</li><li>可组合：df.groupby([len, s1]).sum()</li><li>思路类似连续值离散分箱</li><li>不常用，基础阶段了解即可</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>函数作用于索引值而非列值；函数返回值种类过多时分组会碎片化，结果难解读。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%88%86%E7%AE%B1.html">离散化与分箱</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df.groupby(len).sum() 中 len 作用在什么上？</summary><div class="quiz-a">作用在索引值上，按索引字符串长度分组。</div></details>
-<details class="quiz"><summary>函数分组和 pd.cut 分箱的共同思路是什么？</summary><div class="quiz-a">都是把原始值按规则映射到类别再汇总。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E8%AE%A1%E7%AE%97%E5%88%97.html"><small>上一张</small>计算列</a><a class="next" href="../c/%E9%81%8D%E5%8E%86%E5%88%86%E7%BB%84.html"><small>下一张</small>遍历分组</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>通过函数分组</h1><div class="aliases">groupby(len) · 函数作为分组键 · 函数分组</div><p class="lede">把函数作为 groupby 的分组键，对索引值逐个调用函数并按返回值分组。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.groupby(by=None, level=None, sort=True)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>by</code>：分组键；传入函数时，会对每个索引值逐个调用该函数，并按函数的返回值分组（函数作用于索引值而非列值）</li><li><code>level</code>：按多级索引的指定层级分组；用函数分组时一般不用</li><li><code>sort</code>：是否对分组键排序，默认 <code>True</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&quot;销售额&quot;: [100, 200, 50, 80]},
+                  index=[&quot;北京&quot;, &quot;乌鲁木齐&quot;, &quot;上海&quot;, &quot;广州&quot;])
+print(df.groupby(len)[&quot;销售额&quot;].sum())   # 按城市名长度分组
+# 2    230
+# 4    200
+# Name: 销售额, dtype: int64</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>groupby(len) 会按索引字符串长度分组，效果类似把连续值离散分箱。也可把函数与列表组合成多条件分组。视频明确说这属于了解性内容，实际工作不常用。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按名称长度等派生规则分组</li><li>函数 + 列表做多条件分组</li><li>理解分组键的灵活性</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>前提是把分组依据设为索引，如 index_col=&#x27;城市&#x27;</li><li>df.groupby(len).sum() 按城市名长度分组</li><li>可组合：df.groupby([len, s1]).sum()</li><li>思路类似连续值离散分箱</li><li>不常用，基础阶段了解即可</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>函数作用于索引值而非列值；函数返回值种类过多时分组会碎片化，结果难解读。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%88%86%E7%AE%B1.html">离散化与分箱</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df.groupby(len).sum() 中 len 作用在什么上？</summary><div class="quiz-a">作用在索引值上，按索引字符串长度分组。</div></details>
+<details class="quiz"><summary>函数分组和 pd.cut 分箱的共同思路是什么？</summary><div class="quiz-a">都是把原始值按规则映射到类别再汇总。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>例如 groupby(len) 按索引标签长度分组。函数作用在索引上，所以必须先把目标字段设为索引，否则结果会不符合预期。</p>
+<p>- groupby(len) 通常按索引标签长度分组</p>
+<p>- 分组字段必须先 set_index 或 index_col 设为索引</p>
+<p>- 可与列表组合多个条件，如 groupby([len, s1])</p>
+<details class="quiz"><summary>直接对含城市普通列的 DataFrame 写 groupby(len)，len 作用在什么上？</summary><div class="quiz-a">作用在索引标签上；若城市只是普通列，需先设为索引。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=41" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p41 S02E26.分组与聚合 groupby基础部分</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E8%BF%9E%E6%8E%A5%E9%94%AE.html"><small>上一张</small>连接键</a><a class="next" href="../c/%E9%80%BB%E8%BE%91%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%20%26%EF%BC%88%E5%A4%9A%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88%EF%BC%89.html"><small>下一张</small>逻辑与运算符 &amp;（多条件组合）</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

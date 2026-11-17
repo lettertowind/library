@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="设置极坐标中 0 度（θ=0）指向哪个方位的坐标轴方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>set_theta_zero_location · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>set_theta_zero_location</h1><div class="aliases">set_theta_zero_location(N) · 零度位置设置 · 极坐标起始方向</div><p class="lede">设置极坐标中 0 度（θ=0）指向哪个方位的坐标轴方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认 0 度在右侧，图形看起来歪斜；传入 &#x27;N&#x27; 可让 0 度指向正上方，像指南针上端永远是 N 一样，图形就变得端正。与之配套的 set_theta_direction 可控制角度是顺时针还是逆时针增长。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>让玫瑰图/雷达图的起始柱位于正上方</li><li>调整极坐标图的整体旋转方向</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数可选 &#x27;N&#x27;（上）、&#x27;E&#x27;（右）、&#x27;S&#x27;（下）、&#x27;W&#x27;（左）</li><li>只影响起始角度，不改变各柱之间的相对角度</li><li>配合 set_theta_direction 可得到顺/逆时针布局</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只对极坐标轴有效，普通笛卡尔坐标轴调用无意义。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%EF%BC%88polar%EF%BC%89.html">极坐标系（polar）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E7%8E%AB%E7%91%B0%E5%9B%BE.html">玫瑰图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>不加 set_theta_zero_location(&#x27;N&#x27;) 时玫瑰图会有什么观感问题？</summary><div class="quiz-a">0 度位于右侧水平方向，整圈柱子像是“趴着”，起始位置不正，视觉上不端正。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=79" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p79 S03E30.玫瑰图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%EF%BC%88polar%EF%BC%89.html">极坐标系（polar）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/set_axis_off%EF%BC%88%E5%85%B3%E9%97%AD%E5%9D%90%E6%A0%87%E8%BD%B4%EF%BC%89.html"><small>上一张</small>set_axis_off（关闭坐标轴）</a><a class="next" href="../c/set_thetagrids%20%E8%A7%92%E5%BA%A6%E6%A0%87%E7%AD%BE%E7%BD%91%E6%A0%BC.html"><small>下一张</small>set_thetagrids 角度标签网格</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

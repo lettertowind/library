@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="plt.bar 的参数，指定每根柱子的起始高度，堆叠时取前面各层的累计高度。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>bottom 参数（plt.bar 堆叠起始位置） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>bottom 参数（plt.bar 堆叠起始位置）</h1><div class="aliases">bottom · bottom= · 堆叠起始位置 · 条形图起点参数</div><p class="lede">plt.bar 的参数，指定每根柱子的起始高度，堆叠时取前面各层的累计高度。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认所有柱形都从 0 起画，多系列会重叠或并列。给后面几层设置 bottom，就是让它们「踩」在上一层顶部继续往上长，从而形成一根多段柱子。它决定的是起点而非长度，长度仍由第 2 个参数（高度数据）决定。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>画堆叠柱状图 / 堆积条形图</li><li>把多个系列合成一根柱子同时展示总量与构成</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>第一层不写 bottom，等价于 bottom=0，从 x 轴底部起画</li><li>第二层 bottom=语文，第三层 bottom=语文+数学，层数更多就一直累加前面所有层</li><li>bottom 是起点高度，柱子的高度仍由第 2 个参数控制，两者别混</li><li>第二层若不设 bottom，数学柱会从 0 起画，图上变成重叠或并排而非堆叠</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>横向条形图 barh 中对应参数叫 left 而不是 bottom；用 bottom 堆叠时各系列长度必须一致并对齐索引。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%A0%86%E7%A7%AF%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">堆积柱形图</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9F%B1%E7%8A%B6%E5%9B%BE%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D.html">叠加柱状图数据标签定位</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>已有语文、数学、英语三层要堆叠，第三层 plt.bar 的 bottom 应该写成什么？</summary><div class="quiz-a">data[&#x27;语文&#x27;] + data[&#x27;数学&#x27;]，即前两层累计高度</div></details>
+<details class="quiz"><summary>为什么第二层只写 plt.bar(x, data[&#x27;数学&#x27;]) 得不到堆叠效果？</summary><div class="quiz-a">因为没设 bottom，数学柱从 0 起画，会盖住或并列于语文柱，而不是叠在其顶部</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>不写 bottom 时柱子贴 x 轴生长；给定 bottom 后柱子从该高度向上（正 y）或向下（负 y）延伸。瀑布图、堆积柱形图都靠它实现“接着上一段继续画”。</p>
+<p>- 瀑布图中 bottom 是变量，每轮循环执行 bottom += y 累加</p>
+<p>- 堆积图中同一根柱的多段共用同一 x，bottom 依次叠加</p>
+<p>- y 为负数时柱子从 bottom 向下延伸，同样受 bottom 控制</p>
+<details class="quiz"><summary>bottom 参数和 y 的关系是什么？</summary><div class="quiz-a">y 决定柱子从 bottom 起延伸多长，bottom 决定起点高度，二者共同决定柱子占据的纵向区间。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=77" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p77 S03E28.瀑布图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=52" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p52 S03E05.叠加柱状图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9F%B1%E7%8A%B6%E5%9B%BE%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D.html">叠加柱状图数据标签定位</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%80%91%E5%B8%83%E5%9B%BE.html">瀑布图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/bbox%20%E6%96%87%E6%9C%AC%E8%BE%B9%E6%A1%86.html"><small>上一张</small>bbox 文本边框</a><a class="next" href="../c/connectionstyle%20%E5%8F%98%E5%BD%A2%E7%AE%AD%E5%A4%B4.html"><small>下一张</small>connectionstyle 变形箭头</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

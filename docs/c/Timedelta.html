@@ -25,11 +25,25 @@
 <p>- 支持 days、seconds、microseconds、milliseconds、minutes、hours、weeks</p>
 <p>- 不支持 months 和 years 参数</p>
 <p>- 日期 + timedelta 得到新日期</p>
-<details class="quiz"><summary>timedelta(days=30) 和“加一个月”在 2 月场景下结果一样吗？</summary><div class="quiz-a">不一样，30 天是固定长度，加一个月要按日历月份算，2 月只有 28/29 天。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E7%B4%AF%E5%8A%A0%E6%9C%88%E7%AE%97%E6%B3%95.html">累加月算法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85.html">自动填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/datetime%20%E6%A8%A1%E5%9D%97.html">datetime 模块</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html"><small>上一张</small>Series.str 访问器</a><a class="next" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html"><small>下一张</small>VLOOKUP 式匹配</a></nav></article>
+<details class="quiz"><summary>timedelta(days=30) 和“加一个月”在 2 月场景下结果一样吗？</summary><div class="quiz-a">不一样，30 天是固定长度，加一个月要按日历月份算，2 月只有 28/29 天。</div></details>
+<p>timedelta(days=i) 生成 i 天的时间差，加到 date 上就得到“起始日期 + i 天”，是按天填充日期最直接的工具。支持 days、seconds、microseconds、milliseconds、minutes、hours、weeks 等单位。</p>
+<p>- 常用参数：days、seconds、microseconds、milliseconds、minutes、hours、weeks</p>
+<p>- 没有 months、years 参数，月/年必须自己写算法</p>
+<p>- date + timedelta 返回新日期，原对象不被修改</p>
+<details class="quiz"><summary>想加 3 个月能用 timedelta(months=3) 吗？</summary><div class="quiz-a">不能，timedelta 没有 months 参数，要自己写累加月算法</div></details>
+<details class="quiz"><summary>起始日期 2020-05-26 加 timedelta(days=2) 得到什么？</summary><div class="quiz-a">2020-05-28</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=25" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p25 S02E10.各种数据自动填充</a> · 2026-11-17</p>
+<p>Timedelta 是日期运算的产物，类似 Python 的 datetime.timedelta。它的显示形式如 7 days，其中的 days 是类型标识，不能直接当作整数参与算术或统计，需取 .days 属性。</p>
+<p>- 两个日期列/时间戳相减的结果类型，显示为 7 days</p>
+<p>- 显示的 days 表示类型特征，并非单位，不能当整数直接用</p>
+<p>- 用 .days 属性或 apply(lambda x: x.days) 取出整数天数</p>
+<details class="quiz"><summary>为什么 Timedelta 打印成 7 days 却不能直接乘单价？</summary><div class="quiz-a">它是时间差对象而不是数值，必须先取 .days 得到整数。</div></details>
+<details class="quiz"><summary>Timedelta 和 Timestamp 的区别是什么？</summary><div class="quiz-a">Timestamp 是某一时间点，Timedelta 是两个时间点之间的间隔。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=26" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p26 S02E11.列与列之间的计算</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Timestamp.html">Timestamp</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%97%A5%E6%9C%9F%E5%B7%AE%E8%AE%A1%E7%AE%97.html">日期差计算</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%B4%AF%E5%8A%A0%E6%9C%88%E7%AE%97%E6%B3%95.html">累加月算法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85.html">自动填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/datetime%20%E6%A8%A1%E5%9D%97.html">datetime 模块</a><span class="rel rel-plain">下位概念</span></li><li><a class="wl" href="../c/DATEDIF.html">DATEDIF</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/datetime.date.html">datetime.date</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html"><small>上一张</small>Series.str 访问器</a><a class="next" href="../c/Timestamp.html"><small>下一张</small>Timestamp</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

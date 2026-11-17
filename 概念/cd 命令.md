@@ -38,6 +38,17 @@ updated: 2026-11-17
 
 cd 命令的作用是什么？::切换命令行当前所在的工作目录。
 
+
+### 补充 · 2026-11-17
+
+命令行的所有相对操作都以「当前目录」为基准，cd 就是改变这个基准。本课用它进入 pip3.exe 所在文件夹，使 pip 命令能被找到并执行。
+
+- 写法：cd 空格 路径，路径含空格时需加引号
+- 路径因每人 Python 安装位置不同而异，需自行查找 pip3.exe
+- 默认安装时容易忘记装在哪，可用文件搜索定位 pip3.exe
+为什么 cd 到了 pip3.exe 目录后 pip 就能用，而 cd 到别处又不行？::因为命令行会优先在当前目录查找可执行文件；pip 目录未加入 PATH，所以只有身处该目录时才能按名字调用。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p15 S02E00.安装pandas.numpy.xlrd](https://www.bilibili.com/video/BV1ji4y157uB?p=15) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

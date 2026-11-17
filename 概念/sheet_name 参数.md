@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 40
 stage: "S02E25 · Excel文件的拆分与合并"
-order: 40
 ---
 
 # sheet_name 参数
@@ -70,6 +69,22 @@ sheet_name=1 和 sheet_name='1' 有什么区别？::前者按工作表索引（�
 - 可传表名字符串或 0 基索引
 - 传列表返回 {表名: DataFrame} 字典
 一个 Excel 有两个 sheet，想一次都读进来怎么写？::sheet_name=['花名册','成绩单'] 或 sheet_name=None，返回字典。
+
+一个 Excel 文件可有多张工作表，read_excel 一次只返回一张（或按 sheet_name 列表返回多张）。做跨表匹配时典型写法是同一个路径读两次，分别用 sheet_name='花名册' 和 sheet_name='成绩单'，得到两个 DataFrame 再 merge。
+
+- 默认值 0 表示第一张工作表
+- 传列表如 ['表1','表2'] 可一次返回多个 DataFrame（字典）
+- 同一文件读多张表要分多次 read_excel 调用
+要一次性拿到同一工作簿里的两张表，sheet_name 该怎么写？::传列表 ['花名册','成绩单']，会返回一个以表名为键的字典。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p44 S02E29.vlookup](https://www.bilibili.com/video/BV1ji4y157uB?p=44) · 2026-11-17
+
+默认只读第一个 sheet。sheet_name=None 会把每个 sheet 读成一个 DataFrame，整体返回 dict：键是 sheet 名，值是该表数据，这是合并多 sheet 的前提。
+
+- sheet_name=None 返回字典，键为 sheet 名、值为 DataFrame
+- sheet_name="Sheet1" 或 sheet_name=1 读第一页
+- sheet_name=[0, 1, "Sheet5"] 可一次读多页
+pd.read_excel(路径, sheet_name=None) 返回的是什么类型，怎么拿到第某个 sheet 的 DataFrame？::返回 dict，键为 sheet 名；用 数据[sheet名] 取出对应 DataFrame。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p40 S02E25.Excel文件的拆分与合并](https://www.bilibili.com/video/BV1ji4y157uB?p=40) · 2026-11-17
 
 ## 出处
 

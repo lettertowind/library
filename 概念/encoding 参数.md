@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 17
 stage: "S02E02 · 读取txt与csv文件"
-order: 17
 ---
 
 # encoding 参数
@@ -44,6 +43,17 @@ order: 17
 ## 自测
 
 读取 txt 出现乱码，最直接的参数修正是什么？::加 encoding='utf-8'（或文件实际编码）。
+
+
+### 补充 · 2026-11-17
+
+CSV 另存时若不是 UTF-8，read_csv 会直接抛错。修法有两种：在外部把文件另存为 UTF-8，或在代码里写 pd.read_csv(路径, encoding='utf-8')。真实的大数据文件往往无法在外部改编码，只能靠代码指定。
+
+- 标准写法 encoding='utf-8'，口述里的「uf 8 / utf 杠八」即此
+- 优先外部统一存成 UTF-8，跨团队文件更省事
+- 大数据文件改不了编码，只能在代码里加参数
+read_csv 报编码错误又没法改源文件，应怎么处理？::在 read_csv 中加 encoding='utf-8'（或文件实际编码）指定。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p26 S02E11.列与列之间的计算](https://www.bilibili.com/video/BV1ji4y157uB?p=26) · 2026-11-17
 
 ## 出处
 

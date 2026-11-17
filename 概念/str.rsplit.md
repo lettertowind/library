@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.rsplit
@@ -16,6 +15,40 @@ order: 38
 > 别名：rsplit、从右拆分
 
 **从右向左按指定字符拆分字符串的方法。**
+
+## 用法
+**语法**：`Series.str.rsplit(pat=None, n=-1, expand=False)`
+
+**参数**：
+- `pat`：拆分依据的字符串或正则，默认 `None` 表示按空白字符拆分
+- `n`：最多拆分几次，默认 `-1` 表示全部拆分；`n=1` 时只从右侧拆一刀
+- `expand`：为 `True` 时返回 DataFrame，各段各占一列；默认 `False` 返回字符串列表
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(["a-b-c", "x-y-z"])
+
+# 默认 n=-1，全部拆分，与 split 结果相同
+print(s.str.rsplit("-").tolist())
+# [['a', 'b', 'c'], ['x', 'y', 'z']]
+
+# n=1 从右拆一刀：保留右侧，左侧整体不动
+print(s.str.rsplit("-", n=1).tolist())
+# [['a-b', 'c'], ['x-y', 'z']]
+
+# 对照 split(n=1)：从左拆一刀，保留左侧
+print(s.str.split("-", n=1).tolist())
+# [['a', 'b-c'], ['x', 'y-z']]
+
+# expand=True 拆成多列，常用于取路径最后一段
+df = s.str.rsplit("-", n=1, expand=True)
+print(df)
+#      0  1
+# 0  a-b  c
+# 1  x-y  z
+```
 
 ## 解释
 

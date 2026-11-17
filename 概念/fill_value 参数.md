@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 43
 stage: "S02E28 · 数据透视表"
-order: 43
 ---
 
 # fill_value 参数
@@ -54,6 +53,22 @@ order: 43
 - 常见取值 fill_value=0
 - 只作用于缺失值，不作用于 inf
 fill_value=0 会修改原始 Series 吗？::不会，它只在本次运算中临时把缺失值当 0 处理。
+
+透视后某些单元格可能没有数据而显示 NaN。fill_value 可在结果中统一填充这些缺失值，常见写法是 fill_value=0。若缺失值参与后续计算，容易让结果仍为缺失值，因此有缺失时应加上。
+
+- 常见写法 fill_value=0。
+- 只替换透视结果中的缺失值。
+- 有缺失值时建议显式加上。
+fill_value=0 和 fillna(0) 有什么区别？::fill_value 填透视结果缺失值；fillna 填原 DataFrame 的缺失值。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p43 S02E28.数据透视表](https://www.bilibili.com/video/BV1ji4y157uB?p=43) · 2026-11-17
+
+它替代了“先 fillna 再运算”的两步操作，把填充和计算合并成一次调用。填充只发生在本次运算的缺失位置上，不会改动原始数据。
+
+- 只作用于对齐后缺失的位置，不修改原对象
+- 参数名是 fill_value，误写成 value 会报错
+- 与 fillna 的区别：fillna 改数据，fill_value 只管这一次运算
+fill_value=0 会不会把原 DataFrame 里的空值改成 0？::不会。它只在这一次运算中把缺失位置当作 0 参与计算，原数据仍是空值。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p34 S02E19.算数运算与数据对齐](https://www.bilibili.com/video/BV1ji4y157uB?p=34) · 2026-11-17
 
 ## 出处
 

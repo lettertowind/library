@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用逗号分隔字段的纯文本表格文件。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>CSV 文件 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>数据格式</span></nav><article class="card"><h1>CSV 文件</h1><div class="aliases">CSV · 逗号分隔值文件 · comma-separated values</div><p class="lede">用逗号分隔字段的纯文本表格文件。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>CSV 以纯文本保存二维表格，每行一条记录，字段间用逗号分隔。它体积小、通用性强，适合存储和交换大数据，Pandas 可直接读取分析。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>存储和交换表格数据</li><li>替代 Excel 处理大数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>纯文本格式，字段默认用逗号分隔</li><li>可用 read_csv 直接读取</li><li>大数据场景常替代 Excel</li><li>也可用 read_table 配合 sep=&#x27;,&#x27; 读取</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>CSV 没有统一编码和表头规范，读取时需注意 sep、header、encoding。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_csv.html">pd.read_csv</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/TSV%20%E6%96%87%E4%BB%B6.html">TSV 文件</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>CSV 文件为什么适合存大数据？</summary><div class="quiz-a">纯文本、结构简单、体积相对小且通用，便于程序读写。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>结构扁平、数据从第一行开始，不像 Excel 那样带空行空列和样式，所以读写都更省事。实际工作中的大数据多数以 CSV/TXT 存放，几 G 的 Excel 双击就会卡死，那种场景才是 Pandas 的主场。</p>
+<p>- 默认逗号分隔，也可能是 Tab 分隔，读取时要看 sep</p>
+<p>- 从 Excel 右键“另存为 CSV”即可生成</p>
+<p>- 数据从第一行开始，通常不需要 skiprows、usecols</p>
+<details class="quiz"><summary>同一份数据，为什么读 CSV 不需要 skiprows？</summary><div class="quiz-a">CSV 是纯文本、数据从第一行开始，没有 Excel 那种表头上方的空行和左侧空列</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=25" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p25 S02E10.各种数据自动填充</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=17" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p17 S02E02.读取txt与csv文件</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Excel%20%E6%96%87%E4%BB%B6.html">Excel 文件</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/TSV%20%E6%96%87%E4%BB%B6.html">TSV 文件</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%88%86%E9%9A%94%E6%96%87%E6%9C%AC%E6%96%87%E4%BB%B6.html">分隔文本文件</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%B7%A6%E8%BF%9E%E6%8E%A5.html"><small>上一张</small>左连接</a><a class="next" href="../c/Excel%20%E6%96%87%E4%BB%B6.html"><small>下一张</small>Excel 文件</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

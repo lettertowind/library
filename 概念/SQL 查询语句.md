@@ -45,6 +45,17 @@ SQL 是访问关系型数据库的标准语言，MySQL、SQL Server、SQLite 等
 
 为什么说学好 SQL 对数据分析是刚需？::数据大多存放在关系型数据库中，取数环节必须用 SQL，且它跨数据库通用。
 
+
+### 补充 · 2026-11-17
+
+Python 读库时必须告诉数据库「要哪些数据」，这就是 SQL 的职责。最常见的形如 select * from 表名，取全表数据；也可加条件、聚合后再交给 pandas。
+
+- 基本结构：select 字段 from 表名（可加 where、group by）
+- select * 表示取全部列
+- 表名、字段名需按自己的数据库实际填写
+为什么不宜总是 select * 取全表再在 pandas 里过滤？::会传输大量无用数据，速度慢；能在数据库内先过滤聚合就应该先做。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p18 S02E03.读取Mysql文件](https://www.bilibili.com/video/BV1ji4y157uB?p=18) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

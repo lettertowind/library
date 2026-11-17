@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把数值数组传给 c 参数，由数值大小自动决定点颜色的着色方式。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>颜色映射 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>颜色映射</h1><div class="aliases">color mapping · c 参数数值映射 · 数值着色</div><p class="lede">把数值数组传给 c 参数，由数值大小自动决定点颜色的着色方式。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>在散点图里，c 既可以接受固定颜色字符串（如 &#x27;red&#x27;，所有点同色），也可以接受一个数值数组，此时颜色按数值高低渐变，从而把第四个变量编码进图形。这属于“视觉通道编码数据”，必须依赖颜色条才能被读懂。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>用颜色表达一个额外的连续变量（如身高、类别得分）</li><li>突出某些数值区间，让高低值在图上自然分层</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>固定颜色：c=&#x27;red&#x27;；数值映射：c=身高数据</li><li>数值映射必须配合 plt.colorbar() 才能对应颜色和数值</li><li>颜色深浅需与数值大小一致，否则会造成误导</li><li>案例中用 np.arctan2(y, x) 生成数值颜色，属于技巧性写法，不必死记</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只有数值数组传入 c 才叫颜色映射；传颜色名只是样式设定。分类变量的颜色映射应使用离散色板。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.colorbar.html">plt.colorbar</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%95%A3%E7%82%B9%E5%9B%BE.html">散点图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 plt.scatter(x, y, c=身高) 画出的图不看颜色条就读不懂？</summary><div class="quiz-a">因为颜色只是数值的编码，没有图例就不知道哪种颜色对应哪个数值区间。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=65" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p65 S03E16.散点图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.colorbar.html">plt.colorbar</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E6%B0%94%E6%B3%A1%E5%9B%BE.html">气泡图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE%E6%8E%A5%E5%8F%A3%EF%BC%88Axes%20%E6%96%B9%E6%B3%95%EF%BC%89.html"><small>上一张</small>面向对象绘图接口（Axes 方法）</a><a class="next" href="../c/%E9%A5%BC%E5%9B%BE.html"><small>下一张</small>饼图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

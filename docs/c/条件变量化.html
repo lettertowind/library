@@ -18,11 +18,27 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>条件变量化</h1><div class="aliases">条件赋值给变量 · 条件先定义</div><p class="lede">把筛选条件先赋值给变量再用于筛选的写法习惯。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>把布尔条件或 query 字符串先存到变量里，再传给数据做筛选，代码更整洁、易调试。条件变多时尤其重要，避免一行里堆叠大量表达式。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>单条件筛选</li><li>多条件筛选</li><li>代码可读性维护</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>先写 条件 = 数据[&#x27;性别&#x27;] == &#x27;男&#x27;</li><li>再写 结果 = 数据[条件]</li><li>条件多时变量化优势明显</li><li>query 同样可先把字符串条件赋给变量</li></ul></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/query%20%E6%96%B9%E6%B3%95.html">query 方法</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>条件变量化的核心好处是什么？</summary><div class="quiz-a">代码更整洁、易读易调试，条件多时避免一行堆叠过长表达式。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2.html"><small>上一张</small>日期范围查询</a><a class="next" href="../c/%E7%81%B5%E6%B4%BB%E7%AE%97%E6%9C%AF%E6%96%B9%E6%B3%95.html"><small>下一张</small>灵活算术方法</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>条件变量化</h1><div class="aliases">条件赋值给变量 · 条件先定义</div><p class="lede">把筛选条件先赋值给变量再用于筛选的写法习惯。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>条件 = 数据[&#x27;列&#x27;] == &#x27;值&#x27;</code> → <code>结果 = 数据[条件]</code>（query 写法：<code>q = &#x27;列 &gt; 值&#x27;</code> → <code>数据.query(q)</code>） <strong>参数</strong>：</p>
+<ul><li><code>条件</code>：自定义变量名，存放布尔 Series，命名建议体现业务含义（如 <code>cond_male</code>）</li><li><code>数据[&#x27;列&#x27;] == &#x27;值&#x27;</code>：可换成 <code>&gt;</code>、<code>&gt;=</code>、<code>&lt;</code>、<code>isin([...])</code> 等任意布尔表达式</li><li><code>&amp;</code>、<code>|</code>、<code>~</code>：多条件组合，每个条件必须用括号包住</li><li><code>q</code>：query 字符串变量，内部直接用列名，无需 <code>数据[&#x27;列&#x27;]</code> 前缀</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;姓名&#x27;: [&#x27;张三&#x27;, &#x27;李四&#x27;, &#x27;王五&#x27;, &#x27;赵六&#x27;],
+                   &#x27;性别&#x27;: [&#x27;男&#x27;, &#x27;女&#x27;, &#x27;男&#x27;, &#x27;女&#x27;],
+                   &#x27;成绩&#x27;: [88, 92, 75, 96]})
+
+cond = df[&#x27;性别&#x27;] == &#x27;男&#x27;        # 先写条件
+cond2 = df[&#x27;成绩&#x27;] &gt;= 80         # 条件多时变量化优势明显
+print(df[cond &amp; cond2][&#x27;姓名&#x27;].tolist())
+# [&#x27;张三&#x27;]
+
+q = &#x27;成绩 &gt;= 90&#x27;                 # query 同样可先把字符串条件赋给变量
+print(df.query(q)[&#x27;姓名&#x27;].tolist())
+# [&#x27;李四&#x27;, &#x27;赵六&#x27;]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>把布尔条件或 query 字符串先存到变量里，再传给数据做筛选，代码更整洁、易调试。条件变多时尤其重要，避免一行里堆叠大量表达式。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>单条件筛选</li><li>多条件筛选</li><li>代码可读性维护</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>先写 条件 = 数据[&#x27;性别&#x27;] == &#x27;男&#x27;</li><li>再写 结果 = 数据[条件]</li><li>条件多时变量化优势明显</li><li>query 同样可先把字符串条件赋给变量</li></ul></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/query%20%E6%96%B9%E6%B3%95.html">query 方法</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>条件变量化的核心好处是什么？</summary><div class="quiz-a">代码更整洁、易读易调试，条件多时避免一行堆叠过长表达式。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2.html"><small>上一张</small>日期范围查询</a><a class="next" href="../c/%E6%9F%A5%E8%AF%A2%E4%B8%8E%E7%AD%9B%E9%80%89%EF%BC%88Query%20vs%20Filter%EF%BC%89.html"><small>下一张</small>查询与筛选（Query vs Filter）</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

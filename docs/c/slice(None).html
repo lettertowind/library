@@ -18,11 +18,26 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>slice(None)</h1><div class="aliases">slice(None) · 全部切片 · 任意所有行</div><p class="lede">在多层索引查询中表示某一层取全部标签的切片写法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>多层索引用 .loc 查询时，若想选外层索引下的所有内层行，内层不能简单写冒号，而要用 slice(None) 表示“全部”。它等价于 Python 切片中的 [:] 语义。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>查询某个外层索引下的全部内层行</li><li>多层索引中表达“任意”标签</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>slice(None) 表示该层取全部</li><li>多层行索引中不能只用冒号表示全部内层</li><li>常与元组形式的行标签配合使用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只在多层索引的 .loc 元组查询中有此特殊要求，单层索引直接用冒号即可。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/loc.html">loc</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>查询“一班”下所有学号的数据，行标签应该怎么写？</summary><div class="quiz-a">data.loc[(&#x27;一班&#x27;, slice(None)), :]</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/skiprows%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>skiprows 参数</a><a class="next" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html"><small>下一张</small>sort 参数（concat）</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>slice(None)</h1><div class="aliases">slice(None) · 全部切片 · 任意所有行</div><p class="lede">在多层索引查询中表示某一层取全部标签的切片写法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>df.loc[(外层标签, slice(None)), :]</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>slice(None)</code>：Python 内置切片对象，起止和步长都取 <code>None</code>，语义等价于 <code>[:]</code>，即在该索引层取全部标签</li><li>作为 <code>.loc</code> 行标签元组中的一个元素使用，第几个元素对应第几层索引</li><li><code>slice(None)</code> 也可以省略不写；但只写一个外层标签也能选出全部内层行，只是可读性较弱</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+idx = pd.MultiIndex.from_tuples(
+    [(&#x27;一班&#x27;, 1), (&#x27;一班&#x27;, 2), (&#x27;二班&#x27;, 1)],
+    names=[&#x27;班级&#x27;, &#x27;学号&#x27;])
+df = pd.DataFrame({&#x27;分数&#x27;: [90, 85, 78]}, index=idx)
+
+print(df.loc[(&#x27;一班&#x27;, slice(None)), :])
+#       分数
+# 班级 学号
+# 一班 1    90
+#     2    85</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>多层索引用 .loc 查询时，若想选外层索引下的所有内层行，内层不能简单写冒号，而要用 slice(None) 表示“全部”。它等价于 Python 切片中的 [:] 语义。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>查询某个外层索引下的全部内层行</li><li>多层索引中表达“任意”标签</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>slice(None) 表示该层取全部</li><li>多层行索引中不能只用冒号表示全部内层</li><li>常与元组形式的行标签配合使用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只在多层索引的 .loc 元组查询中有此特殊要求，单层索引直接用冒号即可。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/loc.html">loc</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>查询“一班”下所有学号的数据，行标签应该怎么写？</summary><div class="quiz-a">data.loc[(&#x27;一班&#x27;, slice(None)), :]</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/skiprows%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>skiprows 参数</a><a class="next" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html"><small>下一张</small>sort 参数（concat）</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

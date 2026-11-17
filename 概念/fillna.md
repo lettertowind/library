@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 31
 stage: "S02E16 · 处理缺失值"
-order: 31
 ---
 
 # fillna
@@ -16,6 +15,27 @@ order: 31
 > 别名：df.fillna、空值填充
 
 **将 DataFrame 中的缺失值替换为指定值的方法。**
+
+
+## 用法
+**语法**：`df.fillna(value=None, method=None, inplace=False, limit=None)`
+
+**参数**：
+- `value`：填充值，标量统一填充，字典按列名指定不同值
+- `method`：旧版写法，`'ffill'` 用前值、`'bfill'` 用后值；pandas 2.x 已废弃，改用 `df.ffill()` / `df.bfill()`
+- `inplace`：默认 `False` 返回新对象，`True` 则原地修改
+- `limit`：最多连续填充多少个空值
+
+**示例**：
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({"A": [1, np.nan, 3], "B": [np.nan, 20, 30]})
+print(df.fillna(0))                     # 统一填 0
+print(df.fillna({"A": 9, "B": 99}))     # 按列填不同值
+print(df.ffill())                       # 用前一个非空值填充（新版写法）
+```
 
 ## 解释
 
@@ -58,6 +78,14 @@ fillna() 支持三种主要填充方式：传常量统一填充、传字典按�
 - method='ffill'/'pad' 用前值，'bfill'/'backfill' 用后值
 不同列要填不同值，fillna 怎么传参？::传字典，如 df.fillna({'语文':0.1,'数学':0.2})。
 fillna(method='bfill') 和 ffill 有什么区别？::bfill 用后面的有效值向上填充，ffill 用前面的有效值向下填充。
+
+fillna 是缺失值处理中使用频率最高的一步。它支持三种填充方式：常量统一填充、字典按列指定不同值、method 按前后有效值传播填充；再配合 axis 控制方向、limit 控制数量，就能覆盖大部分补数场景。
+
+- data.fillna(520) 把所有空值统一填充为 520
+- 字典填充：键是列名、值是填充值，如 {'语文':0.1,'数学':0.2}
+- method='ffill' 用前面的值向下填，'bfill' 用后面的值向上填
+要给语文列填 0.1、数学列填 0.2、英语列填 0.3，fillna 的参数该怎么写？::传入字典：data.fillna({'语文':0.1,'数学':0.2,'英语':0.3})，键为列名、值为该列填充值。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p31 S02E16.处理缺失值](https://www.bilibili.com/video/BV1ji4y157uB?p=31) · 2026-11-17
 
 ## 出处
 

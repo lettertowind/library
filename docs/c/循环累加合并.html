@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="先建空 DataFrame，再在循环中用 concat 不断把新表接到累计表上，汇总多份数据。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>循环累加合并 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>循环累加合并</h1><div class="aliases">空表累加 · 累计 concat · merged = pd.concat([merged · table])</div><p class="lede">先建空 DataFrame，再在循环中用 concat 不断把新表接到累计表上，汇总多份数据。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.concat(objs, axis=0, ignore_index=False, keys=None)</code> <strong>参数</strong>：</p>
+<ul><li><code>objs</code>：待拼接的 DataFrame 列表，循环累加时写作 <code>[merged, table]</code></li><li><code>axis</code>：拼接方向，默认 0 按行追加；循环累加合并通常保持默认</li><li><code>ignore_index</code>：为 True 时重建 0..n-1 连续索引，避免累计表索引重复</li><li><code>keys</code>：给各来源加一层标签生成多层索引；循环累加一般不用</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+tables = [pd.DataFrame({&#x27;城市&#x27;: [&#x27;北京&#x27;], &#x27;销量&#x27;: [10]}),
+          pd.DataFrame({&#x27;城市&#x27;: [&#x27;上海&#x27;], &#x27;销量&#x27;: [20]})]
+
+merged = pd.DataFrame()
+for table in tables:
+    merged = pd.concat([merged, table], ignore_index=True)
+
+print(merged)
+#    城市  销量
+# 0  北京  10
+# 1  上海  20</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>合并同一文件夹下多个工作簿，或多 sheet 时，套路是先 merged = pd.DataFrame()，每读一份就 merged = pd.concat([merged, table]) 覆盖自己。思路是“总表 + 新表 → 新总表”滚雪球。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>合并一个文件夹下的多个 Excel 工作簿</li><li>合并一个工作簿内的多个 sheet</li><li>分批读取数据的汇总</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>空表直接 pd.DataFrame()，不必先建空 Excel 再读</li><li>必须自赋值 merged = pd.concat([merged, table])，否则白算</li><li>各来源列名要一致，否则合并后出现大片 NaN</li><li>循环内反复 concat 会整表拷贝，量大时先收集到 list 再拼一次</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只适合来源结构一致、总量不大的场景；列不一致或数据量巨大时应改用 append 到列表后一次性 concat。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.concat.html">pd.concat</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/os.listdir.html">os.listdir</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么合并循环里要写 merged = pd.concat([merged, table])，只写 pd.concat([merged, table]) 会怎样？</summary><div class="quiz-a">concat 返回新对象不修改原对象，不自赋值的话 merged 永远是空表，最后结果为空。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=40" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p40 S02E25.Excel文件的拆分与合并</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html"><small>上一张</small>布尔索引筛选</a><a class="next" href="../c/%E6%8B%86%E5%88%86%E2%80%94%E5%BA%94%E7%94%A8%E2%80%94%E5%90%88%E5%B9%B6.html"><small>下一张</small>拆分—应用—合并</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

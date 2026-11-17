@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 21
 stage: "S02E06 · 数据结构之DataFrame"
-order: 21
 ---
 
 # tail
@@ -16,6 +15,23 @@ order: 21
 > 别名：df.tail、查看后几行
 
 **返回 DataFrame 末尾若干行的方法，默认 5 行。**
+
+## 用法
+**语法**：`DataFrame.tail(n=5)`
+
+**参数**：
+- `n`：要返回的行数，默认 5，必须是整数；给 0 时返回空表，行数不足 n 时返回全部行
+
+**示例**：
+```python
+import pandas as pd
+df = pd.DataFrame({'姓名': ['张三', '李四', '王五', '赵六', '钱七', '孙八', '周九'],
+                   '成绩': [88, 92, 79, 85, 90, 67, 95]})
+print(df.tail())        # 默认返回后 5 行：王五 ~ 周九
+print(df.tail(2))       # 只返回最后 2 行：孙八、周九
+print(df.head(2))       # 与 head 对照：前 2 行张三、李四
+print(len(df))          # 原表仍是 7 行，tail 不改变数据
+```
 
 ## 解释
 

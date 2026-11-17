@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 by 和 ascending 列表按优先级依次对多个字段排序。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>多字段排序 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>多字段排序</h1><div class="aliases">multi-column sort · sort_values 多列排序 · by 列表排序 · 多列排序</div><p class="lede">用 by 和 ascending 列表按优先级依次对多个字段排序。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.sort_values(by, ascending=True, inplace=False)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>by</code>：字段名列表，如 <code>[&#x27;语文&#x27;,&#x27;数学&#x27;]</code>，列表顺序即排序优先级</li><li><code>ascending</code>：布尔值或布尔列表；传列表时长度与 <code>by</code> 一一对应，<code>False</code> 为降序</li><li><code>inplace</code>：默认 <code>False</code> 返回新表；设为 <code>True</code> 在原表上修改，返回 <code>None</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({
+    &#x27;姓名&#x27;: [&#x27;张三&#x27;, &#x27;李四&#x27;, &#x27;王五&#x27;, &#x27;赵六&#x27;],
+    &#x27;语文&#x27;: [90, 90, 85, 90],
+    &#x27;数学&#x27;: [70, 95, 88, 82],
+})
+
+res = df.sort_values(by=[&#x27;语文&#x27;, &#x27;数学&#x27;], ascending=[False, True])
+print(res)
+#    姓名  语文  数学
+# 0  张三  90  70
+# 3  赵六  90  82
+# 1  李四  90  95
+# 2  王五  85  88
+# 数学列看似乱序，是因为它只在语文成绩相同的组内升序</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>多字段排序仍是 sort_values 的用法，只是把 by 写成字段名列表、ascending 写成对应的布尔列表。它不是让每一列同时保持全局升序或降序，而是按列表顺序逐级比较：前一个字段决定主要顺序，后一个字段只在前一个字段取值相同的组内起作用。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按语文、数学、英语多个成绩字段依次排序</li><li>需要先按大类再按小类排序的报表场景</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>by 写成 [&#x27;字段1&#x27;,&#x27;字段2&#x27;]，不能只写一个字符串，否则只是单字段排序</li><li>ascending 也必须是列表，长度与 by 一一对应，如 [False, True, False]</li><li>排序优先级从左到右，后面的字段只在前一字段相同（或同一层级）时才影响结果</li><li>结果中某列看似乱序是正常的，因为它受更高优先级字段约束</li><li>inplace 的作用与单字段排序完全一致</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>字段越多排序开销越大；若把 ascending 写成单个布尔值而非列表，会导致结果与预期不符。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/sort_values.html">sort_values</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/by%20%E5%8F%82%E6%95%B0.html">by 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/ascending%20%E5%8F%82%E6%95%B0.html">ascending 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/inplace%20%E5%8F%82%E6%95%B0.html">inplace 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>按 by=[&#x27;语文&#x27;,&#x27;数学&#x27;]、ascending=[False,True] 排序后，数学列里出现了较小的值排在中间，是不是排序失败了？</summary><div class="quiz-a">不是。数学只在语文成绩相同的组内升序，整体顺序由语文降序主导。</div></details>
+<details class="quiz"><summary>如果 by 传了三个字段，ascending 只写 [False] 会发生什么？</summary><div class="quiz-a">长度不匹配会报错；ascending 必须与 by 中字段一一对应。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=27" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p27 S02E12.数据排序【已修证】</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%A4%9A%E5%80%BC%E6%9B%BF%E6%8D%A2.html"><small>上一张</small>多值替换</a><a class="next" href="../c/%E5%A4%9A%E5%AF%B9%E5%A4%9A%E5%8C%B9%E9%85%8D.html"><small>下一张</small>多对多匹配</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

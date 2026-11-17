@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 22
 stage: "S02E07 · 连接查询之Merge"
-order: 22
 ---
 
 # right_index 参数
@@ -46,6 +45,17 @@ order: 22
 ## 自测
 
 右表已用姓名做索引，左表姓名在普通列，如何内连接？::pd.merge(left, right, left_on='姓名', right_index=True)。
+
+
+### 补充 · 2026-11-17
+
+当右表的键恰好是它的行索引时，不必先把索引 reset 成普通列，直接 left_on='姓名', right_index=True 即可完成列对索引的连接。这在数据量大、改索引代价高时尤其方便。
+
+- 默认值为 False，必须显式写成 True 才生效
+- 与 left_on='列名' 搭配，表示左表列连右表索引
+- 连接方式仍由 how 控制，默认为内连接
+右表连接键在索引上，为什么不一定非要用 reset_index 转成列？::因为可以用 right_index=True 直接把右表索引当键连接，避免对大数据量重排索引的额外开销。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p22 S02E07.连接查询之Merge](https://www.bilibili.com/video/BV1ji4y157uB?p=22) · 2026-11-17
 
 ## 出处
 

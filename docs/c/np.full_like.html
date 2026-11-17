@@ -38,11 +38,19 @@ print(c)
 #  [1.5 1.5 1.5]]
 print(a)                          # a 仍是原值
 # [[1 2 3]
-#  [4 5 6]]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>full_like 结合了「复用形状」和「自定义填充值」：第一个参数是参照数组，第二个参数是要填充的数值。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要与现有数组同形状、同填充值的数组时</li><li>批量生成常量矩阵</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法：np.full_like(a, 520)，第二个参数必填</li><li>形状与 a 相同，元素全为填充值</li><li>不修改原数组</li><li>易错：漏写第二个参数或漏写 np 前缀</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 np.full 的区别：full 手动传形状元组，full_like 复用已有数组形状。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.full.html">np.full</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/np.ones_like.html">np.ones_like</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.full_like(a, 520) 中两个参数分别是什么含义？</summary><div class="quiz-a">第一个是参照形状的数组 a，第二个是要填充的数值 520</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.ones_like.html">np.ones_like</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.full.html"><small>上一张</small>np.full</a><a class="next" href="../c/np.in1d.html"><small>下一张</small>np.in1d</a></nav></article>
+#  [4 5 6]]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>full_like 结合了「复用形状」和「自定义填充值」：第一个参数是参照数组，第二个参数是要填充的数值。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要与现有数组同形状、同填充值的数组时</li><li>批量生成常量矩阵</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法：np.full_like(a, 520)，第二个参数必填</li><li>形状与 a 相同，元素全为填充值</li><li>不修改原数组</li><li>易错：漏写第二个参数或漏写 np 前缀</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 np.full 的区别：full 手动传形状元组，full_like 复用已有数组形状。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.full.html">np.full</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/np.ones_like.html">np.ones_like</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.full_like(a, 520) 中两个参数分别是什么含义？</summary><div class="quiz-a">第一个是参照形状的数组 a，第二个是要填充的数值 520</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>与 np.full 需要手动给形状不同，full_like 直接复用传入数组的 shape，因此特别适合“照着某个现成数组的尺寸造一个同尺寸的常量数组”。语法上要注意：数组在前、填充值在后，用逗号隔开。</p>
+<p>- 语法为 np.full_like(a, 520)，数组参数在前，填充值在后</p>
+<p>- 形状自动取自数组 a，无需再传形状元组</p>
+<p>- 与 ones_like、zeros_like 同属“只换值不换形状”的系列</p>
+<details class="quiz"><summary>已有数组 a 是 2 行 3 列，np.full_like(a, 520) 的结果是什么？</summary><div class="quiz-a">一个同样 2 行 3 列、元素全为 520 的新数组，a 本身不被修改。</div></details>
+<details class="quiz"><summary>np.full_like 和 np.full 的关键区别是什么？</summary><div class="quiz-a">full 需要手动传形状元组，full_like 直接复用传入数组的形状。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=5" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p05 S01E04.多维数组</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.ones_like.html">np.ones_like</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.full.html"><small>上一张</small>np.full</a><a class="next" href="../c/np.in1d.html"><small>下一张</small>np.in1d</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

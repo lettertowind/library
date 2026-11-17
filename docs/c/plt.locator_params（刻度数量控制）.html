@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 nbins 指定坐标轴大约分成几份、显示几个刻度的 Matplotlib 函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.locator_params（刻度数量控制） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.locator_params（刻度数量控制）</h1><div class="aliases">locator_params · nbins · 坐标轴分段 · 刻度个数</div><p class="lede">用 nbins 指定坐标轴大约分成几份、显示几个刻度的 Matplotlib 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>它按“想分几段”的思路让 Matplotlib 自动挑刻度位置，而不是逐个指定刻度值。传 axis=&#x27;x&#x27; 只改 x 轴，不传则 x、y 轴一起分割。也可先 plt.gca() 取得轴对象，再调用 ax.locator_params，效果完全一致。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>刻度太密或太稀时快速调整刻度数量</li><li>出图前粗调坐标轴分段</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>nbins=5 表示显示约 5 个刻度值，不是固定值列表</li><li>axis=&#x27;x&#x27; 只作用于 x 轴，省略则两轴统一分割</li><li>nbins 只是期望值，Matplotlib 会在取整后的合理位置放置刻度</li><li>若要指定具体刻度值，应改用 set_xticks/set_yticks</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 plt.xticks 传具体刻度列表不同，locator_params 只控制“数量/分段”，不控制“具体值”。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E5%AE%9A%E4%BD%8D%E5%99%A8%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%99%A8%EF%BC%88Locator%20Formatter%EF%BC%89.html">刻度定位器与格式器（Locator Formatter）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/MultipleLocator.html">MultipleLocator</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>只想让 x 轴出现 4 个左右刻度值，写一行代码？</summary><div class="quiz-a">plt.locator_params(axis=&#x27;x&#x27;, nbins=4)</div></details>
+<details class="quiz"><summary>locator_params(nbins=5) 和 xticks([1,2,3]) 的本质区别？</summary><div class="quiz-a">前者只给刻度数量让系统自动定位，后者强制指定每个刻度值。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=68" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p68 S03E19.坐标轴【下】</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/plt.legend%20%E5%9B%BE%E4%BE%8B.html"><small>上一张</small>plt.legend 图例</a><a class="next" href="../c/plt.plot.html"><small>下一张</small>plt.plot</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

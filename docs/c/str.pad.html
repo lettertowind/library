@@ -18,12 +18,33 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.pad</h1><div class="aliases">pad · 填充对齐</div><p class="lede">用指定字符把字符串填充到指定宽度的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.pad(width, side, fillchar) 把每个字符串补到指定宽度。side 控制填充方向：left 右对齐、right 左对齐、both 两端填充。fillchar 只能是一个字符。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>统一字符串宽度</li><li>生成定长编码</li><li>对齐显示文本</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>width 为目标宽度</li><li>side 可取 left、right、both</li><li>fillchar 只能是一个字符</li><li>center、ljust、rjust 是它的演变方法</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>fillchar 多字符会报错；记住 pad 即可，其余方法了解为主。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.zfill.html">str.zfill</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>side=&#x27;right&#x27; 时填充方向是哪边，效果相当于什么对齐？</summary><div class="quiz-a">从右侧填充，相当于左对齐。</div></details>
-<details class="quiz"><summary>str.pad 的 fillchar 能传多个字符吗？</summary><div class="quiz-a">不能，只能是一个字符。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.zfill.html">str.zfill</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.match.html"><small>上一张</small>str.match</a><a class="next" href="../c/str.partition.html"><small>下一张</small>str.partition</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.pad</h1><div class="aliases">pad · 填充对齐</div><p class="lede">用指定字符把字符串填充到指定宽度的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.pad(width, side=&#x27;left&#x27;, fillchar=&#x27; &#x27;)</code> <strong>参数</strong>：</p>
+<ul><li><code>width</code>：目标总宽度，若原字符串长度已不小于该值，则原样返回</li><li><code>side</code>：填充方向，<code>&#x27;left&#x27;</code> 表示在左侧填充（右对齐），<code>&#x27;right&#x27;</code> 表示在右侧填充（左对齐），<code>&#x27;both&#x27;</code> 表示两端填充</li><li><code>fillchar</code>：填充字符，只能是一个字符，默认空格，多字符会报错</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&#x27;ab&#x27;, &#x27;abc&#x27;, &#x27;a&#x27;])
+print(s.str.pad(5, side=&#x27;left&#x27;, fillchar=&#x27;*&#x27;).tolist())
+# [&#x27;***ab&#x27;, &#x27;**abc&#x27;, &#x27;****a&#x27;]
+print(s.str.pad(5, side=&#x27;right&#x27;, fillchar=&#x27;0&#x27;).tolist())
+# [&#x27;ab000&#x27;, &#x27;abc00&#x27;, &#x27;a0000&#x27;]
+print(s.str.pad(5, side=&#x27;both&#x27;, fillchar=&#x27;-&#x27;).tolist())
+# [&#x27;--ab-&#x27;, &#x27;-abc-&#x27;, &#x27;--a--&#x27;]
+print(s.str.pad(2, side=&#x27;left&#x27;).tolist())  # 宽度不足时原样返回
+# [&#x27;ab&#x27;, &#x27;abc&#x27;, &#x27;a&#x27;]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>str.pad(width, side, fillchar) 把每个字符串补到指定宽度。side 控制填充方向：left 右对齐、right 左对齐、both 两端填充。fillchar 只能是一个字符。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>统一字符串宽度</li><li>生成定长编码</li><li>对齐显示文本</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>width 为目标宽度</li><li>side 可取 left、right、both</li><li>fillchar 只能是一个字符</li><li>center、ljust、rjust 是它的演变方法</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>fillchar 多字符会报错；记住 pad 即可，其余方法了解为主。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.zfill.html">str.zfill</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>side=&#x27;right&#x27; 时填充方向是哪边，效果相当于什么对齐？</summary><div class="quiz-a">从右侧填充，相当于左对齐。</div></details>
+<details class="quiz"><summary>str.pad 的 fillchar 能传多个字符吗？</summary><div class="quiz-a">不能，只能是一个字符。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>定义宽度和填充字符后自动补足长度，side 参数决定补在哪一侧。center、ljust、rjust 都是它的衍生写法，记住 pad 一个即可覆盖。</p>
+<p>- width 指补齐后的总宽度，fillchar 只能是单个字符</p>
+<p>- side 取 left（默认）、right 或 both</p>
+<p>- center、ljust、rjust 是衍生方法，优先记 pad</p>
+<details class="quiz"><summary>想让填充出现在两端，side 传什么？</summary><div class="quiz-a">&#x27;both&#x27;</div></details>
+<details class="quiz"><summary>zfill 与 pad 的关键差别是什么？</summary><div class="quiz-a">zfill 只能用 0 从左侧补，pad 可指定填充字符和方向</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=38" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p38 S02E23.字符串操作（上）</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.center.html">str.center</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/str.ljust.html">str.ljust</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/str.rjust.html">str.rjust</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/str.zfill.html">str.zfill</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.match.html"><small>上一张</small>str.match</a><a class="next" href="../c/str.partition.html"><small>下一张</small>str.partition</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

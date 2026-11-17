@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 39
 stage: "S02E24 · 字符串操作（下）"
-order: 39
 ---
 
 # astype(str)
@@ -16,6 +15,27 @@ order: 39
 > 别名：astype、类型转换、转字符串
 
 **把 Series 数据类型转换为字符串的 Pandas 方法。**
+
+## 用法
+**语法**：`Series.astype(str)`
+**参数**：
+- `dtype`：目标类型，这里传 `str`；也接受 `'str'`、`'object'` 或 numpy 类型
+- `copy`：默认 `True`，返回新对象而不修改原 Series
+- `errors`：默认 `'raise'`，转换失败即报错；设为 `'ignore'` 则保留原值
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(pd.to_datetime(['2020-01-02', '2020-03-15']))
+s_str = s.astype(str)
+print(s_str.dtype)          # object
+print(s_str.str[:7].tolist())  # ['2020-01', '2020-03']
+
+n = pd.Series([100, 250])
+print(n.astype(str).str.len().tolist())  # [3, 3]
+print(n.dtype)              # int64（原 Series 不变，copy=True）
+```
 
 ## 解释
 

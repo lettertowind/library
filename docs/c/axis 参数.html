@@ -43,11 +43,51 @@
 <p>- 默认 axis=0，按列值排行</p>
 <p>- axis=1 时按行值排序列顺序</p>
 <p>- 按行索引排序时 by 写行索引名并设 axis=1</p>
-<details class="quiz"><summary>想按某一行索引对列顺序排序，axis 要设成多少？</summary><div class="quiz-a">axis=1</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/ndarray.sort.html">ndarray.sort</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/np.sum.html">np.sum</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%B2%BF%E8%BD%B4%E5%88%87%E7%89%87.html">沿轴切片</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%BD%AC%E7%BD%AE.html">转置</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%BD%B4%E8%BD%AC%E7%BD%AE.html">轴转置</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/axis%3D1%20%E6%8C%89%E5%88%97%E5%88%86%E7%BB%84.html">axis=1 按列分组</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/drop.html">drop</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/labels%20%E5%8F%82%E6%95%B0.html">labels 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/m.name%20%E5%88%97%E5%90%8D%E8%A1%8C%E5%90%8D%E5%88%A4%E6%96%AD.html">m.name 列名行名判断</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html">method 参数（fillna）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/BMI%20%E8%AE%A1%E7%AE%97.html">BMI 计算</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E6%A0%B7%E6%9C%AC%E4%B8%8E%E7%89%B9%E5%BE%81.html">样本与特征</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/argsort.html"><small>上一张</small>argsort</a><a class="next" href="../c/dtype%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>dtype 参数</a></nav></article>
+<details class="quiz"><summary>想按某一行索引对列顺序排序，axis 要设成多少？</summary><div class="quiz-a">axis=1</div></details>
+<p>axis 是 NumPy 与 Pandas 中控制运算方向的公共参数：在 ndarray 聚合中 axis=0 沿行方向、axis=1 沿列方向。在 Matplotlib 的 plt.grid 中它含义不同，用于选择只作用于 x 轴还是 y 轴的网格线。</p>
+<p>- NumPy/Pandas 中 axis=0 沿行、axis=1 沿列</p>
+<p>- plt.grid 中 axis=&#x27;x&#x27; 是竖直网格线，axis=&#x27;y&#x27; 是横向网格线</p>
+<p>- plt.grid 省略 axis 时两个方向同时生效</p>
+<details class="quiz"><summary>plt.grid(axis=&#x27;x&#x27;) 加的是横线还是竖线？为什么？</summary><div class="quiz-a">竖线，因为线由 x 轴各刻度位置向上延伸，按所属轴命名。</div></details>
+<details class="quiz"><summary>NumPy 里 axis=1 和 plt.grid 里 axis=&#x27;x&#x27; 是同一含义吗？</summary><div class="quiz-a">不是，前者指沿列方向运算，后者指网格线归属 x 轴。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=64" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p64 S03E15.网格线</a> · 2026-11-17</p>
+<p>行标签 0、1、2… 对应零轴 axis=0，运算「一行一行向下走」；列标签对应一轴 axis=1，运算「竖着走」即横向跨列。在 apply 中 axis=0 表示对每一列执行函数，axis=1 表示对每一行执行函数。</p>
+<p>- axis=0 对应行标签方向，逐行向下累加，结果是每列的汇总</p>
+<p>- axis=1 对应列标签方向，把一行数据横着组合，结果是每行的结果</p>
+<p>- apply 中 axis=0 对每列调用函数，axis=1 对每行调用函数</p>
+<details class="quiz"><summary>df[[&quot;语文&quot;,&quot;数学&quot;]].apply(sum, axis=0) 是把每行的三科相加吗？</summary><div class="quiz-a">不是，是每列各自逐行向下累加，得到每列总分</div></details>
+<details class="quiz"><summary>想按人计算跨列公式（如 BMI），axis 应取几？</summary><div class="quiz-a">axis=1，因为需要把同一行的身高和体重放在一起</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=45" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p45 S02E30.数据处理的三板斧</a> · 2026-11-17</p>
+<p>所有数学统计函数都带 axis 参数，用来决定是行与行之间聚合，还是列与列之间聚合。不指定时是全局计算，指定后结果维度会减少一维，处理二维数据时很容易搞混方向。</p>
+<p>- 0 轴代表行，1 轴代表列</p>
+<p>- axis=0：行与行对应位置相加，结果每个元素对应一列</p>
+<p>- axis=1：每行内部各列相加，结果每个元素对应一行</p>
+<details class="quiz"><summary>arr2.sum(axis=1) 得到的是什么？</summary><div class="quiz-a">每一行内部各列元素之和，结果是长度等于行数的一维数组。</div></details>
+<details class="quiz"><summary>为什么说 axis=0 得到的是「每一列的结果」？</summary><div class="quiz-a">因为它把多行同一位置的数相加，压缩掉了行维度，剩下的每个元素对应一列。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=13" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p13 S01E12.数学和统计方法</a> · 2026-11-17</p>
+<p>轴不是抽象方向，而是高维数组每一层嵌套结构的编号。数组有几个维度就有几个轴，轴号依次为 0、1、2……，0 轴对应最高维/最外层，末轴对应最内层的一维数据。</p>
+<p>- 轴数等于数组维度数，一维只有 0 轴，二维有 0、1 轴。</p>
+<p>- 二维数组通常行是 0 轴、列是 1 轴。</p>
+<p>- 三维数组可按嵌套层级理解：块是 0 轴、行是 1 轴、列是 2 轴。</p>
+<details class="quiz"><summary>一个 shape 为 (4, 3, 2) 的三维数组有几个轴？分别可怎么理解？</summary><div class="quiz-a">有 3 个轴：0 轴是块（4 块），1 轴是行（每块 3 行），2 轴是列（每块 2 列）。</div></details>
+<details class="quiz"><summary>为什么说“轴号就是维度元组索引”？</summary><div class="quiz-a">因为数组维度元组有几项，就有几个轴号，依次为 0、1、2……，轴号对应元组中该维的位置。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=10" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p10 S01E09.数组的轴和转置</a> · 2026-11-17</p>
+<p>在 DataFrame.apply 里，默认 axis=0 表示逐列传入 Series，必须显式写 axis=1 才会逐行传入。因此「对某一行做平方」如果没写 axis=1，结果表不会有任何变化。</p>
+<p>- 默认 axis=0：沿列操作，回调拿到一列</p>
+<p>- axis=1：沿行操作，回调拿到一行</p>
+<p>- 对列计算不必改轴；对行计算必须显式指定 axis=1</p>
+<details class="quiz"><summary>想用 DataFrame.apply 把第一行平方，为什么结果没变化？</summary><div class="quiz-a">默认 axis=0 是按列处理，需加 axis=1 才按行处理。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=26" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p26 S02E11.列与列之间的计算</a> · 2026-11-17</p>
+<p>### 补充 · 2026-11-17</p>
+<p>用 0 表示行方向、1 表示列方向的操作轴参数。</p>
+<p>- axis=0 为默认值，表示行方向</p>
+<p>- axis=1 表示列方向，删列必写</p>
+<p>- 写错轴会触发 KeyError（按行找不到该列名）</p>
+<p>- Numpy 的 axis 方向含义与此一致，可迁移理解</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/ax.axis%EF%BC%88%E4%B8%80%E6%AC%A1%E8%AE%BE%E7%BD%AE%E5%9D%90%E6%A0%87%E8%BD%B4%E5%9B%9B%E8%BE%B9%E7%95%8C%EF%BC%89.html">ax.axis（一次设置坐标轴四边界）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/ax.axis%EF%BC%88%E4%B8%80%E6%AC%A1%E8%AE%BE%E7%BD%AE%E5%9D%90%E6%A0%87%E8%BD%B4%E5%9B%9B%E8%BE%B9%E7%95%8C%EF%BC%89.html">ax.axis（一次设置坐标轴四边界）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plt.grid%EF%BC%88%E7%BD%91%E6%A0%BC%E7%BA%BF%EF%BC%89.html">plt.grid（网格线）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/ndarray.sort.html">ndarray.sort</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/np.concatenate.html">np.concatenate</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/np.sum.html">np.sum</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%B1%95%E5%B9%B3%E9%A1%BA%E5%BA%8F.html">展平顺序</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%B2%BF%E8%BD%B4%E5%88%87%E7%89%87.html">沿轴切片</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%BD%AC%E7%BD%AE.html">转置</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%BD%B4%E8%BD%AC%E7%BD%AE.html">轴转置</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/args%20%E5%8F%82%E6%95%B0.html">args 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/axis%3D1%20%E6%8C%89%E5%88%97%E5%88%86%E7%BB%84.html">axis=1 按列分组</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/drop.html">drop</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">how 参数（dropna）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/labels%20%E5%8F%82%E6%95%B0.html">labels 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/m.name%20%E5%88%97%E5%90%8D%E8%A1%8C%E5%90%8D%E5%88%A4%E6%96%AD.html">m.name 列名行名判断</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html">method 参数（fillna）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%A8%AA%E5%90%91%E6%8E%92%E5%BA%8F.html">横向排序</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/BMI%20%E8%AE%A1%E7%AE%97.html">BMI 计算</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E6%A0%B7%E6%9C%AC%E4%B8%8E%E7%89%B9%E5%BE%81.html">样本与特征</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/argsort.html"><small>上一张</small>argsort</a><a class="next" href="../c/dtype%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>dtype 参数</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

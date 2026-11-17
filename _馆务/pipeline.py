@@ -185,6 +185,21 @@ def check_env():
 
 # ---------------------------------------------------------------- 主流程
 
+# 教学视频用「教程」风格：BiliNote 的 detailed 只要求“尽可能多记录”，
+# 实际生成常把讲解压缩成几句结论；tutorial 明确要求关键点、结论与步骤。
+# extras 再补一层硬约束，防止漏掉分点讲解和代码。
+PROFESSIONAL_STYLE = "tutorial"
+PROFESSIONAL_EXTRAS = (
+    "请以专业课程笔记的标准记录："
+    "1) 按视频讲解顺序逐节展开，讲师列出的每一个分点、术语、函数、参数都要记到，"
+    "不得只写‘讲了XX’这类概括；"
+    "2) 所有代码、命令、表达式、快捷键原样保留，并说明它在做什么；"
+    "3) 每个概念写清‘是什么/怎么工作/和谁相邻易混/什么时候用’；"
+    "4) 讲师给出的对比、踩坑、结论必须逐条记录，不要合并成一句；"
+    "5) 宁可长，不要省略。"
+)
+
+
 def submit(url, provider_id, model):
     payload = {
         "video_url": url,
@@ -194,9 +209,9 @@ def submit(url, provider_id, model):
         "link": True,
         "model_name": model,
         "provider_id": provider_id,
-        "style": "detailed",
+        "style": PROFESSIONAL_STYLE,
         "format": [],
-        "extras": "",
+        "extras": PROFESSIONAL_EXTRAS,
     }
     r = http_json("/api/generate_note", "POST", payload, timeout=60)
     if r.get("code") != 0:

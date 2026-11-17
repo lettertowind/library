@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 17
 stage: "S02E02 · 读取txt与csv文件"
-order: 17
 ---
 
 # pd.read_csv
@@ -16,6 +15,30 @@ order: 17
 > 别名：read_csv、读取 CSV
 
 **Pandas 读取分隔文本文件的核心函数，默认逗号分隔。**
+
+## 用法
+**语法**：`pd.read_csv(filepath_or_buffer, sep=',', header='infer', names=None, usecols=None, nrows=None, encoding=None)`
+**参数**：
+- `filepath_or_buffer`：文件路径或类文件对象（如 `StringIO`），不限于 `.csv` 后缀的分隔文本
+- `sep`：分隔符，默认 `','`；读取制表符文件时用 `sep='\t'`
+- `header`：表头所在行号，默认为 `'infer'`；文件无表头时写 `None`，再配合 `names` 自定义列名
+- `names`：自定义列名列表，常与 `header=None` 搭配
+- `usecols`：只读入指定列，减少内存占用
+- `nrows`：只读取前 n 行，真正减少内存中的数据量；`head()` 只影响显示
+- `encoding`：文件编码，中文乱码时用 `'utf-8'` 或 `'gbk'`
+**示例**：
+```python
+import io
+import pandas as pd
+
+txt = "1\t杨过\t95\n2\t小龙女\t88\n3\t郭靖\t90\n"
+df = pd.read_csv(io.StringIO(txt), sep='\t', header=None,
+                 names=['序号', '姓名', '分数'], nrows=2)
+print(df.values.tolist())
+# [[1, '杨过', 95], [2, '小龙女', 88]]   ← nrows 只读入 2 行
+print(df.columns.tolist())
+# ['序号', '姓名', '分数']
+```
 
 ## 解释
 

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 invert_xaxis()/invert_yaxis() 把某条轴的显示方向由小到大改为大到小。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>坐标轴翻转 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>坐标轴翻转</h1><div class="aliases">invert_xaxis · invert_yaxis · 轴反向 · axis inversion</div><p class="lede">用 invert_xaxis()/invert_yaxis() 把某条轴的显示方向由小到大改为大到小。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认坐标轴数值从 0 递增到 1，翻转后变成从 1 递减到 0。它只改变显示方向，不动数据本身，适合表达「越大越靠下」「排名靠前在上」这类视觉习惯。可以直接链式写成 plt.gca().invert_yaxis()。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>希望 y 轴从上往下递增，例如排名、深度、优先级</li><li>让视觉方向符合特定阅读或表达习惯</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>invert_xaxis() 管 x 轴，invert_yaxis() 管 y 轴，不可混用</li><li>可写 plt.gca().invert_yaxis() 省去先定义 ax</li><li>只影响显示方向，DataFrame 里的数值不变</li><li>对同一轴重复调用会来回翻转（每次取反）</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与「修改数据」完全不同：翻转不改变数据内容，也不改变刻度间隔，只改轴的方向。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>调用 invert_yaxis() 后，df[&#x27;身高&#x27;] 里的数值顺序会变吗？</summary><div class="quiz-a">不会，只改变显示方向，原始数据保持不变。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=67" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p67 S03E18.坐标轴【上】</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%9B%BE%E4%BE%8B%E4%BD%BF%E7%94%A8%E6%97%B6%E6%9C%BA.html"><small>上一张</small>图例使用时机</a><a class="next" href="../c/%E5%9D%90%E6%A0%87%E8%BD%B4%E8%BE%B9%E7%95%8C%E5%8F%82%E6%95%B0%EF%BC%88bottomtopleftright%EF%BC%89.html"><small>下一张</small>坐标轴边界参数（bottomtopleftright）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

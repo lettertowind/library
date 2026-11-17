@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 35
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # pd.MultiIndex.from_arrays
@@ -16,6 +15,27 @@ order: 4
 > 别名：from_arrays、数组创建 MultiIndex
 
 **用多个数组按位置对应创建多层索引的方法。**
+
+
+## 用法
+**语法**：`pd.MultiIndex.from_arrays(arrays, sortorder=None, names=None)`
+**参数**：
+- `arrays`：一组数组，每个数组代表一层索引，按位置一一对应组合，各数组长度必须相同
+- `sortorder`：可选整数，指定按哪一层排序，一般保持默认 `None`
+- `names`：列表，为各层索引命名，长度需与层数一致；构造多层列索引时常配合 `df.columns = ...` 使用
+**示例**：
+```python
+import pandas as pd
+
+l1 = ["一季度"] * 3 + ["二季度"] * 2
+l2 = ["1月", "2月", "3月", "4月", "5月"]
+mi = pd.MultiIndex.from_arrays([l1, l2], names=["季度", "月份"])
+print(mi.tolist())
+# [('一季度', '1月'), ('一季度', '2月'), ('一季度', '3月'), ('二季度', '4月'), ('二季度', '5月')]
+print(mi.names)
+# ['季度', '月份']
+```
+> 一层对应 3 个月、另一层对应 2 个月，数量不等，只能用「按位置对应」的 `from_arrays`（或 `from_tuples`），不能用生成笛卡尔积的 `from_product`。
 
 ## 解释
 

@@ -18,7 +18,21 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>loc</h1><div class="aliases">df.loc · 标签索引</div><p class="lede">按行、列标签查询 DataFrame 元素的索引器。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>loc 使用行列的标签（名称）定位数据，语法为 df.loc[行标签, 列标签]。它不关心数据在内存中的位置，只认索引标签，因此设置自定义索引后仍可用原标签查询。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按行名/列名精确取数</li><li>按标签切片取多行多列</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法 df.loc[行标签, 列标签]</li><li>标签可以是默认 0,1,2 或自定义索引</li><li>切片时通常包含结束标签（与 iloc 不同）</li><li>单行查询返回 Series</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易与 iloc 混淆：loc 认标签，iloc 认位置；索引被重置后原标签可能失效。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/iloc.html">iloc</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df 的 index 被设为 [&#x27;A&#x27;,&#x27;B&#x27;,&#x27;C&#x27;]，df.loc[0] 还能取到第一行吗？</summary><div class="quiz-a">不能，loc 按标签查询，此时标签是 A/B/C，应使用 df.loc[&#x27;A&#x27;]。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>loc</h1><div class="aliases">df.loc · 标签索引</div><p class="lede">按行、列标签查询 DataFrame 元素的索引器。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>df.loc[行标签, 列标签]</code> <strong>参数</strong>：</p>
+<ul><li><code>行标签</code>：单个标签、标签列表或标签切片；切片包含结束标签，如 <code>df.loc[&quot;A&quot;:&quot;B&quot;]</code></li><li><code>列标签</code>：写法同行标签，传列表时结果按列表顺序排列；省略则取全部列</li><li><code>布尔序列</code>：行位置传布尔 Series 做条件筛选，如 <code>df.loc[df[&quot;语文&quot;] &gt; 85]</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame(
+    {&quot;语文&quot;: [90, 85, 88], &quot;数学&quot;: [95, 92, 78]},
+    index=[&quot;A&quot;, &quot;B&quot;, &quot;C&quot;],
+)
+print(df.loc[&quot;A&quot;, &quot;语文&quot;])  # 90
+print(df.loc[&quot;A&quot;:&quot;B&quot;, [&quot;数学&quot;, &quot;语文&quot;]])
+#    数学  语文
+# A  95  90
+# B  92  85
+print(df.loc[&quot;B&quot;:, &quot;数学&quot;].tolist())  # [92, 78]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>loc 使用行列的标签（名称）定位数据，语法为 df.loc[行标签, 列标签]。它不关心数据在内存中的位置，只认索引标签，因此设置自定义索引后仍可用原标签查询。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按行名/列名精确取数</li><li>按标签切片取多行多列</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法 df.loc[行标签, 列标签]</li><li>标签可以是默认 0,1,2 或自定义索引</li><li>切片时通常包含结束标签（与 iloc 不同）</li><li>单行查询返回 Series</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易与 iloc 混淆：loc 认标签，iloc 认位置；索引被重置后原标签可能失效。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/iloc.html">iloc</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df 的 index 被设为 [&#x27;A&#x27;,&#x27;B&#x27;,&#x27;C&#x27;]，df.loc[0] 还能取到第一行吗？</summary><div class="quiz-a">不能，loc 按标签查询，此时标签是 A/B/C，应使用 df.loc[&#x27;A&#x27;]。</div></details>
 <details class="quiz"><summary>loc 和 iloc 最本质的区别是什么？</summary><div class="quiz-a">loc 按标签（名称）定位，iloc 按从 0 开始的整数位置定位。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>loc 是 Pandas 中基于标签的索引方式，行和列都写标签名而不是位置数字。它既能做精确查询，也能做范围切片和条件筛选，还能配合条件赋值新建列。</p>
@@ -26,11 +40,38 @@
 <p>- 行、列都可用列表传入多个标签，顺序按列表显示</p>
 <p>- 范围切片用英文冒号，列范围按原表列顺序排列</p>
 <details class="quiz"><summary>df.loc[&#x27;1983-10-27&#x27;, [&#x27;语文&#x27;,&#x27;数学&#x27;]] 返回什么？</summary><div class="quiz-a">返回该日期这一行中语文和数学两列的数据，列顺序按列表写的顺序。</div></details>
-<details class="quiz"><summary>为什么用日期做 loc 查询前要先 set_index(&#x27;出生日期&#x27;)？</summary><div class="quiz-a">因为 loc 按行标签定位，只有把日期设为索引，日期字符串才能作为行标签被查到。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/.at%20%E7%B4%A2%E5%BC%95%E5%99%A8.html">.at 索引器</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html">VLOOKUP 式匹配</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/iloc.html">iloc</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/slice%28None%29.html">slice(None)</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%88%97%E8%8C%83%E5%9B%B4%E5%88%87%E7%89%87.html">列范围切片</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2.html">数据查询</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2.html">日期范围查询</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/limit%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html"><small>上一张</small>limit 参数（fillna）</a><a class="next" href="../c/m.name%20%E5%88%97%E5%90%8D%E8%A1%8C%E5%90%8D%E5%88%A4%E6%96%AD.html"><small>下一张</small>m.name 列名行名判断</a></nav></article>
+<details class="quiz"><summary>为什么用日期做 loc 查询前要先 set_index(&#x27;出生日期&#x27;)？</summary><div class="quiz-a">因为 loc 按行标签定位，只有把日期设为索引，日期字符串才能作为行标签被查到。</div></details>
+<p>loc 用标签（不是位置）定位，方括号里逗号前是行、逗号后是列。行或列位置写冒号表示「全都要」，写列表表示「只要这几项」。在 merge 场景里最常见的用法是 df.loc[:, [&#x27;学号&#x27;,&#x27;总分&#x27;]]，即所有行、只留两列，用来裁剪参与合并的右表。</p>
+<p>- 冒号 : 表示该维度全选，loc[:, [...]] 即所有行的指定列</p>
+<p>- 列选择传列表返回 DataFrame，传单个字符串返回 Series</p>
+<p>- loc 按标签，iloc 按位置，两者不要混用</p>
+<details class="quiz"><summary>df.loc[:, [&#x27;学号&#x27;,&#x27;总分&#x27;]] 中的冒号代表什么？</summary><div class="quiz-a">代表行维度全选，即保留所有行。</div></details>
+<details class="quiz"><summary>loc 和 iloc 在切片上的关键差异是什么？</summary><div class="quiz-a">loc 的切片包含右端点（按标签），iloc 的切片不包含右端点（按位置）。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=44" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p44 S02E29.vlookup</a> · 2026-11-17</p>
+<p>loc 是 Pandas 中基于标签（而不是位置）的取数入口：第一个参数定位行，第二个参数定位列。行和列都可以传单个标签、标签列表或标签区间，因此一套写法能覆盖单值查询、多列查询和区间切片。它还支持在条件定位后进行赋值，是 Pandas 里最常用的取数工具。</p>
+<p>- 语法为 df.loc[行标签, 列标签]，必须用中括号，不能用小括号</p>
+<p>- 行列传列表可取多行多列，列顺序由列表决定，可任意排列</p>
+<p>- 传 &#x27;开始&#x27;:&#x27;结束&#x27; 做标签区间切片，包含两端</p>
+<details class="quiz"><summary>为什么 df.loc[&#x27;1983-10-27&#x27;:&#x27;1990-12-31&#x27;, &#x27;语文&#x27;:&#x27;英语&#x27;] 中列的顺序不能自己调整成「英语、数学、语文」？</summary><div class="quiz-a">冒号切片是标签区间，按数据中列的实际存储顺序截取；要自定义列顺序必须改用标签列表 [&#x27;英语&#x27;,&#x27;数学&#x27;,&#x27;语文&#x27;]。</div></details>
+<details class="quiz"><summary>df.loc[条件] 与 df.loc[条件, :] 结果一样，为什么说后者才是完整写法？</summary><div class="quiz-a">loc 的设计是两个参数：行和列。省略第二参数只是默认取全部列，显式写 : 表达「所有列」，语义完整且不易误解。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=28" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p28 S02E13.数据查询</a> · 2026-11-17</p>
+<p>loc[行标签, 列标签] 用行列的名字定位数据，是唯一能同时指定行和列的直观写法。必须用中括号。标签切片时包含结束标签，这是与 iloc 最关键的行为差异。</p>
+<p>- 写法固定为 df.loc[行, 列]，如 df.loc[0, &#x27;a&#x27;]</p>
+<p>- df.loc[1] 只给行时返回一行 Series</p>
+<p>- 标签切片包含结束标签，loc[0:3] 取到 0、1、2、3 四行</p>
+<details class="quiz"><summary>把 index 改成 [&#x27;A&#x27;,&#x27;B&#x27;,&#x27;C&#x27;] 后，取第一行第一列用 loc 怎么写？</summary><div class="quiz-a">df.loc[&#x27;A&#x27;, &#x27;a&#x27;]</div></details>
+<details class="quiz"><summary>df.loc[0:3] 与 df.iloc[0:3] 各返回多少行？</summary><div class="quiz-a">loc 是标签闭区间，返回 0~3 共 4 行；iloc 的位置切片不含结束位，返回 0、1、2 共 3 行</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=21" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p21 S02E06.数据结构之DataFrame</a> · 2026-11-17</p>
+<p>loc 完全基于标签定位，不认位置序号。多层行索引时，一个元组(</p>
+<p>- 多层行索引定位写元组，如 data.loc[(&quot;一班&quot;, &quot;a&quot;)]</p>
+<p>- 列方向取全部可以写冒号 :</p>
+<p>- 行内层取全部不能写 :，要用 slice(None)</p>
+<details class="quiz"><summary>在两层行索引中取「一班」下的所有行、所有列，怎么写？</summary><div class="quiz-a">data.loc[(&quot;一班&quot;, slice(None)), :]，内层不能直接用冒号。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=35" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p35 S02E20.多层索引与多层索引计算</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.legend%20%E5%9B%BE%E4%BE%8B.html">plt.legend 图例</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/.at%20%E7%B4%A2%E5%BC%95%E5%99%A8.html">.at 索引器</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/Series%20%E7%B4%A2%E5%BC%95%E5%8F%96%E5%80%BC.html">Series 索引取值</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html">VLOOKUP 式匹配</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/columns%20%E5%B1%9E%E6%80%A7.html">columns 属性</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/iloc.html">iloc</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/slice%28None%29.html">slice(None)</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%88%97%E8%8C%83%E5%9B%B4%E5%88%87%E7%89%87.html">列范围切片</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2.html">数据查询</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%97%A5%E6%9C%9F%E8%8C%83%E5%9B%B4%E6%9F%A5%E8%AF%A2.html">日期范围查询</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%9F%A5%E8%AF%A2%E4%B8%8E%E7%AD%9B%E9%80%89%EF%BC%88Query%20vs%20Filter%EF%BC%89.html">查询与筛选（Query vs Filter）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95%E4%B8%8E%E4%BD%8D%E7%BD%AE%E7%B4%A2%E5%BC%95.html">标签索引与位置索引</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%B4%A2%E5%BC%95%E5%8D%95%E8%B0%83%E9%80%92%E5%A2%9E%E6%A3%80%E6%9F%A5.html">索引单调递增检查</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E7%B4%A2%E5%BC%95%E6%9C%89%E5%BA%8F%E6%80%A7.html">索引有序性</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E8%BF%9E%E6%8E%A5%E9%94%AE.html">连接键</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%80%BB%E8%BE%91%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%20%26%EF%BC%88%E5%A4%9A%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88%EF%BC%89.html">逻辑与运算符 &amp;（多条件组合）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/limit%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html"><small>上一张</small>limit 参数（fillna）</a><a class="next" href="../c/m.name%20%E5%88%97%E5%90%8D%E8%A1%8C%E5%90%8D%E5%88%A4%E6%96%AD.html"><small>下一张</small>m.name 列名行名判断</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

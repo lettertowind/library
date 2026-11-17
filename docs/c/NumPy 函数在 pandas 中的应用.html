@@ -18,12 +18,30 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>NumPy 函数在 pandas 中的应用</h1><div class="aliases">np.sqrt · NumPy 函数 · 整表计算</div><p class="lede">把 NumPy 的逐元素函数直接用于 Series 或 DataFrame 做整表计算。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>NumPy 函数如 np.sqrt 是逐元素通用函数，可直接作用于 pandas 对象，也可作为 apply 的回调。整张表做数学计算时优先用 NumPy，单列自定义逻辑时用 Series + apply。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>整表开方、取对数等数学变换</li><li>apply 中传入 np.sqrt 等</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>NumPy 函数需写 np. 前缀，内置函数直接写名</li><li>整表计算优先 NumPy，单列常用 Series+apply</li><li>np.sqrt 可作 apply 回调，逐列或逐行计算</li><li>先学 NumPy 再学 pandas 的原因之一</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>NumPy 函数是逐元素数学运算，不含业务逻辑；条件分支需 lambda 包裹。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.sqrt.html">np.sqrt</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html">通用函数</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 apply 里写 np.sqrt 要带 np. 前缀，而 len 不用？</summary><div class="quiz-a">np.sqrt 属于 NumPy 库需模块前缀，len 是 Python 内置函数直接写名。</div></details>
-<details class="quiz"><summary>整张表做数学计算时优先用什么？</summary><div class="quiz-a">优先用 NumPy 函数，而不是逐列 Series 操作。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/NaN.html"><small>上一张</small>NaN</a><a class="next" href="../c/Pandas%20Excel%20%E5%90%88%E5%B9%B6%E6%8B%86%E5%88%86.html"><small>下一张</small>Pandas Excel 合并拆分</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>NumPy 函数在 pandas 中的应用</h1><div class="aliases">np.sqrt · NumPy 函数 · 整表计算</div><p class="lede">把 NumPy 的逐元素函数直接用于 Series 或 DataFrame 做整表计算。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.sqrt(df)</code> / <code>df.apply(np.sqrt)</code> <strong>参数</strong>：</p>
+<ul><li>NumPy 函数（如 <code>np.sqrt</code>、<code>np.log</code>、<code>np.exp</code>）：只有一个位置参数，即待计算的 Series、DataFrame 或标量，返回同形状对象</li><li><code>df.apply(func)</code>：<code>func</code> 为逐列（默认 <code>axis=0</code>）调用的函数，可直接传 <code>np.sqrt</code>；按行算用 <code>axis=1</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({&#x27;A&#x27;: [1, 4, 9], &#x27;B&#x27;: [16, 25, 36]})
+
+print(np.sqrt(df))          # 整表开方，逐元素
+print(df.apply(np.sqrt))    # 作为 apply 回调，默认逐列
+print(df[&#x27;A&#x27;].apply(np.sqrt))  # 单列</code></pre>
+<p>输出均为 A 列 <code>0 1.0 / 1 2.0 / 2 3.0</code>、B 列 <code>0 4.0 / 1 5.0 / 2 6.0</code> 的 DataFrame（单列为 Series）；三者结果一致，验证 NumPy 函数既可直接整表算，也能当 apply 回调。</p></section><section class="sec"><h2 id="解释">解释</h2><p>NumPy 函数如 np.sqrt 是逐元素通用函数，可直接作用于 pandas 对象，也可作为 apply 的回调。整张表做数学计算时优先用 NumPy，单列自定义逻辑时用 Series + apply。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>整表开方、取对数等数学变换</li><li>apply 中传入 np.sqrt 等</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>NumPy 函数需写 np. 前缀，内置函数直接写名</li><li>整表计算优先 NumPy，单列常用 Series+apply</li><li>np.sqrt 可作 apply 回调，逐列或逐行计算</li><li>先学 NumPy 再学 pandas 的原因之一</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>NumPy 函数是逐元素数学运算，不含业务逻辑；条件分支需 lambda 包裹。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.sqrt.html">np.sqrt</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html">通用函数</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 apply 里写 np.sqrt 要带 np. 前缀，而 len 不用？</summary><div class="quiz-a">np.sqrt 属于 NumPy 库需模块前缀，len 是 Python 内置函数直接写名。</div></details>
+<details class="quiz"><summary>整张表做数学计算时优先用什么？</summary><div class="quiz-a">优先用 NumPy 函数，而不是逐列 Series 操作。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>NumPy 函数天生逐元素运算，DataFrame.apply(np.square) 或整列 * 运算都会作用到每个元素上。因为来自 NumPy 库，写的时候必须带 np. 前缀；而 len 这类 Python 内置函数则直接写名字。</p>
+<p>- np.square 是平方，np.sqrt 才是平方根，别被口述带偏，以代码和结果为证</p>
+<p>- 库函数要写库前缀 np.，内置函数（len）直接写</p>
+<p>- 整表计算优先 NumPy 方案，效率与写法都优于逐行循环</p>
+<details class="quiz"><summary>np.sqrt 与 np.square 分别做什么？</summary><div class="quiz-a">sqrt 求平方根，square 求平方。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=26" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p26 S02E11.列与列之间的计算</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Pandas.html">Pandas</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/NaT.html"><small>上一张</small>NaT</a><a class="next" href="../c/Pandas%20Excel%20%E5%90%88%E5%B9%B6%E6%8B%86%E5%88%86.html"><small>下一张</small>Pandas Excel 合并拆分</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

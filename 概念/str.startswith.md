@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.startswith
@@ -16,6 +15,33 @@ order: 38
 > 别名：startswith、开头判断
 
 **判断字符串是否以指定内容开头的方法。**
+
+## 用法
+**语法**：`Series.str.startswith(pat, na=None)`
+**参数**：
+- `pat`：要匹配的前缀，字符串或字符串元组
+- `na`：遇到缺失值（NaN）时返回的值，默认 None 表示缺失值位置仍返回 NaN
+**示例**：
+```python
+import pandas as pd
+s = pd.Series(['满100减20', '满200减50', '新人券', None])
+print(s.str.startswith('满'))
+# 0     True
+# 1     True
+# 2    False
+# 3      NaN
+# dtype: bool
+print(s.str.startswith('满', na=False))
+# 0     True
+# 1     True
+# 2    False
+# 3    False
+# dtype: bool
+print(s[s.str.startswith('满', na=False)])
+# 0    满100减20
+# 1    满200减50
+# dtype: object
+```
 
 ## 解释
 

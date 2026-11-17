@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="NumPy 中沿指定轴把多个数组拼接成一个新数组的函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>np.concatenate · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.concatenate</h1><div class="aliases">concatenate · NumPy 数组连接 · np.concatenate</div><p class="lede">NumPy 中沿指定轴把多个数组拼接成一个新数组的函数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.concatenate((a1, a2, ...), axis=0)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>a1, a2, ...</code>：待拼接的数组序列，必须打包成元组或列表传入（如 <code>[a, b]</code>）；单个标量要先包成 <code>[arr[0]]</code></li><li><code>axis</code>：沿哪个轴拼接，默认 <code>0</code>；二维数组中 <code>axis=0</code> 表示行方向上下堆叠，<code>axis=1</code> 表示列方向左右并排</li><li>除拼接轴外，其余维度必须一致，否则报错</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+a = np.arange(9).reshape(3, 3)
+print(np.concatenate([a, a], axis=0).shape)  # (6, 3)
+print(np.concatenate([a, a], axis=1).shape)  # (3, 6)
+
+x = np.array([1, 2, 3])
+print(np.concatenate((x, [x[0]])))  # [1 2 3 1]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>接收一个数组列表和 axis 参数：axis=0 上下堆叠、axis=1 左右并排。它是 Pandas concat 的底层原型，先理解它才能理解 concat 的轴方向。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把多个 ndarray 合成一个更大数组</li><li>矩阵拼装、特征横向扩列</li><li>为学习 Pandas concat 打基础</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>第一个参数是列表 [a, b]，不是 a, b 两个位置参数</li><li>axis=0 行方向堆叠：两个 3×3 变 6×3</li><li>axis=1 列方向并排：两个 3×3 变 3×6</li><li>除拼接轴外，其余维度必须一致，否则报错</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只按位置拼接 ndarray，没有索引和列名概念，因此不会做对齐、也不会补缺失值；需要按标签对齐时用 pd.concat。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.concat.html">pd.concat</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/Numpy%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84.html">Numpy 二维数组</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>两个 3×3 数组执行 np.concatenate([a, a], axis=0) 后形状是多少？</summary><div class="quiz-a">6×3，行方向上下堆叠。</div></details>
+<details class="quiz"><summary>为什么 NumPy 拼接不会像 Pandas 横向拼接那样出现 NaN？</summary><div class="quiz-a">NumPy 按位置拼接，没有索引标签，不存在对不齐的情况。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>np.concatenate 接收一个由多个序列组成的元组/列表，把它们首尾拼接。在极坐标绘图中用来把第一个值补到末尾，实现首尾闭合。</p>
+<p>- 参数必须都是序列；单个元素要先写成 [x] 包成列表，否则报错</p>
+<p>- 默认沿轴 0 拼接，一维数组结果是更长的一维数组</p>
+<p>- 闭合时三条序列（数值、角度、类别）要分别拼接</p>
+<details class="quiz"><summary>np.concatenate((arr, arr[0])) 为什么容易报错？怎么改？</summary><div class="quiz-a">arr[0] 是单个元素而不是序列，需要写成 np.concatenate((arr, [arr[0]])) 把元素包成列表再拼。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=79" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p79 S03E30.玫瑰图</a> · 2026-11-17</p>
+<p>concatenate 接收一个序列（元组或列表），里面放要拼在一起的所有数组，默认沿 axis=0 拼接。雷达图里用它把首项追加到末尾完成闭合。</p>
+<p>- 待拼接对象必须打包成元组或列表传入，少写一层括号会报错</p>
+<p>- 标量要先包成 [arr[0]] 这种单元素序列才能拼</p>
+<p>- 默认 axis=0，一维数组就是首尾相接</p>
+<details class="quiz"><summary>np.concatenate(a01, [a01[0]]) 为什么报错？</summary><div class="quiz-a">第一个参数必须是一个序列（元组/列表），正确写法是 np.concatenate((a01, [a01[0]]))。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=71" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p71 S03E22.雷达图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=24" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p24 S02E09.连接查询之concat</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E9%9B%B7%E8%BE%BE%E5%9B%BE%E9%A6%96%E5%B0%BE%E9%97%AD%E5%90%88.html">雷达图首尾闭合</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%A6%96%E5%B0%BE%E9%97%AD%E5%90%88%EF%BC%88%E5%B0%81%E5%8F%A3%EF%BC%89.html">首尾闭合（封口）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.bincount.html"><small>上一张</small>np.bincount</a><a class="next" href="../c/np.cumprod.html"><small>下一张</small>np.cumprod</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 29
 stage: "S02E14 · 筛选"
-order: 29
 ---
 
 # pd.to_datetime
@@ -16,6 +15,28 @@ order: 29
 > 别名：to_datetime、转日期格式
 
 **把字符串或数值列转换为 Pandas datetime 日期类型的函数。**
+
+## 用法
+**语法**：`pd.to_datetime(arg, format=None, errors='raise')`
+
+**参数**：
+- `arg`：待转换的数据，可以是 Series、索引、列表或标量，也常用整列写法
+- `format`：日期字符串格式，如 `'%Y-%m-%d'`；格式不规则时指定可加快解析并避免报错
+- `errors`：`'raise'` 遇到无法解析的值时抛出错误（默认），`'coerce'` 将无法解析的值置为 NaT，`'ignore'` 原样返回
+
+**示例**：
+```python
+import pandas as pd
+
+df = pd.DataFrame({'出生日期': ['1990-01-05', '2001-12-31', 'bad']})
+df['出生日期'] = pd.to_datetime(df['出生日期'], errors='coerce')
+print(df['出生日期'].dtype)          # datetime64[ns]
+print(df['出生日期'].dt.year.tolist())  # [1990, 2001, nan]
+
+s = pd.Series([1, 2], index=['2020-01-01', '2020-02-01'])
+s.index = pd.to_datetime(s.index)   # 转换日期索引，供日期筛选使用
+print(s.index.year.tolist())         # [2020, 2020]
+```
 
 ## 解释
 

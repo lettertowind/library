@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="为当前子图的 x 轴、y 轴添加说明文字的函数对。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.xlabel 与 plt.ylabel · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.xlabel 与 plt.ylabel</h1><div class="aliases">xlabel · ylabel · 轴标签 · 坐标轴标签</div><p class="lede">为当前子图的 x 轴、y 轴添加说明文字的函数对。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>plt.xlabel 在轴下方、plt.ylabel 在轴左侧添加文字，用来告诉读者这条轴代表什么。它们的样式参数与 plt.title 相同，也可以传 bbox 字典给文字加背景框，让标签在图形背景上更醒目。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>标注坐标轴含义与单位</li><li>给标签加背景框以提升可读性</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>xlabel 显示在轴下方，ylabel 显示在轴左侧</li><li>fontsize、color 等样式参数与 plt.title 用法一致</li><li>需要背景框时传 bbox=dict(...)，而不是单独的 facecolor 参数</li><li>同样只作用于当前选中的子图</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>轴标签是文字说明，不是刻度值；刻度文本要用 xticks/yticks 修改。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.title.html">plt.title</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/bbox%20%E6%96%87%E6%9C%AC%E8%BE%B9%E6%A1%86.html">bbox 文本边框</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想让 x 轴标签背后有一块半透明黄底，应该给 plt.xlabel 传什么参数？</summary><div class="quiz-a">bbox=dict(facecolor=&#x27;yellow&#x27;, alpha=0.2, pad=...)，底色和透明度都写在这个字典里。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>轴标签告诉读者每个轴代表什么数据，通常配合 fontsize 设置字号。在横向条形图中，两个轴的语义与柱形图互换：x 轴是数值（分数），y 轴是分类（姓名），写反是最常见的低级错误。</p>
+<p>- 条形图中 x 轴为分数、y 轴为姓名，与柱形图正好相反</p>
+<p>- 无论图形如何旋转，画布下方永远是 x 轴、上方永远是 y 轴</p>
+<p>- 可用 fontsize 调整字号，与标题保持一致风格</p>
+<details class="quiz"><summary>画横向条形图时，x 轴和 y 轴标签分别应该写什么？</summary><div class="quiz-a">x 轴写“分数”（数值），y 轴写“姓名”（分类）。</div></details>
+<details class="quiz"><summary>把柱形图改成条形图后，轴标签需要改吗？</summary><div class="quiz-a">需要。两个轴的语义互换了，不改会出现 x 轴标成姓名、y 轴标成分数的错误。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=49" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p49 S03E02.条形图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=72" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p72 S03E23.标题及轴标签</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.title.html">plt.title</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.title%EF%BC%88%E5%9B%BE%E8%A1%A8%E6%A0%87%E9%A2%98%EF%BC%89.html"><small>上一张</small>plt.title（图表标题）</a><a class="next" href="../c/plt.ylim%EF%BC%88y%20%E8%BD%B4%E6%98%BE%E7%A4%BA%E8%8C%83%E5%9B%B4%EF%BC%89.html"><small>下一张</small>plt.ylim（y 轴显示范围）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

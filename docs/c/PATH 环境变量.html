@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="操作系统按其中列出的目录顺序查找可执行程序的全局路径列表。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>PATH 环境变量 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>办公软件</span> <span class="sep">/</span> <span>Windows</span></nav><article class="card"><h1>PATH 环境变量</h1><div class="aliases">环境变量 PATH · 系统路径变量 · path 配置</div><p class="lede">操作系统按其中列出的目录顺序查找可执行程序的全局路径列表。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>当你在命令行输入一个命令名而不是完整路径时，系统会依次到 PATH 列出的各个目录里找同名可执行文件。找不到就报「不是内部或外部命令」。本课要求先 cd 到 pip3.exe 所在目录，本质就是绕过 PATH 未配置的问题。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>理解命令为什么能直接调用或报「找不到命令」</li><li>判断该配 PATH 还是该 cd 进目录</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>命令输入后先在当前目录找，再按 PATH 目录顺序找</li><li>pip 命令报「不是内部或外部命令」通常是 Scripts 目录没进 PATH</li><li>根治办法是把 pip 所在目录加入 PATH，一次性解决</li><li>课程采用的临时办法是 cd 到 pip3.exe 目录再执行</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>PATH 只影响「按名字找程序」，不影响 Python 内部 import 模块的搜索路径（那是 sys.path）。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/cd%20%E5%91%BD%E4%BB%A4.html">cd 命令</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/pip.html">pip</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/cmd%20%E5%91%BD%E4%BB%A4%E8%A1%8C.html">cmd 命令行</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>教程让你先 cd 进 pip3.exe 目录再执行 pip，这解决了什么根本问题？它的局限是什么？</summary><div class="quiz-a">解决的是 pip 所在目录不在 PATH 中、系统按名字找不到命令的问题；局限是换目录或换终端后又要重新 cd，治本应把目录加入 PATH。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=15" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p15 S02E00.安装pandas.numpy.xlrd</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Win%2BR%20%E8%BF%90%E8%A1%8C%E5%AF%B9%E8%AF%9D%E6%A1%86.html">Win+R 运行对话框</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/VBA.html"><small>上一张</small>VBA</a><a class="next" href="../c/Win%2BR%20%E8%BF%90%E8%A1%8C%E5%AF%B9%E8%AF%9D%E6%A1%86.html"><small>下一张</small>Win+R 运行对话框</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

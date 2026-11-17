@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="加 r 前缀的字符串字面量，其中的反斜杠不再触发转义。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>原始字符串 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>原始字符串</h1><div class="aliases">raw string · r 前缀字符串 · r 写法</div><p class="lede">加 r 前缀的字符串字面量，其中的反斜杠不再触发转义。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Windows 路径满是反斜杠，普通字符串里 \n、\t、\U 会被解释成转义序列，导致路径读不出来甚至报错。写成 r&#x27;C:\pandas读取文件.xlsx&#x27; 就能原样保留每个字符。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>书写 Windows 文件路径</li><li>书写正则表达式</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>前缀 r 或 R，如 r&#x27;C:\data\a.xlsx&#x27;</li><li>反斜杠不再被解析为 \n、\t、\U 等转义</li><li>替代方案：写双反斜杠或直接改用正斜杠</li><li>末尾不能以奇数个反斜杠结尾</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>原始字符串不能以单个反斜杠结尾，这种路径要改用正斜杠或双反斜杠。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>路径字符串 &#x27;C:\pandas\x01.xlsx&#x27; 为什么可能出错，加 r 前缀后就好了？</summary><div class="quiz-a">普通字符串里 \x01 会被当作十六进制转义解析，加 r 后反斜杠原样保留。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=19" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p19 S02E04.读取与修改Excel文件</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%97%E8%A1%A8%E6%8E%A8%E5%AF%BC%E5%BC%8F.html"><small>上一张</small>列表推导式</a><a class="next" href="../c/%E5%8E%9F%E5%A7%8B%E5%AD%97%E7%AC%A6%E4%B8%B2%EF%BC%88r%20%E5%89%8D%E7%BC%80%EF%BC%89.html"><small>下一张</small>原始字符串（r 前缀）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

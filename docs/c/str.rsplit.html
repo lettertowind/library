@@ -18,11 +18,36 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.rsplit</h1><div class="aliases">rsplit · 从右拆分</div><p class="lede">从右向左按指定字符拆分字符串的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.rsplit 与 str.split 行为类似，但拆分方向相反：split 从左往右，rsplit 从右往左。当只拆分有限次数时，两者结果不同。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要保留左侧内容、只拆分右侧部分时</li><li>处理路径或层级字符串</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>方向与 split 相反，从右向左</li><li>同样支持 n 和 expand 参数</li><li>本课只需了解，不要求熟练</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 split 的差异只在限制拆分次数时明显；全拆分时结果相同。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.split.html">str.split</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>什么情况下 rsplit 和 split 结果会不同？</summary><div class="quiz-a">当限制拆分次数 n 时，从右拆和从左拆保留的部分不同。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.partition.html">str.partition</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.split.html">str.split</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.replace%20%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2.html"><small>上一张</small>str.replace 正则替换</a><a class="next" href="../c/str.rstrip.html"><small>下一张</small>str.rstrip</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.rsplit</h1><div class="aliases">rsplit · 从右拆分</div><p class="lede">从右向左按指定字符拆分字符串的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.rsplit(pat=None, n=-1, expand=False)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>pat</code>：拆分依据的字符串或正则，默认 <code>None</code> 表示按空白字符拆分</li><li><code>n</code>：最多拆分几次，默认 <code>-1</code> 表示全部拆分；<code>n=1</code> 时只从右侧拆一刀</li><li><code>expand</code>：为 <code>True</code> 时返回 DataFrame，各段各占一列；默认 <code>False</code> 返回字符串列表</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&quot;a-b-c&quot;, &quot;x-y-z&quot;])
+
+# 默认 n=-1，全部拆分，与 split 结果相同
+print(s.str.rsplit(&quot;-&quot;).tolist())
+# [[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;], [&#x27;x&#x27;, &#x27;y&#x27;, &#x27;z&#x27;]]
+
+# n=1 从右拆一刀：保留右侧，左侧整体不动
+print(s.str.rsplit(&quot;-&quot;, n=1).tolist())
+# [[&#x27;a-b&#x27;, &#x27;c&#x27;], [&#x27;x-y&#x27;, &#x27;z&#x27;]]
+
+# 对照 split(n=1)：从左拆一刀，保留左侧
+print(s.str.split(&quot;-&quot;, n=1).tolist())
+# [[&#x27;a&#x27;, &#x27;b-c&#x27;], [&#x27;x&#x27;, &#x27;y-z&#x27;]]
+
+# expand=True 拆成多列，常用于取路径最后一段
+df = s.str.rsplit(&quot;-&quot;, n=1, expand=True)
+print(df)
+#      0  1
+# 0  a-b  c
+# 1  x-y  z</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>str.rsplit 与 str.split 行为类似，但拆分方向相反：split 从左往右，rsplit 从右往左。当只拆分有限次数时，两者结果不同。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要保留左侧内容、只拆分右侧部分时</li><li>处理路径或层级字符串</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>方向与 split 相反，从右向左</li><li>同样支持 n 和 expand 参数</li><li>本课只需了解，不要求熟练</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 split 的差异只在限制拆分次数时明显；全拆分时结果相同。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.split.html">str.split</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>什么情况下 rsplit 和 split 结果会不同？</summary><div class="quiz-a">当限制拆分次数 n 时，从右拆和从左拆保留的部分不同。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.partition.html">str.partition</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.rpartition.html">str.rpartition</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.split.html">str.split</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.rpartition.html"><small>上一张</small>str.rpartition</a><a class="next" href="../c/str.rstrip.html"><small>下一张</small>str.rstrip</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

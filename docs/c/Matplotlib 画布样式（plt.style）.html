@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 预置的整套图表外观主题，用 plt.style.use 可一键切换。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Matplotlib 画布样式（plt.style） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>Matplotlib 画布样式（plt.style）</h1><div class="aliases">plt.style · style.use · style.available · 内置样式 · 全局样式 · ggplot</div><p class="lede">Matplotlib 预置的整套图表外观主题，用 plt.style.use 可一键切换。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Matplotlib 自带几十种风格主题（如 ggplot、bmh 等），一次设置就能同时改变背景、网格、配色等整体观感，不必逐项手动调整。用它可以让图表快速具备统一的专业外观，也能模仿其他绘图工具（如 R 的 ggplot2）的风格。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>快速统一多张图表的视觉风格</li><li>需要现成的美观主题、不想逐项调样式时</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>print(plt.style.available) 可列出全部内置样式名</li><li>plt.style.use(&#x27;ggplot&#x27;) 设置样式，名称来自 available 的输出</li><li>属于全局设置，作用于之后创建的图表</li><li>样式名建议直接复制，手写容易拼错而报错</li><li>与 drawstyle、linestyle 等单条曲线参数不在同一层级</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>影响的是后续新建图表的整体外观，与单条折线的连接方式、线型互不替代；对已经绘制完成的图形不回溯生效。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Matplotlib.html">Matplotlib</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/drawstyle%20%E6%8A%98%E7%BA%BF%E8%BF%9E%E6%8E%A5%E6%A0%B7%E5%BC%8F.html">drawstyle 折线连接样式</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/plt.subplots.html">plt.subplots</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>怎么知道自己能用哪些画布样式、又该怎么设置？</summary><div class="quiz-a">先 print(plt.style.available) 查看全部样式名，再 plt.style.use(&#x27;样式名&#x27;) 设置。</div></details>
+<details class="quiz"><summary>设置了 plt.style.use(&#x27;ggplot&#x27;) 后，之前已经画好的图会变风格吗？</summary><div class="quiz-a">不会，样式只对此后创建的图表生效。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>plt.style.use(&#x27;ggplot&#x27;) 加载内置样式表，统一改变背景色、线宽、网格等默认外观，不用逐个元素调参。雷达图用 ggplot 后背景变为中性灰，与半透明填充更协调。</p>
+<p>- 写法：plt.style.use(&#x27;ggplot&#x27;)，可用 plt.style.available 查看全部样式</p>
+<p>- 作用于之后绘制的所有图表，属于全局设置</p>
+<p>- ggplot 背景为中性灰，比纯白更适合雷达图</p>
+<details class="quiz"><summary>先绘图再写 plt.style.use(&#x27;ggplot&#x27;)，效果如何？</summary><div class="quiz-a">新样式对已创建的图形不追溯生效，通常看不出变化；应在绘图前设置。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=71" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p71 S03E22.雷达图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=73" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p73 S03E24.样式</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/Matplotlib%20%E4%B8%AD%E6%96%87%E6%98%BE%E7%A4%BA%E9%85%8D%E7%BD%AE.html"><small>上一张</small>Matplotlib 中文显示配置</a><a class="next" href="../c/Matplotlib%20%E9%A2%9C%E8%89%B2%E7%AE%80%E5%86%99.html"><small>下一张</small>Matplotlib 颜色简写</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

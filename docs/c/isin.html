@@ -18,12 +18,43 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>isin</h1><div class="aliases">Series.isin · df[列].isin · 成员判断</div><p class="lede">判断 Series 每个元素是否属于给定列表，返回布尔序列。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>isin 用于「某列的值是否在候选集合中」的筛选或分组。它替代了 Excel 中多条件 OR 筛选，写法简洁。取反用波浪号 ~ 加在表达式前。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选指定几个类别</li><li>按是否属于指定集合分组</li><li>多值匹配替代多个 ==</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>df[&#x27;班级&#x27;].isin([&#x27;一班&#x27;,&#x27;二班&#x27;]) 返回 True/False 序列</li><li>Pandas 没有 isnotin，取反用 ~df[&#x27;班级&#x27;].isin([...])</li><li>~ 必须加在 isin 表达式前，不能加在 groupby 后面</li><li>isin 可同时用于筛选和作为 groupby 分组键</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只做成员判断，不支持正则或模糊匹配；模糊匹配用 str.contains。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E5%88%86%E7%BB%84%E9%94%AE.html">布尔分组键</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/str.contains.html">str.contains</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>如何选出班级不属于一班、二班的所有行？</summary><div class="quiz-a">df[~df[&#x27;班级&#x27;].isin([&#x27;一班&#x27;,&#x27;二班&#x27;])]。</div></details>
-<details class="quiz"><summary>isin 和 == 的区别是什么？</summary><div class="quiz-a">== 只能比单个值，isin 可一次比一个列表中的多个值。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E5%88%86%E7%BB%84%E9%94%AE.html">布尔分组键</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/is_lexsorted.html"><small>上一张</small>is_lexsorted</a><a class="next" href="../c/isna.html"><small>下一张</small>isna</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>isin</h1><div class="aliases">Series.isin · df[列].isin · 成员判断</div><p class="lede">判断 Series 每个元素是否属于给定列表，返回布尔序列。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.isin(values)</code> <strong>参数</strong>：</p>
+<ul><li><code>values</code>：候选值集合，可以是 list、tuple、set、Series，也可以传单个标量；只做精确的成员判断，不支持正则，模糊匹配用 <code>str.contains</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;班级&#x27;: [&#x27;一班&#x27;, &#x27;二班&#x27;, &#x27;三班&#x27;, &#x27;一班&#x27;],
+                   &#x27;姓名&#x27;: [&#x27;张三&#x27;, &#x27;李四&#x27;, &#x27;王五&#x27;, &#x27;赵六&#x27;]})
+
+print(df[&#x27;班级&#x27;].isin([&#x27;一班&#x27;, &#x27;二班&#x27;]))
+# 0     True
+# 1     True
+# 2    False
+# 3     True
+# Name: 班级, dtype: bool
+
+print(df[~df[&#x27;班级&#x27;].isin([&#x27;一班&#x27;, &#x27;二班&#x27;])])
+#    班级  姓名
+# 2  三班  王五
+
+print(df.groupby(df[&#x27;班级&#x27;].isin([&#x27;一班&#x27;, &#x27;二班&#x27;]))[&#x27;姓名&#x27;].count())
+# 班级
+# False    1
+# True     3
+# Name: 姓名, dtype: int64</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>isin 用于「某列的值是否在候选集合中」的筛选或分组。它替代了 Excel 中多条件 OR 筛选，写法简洁。取反用波浪号 ~ 加在表达式前。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选指定几个类别</li><li>按是否属于指定集合分组</li><li>多值匹配替代多个 ==</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>df[&#x27;班级&#x27;].isin([&#x27;一班&#x27;,&#x27;二班&#x27;]) 返回 True/False 序列</li><li>Pandas 没有 isnotin，取反用 ~df[&#x27;班级&#x27;].isin([...])</li><li>~ 必须加在 isin 表达式前，不能加在 groupby 后面</li><li>isin 可同时用于筛选和作为 groupby 分组键</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只做成员判断，不支持正则或模糊匹配；模糊匹配用 str.contains。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E5%88%86%E7%BB%84%E9%94%AE.html">布尔分组键</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/str.contains.html">str.contains</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>如何选出班级不属于一班、二班的所有行？</summary><div class="quiz-a">df[~df[&#x27;班级&#x27;].isin([&#x27;一班&#x27;,&#x27;二班&#x27;])]。</div></details>
+<details class="quiz"><summary>isin 和 == 的区别是什么？</summary><div class="quiz-a">== 只能比单个值，isin 可一次比一个列表中的多个值。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>isin 接受一个列表（或集合），逐元素比对，返回等长的 True / False。它既能用于筛选行，也能直接作为 groupby 的分组键，把数据分成“在集合内”和“不在集合内”两组。</p>
+<p>- 取反写 ~df[&#x27;列&#x27;].isin([...])，波浪号加在整个表达式前面。</p>
+<p>- Pandas 没有 is not in 这种写法，不要照搬 Python 的 in / not in。</p>
+<p>- 返回布尔 Series，既可做行筛选，也可做分组键。</p>
+<details class="quiz"><summary>要统计“不属于一班和二班”的人的成绩，isin 该怎么写？</summary><div class="quiz-a">~data[&#x27;班级&#x27;].isin([&#x27;一班&#x27;,&#x27;二班&#x27;])，作为分组键或筛选条件。</div></details>
+<details class="quiz"><summary>为什么不能写 data[&#x27;班级&#x27;] is not in [&#x27;一班&#x27;,&#x27;二班&#x27;]？</summary><div class="quiz-a">Python 的 in 不能作用于 Series 逐元素判断，Pandas 里用 ~isin。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=42" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p42 S02E27.分组对象和创建</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E5%88%86%E7%BB%84%E9%94%AE.html">布尔分组键</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%9D%A1%E4%BB%B6%E5%88%86%E7%BB%84.html">布尔条件分组</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/is_lexsorted.html"><small>上一张</small>is_lexsorted</a><a class="next" href="../c/isna.html"><small>下一张</small>isna</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

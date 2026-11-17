@@ -18,12 +18,35 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>join 方法</h1><div class="aliases">join · DataFrame.join · left.join(right)</div><p class="lede">DataFrame 按索引对齐横向拼接另一张表的简便方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>join 语法简单，默认按索引把右表列横向拼到左表右侧，索引不一致处补空值。功能比 merge 有限，适合简单横向拼接，复杂场景建议用 merge。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按索引快速横向拼接两表</li><li>一次连接多个 DataFrame</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认按索引对齐，而非按同名列</li><li>索引不一致时对应位置产生空值</li><li>on 参数是左表列匹配右表索引，与 merge 不同</li><li>支持列表一次连接多个表：left.join([right, right2])</li><li>功能有限，实际项目建议优先用 merge</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>join 的 on 语义与 merge 的 on 不同；默认按索引对齐，容易因索引不一致产生大量空值。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E7%B4%A2%E5%BC%95%E5%AF%B9%E9%BD%90.html">索引对齐</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>left.join(right) 默认按什么对齐？</summary><div class="quiz-a">按索引对齐，把右表列横向拼到左表右侧。</div></details>
-<details class="quiz"><summary>join 的 on=&#x27;k&#x27; 与 merge 的 on=&#x27;k&#x27; 有何不同？</summary><div class="quiz-a">join 是左表的 k 列去匹配右表的索引；merge 是左右表同名列 k 相互匹配。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/join%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html"><small>上一张</small>join 参数（concat）</a><a class="next" href="../c/join_axes%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>join_axes 参数</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>join 方法</h1><div class="aliases">join · DataFrame.join · left.join(right)</div><p class="lede">DataFrame 按索引对齐横向拼接另一张表的简便方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.join(other, on=None, how=&#x27;left&#x27;, lsuffix=&#x27;&#x27;, rsuffix=&#x27;&#x27;, sort=False)</code> <strong>参数</strong>：</p>
+<ul><li><code>other</code>：要拼接的另一个 DataFrame，也可以是列表，一次拼接多个表</li><li><code>on</code>：用左表的这一列去匹配右表的索引；不写则按左表索引对齐（与 merge 的 on 语义不同）</li><li><code>how</code>：连接方式，<code>&#x27;left&#x27;</code>（默认）、<code>&#x27;right&#x27;</code>、<code>&#x27;inner&#x27;</code>、<code>&#x27;outer&#x27;</code></li><li><code>lsuffix</code> / <code>rsuffix</code>：左右表列名重复时，分别附加到列名后面的后缀</li><li><code>sort</code>：是否按连接键对结果排序，默认 <code>False</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+left = pd.DataFrame({&#x27;name&#x27;: [&#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;]}, index=[1, 2, 3])
+right = pd.DataFrame({&#x27;score&#x27;: [85, 90, 78]}, index=[2, 3, 4])
+print(left.join(right))
+#    name  score
+# 1     A    NaN   &lt;- 索引 1 无对应，补空值
+# 2     B   85.0
+# 3     C   90.0
+print(left.join(right, how=&#x27;inner&#x27;))   # 只保留两表都有的索引
+#   name  score
+# 2    B     85
+# 3    C     90</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>join 语法简单，默认按索引把右表列横向拼到左表右侧，索引不一致处补空值。功能比 merge 有限，适合简单横向拼接，复杂场景建议用 merge。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按索引快速横向拼接两表</li><li>一次连接多个 DataFrame</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认按索引对齐，而非按同名列</li><li>索引不一致时对应位置产生空值</li><li>on 参数是左表列匹配右表索引，与 merge 不同</li><li>支持列表一次连接多个表：left.join([right, right2])</li><li>功能有限，实际项目建议优先用 merge</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>join 的 on 语义与 merge 的 on 不同；默认按索引对齐，容易因索引不一致产生大量空值。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E7%B4%A2%E5%BC%95%E5%AF%B9%E9%BD%90.html">索引对齐</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>left.join(right) 默认按什么对齐？</summary><div class="quiz-a">按索引对齐，把右表列横向拼到左表右侧。</div></details>
+<details class="quiz"><summary>join 的 on=&#x27;k&#x27; 与 merge 的 on=&#x27;k&#x27; 有何不同？</summary><div class="quiz-a">join 是左表的 k 列去匹配右表的索引；merge 是左右表同名列 k 相互匹配。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>left.join(right) 直接把右表横向放到左表旁边，默认以索引作为对齐依据；索引对不上的位置补空值。也可以用 on 指定左表的某一列去匹配右表的索引，还可以传入列表一次连接多张表。它写法极简，但正因为只按索引对齐，复杂场景很受限。</p>
+<p>- 默认按索引横向对齐，索引不一致的位置为空</p>
+<p>- on 参数指定用左表哪一列去匹配右表的索引，与 merge 的 on 语义不同</p>
+<p>- 支持列表形式一次连接多表：left.join([right, right2])</p>
+<details class="quiz"><summary>left.join(right) 时两表索引不完全重合，结果会怎样？</summary><div class="quiz-a">按索引对齐取并集，任一侧没有匹配值的位置填空值，不会报错。</div></details>
+<details class="quiz"><summary>要一次把 right 和 right2 拼到 left 上，join 怎么写？为什么 merge 不能这么写？</summary><div class="quiz-a">写成 left.join([right, right2])；merge 一次只能合并两张表，多表需要链式多次调用。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=23" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p23 S02E08.连接查询之join与Merge总结</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E5%90%88%E5%B9%B6%E4%B8%8E%E9%87%8D%E5%A1%91.html">数据合并与重塑</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/join%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html"><small>上一张</small>join 参数（concat）</a><a class="next" href="../c/join_axes%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>join_axes 参数</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

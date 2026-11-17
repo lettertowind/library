@@ -18,12 +18,40 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>m.name 列名行名判断</h1><div class="aliases">m.name · Series.name · 按名称选择性应用</div><p class="lede">在 apply 回调中用 Series 的 name 属性判断当前列名或行索引名，实现只对指定列/行运算。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>DataFrame.apply 的回调参数 m 是一个 Series，m.name 在按列时是列名、按行时是行索引名。用 lambda m: np.sqrt(m) if m.name == &#x27;x&#x27; else m 即可只对 x 列开方，其余原样返回；用 m.name in [&#x27;x&#x27;,&#x27;y&#x27;] 可对多列生效。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>只对指定列做变换</li><li>只对指定行做变换（配 axis=1）</li><li>多列/多行批量选择处理</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>按列时 m.name 是列名，按行时是行索引名</li><li>条件不满足时返回 m 本身即保持原样</li><li>用 in 列表可一次选多列或多行</li><li>需与 axis 配合决定按行还是按列</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>依赖回调参数是 Series；若用其他方式遍历则无 m.name。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">lambda 表达式</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>如何只对 x、y 两列开方而 z 列不变？</summary><div class="quiz-a">数据.apply(lambda m: np.sqrt(m) if m.name in [&#x27;x&#x27;,&#x27;y&#x27;] else m)。</div></details>
-<details class="quiz"><summary>按行 apply 时 m.name 代表什么？</summary><div class="quiz-a">代表当前行的行索引名称。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/loc.html"><small>上一张</small>loc</a><a class="next" href="../c/map.html"><small>下一张</small>map</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>m.name 列名行名判断</h1><div class="aliases">m.name · Series.name · 按名称选择性应用</div><p class="lede">在 apply 回调中用 Series 的 name 属性判断当前列名或行索引名，实现只对指定列/行运算。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.apply(func, axis=0, raw=False, result_type=None)</code>，回调里用 <code>m.name</code> 取列名或行索引名 <strong>参数</strong>：</p>
+<ul><li><code>func</code>：作用于每列或每行的函数，接收到的参数是 Series，含 <code>name</code> 属性</li><li><code>axis</code>：<code>0</code> 或 <code>&#x27;index&#x27;</code> 按列传入，<code>m.name</code> 是列名；<code>1</code> 或 <code>&#x27;columns&#x27;</code> 按行传入，<code>m.name</code> 是行索引名</li><li><code>raw</code>：为 True 时传入 ndarray 而非 Series，此时没有 <code>m.name</code></li><li><code>result_type</code>：<code>&#x27;expand&#x27;</code>/<code>&#x27;reduce&#x27;</code>/<code>&#x27;broadcast&#x27;</code>，控制返回结果的展开方式，一般默认即可</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({&#x27;x&#x27;: [1, 4, 9], &#x27;y&#x27;: [16, 25, 36], &#x27;z&#x27;: [2, 3, 4]},
+                  index=[&#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;])
+# 只对 x、y 两列开方，z 列原样返回
+r = df.apply(lambda m: np.sqrt(m) if m.name in [&#x27;x&#x27;, &#x27;y&#x27;] else m)
+print(r)
+#      x     y  z
+# a  1.0   4.0  2
+# b  2.0   5.0  3
+# c  3.0   6.0  4
+
+# 按行：m.name 是行索引名，只处理 a 行
+print(df.apply(lambda m: m * 10 if m.name == &#x27;a&#x27; else m, axis=1))
+#     x   y   z
+# a  10  40  20
+# b   4  25   3
+# c   9  36   4</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>DataFrame.apply 的回调参数 m 是一个 Series，m.name 在按列时是列名、按行时是行索引名。用 lambda m: np.sqrt(m) if m.name == &#x27;x&#x27; else m 即可只对 x 列开方，其余原样返回；用 m.name in [&#x27;x&#x27;,&#x27;y&#x27;] 可对多列生效。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>只对指定列做变换</li><li>只对指定行做变换（配 axis=1）</li><li>多列/多行批量选择处理</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>按列时 m.name 是列名，按行时是行索引名</li><li>条件不满足时返回 m 本身即保持原样</li><li>用 in 列表可一次选多列或多行</li><li>需与 axis 配合决定按行还是按列</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>依赖回调参数是 Series；若用其他方式遍历则无 m.name。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">lambda 表达式</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>如何只对 x、y 两列开方而 z 列不变？</summary><div class="quiz-a">数据.apply(lambda m: np.sqrt(m) if m.name in [&#x27;x&#x27;,&#x27;y&#x27;] else m)。</div></details>
+<details class="quiz"><summary>按行 apply 时 m.name 代表什么？</summary><div class="quiz-a">代表当前行的行索引名称。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>DataFrame.apply 会逐列（axis=0）或逐行（axis=1）把 Series 传给回调，这个 Series 的 name 就是列名或行索引名。配合三元表达式即可只对某列或某行计算，其余原样返回。多个目标用 m.name in [&#x27;x&#x27;,&#x27;y&#x27;] 判断。</p>
+<p>- 按列操作时 m.name 是列名，按行操作时是行索引名</p>
+<p>- 单目标：m.name == &#x27;x&#x27;；多目标：m.name in [&#x27;x&#x27;,&#x27;y&#x27;]</p>
+<p>- 必须配合 else 原样返回 m，否则其余行/列会丢失</p>
+<details class="quiz"><summary>想让 x、y 两列平方而 z 列不变，回调条件怎么写？</summary><div class="quiz-a">lambda m: np.square(m) if m.name in [&#x27;x&#x27;,&#x27;y&#x27;] else m。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=26" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p26 S02E11.列与列之间的计算</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/loc.html"><small>上一张</small>loc</a><a class="next" href="../c/map.html"><small>下一张</small>map</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

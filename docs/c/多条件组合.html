@@ -38,11 +38,17 @@ print(arr[(arr % 2 == 0) &amp; (arr &lt; 7)])   # 偶数 且 小于7
 <p>- &amp; 表示且，| 表示或</p>
 <p>- 每个条件必须加小括号</p>
 <p>- 不能用 Python 的 and/or</p>
-<details class="quiz"><summary>为什么 df[(df[&#x27;语文&#x27;]&gt;=60) &amp; (df[&#x27;英语&#x27;]&lt;=60)] 里每个条件要加括号？</summary><div class="quiz-a">因为 &amp; 优先级高于比较运算符，不加括号会先算 &amp; 导致逻辑错误。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%90%91%E9%87%8F%E5%8C%96%E8%AE%A1%E7%AE%97.html"><small>上一张</small>向量化计算</a><a class="next" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html"><small>下一张</small>布尔数组</a></nav></article>
+<details class="quiz"><summary>为什么 df[(df[&#x27;语文&#x27;]&gt;=60) &amp; (df[&#x27;英语&#x27;]&lt;=60)] 里每个条件要加括号？</summary><div class="quiz-a">因为 &amp; 优先级高于比较运算符，不加括号会先算 &amp; 导致逻辑错误。</div></details>
+<p>Numpy 数组不能用 Python 的 and/or，要用按位运算符 &amp;（与）和 |（或）逐元素组合布尔数组。每个条件都要用括号包起来，因为比较运算符优先级高于按位运算符，否则会先算错再组合。</p>
+<p>- 或 用 |，与 用 &amp;，非 用 ~，不要用 and/or/not</p>
+<p>- 每个子条件必须加括号，避免优先级错误</p>
+<p>- 判断偶数：arr % 2 == 0，余数为 0 即为偶数</p>
+<details class="quiz"><summary>arr = np.arange(10)，(arr % 2 == 0) | (arr &lt; 7) 会选出哪些数？为什么 8 没被选中？</summary><div class="quiz-a">选出 0~6 全部以及 8。8 不小于 7 也不是偶数之外的例外——8 是偶数所以其实会被选中；而 9 既不小于 7 也不是偶数，所以被排除。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=8" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p08 S01E07.布尔索引</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%90%91%E9%87%8F%E5%8C%96%E8%AE%A1%E7%AE%97.html"><small>上一张</small>向量化计算</a><a class="next" href="../c/%E5%B1%95%E5%B9%B3%E9%A1%BA%E5%BA%8F.html"><small>下一张</small>展平顺序</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

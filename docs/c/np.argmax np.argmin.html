@@ -32,11 +32,18 @@ print(np.argmax(a, axis=1))  # [1 0]   —— 每行最大值所在的列号
 
 b = np.array([4, 7, 7, 2])
 print(np.argmax(b))          # 1  —— 有并列最大值时返回第一次出现的位置</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>argmax/argmin 解决“最大值在哪”的问题。二维数组不指定 axis 时返回展平后的下标，与行优先遍历顺序有关；指定 axis 则返回沿该轴的下标数组。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>定位极值位置</li><li>找销量最高的商品序号</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回的是下标不是值</li><li>二维数组默认返回展平后的下标</li><li>展平顺序为行优先，下标与行列需换算</li><li>可配合 axis 按行或按列找极值位置</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>二维数组直接取到的下标是一维展平下标，不能直接当行列坐标用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.max%20np.min.html">np.max np.min</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.bincount.html">np.bincount</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>3x3 数组最大值在第 2 行第 1 列，np.argmax 返回什么？</summary><div class="quiz-a">返回展平下标 3（行优先：0,1,2 为第一行，3 为第二行第一列）。</div></details>
-<details class="quiz"><summary>argmax 和 max 的区别是什么？</summary><div class="quiz-a">max 返回值，argmax 返回该值所在的下标。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.bincount.html">np.bincount</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/np.max%20np.min.html">np.max np.min</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.arange.html"><small>上一张</small>np.arange</a><a class="next" href="../c/np.array.html"><small>下一张</small>np.array</a></nav></article>
+<details class="quiz"><summary>argmax 和 max 的区别是什么？</summary><div class="quiz-a">max 返回值，argmax 返回该值所在的下标。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>max()/min() 给你的是最值本身，argmax()/argmin() 给你的是最值的位置。下标从 0 开始；对二维数组不指定 axis 时，返回的是按展平顺序算出的位置，而不是行列坐标。</p>
+<p>- max()/min() 返回最值本身，argmax()/argmin() 返回位置</p>
+<p>- 下标从 0 开始计数</p>
+<p>- 二维不带 axis：返回展平后的下标，不是 (行, 列)</p>
+<details class="quiz"><summary>二维数组 argmax 返回 3，说明最大值在哪？</summary><div class="quiz-a">在展平后第 4 个元素，即第 2 行第 1 列，而不是行 3 列 0。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=13" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p13 S01E12.数学和统计方法</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.bincount.html">np.bincount</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/np.max%20np.min.html">np.max np.min</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%B1%95%E5%B9%B3%E9%A1%BA%E5%BA%8F.html">展平顺序</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E6%95%B0%E7%BB%84%E5%B1%95%E5%B9%B3%E9%A1%BA%E5%BA%8F.html">数组展平顺序</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.arange.html"><small>上一张</small>np.arange</a><a class="next" href="../c/np.array.html"><small>下一张</small>np.array</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

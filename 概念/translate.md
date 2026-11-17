@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 39
 stage: "S02E24 · 字符串操作（下）"
-order: 39
 ---
 
 # translate
@@ -16,6 +15,24 @@ order: 39
 > 别名：str.translate、字符映射替换
 
 **按 maketrans 生成的映射表逐字符替换字符串内容的方法。**
+
+## 用法
+**语法**：`Series.str.translate(table)`
+**参数**：
+- `table`：映射表，通常用 `str.maketrans()` 生成（也可传字典），逐字符查找并替换为目标内容；值设为 `None` 表示删除该字符。
+**示例**：
+```python
+import pandas as pd
+
+table = str.maketrans({'距': 'ju', '离': 'li'})   # 字符级映射表
+s = pd.Series(['距离', '远距离测量'])
+print(s.str.translate(table).tolist())
+# ['juli', '远juli测量']
+
+table2 = str.maketrans({' ': None})              # 值设为 None 即删除该字符
+print(pd.Series(['a b', 'c d']).str.translate(table2).tolist())
+# ['ab', 'cd']
+```
 
 ## 解释
 

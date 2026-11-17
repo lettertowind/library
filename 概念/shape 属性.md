@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 21
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # shape 属性

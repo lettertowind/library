@@ -83,6 +83,23 @@ np.argsort 给出“排序后各位置对应原数组的哪个下标”。用这
 a=[59,29,39]，np.argsort(a) 返回什么？::[1,2,0]，即升序排列对应的原索引。
 如何用 argsort 实现降序取值？::a[np.argsort(-a)] 或 a[np.argsort(a)[::-1]]。
 
+argsort 输出的是索引数组，需要再用这个索引去原数组取值，才能得到排序后的结果。它适合需要「记住原始位置」的场景，比如按某列排序后回取其他列。
+
+- 返回值是下标数组，不是排序结果本身
+- x[np.argsort(x)] 才是升序后的数组
+- 降序写法：np.argsort(-x) 后再取原数组
+x = [59, 29, 39]，np.argsort(x) 与 x[np.argsort(x)] 分别得什么？::argsort 得 [1, 2, 0]（下标），x[...] 得 [29, 39, 59]（排序后的值）。
+什么情况下必须用 argsort 而不能只用 sort？::需要知道排序后元素原来在哪一行/哪一列时，argsort 保留了原始下标。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p14 S01E13.条件计算，排序，深潜拷贝【本季完】](https://www.bilibili.com/video/BV1ji4y157uB?p=14) · 2026-11-17
+
+argsort 不改变原数据，只给出“从小到大该按什么顺序取”。拿到下标后再交给数组，就能按排序顺序重排数据，或取出最大/最小的若干元素。
+
+- 默认升序，返回的是下标数组而非值
+- idx[-3:] 是最大的三个元素所在位置，idx[:3] 是最小的三个
+- arr[arr.argsort()[-3:]] 得到前三个最大值，且按升序排列
+为什么 argsort()[-3:] 对应的是最大的三个元素？::argsort 默认升序，下标序列末尾对应原数组中值最大的位置
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p09 S01E08.神奇索引](https://www.bilibili.com/video/BV1ji4y157uB?p=9) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

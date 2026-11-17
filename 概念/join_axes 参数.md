@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 24
 stage: "S02E09 · 连接查询之concat"
-order: 24
 ---
 
 # join_axes 参数
@@ -44,6 +43,18 @@ join_axes 用于横向拼接时，以指定对象的索引为基准，将其他�
 ## 自测
 
 join_axes=df1.index 在横向拼接时起什么作用？::以 df1 的索引为基准，只保留 df1 中存在的索引，其他表按此索引匹配数据。
+
+
+### 补充 · 2026-11-17
+
+传入 [df1.index] 时，结果只保留 df1 的索引，把另一张表能对上的值拼过来，对不上则补 NaN，思路类似 Excel 的 VLOOKUP 以左表为基准。新版 Pandas 已移除该参数。
+
+- 参数值是索引对象组成的列表，如 [df1.index]
+- 基准表有的索引全保留，另一表缺失位置补 NaN
+- 等价于 VLOOKUP 式匹配，也等价于左连接思路
+pd.concat([df1, df4], axis=1, join_axes=[df1.index]) 的结果行由谁决定？::完全由 df1 的索引决定，df4 只贡献能对上的值。
+新版 Pandas 里用什么替代 join_axes 的“以左表为准”？::merge(how='left') 或在 concat 后按基准表的索引 reindex。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p24 S02E09.连接查询之concat](https://www.bilibili.com/video/BV1ji4y157uB?p=24) · 2026-11-17
 
 ## 出处
 

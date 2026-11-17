@@ -19,11 +19,18 @@
 </header>
 <main>
 <nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>labels 参数</h1><div class="aliases">labels · labels=[...] · 标签列表参数</div><p class="lede">drop 中用于一次传入多个待删除行/列标签的列表参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>labels 参数让 drop 支持批量删除：把多个行标签或列标签放进列表传给 labels。删除单标签可直接传，删除多标签必须用 labels 列表，否则会被误解析。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>批量删除多行</li><li>批量删除多列</li><li>按标签集合清理数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>多标签删除必须用 labels=[...] 列表形式</li><li>列表内标签用逗号分隔</li><li>配合 axis=1 可批量删列</li><li>单标签可省略 labels 直接传</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>labels 传的是标签不是位置；若索引是默认 RangeIndex，标签恰好等于行号，容易误以为是按位置删除。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/drop.html">drop</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要删除行标签 1 和 3，正确写法是什么？</summary><div class="quiz-a">df.drop(labels=[1, 3])，默认 axis=0 按行删除。</div></details>
-<details class="quiz"><summary>labels 里写的是行号还是行标签？</summary><div class="quiz-a">行标签。默认索引下二者恰好一致，但本质是标签。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/drop.html">drop</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/keys%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>keys 参数</a><a class="next" href="../c/labels%20%E5%8F%82%E6%95%B0%EF%BC%88cutqcut%EF%BC%89.html"><small>下一张</small>labels 参数（cutqcut）</a></nav></article>
+<details class="quiz"><summary>labels 里写的是行号还是行标签？</summary><div class="quiz-a">行标签。默认索引下二者恰好一致，但本质是标签。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>labels 是 drop 的标签入口：传单个标签时可省略参数名直接写，传多个标签时必须以列表形式交给 labels。行标签和列标签都走这个参数，具体删行还是删列由 axis 决定。</p>
+<p>- 多标签必须用列表：labels=[1, 3]</p>
+<p>- 单个标签可省略参数名：data.drop(1)</p>
+<p>- 删行删列共用 labels，靠 axis 区分方向</p>
+<details class="quiz"><summary>删除行标签 1 和 3，两种写法分别是什么？</summary><div class="quiz-a">data.drop(labels=[1, 3])，或显式写成 data.drop(labels=[1,3], axis=0)；只写 data.drop(1, 3) 是错的。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=30" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p30 S02E15.数据删除 drop函数</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/drop.html">drop</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/keys%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>keys 参数</a><a class="next" href="../c/labels%20%E5%8F%82%E6%95%B0%EF%BC%88cutqcut%EF%BC%89.html"><small>下一张</small>labels 参数（cutqcut）</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

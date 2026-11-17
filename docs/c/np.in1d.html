@@ -26,14 +26,14 @@
 a = np.array([1, 2, 3, 4, 5])
 b = np.array([2, 4, 6])
 
-print(np.in1d(a, b))                 # [False  True False  True False]
-print(a[np.in1d(a, b)])              # [2 4]
-print(np.in1d(a, b, invert=True))    # [ True False  True False  True]</code></pre>
-<p>注意函数名中的 <code>1</code> 表示数字 1，并非字母 <code>l</code>；它只返回成员关系的布尔数组，不直接返回交集本身。</p></section><section class="sec"><h2 id="解释">解释</h2><p>np.in1d(ar1, ar2) 对 ar1 的每个元素检查是否属于 ar2，返回与 ar1 同形状的布尔数组。本质是向量化的成员判断。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选出属于某集合的元素</li><li>做集合成员检查</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回与 ar1 同形状的布尔数组</li><li>函数名中是数字 1 不是字母 l</li><li>可配合布尔索引筛选元素</li><li>与集合的交并思想相关</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只判断成员关系，不返回交集本身；求交集需其他方法。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/unique.html">np.unique</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.in1d(a, b) 返回的是什么？</summary><div class="quiz-a">与 a 同形状的布尔数组，表示每个元素是否在 b 中。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/np.full_like.html"><small>上一张</small>np.full_like</a><a class="next" href="../c/np.max%20np.min.html"><small>下一张</small>np.max np.min</a></nav></article>
+print(np.isin(a, b))                 # [False  True False  True False]
+print(a[np.isin(a, b)])              # [2 4]
+print(~np.isin(a, b))    # [ True False  True False  True]</code></pre>
+<p>注意：函数原名 <code>np.in1d</code>（中间是数字 1），numpy 2.0 起已移除，改用 <code>np.isin</code>，语义完全一致。</p></section><section class="sec"><h2 id="解释">解释</h2><p>np.in1d(ar1, ar2) 对 ar1 的每个元素检查是否属于 ar2，返回与 ar1 同形状的布尔数组。本质是向量化的成员判断。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选出属于某集合的元素</li><li>做集合成员检查</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回与 ar1 同形状的布尔数组</li><li>函数名中是数字 1 不是字母 l</li><li>可配合布尔索引筛选元素</li><li>与集合的交并思想相关</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只判断成员关系，不返回交集本身；求交集需其他方法。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/unique.html">np.unique</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.isin(a, b) 返回的是什么？</summary><div class="quiz-a">与 a 同形状的布尔数组，表示每个元素是否在 b 中。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/np.full_like.html"><small>上一张</small>np.full_like</a><a class="next" href="../c/np.linspace.html"><small>下一张</small>np.linspace</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

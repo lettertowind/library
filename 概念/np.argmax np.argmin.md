@@ -66,6 +66,17 @@ argmax/argmin 解决“最大值在哪”的问题。二维数组不指定 axis 
 3x3 数组最大值在第 2 行第 1 列，np.argmax 返回什么？::返回展平下标 3（行优先：0,1,2 为第一行，3 为第二行第一列）。
 argmax 和 max 的区别是什么？::max 返回值，argmax 返回该值所在的下标。
 
+
+### 补充 · 2026-11-17
+
+max()/min() 给你的是最值本身，argmax()/argmin() 给你的是最值的位置。下标从 0 开始；对二维数组不指定 axis 时，返回的是按展平顺序算出的位置，而不是行列坐标。
+
+- max()/min() 返回最值本身，argmax()/argmin() 返回位置
+- 下标从 0 开始计数
+- 二维不带 axis：返回展平后的下标，不是 (行, 列)
+二维数组 argmax 返回 3，说明最大值在哪？::在展平后第 4 个元素，即第 2 行第 1 列，而不是行 3 列 0。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p13 S01E12.数学和统计方法](https://www.bilibili.com/video/BV1ji4y157uB?p=13) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

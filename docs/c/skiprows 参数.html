@@ -24,11 +24,17 @@
 <p>- 行号从 0 开始计数，注意与 Excel 行号差 1</p>
 <p>- 要保留列名行作为表头，跳过行数应到列名行之前</p>
 <p>- 跳过太少会把列名行当数据，跳过太多会丢数据</p>
-<details class="quiz"><summary>数据实际从第 9 行开始、第 8 行是列名，skiprows 应该写几？</summary><div class="quiz-a">写 8，跳过前 8 行，让第 9 行（列名行）成为表头。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/usecols%20%E5%8F%82%E6%95%B0.html">usecols 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/shift.html"><small>上一张</small>shift</a><a class="next" href="../c/slice%28None%29.html"><small>下一张</small>slice(None)</a></nav></article>
+<details class="quiz"><summary>数据实际从第 9 行开始、第 8 行是列名，skiprows 应该写几？</summary><div class="quiz-a">写 8，跳过前 8 行，让第 9 行（列名行）成为表头。</div></details>
+<p>表格上方常有标题、说明等无用行，用 skiprows 从文件顶行开始跳过，让 pandas 从真正的表头开始读。它按物理行计数，与 usecols 配合能精准截出数据区域。</p>
+<p>- 行号从 0 开始，指文件物理行而非数据行</p>
+<p>- 被跳过的行里不能包含真正的表头</p>
+<p>- 与 header 参数配合确定表头位置</p>
+<details class="quiz"><summary>文件前 3 行是说明、第 4 行是表头，skiprows 应设几？</summary><div class="quiz-a">设为 3，跳过前 3 行说明，第 4 行即成为表头。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=25" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p25 S02E10.各种数据自动填充</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Excel%20%E7%A9%BA%E8%A1%8C%E7%A9%BA%E5%88%97%E5%A4%84%E7%90%86.html">Excel 空行空列处理</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/usecols%20%E5%8F%82%E6%95%B0.html">usecols 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/shift.html"><small>上一张</small>shift</a><a class="next" href="../c/slice%28None%29.html"><small>下一张</small>slice(None)</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

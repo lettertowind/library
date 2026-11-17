@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 [xmin, xmax, ymin, ymax] 一个列表同时设定 x、y 轴显示范围的 Axes 方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>ax.axis（一次设置坐标轴四边界） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>ax.axis（一次设置坐标轴四边界）</h1><div class="aliases">ax.axis · axis([xmin · xmax · ymin · ymax]) · 一次设置坐标轴范围 · Matplotlib axis</div><p class="lede">用 [xmin, xmax, ymin, ymax] 一个列表同时设定 x、y 轴显示范围的 Axes 方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>它等价于分别调用 set_xlim 与 set_ylim，只是写成一行。参数顺序严格固定为 x 最小、x 最大、y 最小、y 最大，写反会导致图形显示异常。需先通过 plt.gca() 拿到轴对象。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>一次性锁定画布可视区域</li><li>想省掉两次 set_xlim/set_ylim 调用</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>顺序必须是 [xmin, xmax, ymin, ymax]，不能颠倒</li><li>等价于 set_xlim(xmin, xmax) + set_ylim(ymin, ymax)</li><li>是轴对象方法，先 ax = plt.gca() 再调用</li><li>与 NumPy/Pandas 的 axis 参数含义完全无关</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>同名不同义：NumPy/Pandas 的 axis 指运算沿哪个方向，Matplotlib 的 ax.axis 指坐标轴显示范围。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%9D%90%E6%A0%87%E8%BD%B4%E8%BE%B9%E7%95%8C%E5%8F%82%E6%95%B0%EF%BC%88bottomtopleftright%EF%BC%89.html">坐标轴边界参数（bottomtopleftright）</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想让 x 轴 0~10、y 轴 0~20，用一行 ax.axis 怎么写？</summary><div class="quiz-a">ax.axis([0, 10, 0, 20])</div></details>
+<details class="quiz"><summary>ax.axis 的四个数写反了会怎样？</summary><div class="quiz-a">显示范围错乱，最小值大于最大值时轴会翻转或图形不可见。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>axis([xmin, xmax, ymin, ymax]) 按顺序给出 x 轴最小/最大和 y 轴最小/最大；pyplot 层写作 plt.axis(...)，Axes 对象层写作 ax.axis(...)。设置范围可确保参考线和填充区域落在可视区域内。</p>
+<p>- 参数顺序为 xmin, xmax, ymin, ymax</p>
+<p>- plt.axis([-1, 2, -1, 2]) 将 x、y 范围都设为 -1 到 2</p>
+<p>- 填充/参考线超出范围时会看不见，需先调范围</p>
+<details class="quiz"><summary>plt.axis([-1, 2, -1, 2]) 中第二个 2 表示什么？</summary><div class="quiz-a">x 轴的最大值（xmax）。</div></details>
+<details class="quiz"><summary>为什么要先设置坐标轴范围再画填充？</summary><div class="quiz-a">避免填充区域超出当前视野而看不到。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=74" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p74 S03E25.填充</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=68" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p68 S03E19.坐标轴【下】</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.axhspan%20%E6%B0%B4%E5%B9%B3%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html">plt.axhspan 水平带状填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.axis%28%27equal%27%29%EF%BC%88%E7%AD%89%E6%AF%94%E4%BE%8B%E5%9D%90%E6%A0%87%E8%BD%B4%EF%BC%89.html">plt.axis(&#x27;equal&#x27;)（等比例坐标轴）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plt.axvspan%20%E5%9E%82%E7%9B%B4%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html">plt.axvspan 垂直带状填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%9D%90%E6%A0%87%E8%BD%B4%E8%BE%B9%E7%95%8C%E5%8F%82%E6%95%B0%EF%BC%88bottomtopleftright%EF%BC%89.html">坐标轴边界参数（bottomtopleftright）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/autopct%EF%BC%88%E9%A5%BC%E5%9B%BE%E7%99%BE%E5%88%86%E6%AF%94%E6%98%BE%E7%A4%BA%EF%BC%89.html"><small>上一张</small>autopct（饼图百分比显示）</a><a class="next" href="../c/ax.spines%EF%BC%88%E5%9D%90%E6%A0%87%E8%BD%B4%E8%BE%B9%E6%A1%86%EF%BC%89.html"><small>下一张</small>ax.spines（坐标轴边框）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

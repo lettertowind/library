@@ -19,11 +19,19 @@
 </header>
 <main>
 <nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>数组与矩阵的区别</h1><div class="aliases">array vs matrix · 数组矩阵辨析</div><p class="lede">数组是任意维度的数据容器，矩阵通常特指二维数组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>数组可以是一维、二维、三维甚至更高维；矩阵一般指二维数组，可看作数组的一个分支。二者在索引方式上相似，但数组适用范围更广。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>理解 NumPy 数据结构定位</li><li>选择用数组还是矩阵做计算</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>二维数组可视为矩阵，但数组不限于二维</li><li>矩阵是数组的子集/分支，数组更通用</li><li>二者都可用下标索引取数据</li><li>能选数组时优先数组，更灵活更快</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>很多人把二维数组直接叫矩阵，日常可混用，但严格说二者不等同。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/numpy.ndarray.html">numpy.ndarray</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/Numpy%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84.html">Numpy 二维数组</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Numpy%20%E5%A4%9A%E7%BB%B4%E6%95%B0%E7%BB%84.html">Numpy 多维数组</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>一个形状为 4×3×2 的数据，是矩阵还是数组？为什么？</summary><div class="quiz-a">是数组（三维数组），矩阵通常只指二维。</div></details>
-<details class="quiz"><summary>为什么建议优先用数组而不是矩阵？</summary><div class="quiz-a">数组支持任意维度、更灵活，且运算速度更快。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E7%BB%84%E4%B8%8E%E6%A0%87%E9%87%8F%E8%BF%90%E7%AE%97.html"><small>上一张</small>数组与标量运算</a><a class="next" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html"><small>下一张</small>条件赋值</a></nav></article>
+<details class="quiz"><summary>为什么建议优先用数组而不是矩阵？</summary><div class="quiz-a">数组支持任意维度、更灵活，且运算速度更快。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>矩阵可以看成数组的一个分支：二维数组常被称作矩阵，两者索引方式相同，都能用下标取数。但数组可以是一维、三维甚至更高维，矩阵则限定在二维且偏线性代数语义。在两者可通用时优先用数组，因为它更灵活、速度更快。</p>
+<p>- 矩阵是数组的分支，二维数组可视为矩阵，但数组不都是矩阵</p>
+<p>- 一维数组 shape=(n,) 只有行方向，二维数组才有行列两个维度</p>
+<p>- 两者索引方式相同，都可用下标取数据</p>
+<details class="quiz"><summary>为什么讲师建议能用数组就不用矩阵？</summary><div class="quiz-a">数组维度更自由、运算更通用，且实现上速度更快；矩阵局限于二维和线性代数语义。</div></details>
+<details class="quiz"><summary>一维数组和二维数组的 shape 区别是什么？</summary><div class="quiz-a">一维是 (n,)，只有一个维度；二维是 (行数, 列数)，有行列两个维度。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=3" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p03 S0102.体验Numpy与for循环的区别</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E7%BB%84%E4%B8%8E%E6%A0%87%E9%87%8F%E8%BF%90%E7%AE%97.html"><small>上一张</small>数组与标量运算</a><a class="next" href="../c/%E6%95%B0%E7%BB%84%E5%B1%95%E5%B9%B3%E9%A1%BA%E5%BA%8F.html"><small>下一张</small>数组展平顺序</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

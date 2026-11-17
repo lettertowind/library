@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 中指定线条样式（实线、虚线等）的参数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>linestyle 线型参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>linestyle 线型参数</h1><div class="aliases">linestyle · ls · 线型 · 线条样式</div><p class="lede">Matplotlib 中指定线条样式（实线、虚线等）的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>linestyle 用短字符串描述线条画法，如 &#x27;:&#x27; 为虚线、&#x27;-&#x27; 为实线、&#x27;--&#x27; 为破折线、&#x27;-.&#x27; 为点划线。它在 plt.plot、plt.grid 等几乎所有涉及线条的接口中通用，可简写为 ls。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>区分多条曲线的视觉风格</li><li>让网格线、参考线弱化为虚线不抢主体</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>&#x27;:&#x27; 虚线、&#x27;-&#x27; 实线、&#x27;--&#x27; 破折线、&#x27;-.&#x27; 点划线</li><li>可简写为 ls，如 ls=&#x27;:&#x27;</li><li>对折线、网格线、边框等线条对象均生效</li><li>参数名拼写要准确，少写字母会直接报错</li></ul></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.grid%EF%BC%88%E7%BD%91%E6%A0%BC%E7%BA%BF%EF%BC%89.html">plt.grid（网格线）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/linewidth%20%E7%BA%BF%E5%AE%BD%E5%8F%82%E6%95%B0.html">linewidth 线宽参数</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想让网格线变成虚线但保留实线数据曲线，应该改哪个参数、改谁的？</summary><div class="quiz-a">只给 plt.grid 传 linestyle=&#x27;:&#x27;，不动 plt.plot 的线型。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>linestyle 决定线条的视觉样式，常用 &#x27;:&#x27; 表示点状虚线、&#x27;--&#x27; 表示虚线。平均线、阈值线等参考线通常用虚线，以区别于实际数据系列。</p>
+<p>- linestyle=&#x27;:&#x27; 为点状虚线，常用于平均线</p>
+<p>- 实线 &#x27;-&#x27;、虚线 &#x27;--&#x27;、点线 &#x27;:&#x27;、点划线 &#x27;-.&#x27;</p>
+<p>- 可通过 ls 简写传入</p>
+<details class="quiz"><summary>想让平均线看起来像参考线而不是数据线，linestyle 应怎么设？</summary><div class="quiz-a">设为 &#x27;:&#x27; 或 &#x27;--&#x27; 等虚线样式，避免用实线</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=57" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p57 S03E09.平均线</a> · 2026-11-17</p>
+<p>线型只改变线条本身的画法，常用符号有 &#x27;-&#x27; 实线、&#x27;--&#x27; 破折线（虚线）、&#x27;-.&#x27; 点划线、&#x27;:&#x27; 点线、&#x27;&#x27; 或 None 无线条。它和颜色、标记点、drawstyle 是彼此独立的样式维度，常用来在同一张图中区分多条曲线。</p>
+<p>- &#x27;-&#x27; 实线、&#x27;--&#x27; 破折线、&#x27;-.&#x27; 点划线、&#x27;:&#x27; 点线、&#x27;&#x27; 或 None 无线条</p>
+<p>- 可简写进格式字符串，如 &#x27;r--&#x27; 表示红色虚线</p>
+<p>- 与 drawstyle 不同：线型管线条虚实，drawstyle 管点与点之间的阶梯走法</p>
+<details class="quiz"><summary>想让折线变成阶梯状，改 linestyle 有用吗？</summary><div class="quiz-a">没用，要用 drawstyle；linestyle 只能把线变成虚线、点划线等。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=73" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p73 S03E24.样式</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=64" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p64 S03E15.网格线</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/drawstyle%20%E6%8A%98%E7%BA%BF%E8%BF%9E%E6%8E%A5%E6%A0%B7%E5%BC%8F.html">drawstyle 折线连接样式</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/linewidth%20%E7%BA%BF%E5%AE%BD%E5%8F%82%E6%95%B0.html">linewidth 线宽参数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plot%20%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2.html">plot 格式字符串</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plt.grid%EF%BC%88%E7%BD%91%E6%A0%BC%E7%BA%BF%EF%BC%89.html">plt.grid（网格线）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%A0%87%E8%AE%B0%E7%82%B9%EF%BC%88marker%EF%BC%89.html">标记点（marker）</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/left%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>left 参数</a><a class="next" href="../c/linewidth%20%E7%BA%BF%E5%AE%BD%E5%8F%82%E6%95%B0.html"><small>下一张</small>linewidth 线宽参数</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

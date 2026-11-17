@@ -36,11 +36,17 @@ print(np.median(b, axis=1))        # [ 2. 20.]         按行</code></pre></sect
 <p>- 等于 50% 分位数</p>
 <p>- 对极端值稳健</p>
 <p>- 与均值差距大说明分布偏斜</p>
-<details class="quiz"><summary>某公司薪资均值远高于中位数，说明什么？</summary><div class="quiz-a">分布右偏，少数高薪拉高了均值，大多数员工薪资低于均值。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.mean.html">np.mean</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.mean.html">np.mean</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E4%BC%97%E6%95%B0.html">众数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%88%86%E4%BD%8D%E6%95%B0.html">分位数</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.mean.html"><small>上一张</small>np.mean</a><a class="next" href="../c/np.minimum.html"><small>下一张</small>np.minimum</a></nav></article>
+<details class="quiz"><summary>某公司薪资均值远高于中位数，说明什么？</summary><div class="quiz-a">分布右偏，少数高薪拉高了均值，大多数员工薪资低于均值。</div></details>
+<p>中位数不是直接取数组中间位置的元素，而是必须先排序。奇数个取最中间那个，偶数个取中间两个的平均。由于只看位置不看数值大小，少数极端值不会把它拉偏。</p>
+<p>- 必须先排序，再取中间值，排序方向不影响结果</p>
+<p>- 奇数个取中间一个，偶数个取中间两个相加除以 2</p>
+<p>- 对极端值稳健，是平均数的替代方案</p>
+<details class="quiz"><summary>数组有 6 个元素，中位数怎么取？</summary><div class="quiz-a">排序后取第 3、第 4 个元素相加除以 2，而不是直接取任意中间元素。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=13" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p13 S01E12.数学和统计方法</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.mean.html">np.mean</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.mean.html">np.mean</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E4%BC%97%E6%95%B0.html">众数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%81%8F%E6%80%81%E5%88%86%E5%B8%83.html">偏态分布</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%88%86%E4%BD%8D%E6%95%B0.html">分位数</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E7%AE%97%E6%9C%AF%E5%B9%B3%E5%9D%87%E6%95%B0.html">算术平均数</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.mean.html"><small>上一张</small>np.mean</a><a class="next" href="../c/np.minimum.html"><small>下一张</small>np.minimum</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -45,6 +45,17 @@ pip 只管 Python 包，不负责系统级依赖；conda 环境下应优先用 c
 
 为什么在命令行直接输入 pip install pandas 可能提示找不到命令？::因为 pip3.exe 所在目录不在系统 PATH 中，需要先 cd 到该目录或配置环境变量。
 
+
+### 补充 · 2026-11-17
+
+基本语法是 pip install 库名，例如 pip install pandas、pip install numpy、pip install xlrd。安装需要联网，成功率和速度受网速与运营商影响，失败属常见现象。
+
+- 固定句式：pip install + 库名，一次装一个库
+- 安装走网络下载，慢或失败多为网络原因，不一定是命令写错
+- 失败最实用的处理是原命令反复重试，直到成功
+执行 pip install pandas 卡住并报错，第一步应该判断是命令问题还是网络问题？怎么判断？::先看报错类型：若是「不是内部或外部命令」是路径/环境问题；若是超时、连接失败、下载中断则属网络问题，重试或换源即可。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p15 S02E00.安装pandas.numpy.xlrd](https://www.bilibili.com/video/BV1ji4y157uB?p=15) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

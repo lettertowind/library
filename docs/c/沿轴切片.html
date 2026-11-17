@@ -28,11 +28,19 @@ arr = np.array([[1, 2, 3], [4, 5, 6], [7, 8, 9]])
 print(arr[:2].tolist())      # [[1, 2, 3], [4, 5, 6]]  无逗号，只有一个参数，默认沿 0 轴取前两行
 print(arr[:2, 1:].tolist())  # [[2, 3], [5, 6]]        逗号前对应 0 轴、逗号后对应 1 轴
 print(arr[..., 0].tolist())  # [1, 4, 7]               省略号占位 0 轴，取第 0 列</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>无逗号时只有一个参数，默认沿 0 轴切片；有逗号时第一个参数对应 0 轴，第二个参数对应 1 轴，依次类推。切片和索引一样不包含结束值。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>从多维数组中按行、列或更高维度截取部分数据</li><li>配合轴概念进行精确的数据选取</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>无逗号：一个参数，默认沿 0 轴切片</li><li>有逗号：第一个参数对应 0 轴，第二个对应 1 轴，依次类推</li><li>切片不包含结束值</li><li>arr[:2] 取前两行；arr[:2, 1:] 取前两行的第 1 列到最后一列</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>切片参数与轴顺序严格对应，不能随意调换；高维数组需要按轴顺序写全或使用省略号。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/Numpy%20%E5%88%87%E7%89%87.html">Numpy 切片</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>对二维数组 arr，arr[:2, 1:] 中逗号前后的参数分别对应哪个轴？</summary><div class="quiz-a">逗号前 :2 对应 0 轴（行），逗号后 1: 对应 1 轴（列）。</div></details>
-<details class="quiz"><summary>为什么 arr[:2] 只沿 0 轴切片？</summary><div class="quiz-a">因为没有逗号，只有一个参数，默认沿 0 轴切片。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html"><small>上一张</small>条件赋值</a><a class="next" href="../c/%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D.html"><small>下一张</small>浅拷贝与深拷贝</a></nav></article>
+<details class="quiz"><summary>为什么 arr[:2] 只沿 0 轴切片？</summary><div class="quiz-a">因为没有逗号，只有一个参数，默认沿 0 轴切片。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>切片第一个参数默认代表 0 轴；没有逗号时只沿 0 轴切，有逗号时逗号前代表行/0 轴、逗号后代表列/1 轴。切片不包含结束值，因此 arr[:2] 取的是第 0、1 行。</p>
+<p>- 无逗号时只有一个参数，默认沿 0 轴切片。</p>
+<p>- 有逗号时按轴顺序分别指定，二维中逗号前是行、逗号后是列。</p>
+<p>- 切片不包含结束值，arr[:2] 只取 0、1。</p>
+<details class="quiz"><summary>二维数组 arr 中 arr[:2] 取的是什么？</summary><div class="quiz-a">沿 0 轴取第 0 行和第 1 行，不包含第 2 行。</div></details>
+<details class="quiz"><summary>对三行三列、元素为 1~9 的数组，arr[:2, 1:] 的结果是什么？</summary><div class="quiz-a">结果是 [[2, 3], [5, 6]]，即取前两行中第 1 列及之后的元素。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=10" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p10 S01E09.数组的轴和转置</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html"><small>上一张</small>条件赋值</a><a class="next" href="../c/%E6%B5%85%E6%8B%B7%E8%B4%9D%E4%B8%8E%E6%B7%B1%E6%8B%B7%E8%B4%9D.html"><small>下一张</small>浅拷贝与深拷贝</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

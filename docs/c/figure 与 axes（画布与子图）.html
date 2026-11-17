@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="figure 是承载整张图的画布，axes 是其中真正绘图、带坐标轴的区域。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>figure 与 axes（画布与子图） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>figure 与 axes（画布与子图）</h1><div class="aliases">figure · axes · fig · ax · 画布与坐标轴对象</div><p class="lede">figure 是承载整张图的画布，axes 是其中真正绘图、带坐标轴的区域。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Matplotlib 的对象分两层：figure 管画布级属性（尺寸、dpi、保存），axes 管具体绘图区（坐标轴、刻度、线条、文字）。几乎所有坐标轴设置都作用在 axes 上，所以先拿到 ax 是第一步。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>理解 Matplotlib 面向对象的绘图层次</li><li>判断某个设置该写给 fig 还是 ax</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>figure 管画布级属性：figsize、dpi、savefig</li><li>axes 管绘图区：spines、ticks、ticklabels、plot 线条</li><li>一个 figure 可以包含多个 axes（即多子图）</li><li>fig, ax = plt.subplots() 是同时拿到两者的标准写法</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>口语里的「坐标轴」常混指整个 axes；严格说 xaxis/yaxis 才是单条轴，spines 只是边框线。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.subplots.html">plt.subplots</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>设置图片 200dpi 和隐藏上边框，分别作用在哪一层对象上？</summary><div class="quiz-a">dpi 属于 figure（画布）；隐藏上边框属于 axes 的 spines。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>可以类比为『一张纸』和『纸上的一个个图框』：paper 只有一张，图框可以有很多个。每块 axes 有自己独立的坐标轴、标题和图例，互不干扰。所有绘图函数最终都是往某个 axes 上画东西。</p>
+<p>- 一个 figure 可以包含多个 axes</p>
+<p>- axes 各自拥有独立坐标轴、图例与标题</p>
+<p>- plt.figure() 建 figure，add_subplot() 建 axes</p>
+<details class="quiz"><summary>一个 figure 里有 4 个 axes，它们的 x 轴刻度必须一样吗？</summary><div class="quiz-a">不必，每个 axes 的坐标轴设置彼此独立。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=58" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p58 S03E10.画布和子图</a> · 2026-11-17</p>
+<p>一个 Figure 可以包含多个 Axes；子图、子区域本质上都是 Axes。add_subplot 和 add_axes 都返回 Axes 对象，绘图时应明确在哪个 Axes 上操作。</p>
+<p>- Figure 管整张画布，Axes 管具体坐标系和绘图内容。</p>
+<p>- 一个 Figure 可有多个 Axes，也可嵌套小 Axes。</p>
+<p>- add_subplot、add_axes 的返回值都是 Axes。</p>
+<details class="quiz"><summary>一个 Figure 上可以有多个 Axes 吗？</summary><div class="quiz-a">可以，子图布局和画中画都是在同一 Figure 上放置多个 Axes。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=60" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p60 S03E12.新增子图或区域</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=67" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p67 S03E18.坐标轴【上】</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fig.add_axes%EF%BC%88%E6%8C%89%E7%9F%A9%E5%BD%A2%E6%B7%BB%E5%8A%A0%E8%BD%B4%EF%BC%89.html">fig.add_axes（按矩形添加轴）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/fig.add_subplot%EF%BC%88%E5%9C%A8%E7%94%BB%E5%B8%83%E4%B8%8A%E6%B7%BB%E5%8A%A0%E5%AD%90%E5%9B%BE%EF%BC%89.html">fig.add_subplot（在画布上添加子图）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/plt.figure%EF%BC%88%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83%EF%BC%89.html">plt.figure（创建画布）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/plt.subplots.html">plt.subplots</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%AD%90%E5%8C%BA%E5%9F%9F%EF%BC%88%E7%94%BB%E4%B8%AD%E7%94%BB%EF%BC%89.html">子区域（画中画）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%AD%90%E5%9B%BE%EF%BC%88subplot%EF%BC%89.html">子图（subplot）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%BD%93%E5%89%8D%E5%AD%90%E5%9B%BE%EF%BC%88current%20axes%EF%BC%89.html">当前子图（current axes）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE%E6%8E%A5%E5%8F%A3%EF%BC%88Axes%20%E6%96%B9%E6%B3%95%EF%BC%89.html">面向对象绘图接口（Axes 方法）</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/figsize%EF%BC%88%E7%94%BB%E5%B8%83%E5%B0%BA%E5%AF%B8%EF%BC%89.html"><small>上一张</small>figsize（画布尺寸）</a><a class="next" href="../c/fill%20%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html"><small>下一张</small>fill 区域填充</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

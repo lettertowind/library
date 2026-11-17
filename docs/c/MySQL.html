@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 SQL 语句管理数据表的主流开源关系型数据库。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>MySQL · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>数据库</span></nav><article class="card"><h1>MySQL</h1><div class="aliases">MySQL 数据库 · 关系型数据库</div><p class="lede">用 SQL 语句管理数据表的主流开源关系型数据库。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>数据以表的形式存在，通过 SQL 语句增删改查。Python 无法直接操作它，需要借助 pymysql 这类驱动先建立连接，再由 pandas 把查询结果取成 DataFrame 分析。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>业务数据、日志数据的持久化存储</li><li>数据分析时作为取数源，配合 SQL 查询</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>属于关系型数据库，数据组织为二维表</li><li>客户端操作依赖连接信息：主机、用户、密码、库名、编码</li><li>SQL 语句在 MySQL、SQL Server、SQLite 间基本通用</li><li>Python 侧连接依赖第三方驱动 pymysql</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>MySQL 只是数据库的一种；SQL 语法通用但不完全等价，不同数据库的方言存在差异。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/SQL%20%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.html">SQL 查询语句</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/pymysql.html">pymysql</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/pd.read_sql.html">pd.read_sql</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么说学会了 SQL 不等于只会在 MySQL 上用？</summary><div class="quiz-a">因为 SQL 是通用查询语言，SQL Server、SQLite 等数据库也支持基本相同的查询语句。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=18" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p18 S02E03.读取Mysql文件</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/GROUP%20BY.html"><small>上一张</small>GROUP BY</a><a class="next" href="../c/SQL%20%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.html"><small>下一张</small>SQL 查询语句</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -76,6 +76,24 @@ np.arange(1, n+1) 生成从 1 到 n 的数组。与 range 一样结束位置不�
 要生成 1 到 5 的数组，np.arange 应怎么写？::np.arange(1, 6)，结束位置不包含自身。
 np.arange(5) 生成什么？::从 0 开始到 4 的数组 [0,1,2,3,4]。
 
+np.arange 的参数规则与 Python 内置 range 基本一致：默认从 0 开始、结束值不包含自身。区别在于它返回的是 NumPy 数组，可以直接参与逐元素运算，而 range 只返回惰性序列。它是构造测试数组和批量数据最常用的入口。
+
+- 结束值不包含自身，取 1 到 n 要写 np.arange(1, n+1)
+- 省略起始值时默认从 0 开始
+- 返回 ndarray，可直接做 **、+ 等逐元素运算
+要生成 [1,2,3] 应该写 np.arange(1, ?)？::np.arange(1, 4)，因为结束值不包含自身。
+np.arange 与 range 最本质的区别是什么？::np.arange 返回可直接运算的 ndarray，range 返回惰性序列，需转成列表才能逐项处理。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p03 S0102.体验Numpy与for循环的区别](https://www.bilibili.com/video/BV1ji4y157uB?p=3) · 2026-11-17
+
+np.arange(start, stop, step) 相当于把 range() 和 np.array() 合并，直接返回 ndarray，省去外层 array 调用。它是创建连续范围数组最简洁的做法。
+
+- np.arange(1,6) 得到 [1 2 3 4 5]，结束值不包含
+- 第三参数是步长：np.arange(1,10,2) 得到 [1 3 5 7 9]
+- 只传一个数时从 0 开始，np.arange(5) 得到 [0 1 2 3 4]
+np.arange(1,6) 和 np.array(range(1,6)) 结果一样吗？::完全一样，只是 np.arange 少写一层 array，更简洁。
+np.arange(10, 0, -2) 会得到什么？::从 10 开始每次减 2，到 0 前结束：[10 8 6 4 2]。步长为负即倒序。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p04 S01E03.创建数组](https://www.bilibili.com/video/BV1ji4y157uB?p=4) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

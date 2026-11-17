@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="squarify 绘制树状图的主函数，用参数控制面积、标签、颜色和文字。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>squarify.plot · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>squarify.plot</h1><div class="aliases">squarify.plot() · 树状图绘制函数</div><p class="lede">squarify 绘制树状图的主函数，用参数控制面积、标签、颜色和文字。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>一次调用即可生成完整树状图。sizes 决定矩形面积，label 显示分类名称，value 在名称下方显示数值，color/edgecolor/linewidth 控制填充色与边框，alpha 控制透明度，text_kwargs 用字典设置块内文字样式。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>传入数值列与名称列直接出图</li><li>为分类销售数据定制配色和标注</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>sizes 决定块面积，是树状图的数值核心</li><li>label 显示分类名，value 显示数值，二者都不影响面积</li><li>color 是填充色，edgecolor 是边框色，不要混用</li><li>linewidth 过大（如 10）会让块看起来被边框挤开，3 左右较合适</li><li>text_kwargs 用字典设置 fontsize、color、fontweight 等块内文字样式</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>sizes、label、value 长度需与类别数一致，颜色列表长度也应匹配；块内字号过大会溢出矩形。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/squarify.html">squarify</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E6%A0%91%E7%8A%B6%E5%9B%BE.html">树状图</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/plt.title.html">plt.title</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>sizes 和 value 都传入销售数量列，为什么两个都要设？</summary><div class="quiz-a">sizes 决定矩形块面积大小，value 只是把数字写在块上；不设 value 时块上只有分类名没有数字。</div></details>
+<details class="quiz"><summary>想让相邻矩形块之间有白色分隔线，应该调哪两个参数？</summary><div class="quiz-a">edgecolor=&#x27;white&#x27; 设边框颜色，linewidth 设边框宽度（如 3）。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=78" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p78 S03E29.树状图</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/squarify.html"><small>上一张</small>squarify</a><a class="next" href="../c/startangle%20%E4%B8%8E%20counterclock%EF%BC%88%E8%B5%B7%E5%A7%8B%E8%A7%92%E5%BA%A6%E4%B8%8E%E7%BB%98%E5%88%B6%E6%96%B9%E5%90%91%EF%BC%89.html"><small>下一张</small>startangle 与 counterclock（起始角度与绘制方向）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

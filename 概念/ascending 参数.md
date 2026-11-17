@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 27
 stage: "S02E12 · 数据排序【已修证】"
-order: 27
 ---
 
 # ascending 参数
@@ -45,6 +44,17 @@ ascending=True 为升序（默认），False 为降序。多字段排序时可�
 ## 自测
 
 ascending=[False, True] 配合 by=['语文','数学'] 是什么效果？::语文降序，语文相同时数学升序
+
+
+### 补充 · 2026-11-17
+
+ascending 决定升序还是降序。单字段排序时传一个布尔值即可；多字段排序时必须传与 by 等长的布尔列表，每个位置对应一个字段的方向，例如 [False, True, False] 表示语文降序、数学升序、英语降序。
+
+- 默认 True 为升序，降序要显式写 ascending=False
+- 多字段排序时传列表，长度与 by 一致、顺序一一对应
+- 列表顺序错位会导致某一列方向和预期相反
+by=['语文','数学']、ascending=[False,True]，数学列内部是升序还是降序？::在语文成绩相同的组内，数学升序。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p27 S02E12.数据排序【已修证】](https://www.bilibili.com/video/BV1ji4y157uB?p=27) · 2026-11-17
 
 ## 出处
 

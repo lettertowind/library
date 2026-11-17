@@ -33,11 +33,19 @@ print(b[0, 1])  # 6
 c = np.arange(16).reshape(2, 2, 4)
 d = c.transpose((2, 0, 1))
 print(d.shape)  # (4, 2, 2)</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>原轴顺序可看作元组 (0,1) 或 (0,1,2)，传入新顺序元组即可按新顺序重排轴。二维数组将 (0,1) 改为 (1,0) 即行列转置；三维数组可改为任意轴顺序。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>高维数组调整轴顺序</li><li>二维数组行列互换的底层实现</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>原轴顺序是元组，如 (0,1) 或 (0,1,2)</li><li>传入新轴顺序元组即可重排轴</li><li>二维数组 (0,1)→(1,0) 即行列转置</li><li>三维数组可按需改变轴排列，如 (2,0,1)</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>轴转置只改变轴的排列顺序，不改变元素值；传入的轴顺序必须是原轴编号的一个排列。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E8%BD%AC%E7%BD%AE.html">转置</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>对三维数组，transpose((2,0,1)) 表示什么？</summary><div class="quiz-a">表示新数组的 0 轴对应原 2 轴，1 轴对应原 0 轴，2 轴对应原 1 轴。</div></details>
-<details class="quiz"><summary>轴转置和 arr.T 对二维数组的结果有何关系？</summary><div class="quiz-a">对二维数组，轴转置 (1,0) 与 arr.T 效果一致。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E8%BD%AC%E7%BD%AE.html"><small>上一张</small>转置</a><a class="next" href="../c/%E9%80%9A%E7%94%A8%E5%87%BD%E6%95%B0.html"><small>下一张</small>通用函数</a></nav></article>
+<details class="quiz"><summary>轴转置和 arr.T 对二维数组的结果有何关系？</summary><div class="quiz-a">对二维数组，轴转置 (1,0) 与 arr.T 效果一致。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>轴转置的核心是给出新的轴排列顺序，例如二维数组原轴顺序 (0, 1) 改为 (1, 0) 就实现行列互换。二维时它与直接转置结果相同，但轴转置能明确指定多维数组的维度顺序。</p>
+<p>- 参数是目标轴顺序，如二维传入 (1, 0)。</p>
+<p>- 二维 transpose(1, 0) 与 arr.T 结果相同。</p>
+<p>- 多维可指定任意轴排列，如三维 (2, 0, 1)。</p>
+<details class="quiz"><summary>三维数组原轴顺序为 (0, 1, 2)，想变成 (2, 0, 1)，应传入什么轴顺序？</summary><div class="quiz-a">传入 (2, 0, 1)，即调用类似 arr.transpose(2, 0, 1)。</div></details>
+<details class="quiz"><summary>二维数组上轴转置和直接转置有什么区别？</summary><div class="quiz-a">二维上结果相同；区别在于轴转置显式指定轴顺序，更适合推广到多维数组。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=10" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p10 S01E09.数组的轴和转置</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E8%BD%AC%E7%BD%AE.html"><small>上一张</small>转置</a><a class="next" href="../c/%E9%80%90%E5%85%83%E7%B4%A0%E8%BF%90%E7%AE%97.html"><small>下一张</small>逐元素运算</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

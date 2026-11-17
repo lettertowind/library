@@ -18,11 +18,32 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.match</h1><div class="aliases">match · 正则匹配判断</div><p class="lede">判断字符串是否匹配指定正则表达式并返回布尔值的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Series.str.match(pattern) 对每个元素做正则匹配，返回 True/False。常用于按模式筛选或标记数据，如判断状态列是否符合&#x27;两位数字+激&#x27;的格式。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按正则模式筛选行</li><li>标记符合格式的数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回布尔 Series</li><li>pattern 用原始字符串 r&#x27;...&#x27; 书写</li><li>\d 表示数字，{2} 表示出现两次</li><li>注意中英文符号切换导致匹配失败</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>match 从字符串开头匹配；需要提取内容用 extract，需要替换用 replace。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.extract.html">str.extract</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/str.replace%20%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2.html">str.replace</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.match(r&#x27;\d{2}激&#x27;) 对 &#x27;满血激活&#x27; 返回什么？</summary><div class="quiz-a">False，因为开头不是两位数字。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.extract.html">str.extract</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">正则表达式</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.lstrip.html"><small>上一张</small>str.lstrip</a><a class="next" href="../c/str.pad.html"><small>下一张</small>str.pad</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.match</h1><div class="aliases">match · 正则匹配判断</div><p class="lede">判断字符串是否匹配指定正则表达式并返回布尔值的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.match(pattern, case=True, flags=0, na=None)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>pattern</code>：正则表达式字符串，建议用原始字符串 <code>r&#x27;...&#x27;</code> 书写，避免反斜杠被转义</li><li><code>case</code>：是否区分大小写，默认 <code>True</code></li><li><code>flags</code>：传给 <code>re</code> 模块的编译标志，如 <code>re.IGNORECASE</code></li><li><code>na</code>：遇到缺失值（NaN）时返回的填充值，默认 <code>None</code>，结果为 <code>NaN</code> 而非 <code>False</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&#x27;12激活&#x27;, &#x27;满血激活&#x27;, &#x27;3激活&#x27;, None])
+print(s.str.match(r&#x27;\d{2}激&#x27;))
+# 0     True
+# 1    False
+# 2    False
+# 3      NaN
+# dtype: object</code></pre>
+<p>注意：<code>match</code> 只从字符串开头匹配，<code>&#x27;满血激活&#x27;</code> 返回 <code>False</code>；要提取内容请改用 <code>str.extract</code>。</p></section><section class="sec"><h2 id="解释">解释</h2><p>Series.str.match(pattern) 对每个元素做正则匹配，返回 True/False。常用于按模式筛选或标记数据，如判断状态列是否符合&#x27;两位数字+激&#x27;的格式。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按正则模式筛选行</li><li>标记符合格式的数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回布尔 Series</li><li>pattern 用原始字符串 r&#x27;...&#x27; 书写</li><li>\d 表示数字，{2} 表示出现两次</li><li>注意中英文符号切换导致匹配失败</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>match 从字符串开头匹配；需要提取内容用 extract，需要替换用 replace。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.extract.html">str.extract</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/str.replace%20%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2.html">str.replace</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.match(r&#x27;\d{2}激&#x27;) 对 &#x27;满血激活&#x27; 返回什么？</summary><div class="quiz-a">False，因为开头不是两位数字。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>str.match 只做「是否匹配」的判断，不做提取，也不做全文搜索——它默认从字符串起始位置开始比对。常配合 na 参数把缺失值统一成 False，再用布尔索引筛出目标行。</p>
+<p>- na 参数控制缺失值结果，na=False 把 NA 直接变成 False</p>
+<p>- \d 表示数字，{2} 是量词，r&#x27;\d{2}激&#x27; 即前两位数字后接「激」</p>
+<p>- 从左往右但要整段匹配起点，不同于 search 的任意位置查找</p>
+<details class="quiz"><summary>为什么筛选时最好写 str.match(pattern, na=False)？</summary><div class="quiz-a">缺失值默认返回 NA，不是布尔值，直接用于筛选会出错或漏掉；na=False 把它统一成不匹配。</div></details>
+<details class="quiz"><summary>想从「20激」里取出「20」应该用 str.match 还是 str.extract？</summary><div class="quiz-a">用 str.extract 加捕获组 r&#x27;(\d{2})激&#x27;；str.match 只返回 True/False。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=39" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p39 S02E24.字符串操作（下）</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.extract.html">str.extract</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">正则表达式</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.lstrip.html"><small>上一张</small>str.lstrip</a><a class="next" href="../c/str.pad.html"><small>下一张</small>str.pad</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

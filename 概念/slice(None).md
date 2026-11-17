@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 35
 stage: "S02E20 · 多层索引与多层索引计算"
-order: 35
 ---
 
 # slice(None)
@@ -16,6 +15,30 @@ order: 35
 > 别名：slice(None)、全部切片、任意所有行
 
 **在多层索引查询中表示某一层取全部标签的切片写法。**
+
+## 用法
+**语法**：`df.loc[(外层标签, slice(None)), :]`
+
+**参数**：
+- `slice(None)`：Python 内置切片对象，起止和步长都取 `None`，语义等价于 `[:]`，即在该索引层取全部标签
+- 作为 `.loc` 行标签元组中的一个元素使用，第几个元素对应第几层索引
+- `slice(None)` 也可以省略不写；但只写一个外层标签也能选出全部内层行，只是可读性较弱
+
+**示例**：
+```python
+import pandas as pd
+
+idx = pd.MultiIndex.from_tuples(
+    [('一班', 1), ('一班', 2), ('二班', 1)],
+    names=['班级', '学号'])
+df = pd.DataFrame({'分数': [90, 85, 78]}, index=idx)
+
+print(df.loc[('一班', slice(None)), :])
+#       分数
+# 班级 学号
+# 一班 1    90
+#     2    85
+```
 
 ## 解释
 

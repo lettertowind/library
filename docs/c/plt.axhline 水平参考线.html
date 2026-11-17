@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在指定 y 值处绘制横贯整个坐标轴的水平线。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.axhline 水平参考线 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.axhline 水平参考线</h1><div class="aliases">axhline · plt.axhline() · 水平参考线 · 水平线函数</div><p class="lede">在指定 y 值处绘制横贯整个坐标轴的水平线。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>plt.axhline 是 Matplotlib 的坐标轴水平参考线函数，只需给定 y 轴位置即可画一条贯穿图表的水平线。常用于平均线、阈值线、目标线等参考语义，不依赖具体数据点的 x 范围。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给柱形图或折线图添加平均线</li><li>标注阈值、目标值、警戒线</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>核心参数 y 指定水平线所在的纵坐标</li><li>color 设颜色，linestyle=&#x27;:&#x27; 画虚线更符合参考线语义</li><li>线条横贯整个坐标轴，不受数据点范围限制</li><li>平均线应传 np.mean 计算结果，不要写死数值</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 plt.plot 画水平线不同：axhline 不接收 x 数据，线条范围跟图表走而非跟数据走。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B9%B3%E5%9D%87%E7%BA%BF.html">平均线</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/np.mean.html">np.mean</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要给柱形图加一条表示销量均值的蓝色虚线，应调用哪个函数？</summary><div class="quiz-a">plt.axhline(y=均值, color=&#x27;blue&#x27;, linestyle=&#x27;:&#x27;)</div></details>
+<details class="quiz"><summary>axhline 的线条长度由什么决定？</summary><div class="quiz-a">由坐标轴范围决定，横贯整个图表，不需要传 x 数据</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>axhline(y=...) 用 y 定位，线在 x 方向贯穿全图；若同时给出 xmin、xmax，则只在指定横向区间内显示，变成一条水平线段。它常用于把平均值、阈值画成贯穿全图的参考线。</p>
+<p>- 用 y 指定横线位置，如 plt.axhline(y=0.2)</p>
+<p>- 用 xmin、xmax 控制横向显示区间，如 xmin=0.2, xmax=0.6 可画线段</p>
+<p>- 线宽用 linewidth，注意拼写完整</p>
+<details class="quiz"><summary>axhline 中 xmin 和 xmax 控制什么？</summary><div class="quiz-a">控制横线在 x 轴上的显示区间；只显示这一段时就是线段。</div></details>
+<details class="quiz"><summary>要画一条 y=0.5、只在 x=0.2 到 0.6 显示的水平线段，怎么写？</summary><div class="quiz-a">plt.axhline(y=0.5, xmin=0.2, xmax=0.6)。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=74" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p74 S03E25.填充</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=57" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p57 S03E09.平均线</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.axvline%20%E5%9E%82%E7%9B%B4%E5%8F%82%E8%80%83%E7%BA%BF.html">plt.axvline 垂直参考线</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%B9%B3%E5%9D%87%E7%BA%BF.html">平均线</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%BB%98%E5%9B%BE.html">数据驱动绘图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.annotate%20%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A.html"><small>上一张</small>plt.annotate 文本注释</a><a class="next" href="../c/plt.axhspan%20%E6%B0%B4%E5%B9%B3%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html"><small>下一张</small>plt.axhspan 水平带状填充</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -34,11 +34,23 @@
 <p>- 默认读取第一个工作表</p>
 <p>- 可传表名字符串或 0 基索引</p>
 <p>- 传列表返回 {表名: DataFrame} 字典</p>
-<details class="quiz"><summary>一个 Excel 有两个 sheet，想一次都读进来怎么写？</summary><div class="quiz-a">sheet_name=[&#x27;花名册&#x27;,&#x27;成绩单&#x27;] 或 sheet_name=None，返回字典。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/header%20%E5%8F%82%E6%95%B0.html">header 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/shape%20%E5%B1%9E%E6%80%A7.html"><small>上一张</small>shape 属性</a><a class="next" href="../c/shift.html"><small>下一张</small>shift</a></nav></article>
+<details class="quiz"><summary>一个 Excel 有两个 sheet，想一次都读进来怎么写？</summary><div class="quiz-a">sheet_name=[&#x27;花名册&#x27;,&#x27;成绩单&#x27;] 或 sheet_name=None，返回字典。</div></details>
+<p>一个 Excel 文件可有多张工作表，read_excel 一次只返回一张（或按 sheet_name 列表返回多张）。做跨表匹配时典型写法是同一个路径读两次，分别用 sheet_name=&#x27;花名册&#x27; 和 sheet_name=&#x27;成绩单&#x27;，得到两个 DataFrame 再 merge。</p>
+<p>- 默认值 0 表示第一张工作表</p>
+<p>- 传列表如 [&#x27;表1&#x27;,&#x27;表2&#x27;] 可一次返回多个 DataFrame（字典）</p>
+<p>- 同一文件读多张表要分多次 read_excel 调用</p>
+<details class="quiz"><summary>要一次性拿到同一工作簿里的两张表，sheet_name 该怎么写？</summary><div class="quiz-a">传列表 [&#x27;花名册&#x27;,&#x27;成绩单&#x27;]，会返回一个以表名为键的字典。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=44" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p44 S02E29.vlookup</a> · 2026-11-17</p>
+<p>默认只读第一个 sheet。sheet_name=None 会把每个 sheet 读成一个 DataFrame，整体返回 dict：键是 sheet 名，值是该表数据，这是合并多 sheet 的前提。</p>
+<p>- sheet_name=None 返回字典，键为 sheet 名、值为 DataFrame</p>
+<p>- sheet_name=&quot;Sheet1&quot; 或 sheet_name=1 读第一页</p>
+<p>- sheet_name=[0, 1, &quot;Sheet5&quot;] 可一次读多页</p>
+<details class="quiz"><summary>pd.read_excel(路径, sheet_name=None) 返回的是什么类型，怎么拿到第某个 sheet 的 DataFrame？</summary><div class="quiz-a">返回 dict，键为 sheet 名；用 数据[sheet名] 取出对应 DataFrame。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=40" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p40 S02E25.Excel文件的拆分与合并</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/header%20%E5%8F%82%E6%95%B0.html">header 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/shape%20%E5%B1%9E%E6%80%A7.html"><small>上一张</small>shape 属性</a><a class="next" href="../c/shift.html"><small>下一张</small>shift</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把布尔判断结果直接当分组键，将数据切成 True 与 False 两组再聚合。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>布尔条件分组 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>布尔条件分组</h1><div class="aliases">布尔 Series 分组 · 条件分组 · True/False 分组</div><p class="lede">把布尔判断结果直接当分组键，将数据切成 True 与 False 两组再聚合。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>df.groupby(by=布尔Series)</code> <strong>参数</strong>：</p>
+<ul><li><code>by</code>：分组键，传入与 <code>df</code> 行索引对齐的布尔 Series（如 <code>df[&#x27;序号&#x27;] &gt;= 5</code>），结果得到 True / False 两组。</li><li><code>as_index</code>：取默认值 <code>True</code> 时，组名会作为结果的索引；设为 <code>False</code> 时，组名会保留为普通列。</li><li><code>sort</code>：取默认值 <code>True</code>，组名按 False、True 排序；设为 <code>False</code> 可保留首次出现顺序。</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;序号&#x27;: [3, 5, 8, 2], &#x27;得分&#x27;: [60, 70, 90, 50]})
+print(df.groupby(df[&#x27;序号&#x27;] &gt;= 5)[&#x27;得分&#x27;].sum().to_dict())
+# {False: 110, True: 160}
+
+print(df.groupby(~(df[&#x27;序号&#x27;] &gt;= 5))[&#x27;得分&#x27;].sum().to_dict())
+# {False: 160, True: 110}</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>任何返回布尔 Series 的表达式都能塞进 groupby，例如 data.index % 2 == 0 或 data[&#x27;序号&#x27;] &gt;= 5。结果会得到 True / False 两行统计，适合作“达标 vs 未达标”“某集合内 vs 集合外”的对比。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按阈值快速对比两拨数据（如序号 &gt;= 5 与 &lt; 5）</li><li>配合 isin 做“指定范围内 vs 范围外”的汇总</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>结果只有两组，组名就是 True / False。</li><li>条件取反可写 != 或在表达式前加 ~，分组结果互换。</li><li>阈值分组要明确边界，避免 &gt;=5 与 &lt;=5 在 5 处重叠。</li><li>实际工作中这种按序号阈值切分的用法不多，了解即可。</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只适合二分类对比；要细分多档应改用 cut/qcut 或多键分组。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E9%94%AE.html">分组键</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/isin.html">isin</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>data.groupby(data[&#x27;序号&#x27;] &gt;= 5) 的结果里，False 那一组包含哪些行？</summary><div class="quiz-a">序号小于 5 的行。</div></details>
+<details class="quiz"><summary>想按条件分组但不想写两张表，怎么快速得到“排除某条件”的分组？</summary><div class="quiz-a">在布尔表达式前加 ~ 取反，作为新的分组键。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=42" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p42 S02E27.分组对象和创建</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E9%94%AE.html">分组键</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%B8%83%E5%B0%94%E5%88%86%E7%BB%84%E9%94%AE.html"><small>上一张</small>布尔分组键</a><a class="next" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html"><small>下一张</small>布尔索引筛选</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

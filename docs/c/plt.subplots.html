@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="一次性创建 figure 画布与 axes 子图并返回 (fig, ax) 的函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.subplots · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.subplots</h1><div class="aliases">subplots · fig · ax = plt.subplots() · 创建画布与子图</div><p class="lede">一次性创建 figure 画布与 axes 子图并返回 (fig, ax) 的函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>相比 plt.plot() 这种画在「当前坐标轴」上的快捷写法，plt.subplots() 直接给出画布和子图对象，后续用 ax.plot()、ax.spines 在指定子图上操作，不会画错位置。做多子图时它返回 axes 数组，可逐个访问。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>任何需要精细控制边框、刻度的图</li><li>一画多图的多子图布局</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>plt.subplots(1, 1) 建一行一列单子图，此时 ax 是单个对象</li><li>返回元组 (fig, ax)，绘图与设置都在 ax 上做</li><li>配 ax.plot() 使用，与 plt.plot() 的隐式当前轴相对</li><li>建立多子图时 ax 变成数组，用 ax[0]、ax[1] 分别操作</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 plt.subplot(221) 不同：subplots 一次建好画布和全部子图并返回对象，subplot 是按位置逐个激活。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/figure%20%E4%B8%8E%20axes%EF%BC%88%E7%94%BB%E5%B8%83%E4%B8%8E%E5%AD%90%E5%9B%BE%EF%BC%89.html">figure 与 axes（画布与子图）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>用了 plt.subplots() 之后，为什么建议改用 ax.plot()？</summary><div class="quiz-a">plt.plot() 画在「当前坐标轴」上，多子图时容易画错子图；ax.plot() 明确指定目标。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=67" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p67 S03E18.坐标轴【上】</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Matplotlib%20%E7%94%BB%E5%B8%83%E6%A0%B7%E5%BC%8F%EF%BC%88plt.style%EF%BC%89.html">Matplotlib 画布样式（plt.style）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/figure%20%E4%B8%8E%20axes%EF%BC%88%E7%94%BB%E5%B8%83%E4%B8%8E%E5%AD%90%E5%9B%BE%EF%BC%89.html">figure 与 axes（画布与子图）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.figure%EF%BC%88%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83%EF%BC%89.html">plt.figure（创建画布）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%AD%90%E5%9B%BE%E7%B4%A2%E5%BC%95%EF%BC%88axes%20%E8%A1%8C%E5%88%97%E7%B4%A2%E5%BC%95%EF%BC%89.html">子图索引（axes 行列索引）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E5%BD%93%E5%89%8D%E5%AD%90%E5%9B%BE%EF%BC%88current%20axes%EF%BC%89.html">当前子图（current axes）</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.subplot%20%E5%AD%90%E5%9B%BE%E5%B8%83%E5%B1%80.html"><small>上一张</small>plt.subplot 子图布局</a><a class="next" href="../c/plt.subplots_adjust.html"><small>下一张</small>plt.subplots_adjust</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

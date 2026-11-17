@@ -45,6 +45,17 @@ pymysql 提供 connect() 方法建立到 MySQL 的连接对象，是 pandas 读�
 
 为什么 pandas 读 MySQL 前要先装 pymysql？::pandas 本身不实现 MySQL 协议，需要 pymysql 提供连接对象传给 read_sql 的 con 参数。
 
+
+### 补充 · 2026-11-17
+
+pandas 自己不会说 MySQL 的协议，需要 pymysql 这类驱动站在中间做翻译：Python 代码 → 数据库连接 → SQL 执行。所以读库前必须先安装并 import 它。
+
+- 属于第三方库，需先安装再 import
+- import 报错通常意味着还没安装
+- 必须与 pandas 一起导入，缺一不可
+代码写了 import pymysql 却报错，最先该检查什么？::检查这个第三方库是否已经安装好。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p18 S02E03.读取Mysql文件](https://www.bilibili.com/video/BV1ji4y157uB?p=18) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

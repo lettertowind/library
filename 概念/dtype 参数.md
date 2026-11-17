@@ -45,6 +45,18 @@ dtype 描述元素类型，type(a) 描述对象类型（numpy.ndarray），两�
 
 a.dtype 和 type(a) 分别返回什么？::a.dtype 返回元素数据类型（如 int64）；type(a) 返回对象类型 <class 'numpy.ndarray'>。
 
+
+### 补充 · 2026-11-17
+
+不写 dtype 时 NumPy 会根据输入内容自动推断元素类型，推断结果不一定符合预期，因此可以在 np.array、np.arange、np.ones 等创建函数里用 dtype= 明确指定。同一个名字也可以作为属性 a.dtype 用来查看已有数组的元素类型。
+
+- 常见写法：dtype=float、dtype=np.float32、dtype=np.int32、dtype=np.int64
+- dtype=float 在 NumPy 中最终落为 float64
+- 不指定时自动推断，可能推断错，可手动覆盖
+np.arange(1,8) 默认是整数还是浮点？想得到 float32 该怎么办？::默认是整数；要写 np.arange(1,8,dtype=np.float32)。
+a.dtype 和 type(a) 分别返回什么？::a.dtype 返回元素类型如 int64；type(a) 返回整体类型 numpy.ndarray。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p04 S01E03.创建数组](https://www.bilibili.com/video/BV1ji4y157uB?p=4) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

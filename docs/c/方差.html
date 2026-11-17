@@ -25,11 +25,18 @@
 <p>- 单位是原数据单位的平方</p>
 <p>- Pandas 用 df[&#x27;列&#x27;].var() 计算</p>
 <p>- 与标准差互为平方关系</p>
-<details class="quiz"><summary>两组数据均值相同，方差分别为 2 和 20，哪组更稳定？</summary><div class="quiz-a">方差为 2 的那组，数值更集中、波动更小。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E6%A0%87%E5%87%86%E5%8C%96.html">标准化</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%A0%87%E5%87%86%E5%B7%AE.html">标准差</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80.html"><small>上一张</small>数据分析的数学基础</a><a class="next" href="../c/%E6%A0%87%E5%87%86%E5%8C%96.html"><small>下一张</small>标准化</a></nav></article>
+<details class="quiz"><summary>两组数据均值相同，方差分别为 2 和 20，哪组更稳定？</summary><div class="quiz-a">方差为 2 的那组，数值更集中、波动更小。</div></details>
+<p>方差用各数据点与均值之差的平方和取平均，来刻画数据的波动大小。因为做了平方，它的单位是原数据单位的平方，所以与原始数据没有直接可比性。它与标准差互为平方、开平方的关系：Var(X)=σ²，σ=√Var(X)。</p>
+<p>- 正确关系：方差 = 标准差的平方（讲师的视频口误在此更正，04:51）</p>
+<p>- 不能反过来说「标准差是方差的平方」，标准差是方差的开平方</p>
+<p>- 方差的单位是原数据单位的平方，不能直接用于解释数据幅度</p>
+<details class="quiz"><summary>某组数据的标准差是 3，方差是多少？</summary><div class="quiz-a">9（方差 = 标准差²）</div></details>
+<details class="quiz"><summary>为什么不能直接拿方差去和原始数据的均值比大小？</summary><div class="quiz-a">方差的单位是原数据单位的平方，量纲不同，必须开平方转成标准差才能与原始数据在同一量纲下比较。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=11" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p11 S01E10.random随机函数【了解即可】</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E6%A0%87%E5%87%86%E5%8C%96.html">标准化</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%A0%87%E5%87%86%E5%B7%AE.html">标准差</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%A6%BB%E6%95%A3%E7%A8%8B%E5%BA%A6.html">离散程度</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90%E7%9A%84%E6%95%B0%E5%AD%A6%E5%9F%BA%E7%A1%80.html"><small>上一张</small>数据分析的数学基础</a><a class="next" href="../c/%E6%A0%87%E5%87%86%E5%8C%96.html"><small>下一张</small>标准化</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

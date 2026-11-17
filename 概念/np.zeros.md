@@ -73,6 +73,14 @@ np.zeros 接收形状元组，可创建任意维度的全 0 数组，常用于�
 - 默认 dtype 可能为 float64
 np.zeros((3, 3)) 的元素默认是什么数据类型？::通常是 float64，即使元素显示为 0
 
+把 np.ones 换成 np.zeros 即可得到全 0 数组，形状与类型参数规则完全一致，是最常见的数组初始化方式。
+
+- np.zeros(3) 得到三个 0，np.zeros((3,3)) 得到三行三列全 0
+- 形状规则与 np.ones 相同：一维写数字，多维写元组
+- dtype 默认浮点型，可显式指定为 int
+为什么初始化数组常用 zeros 而不是直接写数值列表？::zeros 只给形状就能生成任意大小数组，避免手写长列表，之后可整体赋值。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p04 S01E03.创建数组](https://www.bilibili.com/video/BV1ji4y157uB?p=4) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

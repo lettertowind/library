@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 中绘制水平条形图的函数，参数为 y、width、height、left">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.barh · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.barh</h1><div class="aliases">barh · barh() · 水平条形图函数</div><p class="lede">Matplotlib 中绘制水平条形图的函数，参数为 y、width、height、left</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>它把 plt.bar 的 x/y 语义对调：纵轴放类别，横轴放数值。width 决定条带长度（数值大小），height 决定条带粗细，left 决定条带从横轴哪个位置开始画。多次调用并递增 left 就得到堆叠效果。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>绘制水平条形图或水平堆积条形图</li><li>类别名称较长、纵向排列更易读时</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>y=类别列，width=数值列，二者不可与 bar 的 x/height 混用</li><li>height 控制条带粗细（如 0.5），不是数值大小</li><li>left 控制起点，是实现堆叠的唯一手段</li><li>每加一层就先运行一次，确认堆叠位置再继续</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>barh 与 bar 的参数方向相反，把柱形图代码直接照搬会出现参数接反、标签错位。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9D%A1%E5%BD%A2%E5%9B%BE.html">叠加条形图</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/left%20%E5%8F%82%E6%95%B0.html">left 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.text%20%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE.html">plt.text 数据标签</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>plt.barh 中控制条带长度和粗细的分别是哪两个参数？</summary><div class="quiz-a">width 控制长度（数值），height 控制粗细。</div></details>
+<details class="quiz"><summary>把 plt.bar(x=姓名, height=语文) 改成条形图，参数应如何对应？</summary><div class="quiz-a">改为 plt.barh(y=姓名, width=语文)，类别给 y，数值给 width。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>barh 相当于把柱形图旋转 90°：原来放在 x 轴的分类移到 y 轴，条的长短由 x 方向的数值决定。它不会继承 plt.bar 的行为，必须显式调用；否则 Matplotlib 会按默认柱形图处理，导致参数对不上或图形错误。</p>
+<p>- 第一个参数是 y 轴位置（分类），第二个参数由 width 决定，代表条的长度和对应的数值</p>
+<p>- height 控制条形粗细，常用 0.5 或 0.6，也可用默认值</p>
+<p>- 起始位置参数决定条从 x 轴哪里开始画，基础图从 0 开始</p>
+<details class="quiz"><summary>用 plt.barh 画图时，条的长度由哪个参数决定？</summary><div class="quiz-a">由 width 参数决定，它对应数据里的数值列（如分数）。</div></details>
+<details class="quiz"><summary>为什么只把柱形图代码里的参数名改一改，运行就会出错？</summary><div class="quiz-a">因为 Matplotlib 默认画柱形图，必须显式调用 barh 才表示要画横向条形图，否则参数含义和图形类型都无法对应。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=49" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p49 S03E02.条形图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=53" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p53 S03E06.叠加条形图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/height%20%E5%8F%82%E6%95%B0.html">height 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/left%20%E5%8F%82%E6%95%B0.html">left 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9D%A1%E5%BD%A2%E5%9B%BE.html">叠加条形图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%9B%BE%E4%BE%8B%E4%BD%BF%E7%94%A8%E6%97%B6%E6%9C%BA.html">图例使用时机</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.axvspan%20%E5%9E%82%E7%9B%B4%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html"><small>上一张</small>plt.axvspan 垂直带状填充</a><a class="next" href="../c/plt.colorbar.html"><small>下一张</small>plt.colorbar</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

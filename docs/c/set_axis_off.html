@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="关闭坐标轴外框、刻度与网格等全部装饰的坐标轴方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>set_axis_off · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>set_axis_off</h1><div class="aliases">plt.gca().set_axis_off() · 关闭坐标轴 · 隐藏坐标轴</div><p class="lede">关闭坐标轴外框、刻度与网格等全部装饰的坐标轴方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>极坐标图默认带外圈圆、刻度和网格线，视觉上很杂。调用 ax.set_axis_off() 后这些元素全部隐藏，只剩图形本身；代价是失去了坐标参照，必须另加数据标签说明每个部分代表什么。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>让玫瑰图/极坐标图只保留图形本身</li><li>制作演示或海报式简洁图表</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>通常先 plt.gca() 取当前轴，再链式调用 set_axis_off()</li><li>关闭后须用 plt.text 补数据标签，否则读者无法识别类别</li><li>与单独隐藏刻度的做法相比，它是整体关闭</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>会一并隐藏数值刻度，需要精确读数的场景不应使用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.text%20%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE.html">plt.text 数据标签</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么关闭坐标轴后必须加数据标签？</summary><div class="quiz-a">外圈与刻度都被隐藏，图形失去了任何类别和数值参照，只能用文本标签标出每根柱子对应的人或类别。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=79" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p79 S03E30.玫瑰图</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/radius%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%A5%BC%E5%9B%BE%E5%8D%8A%E5%BE%84%EF%BC%89.html"><small>上一张</small>radius 参数（饼图半径）</a><a class="next" href="../c/set_axis_off%EF%BC%88%E5%85%B3%E9%97%AD%E5%9D%90%E6%A0%87%E8%BD%B4%EF%BC%89.html"><small>下一张</small>set_axis_off（关闭坐标轴）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

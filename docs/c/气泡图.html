@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在散点图基础上用点的大小表示第三个变量的图表。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>气泡图 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>气泡图</h1><div class="aliases">bubble chart · 气泡散点图</div><p class="lede">在散点图基础上用点的大小表示第三个变量的图表。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>散点图把 s 参数绑定到某个数据列（如 s=身高），点就变成有大有小的气泡，于是同一张图能同时表达三个甚至四个维度（x、y、大小，再加颜色）。它适合在展示两变量关系的同时说明每个点代表的量级差异。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要在一张图里表达三个及以上变量时</li><li>展示对象规模差异（人口、销量、体重）与位置关系</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>把数据列传给 s 即可实现大小映射，如 plt.scatter(身高, 体重, s=身高)</li><li>数值差异小时可放大，如 s = x * 50</li><li>大小映射之上还能叠加颜色映射，形成四维表达</li><li>气泡大小被人眼读出的是面积而非半径，数值差异容易被夸大</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>气泡过大时会互相遮挡，大小差异太悬殊也不易读；需要精确比较数值时仍应看表格或其他图表。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%95%A3%E7%82%B9%E5%9B%BE.html">散点图</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E9%A2%9C%E8%89%B2%E6%98%A0%E5%B0%84.html">颜色映射</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想让点的体积随销量变化，应该改哪个参数？</summary><div class="quiz-a">改 s 参数，把销量列传给它（必要时乘一个放大系数）。</div></details>
+<details class="quiz"><summary>气泡图相比普通散点图多表达了什么？</summary><div class="quiz-a">多表达一个维度：每个点对应的第三个变量的大小。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=65" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p65 S03E16.散点图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E6%95%A3%E7%82%B9%E5%9B%BE.html">散点图</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%A0%91%E7%8A%B6%E5%9B%BE.html"><small>上一张</small>树状图</a><a class="next" href="../c/%E7%80%91%E5%B8%83%E5%9B%BE.html"><small>下一张</small>瀑布图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

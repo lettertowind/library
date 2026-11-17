@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用单索引取整行、用冒号加列索引取整列的二维数组取法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>整行整列选取 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>整行整列选取</h1><div class="aliases">取整行 · 取整列 · A[: · 2] · A[2]</div><p class="lede">用单索引取整行、用冒号加列索引取整列的二维数组取法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>A[行索引]</code>、<code>A[:, 列索引]</code> <strong>参数</strong>：</p>
+<ul><li><code>A</code>：二维 numpy 数组</li><li><code>行索引</code>：写成 <code>A[2]</code> 时取该行所有列；可为负，<code>-1</code> 表示最后一行</li><li><code>:</code>：单独一个冒号，表示该维度取所有；<code>A[:, 2]</code> 中它位于行位置，表示所有行</li><li><code>列索引</code>：写在冒号之后，指定要取哪一列；可取单列，结果降为一维数组</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+A = np.arange(12).reshape(3, 4)
+print(A)
+# [[ 0  1  2  3]
+#  [ 4  5  6  7]
+#  [ 8  9 10 11]]
+
+print(A[2])      # 取行索引 2 的整行
+# [ 8  9 10 11]
+
+print(A[-1])     # 取最后一行整行
+# [ 8  9 10 11]
+
+print(A[:, 2])   # 取列索引 2 的整列，结果为一维数组
+# [ 2  6 10]
+
+print(A[:, 2].shape)
+# (3,)</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>二维数组只写一个索引 A[2] 时，表示取该行所有列；A[:, 2] 中冒号表示所有行，2 表示列索引，因此取整列。单独冒号 : 表示该维度取所有。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>快速提取二维数组的一整行或一整列</li><li>为后续计算准备行向量或列向量</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>A[2] 取行索引 2 的整行</li><li>A[-1] 取最后一行整行</li><li>A[:, 2] 取列索引 2 的整列</li><li>单独冒号 : 表示该维度取所有</li><li>取单列结果通常显示为一维数组</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>取整列会降维为一维数组；若需要保留二维形状，应使用列切片如 A[:, 2:3]，但本节未展开。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Numpy%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84.html">Numpy 二维数组</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%88%87%E7%89%87.html">二维数组切片</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/NumPy%20%E9%99%8D%E7%BB%B4.html">NumPy 降维</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>A[:, 2] 和 A[2] 分别取什么？</summary><div class="quiz-a">A[:, 2] 取所有行的列索引 2 整列；A[2] 取行索引 2 的整行。</div></details>
+<details class="quiz"><summary>单独一个冒号 : 在二维索引中表示什么？</summary><div class="quiz-a">表示该维度取所有，例如 A[:, 2] 中冒号表示所有行。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=7" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p07 S01E06.基础索引与切片</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/NumPy%20%E9%99%8D%E7%BB%B4.html">NumPy 降维</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84%E5%88%87%E7%89%87.html">二维数组切片</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E7%BB%84%E5%B1%95%E5%B9%B3%E9%A1%BA%E5%BA%8F.html"><small>上一张</small>数组展平顺序</a><a class="next" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html"><small>下一张</small>条件赋值</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

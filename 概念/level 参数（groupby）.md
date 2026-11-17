@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 41
 stage: "S02E26 · 分组与聚合 groupby基础部分"
-order: 41
 ---
 
 # level 参数（groupby）
@@ -16,6 +15,35 @@ order: 41
 > 别名：level、按索引层级分组、groupby(level=...)
 
 **groupby 中 level 指定按多层索引的某一层级分组，而非按列值分组。**
+
+## 用法
+**语法**：`DataFrame.groupby(level=None, axis=0)` / `DataFrame.groupby(level='层名')[列子集].聚合函数()`
+**参数**：
+- `level`：索引层级名（字符串）或层级位置编号（整数），也可传列表按多层分组；只认索引层级，不认普通列名
+- `axis`：分组方向，`0`（默认）按行索引分组；按列层级汇总在 pandas 2.x 中写 `df.T.groupby(level=...)`（旧版 `axis=1` 已废弃）
+**示例**：
+```python
+import pandas as pd
+
+df = pd.DataFrame({
+    '班级': ['一班', '一班', '二班', '二班'],
+    '性别': ['男', '女', '男', '女'],
+    '语文': [90, 85, 78, 92],
+    '数学': [88, 95, 80, 86],
+})
+df = df.set_index(['班级', '性别'])          # 先提升为索引层级
+
+print(df.groupby(level='班级')[['语文', '数学']].median())
+#       语文    数学
+# 班级
+# 一班  87.5  91.5
+# 二班  85.0  83.0
+
+print(df.T.groupby(level=0).median())        # 按列层级汇总，等价旧版 axis=1
+#        (一班, 男)  (一班, 女)  (二班, 男)  (二班, 女)
+# 语文        90        85        78        92
+```
+注意：若「班级」仍是普通列，`groupby(level='班级')` 会报错，需先 `set_index` 或改用 `groupby('班级')`；整表聚合时剩余列须全为数值。
 
 ## 解释
 
@@ -49,6 +77,17 @@ level 只认索引层级名，不认普通列名；若分组列还在列里，�
 
 df 中「班级」还是普通列，能直接 groupby(level='班级') 吗？::不能，需先 set_index(['班级','性别']) 把它提升为索引层级。
 level 分组出错时首先该检查什么？::索引是否已正确设置、参与聚合的列是否都是数值列。
+
+
+### 补充 · 2026-11-17
+
+当分组字段本身就是索引（或索引的一层）时，用 level 指定层级名或序号即可分组。常见于 set_index 之后，或对多层列索引按列层级聚合。
+
+- 使用前必须先用 set_index 把该字段设为索引
+- 写法：数据.set_index(["班级","性别"]); 数据.groupby(level="班级").median()
+- 多层列索引按列层级聚合：数据.groupby(level="季度", axis=1).sum()
+直接对未设为索引的“班级”列写 groupby(level="班级") 会怎样？::报错，索引中没有名为“班级”的层级；需要先 set_index(["班级"])。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p41 S02E26.分组与聚合 groupby基础部分](https://www.bilibili.com/video/BV1ji4y157uB?p=41) · 2026-11-17
 
 ## 出处
 

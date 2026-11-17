@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 39
 stage: "S02E24 · 字符串操作（下）"
-order: 39
 ---
 
 # str.extract
@@ -16,6 +15,36 @@ order: 39
 > 别名：extract、分组捕获、捕获组提取
 
 **用正则括号分组从字符串中提取目标内容为多列的方法。**
+
+## 用法
+**语法**：`Series.str.extract(pat, flags=0, expand=True)`
+
+**参数**：
+- `pat`：带捕获组的正则表达式字符串，只有括号内的内容会被提取
+- `flags`：传给 `re` 模块的正则标志，如 `re.IGNORECASE`，默认 0
+- `expand`：为 True（默认）时每个捕获组返回一列 DataFrame；为 False 且有多个捕获组时返回 Series（值为元组）
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['2020-01-15', '2020-02-20', 'bad'])
+df = s.str.extract(r'(\d{4})-(\d{2})-(\d{2})')
+print(df)
+#     0   1   2
+# 0  2020  01  15
+# 1  2020  02  20
+# 2   NaN NaN NaN
+
+print(df.columns.tolist())        # ['0', '1', '2']
+df.columns = ['年', '月', '日']    # 建议按捕获组顺序重命名
+print(df)
+#      年  月  日
+# 0  2020  01  15
+# 1  2020  02  20
+# 2   NaN NaN NaN
+```
+> 若原列是整数或 datetime，先 `s.astype(str)` 再调用；正则里的分隔符要和真实数据一致（`-` 与 `年月日` 不可混用）。
 
 ## 解释
 

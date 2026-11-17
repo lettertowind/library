@@ -45,11 +45,18 @@ print(np.ones((2, 3, 3)).shape)  # (2, 3, 3)，2 块 3 行 3 列</code></pre></s
 <p>- 语法：np.ones((3, 3))，形状必须传元组</p>
 <p>- np.ones((2, 3, 3)) 创建三维全 1 数组</p>
 <p>- 默认 dtype 可能为 float64，即使显示为 1</p>
-<details class="quiz"><summary>np.ones((2, 3, 3)) 创建的是什么形状的数组？</summary><div class="quiz-a">三维数组，2 块 3 行 3 列，形状 (2, 3, 3)</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.full.html">np.full</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/np.ones_like.html">np.ones_like</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%BD%A2%E7%8A%B6%E5%8F%82%E6%95%B0.html">形状参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.minimum.html"><small>上一张</small>np.minimum</a><a class="next" href="../c/np.ones_like.html"><small>下一张</small>np.ones_like</a></nav></article>
+<details class="quiz"><summary>np.ones((2, 3, 3)) 创建的是什么形状的数组？</summary><div class="quiz-a">三维数组，2 块 3 行 3 列，形状 (2, 3, 3)</div></details>
+<p>np.ones(shape) 按给定形状生成全 1 数组，常用于占位、掩码或初始化；形状既可以是一个整数，也可以是多维元组。</p>
+<p>- np.ones(3) 得到三个 1，np.ones((2,3)) 得到两行三列全 1</p>
+<p>- 一维只写一个数字即可，二维及以上必须写元组</p>
+<p>- 第二个参数 dtype 控制元素类型，不写时默认浮点型</p>
+<details class="quiz"><summary>np.ones(2, 3) 能正常创建两行三列数组吗？</summary><div class="quiz-a">不能，多维形状必须传元组 np.ones((2, 3))。</div></details>
+<details class="quiz"><summary>np.ones(3) 的元素是整数 1 还是浮点 1.0？</summary><div class="quiz-a">默认是浮点 1.0，需要整数要显式指定 dtype=int。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=4" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p04 S01E03.创建数组</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/NumPy%20%E9%BB%98%E8%AE%A4%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%20float64.html">NumPy 默认数据类型 float64</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/np.full.html">np.full</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/np.ones_like.html">np.ones_like</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/np.zeros.html">np.zeros</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%BD%A2%E7%8A%B6%E5%8F%82%E6%95%B0.html">形状参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.minimum.html"><small>上一张</small>np.minimum</a><a class="next" href="../c/np.ones_like.html"><small>下一张</small>np.ones_like</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

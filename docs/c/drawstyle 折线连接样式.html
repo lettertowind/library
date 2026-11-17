@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="plt.plot 中控制相邻数据点之间如何连线（直线或阶梯）的参数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>drawstyle 折线连接样式 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>drawstyle 折线连接样式</h1><div class="aliases">drawstyle · 折线连接样式 · 阶梯线 · steps · drawstyle=steps</div><p class="lede">plt.plot 中控制相邻数据点之间如何连线（直线或阶梯）的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认情况下折线用直线把相邻数据点直接连起来；给 drawstyle 赋值后，点与点之间改成水平加垂直的阶梯式走线。它表达的是「数值在一段区间内保持不变、只在特定位置跳变」这一含义，适合阶梯电价、累计计数、状态切换这类离散变化。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>画阶梯状变化趋势（如价格分段、库存台阶式变化）</li><li>强调数值在某区间内恒定、在指定点跳变</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>共五个取值：default、steps、steps-pre、steps-mid、steps-post</li><li>default 即默认直线连接，等同不写该参数</li><li>steps-pre / mid / post 的差别是水平段相对数据点偏左、居中还是偏右</li><li>与 linestyle 不是一回事：drawstyle 管连线的走法，linestyle 管线条的虚实</li><li>样式只改变连线路径，不改变数据点本身的坐标值</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只影响点与点之间的连接路径，不改变坐标数值，也不影响线条颜色、粗细和标记点；数据点很密集时阶梯效果在视觉上几乎看不出来。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/linestyle%20%E7%BA%BF%E5%9E%8B%E5%8F%82%E6%95%B0.html">linestyle 线型参数</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E6%8A%98%E7%BA%BF%E5%9B%BE.html">折线图</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>steps-pre、steps-mid、steps-post 三者的区别是什么？</summary><div class="quiz-a">阶梯中水平段相对两个数据点的位置不同：pre 让水平段从数据点向左（前置）保持恒定，post 向右（后置）保持恒定，mid 在两点中间转折。</div></details>
+<details class="quiz"><summary>想画阶梯线，应该改 drawstyle 还是 linestyle？</summary><div class="quiz-a">drawstyle。linestyle 只控制线条是实线、虚线还是点划线。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=73" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p73 S03E24.样式</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Matplotlib%20%E7%94%BB%E5%B8%83%E6%A0%B7%E5%BC%8F%EF%BC%88plt.style%EF%BC%89.html">Matplotlib 画布样式（plt.style）</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/dpi%EF%BC%88%E5%9B%BE%E5%83%8F%E5%88%86%E8%BE%A8%E7%8E%87%EF%BC%89.html"><small>上一张</small>dpi（图像分辨率）</a><a class="next" href="../c/explode%20%E5%8F%82%E6%95%B0%EF%BC%88%E6%89%87%E5%8C%BA%E5%88%86%E7%A6%BB%EF%BC%89.html"><small>下一张</small>explode 参数（扇区分离）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

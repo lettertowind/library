@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把某列挪到指定位置的三步法：先取出该列，再删除原列，最后用 insert 插回。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>列顺序调整 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>列顺序调整</h1><div class="aliases">移动列位置 · 调整列顺序 · 取列-删列-插列三步法 · 鸡蛋筐法</div><p class="lede">把某列挪到指定位置的三步法：先取出该列，再删除原列，最后用 insert 插回。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.insert(loc, column, value, allow_duplicates=&lt;no_default&gt;)</code>；<code>DataFrame.drop(labels=None, *, axis=0, index=None, columns=None, level=None, inplace=False, errors=&#x27;raise&#x27;)</code> <strong>参数</strong>：</p>
+<ul><li><code>loc</code>：插入位置序号，0 表示最前，取值范围为 0 到 <code>len(df.columns)</code>，越界会报错。</li><li><code>column</code>：新列名，默认不允许与已有列重名。</li><li><code>value</code>：列数据，可传 Series、数组或标量；三步法中取出的 Series 可直接传入。</li><li><code>allow_duplicates</code>：是否允许重复列名，默认 False，一般不写。</li><li><code>labels</code>：要删除的行标签或列标签；三步法中传原列名。</li><li><code>axis</code>：删除方向，删列写 <code>axis=1</code>；现代写法更推荐直接用 <code>columns=</code>。</li><li><code>columns</code>：直接指定要删除的列，等价于 <code>labels=列名, axis=1</code>。</li><li><code>inplace</code>：是否原地修改，默认 False；<code>insert</code> 本身是原地修改，不要写成赋值。</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({&#x27;姓名&#x27;: [&#x27;张三&#x27;, &#x27;李四&#x27;], &#x27;总分&#x27;: [90, 85], &#x27;班级&#x27;: [&#x27;一班&#x27;, &#x27;二班&#x27;]})
+print(df.columns.tolist())  # [&#x27;姓名&#x27;, &#x27;总分&#x27;, &#x27;班级&#x27;]
+
+总分 = df[&#x27;总分&#x27;]
+df = df.drop(columns=&#x27;总分&#x27;)  # 旧版也可写 df.drop(&#x27;总分&#x27;, axis=1)
+df.insert(1, &#x27;总分&#x27;, 总分)
+print(df.columns.tolist())  # [&#x27;姓名&#x27;, &#x27;总分&#x27;, &#x27;班级&#x27;]
+print(df.to_dict(&#x27;list&#x27;))  # {&#x27;姓名&#x27;: [&#x27;张三&#x27;, &#x27;李四&#x27;], &#x27;总分&#x27;: [90, 85], &#x27;班级&#x27;: [&#x27;一班&#x27;, &#x27;二班&#x27;]}</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>Pandas 没有直接「移动列」的 API，最直观的做法是：结果总分 = df[&#x27;总分&#x27;] 先拿到这一列（相当于复制一颗鸡蛋出来），df.drop(&#x27;总分&#x27;, axis=1) 删掉原列，最后 df.insert(0, &#x27;总分&#x27;, 结果总分) 插到目标位置。三步都基于同一份数据，只是列的位置变了。讲师用「鸡蛋筐」比喻这三步，便于记忆。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>merge 后把匹配来的列放到期望的列位置</li><li>整理导出的报表列顺序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>第一步取列会得到一个 Series，插入时可直接作为列数据</li><li>删除原列必须带 axis=1，否则会按行删除并报错</li><li>insert 的第一个参数是目标列序号，0 表示插到最前面</li><li>insert 是原地修改，不要写成 结果 = 结果.insert(...)</li><li>插入位置越界会报错，取 0 到 len(df.columns) 之间的值</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>三步法只改变列的位置，不改变列名与数据；若只是想重排全部列，直接 df[[&#x27;列1&#x27;,&#x27;列2&#x27;,...]] 一次性重选更简洁。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/insert%20%E6%96%B9%E6%B3%95.html">insert 方法</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/drop.html">drop</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么取出的那一列要先 drop 掉再 insert，而不是直接插？</summary><div class="quiz-a">不先删除原列，表里会出现两列同名同数据的列；insert 不会自动替换已有列。</div></details>
+<details class="quiz"><summary>要把「总分」放到第 2 列（即索引 2），insert 第一个参数写几？</summary><div class="quiz-a">写 2。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=44" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p44 S02E29.vlookup</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%97%E9%80%89%E6%8B%A9%EF%BC%88df...%EF%BC%89.html"><small>上一张</small>列选择（df...）</a><a class="next" href="../c/%E5%8F%8D%E8%BD%AC%E6%96%B9%E6%B3%95%20r.html"><small>下一张</small>反转方法 r</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -18,11 +18,33 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>分组对象复用</h1><div class="aliases">保存 groupby 对象 · 复用分组结果</div><p class="lede">先把 groupby 结果存为变量，再多次调用不同聚合函数，避免重复分组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>如果只求和，直接 .sum() 即可；若还要平均、中位数等多种聚合，先 g = df.groupby(...) 保存分组对象，再分别 g.sum()、g.mean()，可省去重复分组的开销。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>同一分组做多种统计</li><li>提升多次聚合的效率</li><li>让代码结构更清晰</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>单一聚合直接链式调用 .sum()</li><li>多种聚合先保存分组对象再分别调用</li><li>避免对同一数据反复 groupby</li><li>可配合 agg 一次输出多种统计量</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>分组对象依赖原数据，原 DataFrame 被修改后复用可能得到非预期结果。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/agg.html">agg</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要对同一分组同时求 sum 和 mean，怎样写更高效？</summary><div class="quiz-a">先 g = df.groupby(...)，再分别 g.sum() 和 g.mean()，或直接用 agg([&#x27;sum&#x27;,&#x27;mean&#x27;])。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html"><small>上一张</small>分层索引</a><a class="next" href="../c/%E5%88%97%E7%A7%BB%E5%8A%A8%E4%B8%89%E6%AD%A5%E6%B3%95.html"><small>下一张</small>列移动三步法</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>分组对象复用</h1><div class="aliases">保存 groupby 对象 · 复用分组结果</div><p class="lede">先把 groupby 结果存为变量，再多次调用不同聚合函数，避免重复分组。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>g = df.groupby(by)</code> → <code>g.sum()</code> / <code>g.mean()</code> / <code>g.agg([...])</code> <strong>参数</strong>：</p>
+<ul><li><code>by</code>：分组依据，列名、列名列表、Series 或数组均可；多列用列表传入</li><li>分组对象本身无参数，聚合方法沿用各函数自己的参数，如 <code>mean(numeric_only=True)</code></li><li><code>agg(func)</code>：一次传入多个函数名列表，等价于多次调用聚合方法，但只分组一次</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({
+    &quot;city&quot;: [&quot;北京&quot;, &quot;北京&quot;, &quot;上海&quot;, &quot;上海&quot;],
+    &quot;sales&quot;: [10, 20, 30, 40],
+})
+
+g = df.groupby(&quot;city&quot;)          # 先保存分组对象
+print(g.sum())                  # 复用：求和
+print(g.mean())                 # 复用：求均值
+print(g.agg([&quot;sum&quot;, &quot;mean&quot;]))   # 等价写法，一次输出多种统计量
+# 输出（sum）:      sales
+# city
+# 上海        70
+# 北京        30
+# 输出（mean）:     sales
+# city
+# 上海        35
+# 北京        15</code></pre>
+<blockquote>注：分组对象依赖原数据，修改 <code>df</code> 后需重新 <code>groupby</code>。</blockquote></section><section class="sec"><h2 id="解释">解释</h2><p>如果只求和，直接 .sum() 即可；若还要平均、中位数等多种聚合，先 g = df.groupby(...) 保存分组对象，再分别 g.sum()、g.mean()，可省去重复分组的开销。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>同一分组做多种统计</li><li>提升多次聚合的效率</li><li>让代码结构更清晰</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>单一聚合直接链式调用 .sum()</li><li>多种聚合先保存分组对象再分别调用</li><li>避免对同一数据反复 groupby</li><li>可配合 agg 一次输出多种统计量</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>分组对象依赖原数据，原 DataFrame 被修改后复用可能得到非预期结果。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/agg.html">agg</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要对同一分组同时求 sum 和 mean，怎样写更高效？</summary><div class="quiz-a">先 g = df.groupby(...)，再分别 g.sum() 和 g.mean()，或直接用 agg([&#x27;sum&#x27;,&#x27;mean&#x27;])。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html"><small>上一张</small>分层索引</a><a class="next" href="../c/%E5%88%86%E7%BB%84%E9%94%AE.html"><small>下一张</small>分组键</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

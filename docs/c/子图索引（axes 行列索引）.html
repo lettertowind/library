@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="plt.subplots 返回的 axes 是一个二维数组，用 [行, 列] 从 0 开始定位每一张子图。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>子图索引（axes 行列索引） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>子图索引（axes 行列索引）</h1><div class="aliases">axes[0 · 0] · axes 索引 · 子图下标 · 二维索引取子图</div><p class="lede">plt.subplots 返回的 axes 是一个二维数组，用 [行, 列] 从 0 开始定位每一张子图。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>2×2 布局对应 axes[0,0]、axes[0,1]、axes[1,0]、axes[1,1]。因为索引是规则的二维下标，所以可以套用 for 循环 + range 批量给所有子图画图。注意它与线性代数里 a11、a12 从 1 开始的写法不同。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>在指定位置画图：axes[1,0].bar(x, y)</li><li>循环批量绘图时按行列索引取子图</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>axes[行索引, 列索引]，行列都从 0 开始</li><li>2×2 布局：[0,0] [0,1] [1,0] [1,1]</li><li>取到的对象可直接调 .bar / .pie / .plot</li><li>索引规律是能用循环批量出图的前提</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>容易和数学里 a11、a12 的下标混淆，编程一律从 0 开始，所以第一张是 [0,0] 而不是 [1,1]。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.subplots.html">plt.subplots</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/Numpy%20%E7%B4%A2%E5%BC%95.html">Numpy 索引</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/enumerate.html">enumerate</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>2 行 2 列布局里，第二行第一个子图用哪个索引取？</summary><div class="quiz-a">axes[1, 0]</div></details>
+<details class="quiz"><summary>为什么 axes 的索引方式让批量画图变容易？</summary><div class="quiz-a">因为行列索引是连续的整数二维坐标，可直接用双重 for 循环遍历取值</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=59" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p59 S03E11.创建多个子图</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%AD%90%E5%8C%BA%E5%9F%9F%EF%BC%88%E7%94%BB%E4%B8%AD%E7%94%BB%EF%BC%89.html"><small>上一张</small>子区域（画中画）</a><a class="next" href="../c/%E5%AD%90%E5%9B%BE%EF%BC%88subplot%EF%BC%89.html"><small>下一张</small>子图（subplot）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

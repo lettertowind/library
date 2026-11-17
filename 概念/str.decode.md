@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.decode
@@ -16,6 +15,23 @@ order: 38
 > 别名：decode、解码转换
 
 **把编码后的字节按指定格式解码为字符串的方法。**
+
+
+## 用法
+**语法**：`Series.str.decode(encoding, errors='strict')`
+**参数**：
+- `encoding`：解码用的字符集，如 `'utf-8'`、`'gbk'`，必须与编码时保持一致，否则乱码或报错
+- `errors`：解码失败时的处理策略，默认 `'strict'` 直接抛异常；`'ignore'` 丢弃无法解码的字节；`'replace'` 用替换符占位
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series([b'\xe4\xbd\xa0\xe5\xa5\xbd', b'pandas'])
+print(s.str.decode('utf-8').tolist())
+# ['你好', 'pandas']
+print(s.str.decode('ascii', errors='ignore').tolist())
+# ['', 'pandas']   # 中文字节非 ASCII，被整段丢弃
+```
 
 ## 解释
 

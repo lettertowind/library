@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 的百分比刻度格式器，按 xmax 把原始值换算成百分比显示。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>PercentFormatter · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>PercentFormatter</h1><div class="aliases">mtick.PercentFormatter · ticker.PercentFormatter · 百分比格式器 · xmax 参数</div><p class="lede">Matplotlib 的百分比刻度格式器，按 xmax 把原始值换算成百分比显示。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>属于 matplotlib.ticker 模块，通过 axis.set_major_formatter 挂到坐标轴上。它按“显示百分比 = y / xmax × 100%”做换算，并自动补百分号、控制小数位，专门处理原始数据是 0~1 小数的场景。和只加符号的 FormatStrFormatter 不同，它真的改变了数值的显示尺度。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>原始数据是 0.38 这类小数，希望坐标轴显示 38.00%</li><li>比率类副轴统一成百分比刻度</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>xmax 表示“100% 对应的原始数据值”，小数数据设为 1</li><li>默认 xmax=100，所以 0.38 用默认值会显示成 0.38%</li><li>decimals 控制百分比保留几位小数</li><li>常与 set_ylim 配合：0~1 数据配 (0, 1)，百分数数值配 (0, 100)</li><li>数据最大值只到 20% 时也可把 xmax 设为 0.2</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>数据本身已是 38.25 这类百分数数值时必须改用 FormatStrFormatter，否则会被再除一次 xmax，显示成 0.38%。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/FormatStrFormatter.html">FormatStrFormatter</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/matplotlib.ticker%20%E6%A8%A1%E5%9D%97.html">matplotlib.ticker 模块</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E5%AE%9A%E4%BD%8D%E5%99%A8%E4%B8%8E%E6%A0%BC%E5%BC%8F%E5%99%A8%EF%BC%88Locator%20Formatter%EF%BC%89.html">刻度定位器与格式器（Locator Formatter）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E4%B8%BB%E6%AC%A1%E5%9D%90%E6%A0%87%E8%BD%B4.html">主次坐标轴</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>毛利率数据是 0.6158，要让坐标轴显示 61.58%，PercentFormatter 该怎么设？</summary><div class="quiz-a">PercentFormatter(xmax=1, decimals=2)，并把 y 轴范围设为 (0, 1)。</div></details>
+<details class="quiz"><summary>同一份 0.6158 的数据，误用 PercentFormatter(xmax=100) 会显示成什么？</summary><div class="quiz-a">0.62%，因为换算时多除了一次 100。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=62" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p62 S03E13.组合图：柱形图+折线图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/matplotlib.ticker%20%E6%A8%A1%E5%9D%97.html">matplotlib.ticker 模块</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/MultipleLocator.html"><small>上一张</small>MultipleLocator</a><a class="next" href="../c/alpha%20%E9%80%8F%E6%98%8E%E5%BA%A6.html"><small>下一张</small>alpha 透明度</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

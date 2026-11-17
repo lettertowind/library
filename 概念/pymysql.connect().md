@@ -45,6 +45,18 @@ connect() 接收 host、user、password、database、charset 等参数，返回�
 
 charset 参数为什么写 utf8 而不是 utf-8？::MySQL 的字符集名称规范是 utf8，写成 utf-8 可能不被识别。
 
+
+### 补充 · 2026-11-17
+
+它相当于「登录数据库」这一步，返回的连接对象内部封装了主机、用户名、密码、库名和编码。之后把该对象交给 pd.read_sql，就能执行查询。
+
+- 五大参数：host、user、password、database、charset
+- host='localhost' 表示连接本机数据库
+- 参数必须换成本机环境的值，不能照搬示例账号密码
+别人用你写的 host='localhost', user='root' 能在自己电脑上连上你的库吗？::不能，localhost 指本机，连接参数必须按各自的实际环境填写。
+连接对象和读取到的数据表是同一个东西吗？::不是，连接对象只承载登录信息，数据要通过查询语句经它取回。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p18 S02E03.读取Mysql文件](https://www.bilibili.com/video/BV1ji4y157uB?p=18) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 31
 stage: "S02E16 · 处理缺失值"
-order: 31
 ---
 
 # method 参数（fillna）
@@ -47,6 +46,17 @@ method 决定填充时取哪个方向的有效值：ffill/pad 用前一个有效
 
 ffill 和 bfill 的填充方向分别是什么？::ffill 用前值向下填，bfill 用后值向上填。
 怎样实现左右方向的填充？::设置 axis=1 配合 method 参数。
+
+
+### 补充 · 2026-11-17
+
+method 决定填充值从哪里来：ffill 取前面的有效值，bfill 取后面的有效值，pad 和 backfill 是它们的别名式写法，多数教程认为行为一致。填充方向还受 axis 影响，axis=0 是上下传播，axis=1 变成左右传播。
+
+- method='ffill' 用前面的值填充，axis=0 时表现为向下填
+- method='bfill' 用后面的值填充，axis=0 时表现为向上填
+- pad 常被视为等价于 ffill，backfill 常被视为等价于 bfill
+数据默认 axis=0，method='bfill' 的填充方向和「用哪个值」分别是什么？::向上填充，用空值下方最近的一个非空值来填补它。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p31 S02E16.处理缺失值](https://www.bilibili.com/video/BV1ji4y157uB?p=31) · 2026-11-17
 
 ## 出处
 

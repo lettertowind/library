@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.lstrip
@@ -16,6 +15,23 @@ order: 38
 > 别名：lstrip、左侧去除
 
 **按字符集合从字符串左侧去除字符的方法。**
+
+## 用法
+**语法**：`Series.str.lstrip(to_strip=None)`
+
+**参数**：
+- `to_strip`：字符集合（不是子串），只要出现在它里面的字符都会被从左侧逐一去除；默认 `None` 表示去除空白字符
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(["  pandas", "xxpandasxx", "  data  "])
+print(s.str.lstrip().tolist())      # ['pandas', 'xxpandasxx', 'data  ']
+print(s.str.lstrip(" x").tolist())  # ['pandas', 'pandasxx', 'data  ']
+print(s.str.lstrip("x").tolist())   # ['  pandas', 'pandasxx', '  data  ']
+```
+注意：`" x"` 是字符集合，会持续去掉左边的空格和 x，直到遇到其他字符为止；右侧始终不动，需要右侧清理用 `str.rstrip`，两侧清理用 `str.strip`。
 
 ## 解释
 

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 16
 stage: "S02E01 · 数据类型与新建文件"
-order: 16
 ---
 
 # to_csv
@@ -16,6 +15,27 @@ order: 16
 > 别名：DataFrame.to_csv、写出 CSV
 
 **把 DataFrame 写出为逗号分隔纯文本文件的 Pandas 方法。**
+
+## 用法
+**语法**：`DataFrame.to_csv(path_or_buf, sep=',', index=True, encoding=None, header=True)`
+**参数**：
+- `path_or_buf`：输出路径或文件名，如 `'data.csv'`；不传则返回字符串
+- `sep`：分隔符，默认 `','`，存 Tab 分隔文本可设为 `'\t'`
+- `index`：是否把行索引写成一列，默认 `True`，通常设为 `False`
+- `header`：是否写出列名，默认 `True`
+- `encoding`：文件编码，中文内容建议 `'utf-8-sig'`，方便 Excel 打开
+**示例**：
+```python
+import pandas as pd
+
+data = pd.DataFrame({'姓名': ['张三', '李四'], '分数': [90, 85]})
+data.to_csv('score.csv', index=False, encoding='utf-8-sig')
+print(pd.read_csv('score.csv'))
+#    姓名  分数
+# 0  张三  90
+# 1  李四  85
+```
+注意调用形式是 `data.to_csv(path)`，不是 `pd.to_csv`；与 `to_excel` 只差方法名和文件后缀。
 
 ## 解释
 

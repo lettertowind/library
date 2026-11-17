@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 20
 stage: "S02E05 · 数据结构之Series"
-order: 20
 ---
 
 # isnull
@@ -16,6 +15,30 @@ order: 20
 > 别名：isnull()、判断空值
 
 **判断数据是否为空值，返回布尔值（空为 True）。**
+
+## 用法
+**语法**：`df.isnull()` / `series.isnull()`（别名 `df.isna()`）
+
+**参数**：无。`isnull()` 不接受参数，直接对 DataFrame 或 Series 逐元素返回布尔值。
+
+**示例**：
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    "姓名": ["张三", "李四", "王五"],
+    "成绩": [90, np.nan, 75],
+})
+print(df.isnull())
+#    姓名     成绩
+# 0  False  False
+# 1  False   True
+# 2  False  False
+
+print(df["成绩"].isnull().sum())  # 1  —— 判断不统计，配合 sum() 才计数
+print(df.notnull().all().all())   # False —— 与 notnull() 结果相反
+```
 
 ## 解释
 

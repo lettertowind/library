@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="plt 系列绘图函数默认作用的那一块子图区域。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>当前子图（current axes） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>当前子图（current axes）</h1><div class="aliases">current axes · 当前坐标轴 · 隐式当前子图</div><p class="lede">plt 系列绘图函数默认作用的那一块子图区域。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>调用 fig.add_subplot(...) 创建子图时，Matplotlib 会把它设为『当前子图』，之后的 plt.plot、plt.bar 等不带 ax 参数的调用都画在这块区域上。所以『在哪个 add_subplot 下面写绘图代码，图就落在哪个子图里』。理解这一点，才能在多子图排版时不把图形画错位置。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>多子图排版时决定每个图形画到哪里</li><li>排查『图画到了不该出现的子图』这类问题</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>每次执行 add_subplot 都会切换一次当前子图</li><li>plt.plot / plt.bar 等作用于最近一次创建的当前子图</li><li>写成 ax.plot(...) 的面向对象方式则不受当前子图影响</li><li>绘图代码顺序写错，图形会落到意外子图中</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只有 plt.* 这种隐式接口依赖当前子图；用 ax.* 显式调用时与该机制无关。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/fig.add_subplot%EF%BC%88%E5%9C%A8%E7%94%BB%E5%B8%83%E4%B8%8A%E6%B7%BB%E5%8A%A0%E5%AD%90%E5%9B%BE%EF%BC%89.html">fig.add_subplot（在画布上添加子图）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/figure%20%E4%B8%8E%20axes%EF%BC%88%E7%94%BB%E5%B8%83%E4%B8%8E%E5%AD%90%E5%9B%BE%EF%BC%89.html">figure 与 axes（画布与子图）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/plt.subplots.html">plt.subplots</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>先 add_subplot(221)，画一个折线图；再 add_subplot(222)，画一个柱形图。两张图分别出现在哪？</summary><div class="quiz-a">折线图在第 1 个子图，柱形图在第 2 个子图，因为每次 add_subplot 都切换了当前子图。</div></details>
+<details class="quiz"><summary>为什么用 ax.plot() 写法就基本不会出现图形错位的问题？</summary><div class="quiz-a">因为它显式指定了目标 axes 对象，不依赖『当前子图』这个隐式状态。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=58" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p58 S03E10.画布和子图</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%BC%A7%E5%BA%A6%E5%88%B6.html"><small>上一张</small>弧度制</a><a class="next" href="../c/%E6%8A%98%E7%BA%BF%E5%9B%BE.html"><small>下一张</small>折线图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

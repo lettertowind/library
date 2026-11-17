@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 24
 stage: "S02E09 · 连接查询之concat"
-order: 24
 ---
 
 # join 参数（concat）

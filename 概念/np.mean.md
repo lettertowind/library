@@ -67,6 +67,17 @@ np.mean 是最常用的集中趋势指标，但对极端值敏感。视频强调
 
 为什么收入数据只看平均数可能误导？::少数极高收入会把平均数拉高，不能代表多数人的中间水平。
 
+
+### 补充 · 2026-11-17
+
+np.mean 对一组数值求和后除以个数，是计算平均线 y 值的标准方法。相比手工求和，它能直接作用于数组或 DataFrame 列，减少出错。
+
+- 给平均线提供 y 值：np.mean(销售量)
+- 避免手工求和再除以 n
+- 可对 DataFrame 列 data['销售量'] 直接求均值
+要用 DataFrame 的“销售量”列计算平均线位置，怎么写？::np.mean(data['销售量'])
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p57 S03E09.平均线](https://www.bilibili.com/video/BV1ji4y157uB?p=57) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

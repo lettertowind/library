@@ -58,6 +58,18 @@ NumPy 的标准导入写法，np 是社区通用别名，便于后续调用 np.a
 
 为什么大家习惯把 NumPy 导入为 np？::这是社区通用约定，统一别名便于代码阅读和复用。
 
+
+### 补充 · 2026-11-17
+
+导入后即可用 np.xxx 调用 NumPy 的函数。写不带别名的 import numpy 也合法，最常用于安装后的验证：没有报错说明库已正确安装且能被解释器找到。
+
+- as np 是行业惯例，几乎所有教程统一使用
+- 验证安装时可直接写 import numpy，无报错即成功
+- 导入报错通常是未安装或装到了别的 Python 环境
+import numpy 没报错，能说明什么、不能说明什么？::能说明 NumPy 已装好且被当前 Python 解释器找到；不能说明版本合适或依赖完整。
+为什么要写 as np？::缩短调用名，且与主流教程和代码库保持一致，便于阅读和协作。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p02 S01E01.参考书籍及安装方法](https://www.bilibili.com/video/BV1ji4y157uB?p=2) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

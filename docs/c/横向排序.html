@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 sort_values 指定 axis=1，按某一行标签的值对该行的各列重新排序。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>横向排序 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>横向排序</h1><div class="aliases">axis=1 排序 · 按行排序 · 行方向排序 · sort_values axis=1</div><p class="lede">用 sort_values 指定 axis=1，按某一行标签的值对该行的各列重新排序。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.sort_values(by, axis=0, ascending=True, inplace=False, na_position=&#x27;last&#x27;)</code> <strong>参数</strong>：</p>
+<ul><li><code>by</code>：排序依据；横向排序时写行标签（索引值），不是列名</li><li><code>axis</code>：默认 0 按列纵向排序；横向排序须显式写 <code>axis=1</code>（pandas 2.1 起已弃用，见示例）</li><li><code>ascending</code>：<code>True</code> 升序、<code>False</code> 降序，也可传布尔列表</li><li><code>inplace</code>：是否原地修改，默认 <code>False</code> 返回新对象</li><li><code>na_position</code>：缺失值放 <code>&#x27;first&#x27;</code> 或 <code>&#x27;last&#x27;</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+df = pd.DataFrame({&#x27;数学&#x27;: [90, 80], &#x27;语文&#x27;: [70, 95], &#x27;英语&#x27;: [85, 60]}, index=[&#x27;小明&#x27;, &#x27;小红&#x27;])
+# 旧版写法：pandas 2.1 起 axis=1 已弃用，会触发 FutureWarning
+old = df.sort_values(by=&#x27;小明&#x27;, axis=1, ascending=False)
+print(old.columns.tolist())  # [&#x27;数学&#x27;, &#x27;英语&#x27;, &#x27;语文&#x27;]
+# 推荐写法：先转置排序再转回
+new = df.T.sort_values(by=&#x27;小明&#x27;, ascending=False).T
+print(new.columns.tolist())  # [&#x27;数学&#x27;, &#x27;英语&#x27;, &#x27;语文&#x27;]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>常规排序是 axis=0，按列字段给行排序；当需要针对某一行数据做横向比较时，把 axis 设为 1，并用 by 指定该行的行标签，Pandas 会按这一行各列的值调整列的先后顺序。例如某行值为 4、6、2，降序后列顺序变为 6、4、2。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按某一行的数值对列重新排列，如按某项指标给各科目/各月份列排序</li><li>数据探索时临时查看某行的横向大小顺序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>必须显式写 axis=1，默认 axis=0 会对列做纵向排序</li><li>此时 by 里写的是行索引/行标签，而不是列名</li><li>ascending、inplace 的用法与常规排序相同</li><li>这种排序在实际分析中很少用，普通二维表字段排序用不到</li><li>排错时依次检查：by 是否写行标签、axis 是否已改为 1、ascending 是否符合预期</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易与「axis=1 按列分组聚合」混淆：两者都用 axis=1，但一个是排序语境、一个是 groupby 语境，不要套用同一套 by 含义。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/sort_values.html">sort_values</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/by%20%E5%8F%82%E6%95%B0.html">by 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/axis%3D1%20%E6%8C%89%E5%88%97%E5%88%86%E7%BB%84.html">axis=1 按列分组</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想让 DataFrame 按某一行的值给各列排序，by 应该写列名还是行标签？</summary><div class="quiz-a">写行标签，同时必须设置 axis=1。</div></details>
+<details class="quiz"><summary>不写 axis 直接 sort_values(by=&#x27;一金牌&#x27;) 能实现横向排序吗？</summary><div class="quiz-a">不能，默认 axis=0 会把 &#x27;一金牌&#x27; 当列名去找，通常直接报错。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=27" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p27 S02E12.数据排序【已修证】</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%A0%87%E7%AD%BE%E7%B4%A2%E5%BC%95%E4%B8%8E%E4%BD%8D%E7%BD%AE%E7%B4%A2%E5%BC%95.html"><small>上一张</small>标签索引与位置索引</a><a class="next" href="../c/%E7%81%B5%E6%B4%BB%E7%AE%97%E6%9C%AF%E6%96%B9%E6%B3%95.html"><small>下一张</small>灵活算术方法</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

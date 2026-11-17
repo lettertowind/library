@@ -18,12 +18,39 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>累加月算法</h1><div class="aliases">加月函数 · 月份递增算法 · 累加月</div><p class="lede">自定义函数，在日期上加若干个月并处理满 12 个月进位到年的算法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>因为 timedelta 不支持月，需要自己写函数：用整除 12 算进位年数，用取余算剩余月份，再与起始月份相加，超过 12 再进位，最后用 date(year, month, day) 重建日期。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>日期按月份自动填充</li><li>跨年月份递增</li><li>需要保留“日”不变的月度序列</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>年进位 = 月份 // 12，剩余月 = 月份 % 12</li><li>初始月 = 起始月 + 剩余月</li><li>若初始月 ≠ 12，再对月做 //12 和 %12 处理进位</li><li>月 = 12 时直接表示当年 12 月，不再拆分</li><li>最后用 date(年, 月, 日) 构造新日期</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>该算法默认“日”不变，遇到 1 月 31 日加一个月这类边界会得到非法日期，需要额外处理。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Timedelta.html">Timedelta</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/datetime%20%E6%A8%A1%E5%9D%97.html">datetime 模块</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>从 2020-05-26 起加 30 个月，累加月算法里 30//12 和 30%12 分别代表什么？</summary><div class="quiz-a">30//12=2 表示进位 2 年，30%12=6 表示剩余 6 个月，再与起始月 5 相加得 11 月，最终为 2022-11-26。</div></details>
-<details class="quiz"><summary>为什么当初始月等于 12 时要单独判断、不再做 //12 和 %12？</summary><div class="quiz-a">12//12=1、12%12=0 会把 12 月错误地变成下一年 0 月，所以 12 月要直接保留。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/datetime%20%E6%A8%A1%E5%9D%97.html">datetime 模块</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%B4%A2%E5%BC%95%E5%AF%B9%E9%BD%90.html"><small>上一张</small>索引对齐</a><a class="next" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html"><small>下一张</small>缺失值处理</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>累加月算法</h1><div class="aliases">加月函数 · 月份递增算法 · 累加月</div><p class="lede">自定义函数，在日期上加若干个月并处理满 12 个月进位到年的算法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>add_months(d: date, months: int) -&gt; date</code>（自定义函数，非标准库）</p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>d</code>：起始日期，<code>datetime.date</code> 对象</li><li><code>months</code>：要累加的正整数月份，可跨年</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">from datetime import date
+
+def add_months(d, months):
+    y, m, day = d.year, d.month, d.day
+    y += months // 12          # 进位年数
+    m += months % 12           # 剩余月并入起始月
+    if m != 12:                # 12 月不能再拆分，否则变成 0 月
+        y += m // 12
+        m = m % 12
+    return date(y, m, day)
+
+d = date(2020, 5, 26)
+print(30 // 12, 30 % 12)       # 2 6
+print(add_months(d, 30))       # 2022-11-26
+print(add_months(d, 1))        # 2020-06-26</code></pre>
+<blockquote>注：该算法默认“日”不变，1 月 31 日加 1 个月会抛 <code>ValueError</code>，需自行截断到月末。pandas 场景可直接用 <code>pd.DateOffset(months=n)</code>。</blockquote></section><section class="sec"><h2 id="解释">解释</h2><p>因为 timedelta 不支持月，需要自己写函数：用整除 12 算进位年数，用取余算剩余月份，再与起始月份相加，超过 12 再进位，最后用 date(year, month, day) 重建日期。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>日期按月份自动填充</li><li>跨年月份递增</li><li>需要保留“日”不变的月度序列</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>年进位 = 月份 // 12，剩余月 = 月份 % 12</li><li>初始月 = 起始月 + 剩余月</li><li>若初始月 ≠ 12，再对月做 //12 和 %12 处理进位</li><li>月 = 12 时直接表示当年 12 月，不再拆分</li><li>最后用 date(年, 月, 日) 构造新日期</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>该算法默认“日”不变，遇到 1 月 31 日加一个月这类边界会得到非法日期，需要额外处理。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Timedelta.html">Timedelta</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/datetime%20%E6%A8%A1%E5%9D%97.html">datetime 模块</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>从 2020-05-26 起加 30 个月，累加月算法里 30//12 和 30%12 分别代表什么？</summary><div class="quiz-a">30//12=2 表示进位 2 年，30%12=6 表示剩余 6 个月，再与起始月 5 相加得 11 月，最终为 2022-11-26。</div></details>
+<details class="quiz"><summary>为什么当初始月等于 12 时要单独判断、不再做 //12 和 %12？</summary><div class="quiz-a">12//12=1、12%12=0 会把 12 月错误地变成下一年 0 月，所以 12 月要直接保留。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>timedelta 没有 months 参数，月份累加只能自己算。核心是把总月数拆成整年（月份 // 12）和余月（月份 % 12），加到起始月上，如果结果超过 12 再进一次年，最后用 date 重新构造。</p>
+<p>- 年 = 月份 // 12，先把整年部分取出来</p>
+<p>- 月 = 起始月 + 月份 % 12，再叠加余数</p>
+<p>- 月 == 12 时不再调整；月 != 12 时才做 年 += 月 // 12、月 %= 12</p>
+<details class="quiz"><summary>2020-05-26 起累加 31 个月是几月？</summary><div class="quiz-a">2022-12：31//12=2 年，5+31%12=12 月，月恰为 12 不再调整</div></details>
+<details class="quiz"><summary>为什么月 == 12 时要单独判断、不能再取余？</summary><div class="quiz-a">12 % 12 = 0，会把 12 月错算成 0 月并多进一年</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=25" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p25 S02E10.各种数据自动填充</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/datetime%20%E6%A8%A1%E5%9D%97.html">datetime 模块</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%9C%B0%E6%9D%BF%E9%99%A4%E4%B8%8E%E5%8F%96%E4%BD%99%EF%BC%88%20%E4%B8%8E%20%25%EF%BC%89.html">地板除与取余（ 与 %）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%B4%A2%E5%BC%95%E6%9C%89%E5%BA%8F%E6%80%A7.html"><small>上一张</small>索引有序性</a><a class="next" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html"><small>下一张</small>缺失值处理</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

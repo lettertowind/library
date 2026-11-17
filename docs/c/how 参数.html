@@ -25,11 +25,17 @@
 <p>- inner：两表都能匹配的行，默认值可省略</p>
 <p>- left：左表全保留，右表无匹配处为 NaN</p>
 <p>- right：右表全保留，左表无匹配处为 NaN</p>
-<details class="quiz"><summary>想保留右表全部记录并带出左表信息，how 应设为什么？</summary><div class="quiz-a">how=&#x27;right&#x27;。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html">VLOOKUP 式匹配</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/on%20%E5%8F%82%E6%95%B0.html">on 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/subset%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">subset 参数（dropna）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/thresh%20%E5%8F%82%E6%95%B0.html">thresh 参数</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/header%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>header 参数</a><a class="next" href="../c/ignore_index%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>ignore_index 参数</a></nav></article>
+<details class="quiz"><summary>想保留右表全部记录并带出左表信息，how 应设为什么？</summary><div class="quiz-a">how=&#x27;right&#x27;。</div></details>
+<p>how 决定结果保留哪一侧的记录：inner 取交集、left 保左表、right 保右表、outer 取并集，缺失处统一补 NaN。它是关键语义开关，一旦不是内连接就必须写明，不能依赖默认。</p>
+<p>- 默认值为 inner，等价于不写</p>
+<p>- 取值 left/right/outer 时必须显式写出</p>
+<p>- 连接类型只影响保留哪些行，不影响匹配规则本身</p>
+<details class="quiz"><summary>为什么 how=&#x27;left&#x27; 时行数可能比左表还多？</summary><div class="quiz-a">因为保留的是左表行的匹配结果：左表某键在右表匹配到多行时，该行会被展开成多行。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=22" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p22 S02E07.连接查询之Merge</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html">VLOOKUP 式匹配</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/on%20%E5%8F%82%E6%95%B0.html">on 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/subset%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">subset 参数（dropna）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/thresh%20%E5%8F%82%E6%95%B0.html">thresh 参数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E8%BF%9E%E6%8E%A5%E9%94%AE.html">连接键</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%85%A8%E5%A4%96%E8%BF%9E%E6%8E%A5.html">全外连接</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%86%85%E8%BF%9E%E6%8E%A5.html">内连接</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%8F%B3%E8%BF%9E%E6%8E%A5.html">右连接</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%B7%A6%E8%BF%9E%E6%8E%A5.html">左连接</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/header%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>header 参数</a><a class="next" href="../c/how%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html"><small>下一张</small>how 参数（dropna）</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -18,7 +18,35 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.concat</h1><div class="aliases">concat · pandas 连接 · 纵向连接</div><p class="lede">pandas 中沿指定轴把多个 DataFrame 拼接成一个的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>pd.concat 接收一个 DataFrame 列表，默认按行（axis=0）纵向堆叠，把结构相同的多张表接成一张总表。它是合并多个工作簿、多个工作表的核心操作，配合空表和 for 循环即可实现累积合并。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>合并同一文件夹下多个 Excel 工作簿</li><li>合并同一工作簿中多个 sheet</li><li>把分批读取的数据累积成一张总表</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数是列表：[表1, 表2]，不是两个位置参数</li><li>默认 axis=0 纵向堆叠，列名需一致</li><li>常配合空表 pd.DataFrame() 做累积合并</li><li>ignore_index=True 可重建连续索引</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只做结构拼接，不做按键匹配；按键对齐合并要用 pd.merge。列不一致时会产生 NaN 列。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要把三个结构相同的表纵向接成一张总表，用 pd.concat 还是 pd.merge？为什么？</summary><div class="quiz-a">用 pd.concat，因为只是按行堆叠、不需要按键匹配；pd.merge 用于按键横向对齐。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.concat</h1><div class="aliases">concat · pandas 连接 · 纵向连接</div><p class="lede">pandas 中沿指定轴把多个 DataFrame 拼接成一个的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.concat(objs, axis=0, join=&#x27;outer&#x27;, ignore_index=False, keys=None)</code> <strong>参数</strong>：</p>
+<ul><li><code>objs</code>：待拼接对象的列表或字典，如 <code>[df1, df2]</code>，不是两个位置参数</li><li><code>axis</code>：拼接方向，<code>0</code> 表示纵向堆叠（默认），<code>1</code> 表示横向按行索引对齐</li><li><code>join</code>：索引对齐方式，<code>&#x27;outer&#x27;</code> 保留并集（默认），<code>&#x27;inner&#x27;</code> 只保留交集</li><li><code>ignore_index</code>：为 <code>True</code> 时重建 0..n-1 连续索引，默认 <code>False</code> 保留原索引</li><li><code>keys</code>：传入列表可为结果增加层次索引，标识每块数据来源</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df1 = pd.DataFrame({&#x27;城市&#x27;: [&#x27;北京&#x27;, &#x27;上海&#x27;], &#x27;销量&#x27;: [100, 200]})
+df2 = pd.DataFrame({&#x27;城市&#x27;: [&#x27;广州&#x27;, &#x27;深圳&#x27;], &#x27;销量&#x27;: [300, 400]})
+
+# 纵向堆叠，列名需一致
+print(pd.concat([df1, df2], ignore_index=True))
+#    城市   销量
+# 0  北京  100
+# 1  上海  200
+# 2  广州  300
+# 3  深圳  400
+
+# 横向拼接：行索引对齐，不匹配处填 NaN
+df3 = pd.DataFrame({&#x27;总计&#x27;: [300, 600]})
+print(pd.concat([df1, df3], axis=1))
+#    城市   销量   总计
+# 0  北京  100  300.0
+# 1  上海  200  600.0
+
+# keys 标识来源
+print(pd.concat([df1, df2], keys=[&#x27;一店&#x27;, &#x27;二店&#x27;]).loc[&#x27;一店&#x27;])
+#    城市   销量
+# 0  北京  100
+# 1  上海  200</code></pre>
+<p>注意：如果列名不一致，纵向拼接会产生 NaN 列；如果只需要按键匹配，应改用 <code>pd.merge</code>。</p></section><section class="sec"><h2 id="解释">解释</h2><p>pd.concat 接收一个 DataFrame 列表，默认按行（axis=0）纵向堆叠，把结构相同的多张表接成一张总表。它是合并多个工作簿、多个工作表的核心操作，配合空表和 for 循环即可实现累积合并。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>合并同一文件夹下多个 Excel 工作簿</li><li>合并同一工作簿中多个 sheet</li><li>把分批读取的数据累积成一张总表</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数是列表：[表1, 表2]，不是两个位置参数</li><li>默认 axis=0 纵向堆叠，列名需一致</li><li>常配合空表 pd.DataFrame() 做累积合并</li><li>ignore_index=True 可重建连续索引</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只做结构拼接，不做按键匹配；按键对齐合并要用 pd.merge。列不一致时会产生 NaN 列。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要把三个结构相同的表纵向接成一张总表，用 pd.concat 还是 pd.merge？为什么？</summary><div class="quiz-a">用 pd.concat，因为只是按行堆叠、不需要按键匹配；pd.merge 用于按键横向对齐。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>pd.concat 可按行（axis=0）或按列（axis=1）拼接多个对象。横向拼接时要求行索引对齐，常用于把计算结果（如总计列）追加到原数据旁边。</p>
 <p>- axis=1 表示横向拼接，axis=0 表示纵向</p>
@@ -30,11 +58,18 @@
 <p>- keys 参数可增加层次索引标识数据来源</p>
 <p>- join 参数控制对齐方式：inner 交集，outer 并集</p>
 <details class="quiz"><summary>pd.concat([df1, df2], axis=1) 时，如果两个 DataFrame 的行索引不完全相同，结果会怎样？</summary><div class="quiz-a">按行索引对齐，不匹配的位置填充 NaN。</div></details>
-<details class="quiz"><summary>concat 的 join=&#x27;inner&#x27; 和 join=&#x27;outer&#x27; 有什么区别？</summary><div class="quiz-a">inner 只保留共同索引（交集），outer 保留所有索引（并集），缺失处填 NaN。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/Pandas%20Excel%20%E5%90%88%E5%B9%B6%E6%8B%86%E5%88%86.html">Pandas Excel 合并拆分</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/append%20%E6%96%B9%E6%B3%95.html">append 方法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/ignore_index%20%E5%8F%82%E6%95%B0.html">ignore_index 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/join%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html">join 参数（concat）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/join_axes%20%E5%8F%82%E6%95%B0.html">join_axes 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/keys%20%E5%8F%82%E6%95%B0.html">keys 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html">sort 参数（concat）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/os.listdir.html">os.listdir</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pd.MultiIndex.from_tuples.html"><small>上一张</small>pd.MultiIndex.from_tuples</a><a class="next" href="../c/pd.cut.html"><small>下一张</small>pd.cut</a></nav></article>
+<details class="quiz"><summary>concat 的 join=&#x27;inner&#x27; 和 join=&#x27;outer&#x27; 有什么区别？</summary><div class="quiz-a">inner 只保留共同索引（交集），outer 保留所有索引（并集），缺失处填 NaN。</div></details>
+<p>默认 axis=0 做纵向首尾相接（类似 Excel 上下拼表）；axis=1 做横向拼接并按行索引对齐，索引不一致处补 NaN。它按轴工作而非按键匹配，这是与 merge 的根本区别。</p>
+<p>- 默认 axis=0，等价于把第二张表放到第一张下面</p>
+<p>- axis=1 按行索引对齐，索引不同处补 NaN</p>
+<p>- keys 参数加一层来源索引；也可直接传字典，字典键即分组键</p>
+<details class="quiz"><summary>pd.concat([s1, s2]) 与 pd.concat([s1, s2], axis=1) 结果差在哪？</summary><div class="quiz-a">前者纵向首尾相接、索引可能重复；后者横向并排、按索引对齐并出现 NaN。</div></details>
+<details class="quiz"><summary>为什么建议写成 frames = [df1, df2, df3]; pd.concat(frames)？</summary><div class="quiz-a">表列表集中在一个变量里，便于后续增删、复用和排查问题。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=24" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p24 S02E09.连接查询之concat</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.concatenate.html">np.concatenate</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/Pandas%20Excel%20%E5%90%88%E5%B9%B6%E6%8B%86%E5%88%86.html">Pandas Excel 合并拆分</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/append%20%E6%96%B9%E6%B3%95.html">append 方法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/ignore_index%20%E5%8F%82%E6%95%B0.html">ignore_index 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/join%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html">join 参数（concat）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/join_axes%20%E5%8F%82%E6%95%B0.html">join_axes 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/keys%20%E5%8F%82%E6%95%B0.html">keys 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pd.read_excel.html">pd.read_excel</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/sort%20%E5%8F%82%E6%95%B0%EF%BC%88concat%EF%BC%89.html">sort 参数（concat）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%88%97%E5%AD%97%E6%AE%B5%E5%AF%B9%E9%BD%90.html">列字段对齐</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%BE%AA%E7%8E%AF%E7%B4%AF%E5%8A%A0%E5%90%88%E5%B9%B6.html">循环累加合并</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/os.listdir.html">os.listdir</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/Power%20Query%20%E8%BF%BD%E5%8A%A0%E6%9F%A5%E8%AF%A2.html">Power Query 追加查询</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pd.MultiIndex.from_tuples.html"><small>上一张</small>pd.MultiIndex.from_tuples</a><a class="next" href="../c/pd.cut.html"><small>下一张</small>pd.cut</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

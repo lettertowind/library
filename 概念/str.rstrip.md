@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.rstrip
@@ -16,6 +15,21 @@ order: 38
 > 别名：rstrip、右侧去除
 
 **按字符集合从字符串右侧去除字符的方法。**
+
+## 用法
+**语法**：`Series.str.rstrip(to_strip=None)`
+**参数**：
+- `to_strip`：str 或 None，默认 None；指定右侧要清除的**字符集合**，集合中的符号按“任一字符属于集合就删除”的规则处理，不做子串匹配；为 None 时只清除右侧空白字符
+**示例**：
+```python
+import pandas as pd
+s = pd.Series(['  a  ', 'b--', '--c'])
+print(s.str.rstrip().tolist())     # ['  a', 'b--', '--c'] 默认只去右侧空白
+print(s.str.rstrip('-').tolist())  # ['  a  ', 'b', '--c'] 只去右侧的 '-'
+print(s.str.rstrip(' -').tolist()) # ['  a', 'b', '--c'] 字符集合可含空格
+print(s.str.lstrip('-').tolist())  # ['  a  ', 'b--', 'c'] 对照：lstrip 只动左侧
+```
+> 语义与内置 `str.rstrip` 完全一致；对非字符串列先 `.astype(str)`，缺失值默认保留为 NaN。
 
 ## 解释
 

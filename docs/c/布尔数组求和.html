@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="对布尔数组求 sum，用 True=1、False=0 的规则统计满足条件的元素个数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>布尔数组求和 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>布尔数组求和</h1><div class="aliases">条件计数 · (a&gt;3).sum() · True 求和 · 布尔掩码求和</div><p class="lede">对布尔数组求 sum，用 True=1、False=0 的规则统计满足条件的元素个数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>(条件).sum()</code>，也可写成 <code>np.sum(条件)</code> <strong>参数</strong>：</p>
+<ul><li>条件：由比较运算（如 <code>a &gt; 3</code>）得到、与原数组形状相同的布尔数组</li><li><code>axis</code>：按轴求和，得到的结果是沿该轴满足条件的计数；文档未说明时，默认统计全部元素</li><li><code>keepdims</code>：是否保留原数组的维度，默认 <code>False</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+a = np.array([[1, 5, 2],
+              [7, 3, 9]])
+
+bool_arr = a &gt; 3
+print(bool_arr)
+# [[False  True False]
+#  [ True False  True]]
+
+print(bool_arr.sum())   # 3，True 的个数
+print(a[a &gt; 3].sum())   # 21，条件命中的元素值之和，与上一行含义不同
+print((a &gt; 3).sum(axis=1))  # [1 2]，按行统计</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>先用比较运算得到与原数组同形状的布尔数组，再对它求和，即可得到满足条件的元素数量。它是「条件计数」的标准写法，避免写循环逐个判断。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>统计数组中大于某阈值的元素个数</li><li>统计缺失、异常值、命中规则的数据量</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>False 等价 0、True 等价 1，求和结果就是 True 的个数</li><li>必须先得到布尔数组再 .sum()，直接对数值条件求和是错的</li><li>写法固定为 (条件).sum()，条件可以是 a &gt; 3 之类</li><li>常与 np.any / np.all 配合：先判断有没有，再统计有多少</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只统计个数；若要求和满足条件元素的值本身，应写 a[a &gt; 3].sum()。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html">布尔数组</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.sum.html">np.sum</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.any.html">np.any</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>如何在不用循环的前提下，统计二维数组 a 中大于 3 的元素有多少个？</summary><div class="quiz-a">(a &gt; 3).sum()，先逐元素比较得到布尔数组，再对 True 求和。</div></details>
+<details class="quiz"><summary>(a &gt; 3).sum() 与 a[a &gt; 3].sum() 结果一样吗？分别是什么含义？</summary><div class="quiz-a">不一样：前者统计满足条件的元素个数，后者把这些元素的值相加。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=14" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p14 S01E13.条件计算，排序，深潜拷贝【本季完】</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html"><small>上一张</small>布尔数组</a><a class="next" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84%E6%B1%82%E5%92%8C%E8%AE%A1%E6%95%B0.html"><small>下一张</small>布尔数组求和计数</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

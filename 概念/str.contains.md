@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 29
 stage: "S02E14 · 筛选"
-order: 29
 ---
 
 # str.contains
@@ -16,6 +15,35 @@ order: 29
 > 别名：contains、包含判断
 
 **判断每个字符串是否包含指定内容并返回布尔值的方法。**
+
+## 用法
+**语法**：`Series.str.contains(pat, case=True, flags=0, na=None, regex=True)`
+**参数**：
+- `pat`：要查找的字符序列或正则表达式；默认按正则解释
+- `case`：默认 True 区分大小写；设为 False 则忽略大小写
+- `flags`：传给正则引擎的标志位，如 `re.IGNORECASE`
+- `na`：空值处填什么，默认 None 保留 NaN；常设 `na=False`
+- `regex`：默认 True 把 pat 当正则；只想按纯文本匹配时设 False
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['河南省信阳市', '信阳市', '郑州市', None])
+print(s.str.contains('信阳市').tolist())
+# [True, True, False, nan]
+
+print(s.str.contains('信阳市', na=False).tolist())
+# [True, True, False, False]
+
+print(s.str.contains('^信阳市', regex=True).tolist())
+# [False, True, False, nan]
+
+df = pd.DataFrame({'地址': s})
+print(df[df['地址'].str.contains('信阳市', na=False)])
+#           地址
+# 0  河南省信阳市
+# 1      信阳市
+```
 
 ## 解释
 
@@ -57,6 +85,23 @@ contains 用于“包含”匹配，弥补 startswith/endswith 只能匹配首�
 - 参数可为字符串或正则表达式
 - 默认区分大小写，case=False 忽略
 地址有“河南省信阳市”和“信阳市”两种写法，该用 startswith 还是 contains？::用 contains，因为“河南省信阳市”不以“信阳市”开头。
+
+默认按正则表达式处理，可用于文本包含筛选。支持大小写敏感控制。
+
+- 第一个参数 pat 可以是普通字符串或正则表达式
+- case=True 默认大小写敏感，case=False 不敏感
+- 默认按正则处理，普通文本含特殊字符需转义
+str.contains 默认是否区分大小写？::是，case 默认为 True。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p29 S02E14.筛选](https://www.bilibili.com/video/BV1ji4y157uB?p=29) · 2026-11-17
+
+返回的布尔序列可以直接作为筛选掩码使用，是文本条件过滤的主力方法。参数默认按正则解释，空值位置的取值由 na 参数决定。
+
+- 返回布尔 Series，可直接用于 df[...] 过滤
+- case 参数控制是否区分大小写
+- na 参数指定空值处返回 True 还是 False
+空值行默认会让 contains 报错吗？怎么处理？::不报错，可用 na 参数指定这些位置返回 True 还是 False
+contains 与 startswith 的差别在哪？::contains 匹配任意位置，startswith 只匹配开头
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p38 S02E23.字符串操作（上）](https://www.bilibili.com/video/BV1ji4y157uB?p=38) · 2026-11-17
 
 ## 出处
 

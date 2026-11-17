@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 36
 stage: "S02E21 · 数据替换"
-order: 36
 ---
 
 # regex 参数
@@ -46,6 +45,16 @@ order: 36
 
 data.replace('[A-Z]','88') 没有加 regex=True，结果会怎样？::pandas 把 '[A-Z]' 当普通字符串查找，通常找不到匹配内容，数据基本不变。
 
+
+### 补充 · 2026-11-17
+
+让 replace 将第一参数按正则表达式而非普通字符串解析
+
+- 正则表达式要写在引号内，如 '[A-Z]'。
+- Pandas 的 replace 可直接用，不需要 import re。
+- 不写 regex=True 时按普通字符串查找，不会正则匹配。
+- 第一参数不是正则表达式时，不要加 regex=True。
+- 可与 inplace=True 同时使用。
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

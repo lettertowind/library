@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把多个分项在竖直方向首尾堆叠的柱形图，用 bottom 控制起点">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>堆积柱形图 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>堆积柱形图</h1><div class="aliases">堆叠柱形图 · stacked bar · plt.bar 堆叠</div><p class="lede">把多个分项在竖直方向首尾堆叠的柱形图，用 bottom 控制起点</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>与叠加条形图结构相同、方向不同：类别在 x 轴，数值在 y 轴，堆叠起点由 bottom 而不是 left 控制。它是本课叠加条形图的原型，两者之间需要做坐标轴与参数的转换。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>纵向比较各类别总量与构成</li><li>类别数量不多、标签较短时</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>用 plt.bar，堆叠起点参数是 bottom 而非 left</li><li>第一层 bottom=0，之后逐层累加</li><li>转成条形图时，bar 换 barh、bottom 换 left、x/y 互换</li><li>标签坐标也要随之互换，这是最常见的踩坑点</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与叠加条形图仅方向不同，不要误以为改个角度就能直接沿用全部参数。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9D%A1%E5%BD%A2%E5%9B%BE.html">叠加条形图</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/left%20%E5%8F%82%E6%95%B0.html">left 参数</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>堆积柱形图改用条形图后，bottom 参数应换成什么？</summary><div class="quiz-a">left。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>每个 x 位置只有一根柱，柱子被切成若干颜色段，总高度是各系列之和。适合看「每人总分多少、各科各占多少」这类总量加结构的问题。实现靠多次调用 plt.bar 并用 bottom 逐层抬升。</p>
+<p>- 多次调用 plt.bar，每层都必须设 color 和 label，否则无法区分也无法出图例</p>
+<p>- 第一层默认从 0 起，后面每层 bottom 取前面各层高度之和</p>
+<p>- x 轴位置用 np.arange(len(data)) 生成，再用 plt.xticks 换成姓名等类别名</p>
+<details class="quiz"><summary>堆叠柱形图相比普通柱形图多回答了哪个问题？</summary><div class="quiz-a">各系列加总后的总量是多少、总量内部由哪些部分构成</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=52" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p52 S03E05.叠加柱状图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=53" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p53 S03E06.叠加条形图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/bottom%20%E5%8F%82%E6%95%B0%EF%BC%88plt.bar%20%E5%A0%86%E5%8F%A0%E8%B5%B7%E5%A7%8B%E4%BD%8D%E7%BD%AE%EF%BC%89.html">bottom 参数（plt.bar 堆叠起始位置）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.ylim%EF%BC%88y%20%E8%BD%B4%E6%98%BE%E7%A4%BA%E8%8C%83%E5%9B%B4%EF%BC%89.html">plt.ylim（y 轴显示范围）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9D%A1%E5%BD%A2%E5%9B%BE.html">叠加条形图</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9F%B1%E7%8A%B6%E5%9B%BE%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D.html">叠加柱状图数据标签定位</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%9D%90%E6%A0%87%E8%BD%B4%E8%BE%B9%E7%95%8C%E5%8F%82%E6%95%B0%EF%BC%88bottomtopleftright%EF%BC%89.html"><small>上一张</small>坐标轴边界参数（bottomtopleftright）</a><a class="next" href="../c/%E5%AD%90%E5%8C%BA%E5%9F%9F%EF%BC%88%E7%94%BB%E4%B8%AD%E7%94%BB%EF%BC%89.html"><small>下一张</small>子区域（画中画）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

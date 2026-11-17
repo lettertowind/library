@@ -75,6 +75,18 @@ full_like 结合了「复用形状」和「自定义填充值」：第一个参�
 
 np.full_like(a, 520) 中两个参数分别是什么含义？::第一个是参照形状的数组 a，第二个是要填充的数值 520
 
+
+### 补充 · 2026-11-17
+
+与 np.full 需要手动给形状不同，full_like 直接复用传入数组的 shape，因此特别适合“照着某个现成数组的尺寸造一个同尺寸的常量数组”。语法上要注意：数组在前、填充值在后，用逗号隔开。
+
+- 语法为 np.full_like(a, 520)，数组参数在前，填充值在后
+- 形状自动取自数组 a，无需再传形状元组
+- 与 ones_like、zeros_like 同属“只换值不换形状”的系列
+已有数组 a 是 2 行 3 列，np.full_like(a, 520) 的结果是什么？::一个同样 2 行 3 列、元素全为 520 的新数组，a 本身不被修改。
+np.full_like 和 np.full 的关键区别是什么？::full 需要手动传形状元组，full_like 直接复用传入数组的形状。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p05 S01E04.多维数组](https://www.bilibili.com/video/BV1ji4y157uB?p=5) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

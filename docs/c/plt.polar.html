@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 中创建极坐标轴并按极角、极径绘图的核心函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.polar · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.polar</h1><div class="aliases">polar · plt.polar() · 极坐标绘图函数 · Matplotlib polar</div><p class="lede">Matplotlib 中创建极坐标轴并按极角、极径绘图的核心函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>调用 plt.polar() 不带参数时只画出极坐标圆盘，传入 (theta, r) 会自动建立极坐标系并按极坐标定位数据点。它是散点、折线到雷达图的基础绘图入口。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>绘制极坐标散点图、折线图</li><li>搭建雷达图雏形（多点连线并闭合）</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>签名 plt.polar(theta, r, fmt)：theta 为弧度极角，r 为极径</li><li>不带参数调用只显示圆盘，不绘制任何数据</li><li>fmt 可组合标记与颜色，如 &#x27;o&#x27;、&#x27;ro&#x27;、&#x27;go&#x27;、&#x27;o-&#x27;、&#x27;ro-&#x27;</li><li>默认按数组顺序依次连点，不会自动把末点连回首点</li><li>常与 plt.ylim 配合限定极径范围</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>极角必须传弧度而非角度；它画的是极坐标（θ, r），不能像 plt.plot 那样直接理解成直角坐标 (x, y)。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%9E%81%E5%9D%90%E6%A0%87%E7%B3%BB%EF%BC%88polar%EF%BC%89.html">极坐标系（polar）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E6%9E%81%E8%A7%92.html">极角</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%9E%81%E5%BE%84.html">极径</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%BC%A7%E5%BA%A6%E5%88%B6.html">弧度制</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E9%9B%B7%E8%BE%BE%E5%9B%BE.html">雷达图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要画一个位于 45° 方向、极径为 20 的红色圆点，代码怎么写？</summary><div class="quiz-a">plt.polar(0.25 * np.pi, 20, &#x27;ro&#x27;)</div></details>
+<details class="quiz"><summary>只写 plt.polar() 和写 plt.polar(theta, r) 输出有什么差别？</summary><div class="quiz-a">前者只显示空的极坐标圆盘（无数据点），后者会自动建立极坐标系并绘制对应数据。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=70" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p70 S03E21.极坐标</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/plt.plot.html"><small>上一张</small>plt.plot</a><a class="next" href="../c/plt.rcParams.html"><small>下一张</small>plt.rcParams</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

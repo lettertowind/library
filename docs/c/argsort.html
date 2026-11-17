@@ -43,11 +43,24 @@ print(a[np.argsort(a)[::-1]])  # [59 39 29]：把下标反转，同样得到降�
 <p>- a[np.argsort(a)] 得到升序数组</p>
 <p>- 降序可用 np.argsort(-a) 或索引反转</p>
 <details class="quiz"><summary>a=[59,29,39]，np.argsort(a) 返回什么？</summary><div class="quiz-a">[1,2,0]，即升序排列对应的原索引。</div></details>
-<details class="quiz"><summary>如何用 argsort 实现降序取值？</summary><div class="quiz-a">a[np.argsort(-a)] 或 a[np.argsort(a)[::-1]]。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/ndarray.sort.html">ndarray.sort</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%A5%9E%E5%A5%87%E7%B4%A2%E5%BC%95.html">神奇索引</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Numpy%20%E7%B4%A2%E5%BC%95.html"><small>上一张</small>Numpy 索引</a><a class="next" href="../c/axis%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>axis 参数</a></nav></article>
+<details class="quiz"><summary>如何用 argsort 实现降序取值？</summary><div class="quiz-a">a[np.argsort(-a)] 或 a[np.argsort(a)[::-1]]。</div></details>
+<p>argsort 输出的是索引数组，需要再用这个索引去原数组取值，才能得到排序后的结果。它适合需要「记住原始位置」的场景，比如按某列排序后回取其他列。</p>
+<p>- 返回值是下标数组，不是排序结果本身</p>
+<p>- x[np.argsort(x)] 才是升序后的数组</p>
+<p>- 降序写法：np.argsort(-x) 后再取原数组</p>
+<details class="quiz"><summary>x = [59, 29, 39]，np.argsort(x) 与 x[np.argsort(x)] 分别得什么？</summary><div class="quiz-a">argsort 得 [1, 2, 0]（下标），x[...] 得 [29, 39, 59]（排序后的值）。</div></details>
+<details class="quiz"><summary>什么情况下必须用 argsort 而不能只用 sort？</summary><div class="quiz-a">需要知道排序后元素原来在哪一行/哪一列时，argsort 保留了原始下标。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=14" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p14 S01E13.条件计算，排序，深潜拷贝【本季完】</a> · 2026-11-17</p>
+<p>argsort 不改变原数据，只给出“从小到大该按什么顺序取”。拿到下标后再交给数组，就能按排序顺序重排数据，或取出最大/最小的若干元素。</p>
+<p>- 默认升序，返回的是下标数组而非值</p>
+<p>- idx[-3:] 是最大的三个元素所在位置，idx[:3] 是最小的三个</p>
+<p>- arr[arr.argsort()[-3:]] 得到前三个最大值，且按升序排列</p>
+<details class="quiz"><summary>为什么 argsort()[-3:] 对应的是最大的三个元素？</summary><div class="quiz-a">argsort 默认升序，下标序列末尾对应原数组中值最大的位置</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=9" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p09 S01E08.神奇索引</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/ndarray.sort.html">ndarray.sort</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%8F%96%E6%9C%80%E5%A4%A7%E5%89%8D%20N%20%E4%B8%AA%E5%85%83%E7%B4%A0.html">取最大前 N 个元素</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E7%A5%9E%E5%A5%87%E7%B4%A2%E5%BC%95.html">神奇索引</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%99%8D%E5%BA%8F%E6%8E%92%E5%BA%8F.html">降序排序</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Numpy%20%E7%B4%A2%E5%BC%95.html"><small>上一张</small>Numpy 索引</a><a class="next" href="../c/axis%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>axis 参数</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

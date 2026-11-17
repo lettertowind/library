@@ -26,11 +26,19 @@
 a = np.arange(5)
 print(a)          # [0 1 2 3 4]
 print(a.mean())   # 2.0
-print(type(a))    # &lt;class &#x27;numpy.ndarray&#x27;&gt;</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>NumPy 的标准导入写法，np 是社区通用别名，便于后续调用 np.arange、np.array 等。Pandas 对应简写为 pd。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>使用 NumPy 前的第一步</li><li>统一代码风格便于阅读</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>标准写法：import numpy as np</li><li>np 是约定俗成的别名，不是强制</li><li>Pandas 对应简写为 pd</li><li>导入后才能调用 np.arange 等函数</li></ul></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pip3%20install%20numpy.html">pip3 install numpy</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/import%20pandas%20as%20pd.html">import pandas as pd</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么大家习惯把 NumPy 导入为 np？</summary><div class="quiz-a">这是社区通用约定，统一别名便于代码阅读和复用。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/dtype%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>dtype 参数</a><a class="next" href="../c/ndarray.sort.html"><small>下一张</small>ndarray.sort</a></nav></article>
+print(type(a))    # &lt;class &#x27;numpy.ndarray&#x27;&gt;</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>NumPy 的标准导入写法，np 是社区通用别名，便于后续调用 np.arange、np.array 等。Pandas 对应简写为 pd。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>使用 NumPy 前的第一步</li><li>统一代码风格便于阅读</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>标准写法：import numpy as np</li><li>np 是约定俗成的别名，不是强制</li><li>Pandas 对应简写为 pd</li><li>导入后才能调用 np.arange 等函数</li></ul></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pip3%20install%20numpy.html">pip3 install numpy</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/import%20pandas%20as%20pd.html">import pandas as pd</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么大家习惯把 NumPy 导入为 np？</summary><div class="quiz-a">这是社区通用约定，统一别名便于代码阅读和复用。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>导入后即可用 np.xxx 调用 NumPy 的函数。写不带别名的 import numpy 也合法，最常用于安装后的验证：没有报错说明库已正确安装且能被解释器找到。</p>
+<p>- as np 是行业惯例，几乎所有教程统一使用</p>
+<p>- 验证安装时可直接写 import numpy，无报错即成功</p>
+<p>- 导入报错通常是未安装或装到了别的 Python 环境</p>
+<details class="quiz"><summary>import numpy 没报错，能说明什么、不能说明什么？</summary><div class="quiz-a">能说明 NumPy 已装好且被当前 Python 解释器找到；不能说明版本合适或依赖完整。</div></details>
+<details class="quiz"><summary>为什么要写 as np？</summary><div class="quiz-a">缩短调用名，且与主流教程和代码库保持一致，便于阅读和协作。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=2" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p02 S01E01.参考书籍及安装方法</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%BC%A7%E5%BA%A6%E5%88%B6.html">弧度制</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/Python%20%E4%BA%A4%E4%BA%92%E5%BC%8F%E8%A7%A3%E9%87%8A%E5%99%A8.html">Python 交互式解释器</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/dtype%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>dtype 参数</a><a class="next" href="../c/ndarray.sort.html"><small>下一张</small>ndarray.sort</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="x 轴先用 0、1、2 等数值坐标绘图，再用 plt.xticks 换成类别名称。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>数值索引替代字符串类别轴 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>数值索引替代字符串类别轴</h1><div class="aliases">plt.xticks 替换刻度标签 · xticks · 类别轴数值化</div><p class="lede">x 轴先用 0、1、2 等数值坐标绘图，再用 plt.xticks 换成类别名称。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>直接用 &#x27;a&#x27;、&#x27;b&#x27;、&#x27;c&#x27; 当 x 坐标时，无法对坐标做加减运算，注释文字的位置只能靠 y 方向调整。改成数值索引后，横坐标可以自由微调（如 1 改成 1.1），画完再把刻度文字替换成“张三、李四”等真实类别名，兼顾可读性与可控性。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要精确偏移文本或图形元素时</li><li>类别名称较长、想后置统一替换刻度文字时</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>用 np.arange(3) 生成数值索引作为 x 坐标</li><li>plt.xticks(x, [&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;]) 把数值刻度换成类别名</li><li>数值坐标支持加减乘除，文本位置可精细微调</li><li>后期替换标签比一开始就写死类别字符串更灵活</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>Matplotlib 本身能把字符串类别自动映射为 0、1、2，所以只画图没问题；痛点仅在于需要数值级微调时。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.annotate%20%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A.html">plt.annotate 文本注释</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么把 x 轴改成数值索引后，注释文字更好调位置？</summary><div class="quiz-a">数值坐标可以做加减运算（如 1 改为 1.1），而字符串类别 &#x27;b&#x27; 无法直接加偏移量。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>Matplotlib 的 x 轴本质是数值轴，直接用姓名这类字符串无法定位柱子。所以先用 np.arange(len(data)) 造出等距坐标，画完再把这些坐标的刻度文字换成姓名，视觉上就成了类别轴。</p>
+<p>- plt.xticks(x, data[&#x27;姓名&#x27;]) 两个参数：刻度位置 + 刻度文字</p>
+<p>- 不设置时 x 轴只显示 0,1,2… 数字，看不出是哪个学生</p>
+<p>- 坐标可直接用 NumPy 数组或 Pandas Series，不必先转成 Python 列表</p>
+<details class="quiz"><summary>为什么柱形图的 x 轴不能直接传姓名列表？</summary><div class="quiz-a">x 轴是数值轴，位置需要数值坐标，所以要先生成下标再用 plt.xticks 把刻度文字换成姓名</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=52" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p52 S03E05.叠加柱状图</a> · 2026-11-17</p>
+<p>### 补充 · 2026-11-17</p>
+<p>画图时先用 0,1,2… 数字位置作 x 轴，最后再用 plt.xticks 统一替换成业务标签的做法。</p>
+<p>- 位置列表用 np.arange(len(列)) 生成，与数据行一一对应</p>
+<p>- plt.xticks(位置列表, 标签列表) 两个参数长度必须一致</p>
+<p>- rotation=45 让长标签倾斜，避免文字重叠</p>
+<p>- 标签含时间时先用 pd.to_datetime().dt.strftime(&#x27;%Y-%m-%d&#x27;) 去掉 00:00</p>
+<p>- 标签列表可以是 Series，不必先转成 list</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=76" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p76 S03E27.文本注释</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E6%A0%87%E7%AD%BE%E6%97%8B%E8%BD%AC.html">刻度标签旋转</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E5%88%BB%E5%BA%A6%E6%A0%87%E7%AD%BE%EF%BC%88ticklabels%EF%BC%89.html">刻度标签（ticklabels）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%80%91%E5%B8%83%E5%9B%BE.html">瀑布图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%A3%E7%82%B9%E5%9B%BE.html"><small>上一张</small>散点图</a><a class="next" href="../c/%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E7%BB%98%E5%9B%BE.html"><small>下一张</small>数据驱动绘图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

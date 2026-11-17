@@ -19,11 +19,25 @@
 </header>
 <main>
 <nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>Pandas 数学统计函数</h1><div class="aliases">统计函数家族 · count/sum/mean/median/min/max/mode/prod/var/std/quantile/cummax/cummin/cov/corr</div><p class="lede">DataFrame/Series 上点调用的一组内置统计方法，覆盖计数到相关分析。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Pandas 把常用统计量做成对象方法，统一用“对象.函数名()”调用。记住 describe() 即可覆盖大部分场景，其余按需查表。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>对某列快速求均值、最大值等单项统计</li><li>按需组合多个统计量做分析</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>统一用法：df[&#x27;列&#x27;].函数名()</li><li>平均值用 mean 不是 average</li><li>cummax/cummin 是累积统计</li><li>cov/corr 用于两列关系分析</li><li>不必全记，会查表即可</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>默认跳过非数值列；分类列统计需用 value_counts。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/describe%28%29.html">describe()</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/Series.html">Series</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想求某列平均值，Pandas 中应调用哪个方法？</summary><div class="quiz-a">mean()，不是 Excel 里的 average。</div></details>
-<details class="quiz"><summary>cummax 和 max 有什么区别？</summary><div class="quiz-a">max 返回整列最大值，cummax 返回逐行的累积最大值序列。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/agg.html">agg</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%20NA%20%E5%BF%BD%E7%95%A5%E7%89%B9%E6%80%A7.html">聚合函数 NA 忽略特性</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Pandas%20%E5%86%99%E5%87%BA%E6%96%B9%E6%B3%95%E5%AE%B6%E6%97%8F.html"><small>上一张</small>Pandas 写出方法家族</a><a class="next" href="../c/Series.html"><small>下一张</small>Series</a></nav></article>
+<details class="quiz"><summary>cummax 和 max 有什么区别？</summary><div class="quiz-a">max 返回整列最大值，cummax 返回逐行的累积最大值序列。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>这些函数既能在整表/整列上直接调用，也能接在 groupby 后面按组计算。它们默认跳过 NA 值，因此 count 统计的是非空数量而非行数，first/last 取的是第一个/最后一个非 NA 值。</p>
+<p>- 常用：count、sum、mean、median、std、var、max、min、prod。</p>
+<p>- first / last 返回第一个 / 最后一个非 NA 值。</p>
+<p>- 所有函数默认跳过 NA，结果可能与行数不符。</p>
+<details class="quiz"><summary>某组共 5 行但有 2 个 NA，count 和 sum 分别怎么处理？</summary><div class="quiz-a">count 返回 3（非 NA 计数），sum 对这 3 个非 NA 值求和。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=42" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p42 S02E27.分组对象和创建</a> · 2026-11-17</p>
+<p>这组方法覆盖计数、求和、平均、中位数、众数、乘积、方差、标准差、分位数、累积极值、协方差和相关系数。用法高度统一：对整个表写 df.mean()，对单列写 df[&#x27;语文&#x27;].mean()，对多列先选列再调用。不需要全部背下来，记住函数名和用途、需要时查表即可。</p>
+<p>- 平均数的函数名是 mean，不是 Excel 里的 average</p>
+<p>- 调用形式统一为「对象.函数名()」，方差写 var()、标准差写 std()</p>
+<p>- cummax/cummin 返回与原数据等长的累积序列，不是单个值</p>
+<details class="quiz"><summary>想求语文成绩的平均数，写 df[&#x27;语文&#x27;].average() 为什么报错？</summary><div class="quiz-a">Pandas 中平均数方法名是 mean，average 是 Excel 的叫法。</div></details>
+<details class="quiz"><summary>cummax() 和 max() 的结果有什么区别？</summary><div class="quiz-a">max() 返回一个最大值标量；cummax() 返回与原数据等长的序列，每个位置是到此为止的累积最大值。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=32" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p32 S02E17.数学统计函数</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/agg.html">agg</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E8%81%9A%E5%90%88%E5%87%BD%E6%95%B0%20NA%20%E5%BF%BD%E7%95%A5%E7%89%B9%E6%80%A7.html">聚合函数 NA 忽略特性</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Pandas%20%E5%86%99%E5%87%BA%E6%96%B9%E6%B3%95%E5%AE%B6%E6%97%8F.html"><small>上一张</small>Pandas 写出方法家族</a><a class="next" href="../c/Pandas%20%E6%98%BE%E7%A4%BA%E8%AE%BE%E7%BD%AE.html"><small>下一张</small>Pandas 显示设置</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

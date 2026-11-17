@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="pd.read_sql 中用来传入数据库连接对象的关键字参数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>con 参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>con 参数</h1><div class="aliases">con · read_sql 的 con · 连接参数</div><p class="lede">pd.read_sql 中用来传入数据库连接对象的关键字参数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.read_sql(sql, con, index_col=None, params=None, parse_dates=None, chunksize=None)</code> <strong>参数</strong>：</p>
+<ul><li><code>sql</code>：要执行的查询语句字符串，说明“查什么”</li><li><code>con</code>：数据库连接对象，即 <code>pymysql.connect()</code> 或 <code>sqlite3.connect()</code> 的返回值；它说明“连哪里”，必须用关键字传入</li><li><code>index_col</code>：指定某一列作为结果 DataFrame 的索引，默认 <code>None</code></li><li><code>params</code>：配合 SQL 占位符传入的参数，可以是列表、元组或字典</li><li><code>parse_dates</code>：需要解析成日期类型的列名或列名列表</li><li><code>chunksize</code>：设定每块的行数，返回可迭代对象，适合大表分块读取</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+import sqlite3  # 用 sqlite 演示，con 的用法与 pymysql.connect() 完全一致
+
+conn = sqlite3.connect(&quot;:memory:&quot;)                      # 连接对象自带库信息
+pd.DataFrame({&quot;name&quot;: [&quot;Tom&quot;, &quot;Amy&quot;], &quot;score&quot;: [90, 85]}).to_sql(&quot;score&quot;, conn, index=False)
+
+df = pd.read_sql(&quot;SELECT * FROM score&quot;, con=conn)       # con 传连接对象，不是表名
+print(df)
+#   name  score
+# 0  Tom     90
+# 1  Amy     85
+
+df2 = pd.read_sql(&quot;SELECT * FROM score WHERE score &gt; ?&quot;, con=conn, params=[88])  # 同一 conn 可复用
+print(len(df2))   # 1
+conn.close()</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>read_sql 需要知道去哪里取数，con 就是那条通道——把 pymysql.connect() 建好的连接对象交给它。连接对象里已含主机、用户名、密码、库名，所以传入 con 就等于完成了登录，不必再重复写账号信息。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>用 pandas 从 MySQL 读取数据时传入连接对象</li><li>把查询结果转成 DataFrame 后继续做分析</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>写法固定为 pd.read_sql(sql, con=conn)，con 必须用关键字传</li><li>con 接收的是连接对象，不是表名、不是 SQL 语句</li><li>连接对象自带登录信息，故 con 内部无需再写账号密码</li><li>同一个 conn 可复用多次查询，避免反复建立连接</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>con 与第一个参数 sql 分工明确：sql 说明查什么，con 说明连哪里，两者不可互换。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_sql.html">pd.read_sql</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/pymysql.connect%28%29.html">pymysql.connect()</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>read_sql 的 con 参数如果误传成表名字符串，会发生什么？</summary><div class="quiz-a">无法建立连接，因为 con 需要的是带登录信息的连接对象，不是表名。</div></details>
+<details class="quiz"><summary>为什么 con=conn 里不需要再写用户名和密码？</summary><div class="quiz-a">因为 conn 这个连接对象在创建时已经封装了 host、user、password、database 等信息。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=18" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p18 S02E03.读取Mysql文件</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/columns%20%E5%B1%9E%E6%80%A7.html"><small>上一张</small>columns 属性</a><a class="next" href="../c/crosstab.html"><small>下一张</small>crosstab</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

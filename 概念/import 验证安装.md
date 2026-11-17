@@ -54,6 +54,14 @@ import 成功只说明库可导入，不代表版本兼容或功能正常。
 - 有报错则回到安装步骤重装
 import numpy 没报错，是否一定能说明装的是最新版？::不能，只能说明该解释器能导入 NumPy，版本是否正确需另行查看。
 
+这是最直接的安装验收手段：能导入说明包已装好且可被当前解释器找到。本课要求依次执行 import pandas、import numpy、import xlrd，三者都无报错才算环境就绪。
+
+- 无报错即成功，有报错即未装好或装到了别的解释器
+- 三个库要逐个单独 import，不能只测一个就下结论
+- 必须在目标解释器/IDE 中验证，而非在 pip 所在的命令行窗口
+pip 显示安装成功，但 import 仍报 ModuleNotFoundError，最可能的原因是什么？::装到了另一个 Python 解释器/虚拟环境里，当前运行的 IDE 用的不是同一个解释器。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p15 S02E00.安装pandas.numpy.xlrd](https://www.bilibili.com/video/BV1ji4y157uB?p=15) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

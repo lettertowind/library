@@ -18,11 +18,39 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.read_sql</h1><div class="aliases">read_sql · 读取 SQL 数据 · pandas 读数据库</div><p class="lede">执行 SQL 查询并把结果直接转成 DataFrame 的 pandas 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>read_sql(sql, con) 把 SQL 语句交给连接对象执行，返回结果集并自动整理为 DataFrame，省去手工建表的步骤。它是 read_csv 的数据库版本，用法结构高度相似。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>从 MySQL 等数据库直接取数进 DataFrame</li><li>替代导出 CSV 再读取的中间步骤</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>第一个参数 sql 是查询语句字符串</li><li>第二个参数 con 是数据库连接对象</li><li>支持索引相关等参数，与 read_csv 思路相近</li><li>核心模式：连接对象 + SQL + read_sql</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只负责取数，复杂清洗仍需后续 pandas 操作；SQL 写错会在执行时报错。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_csv.html">pd.read_csv</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/pymysql.connect%28%29.html">pymysql.connect()</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-down">下位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>read_sql 和 read_csv 在用法结构上最大的共同点是什么？</summary><div class="quiz-a">都是 pd.read_xxx(数据源) 的形式，返回 DataFrame，后续处理完全一致。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/pymysql.html">pymysql</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pymysql.connect%28%29.html">pymysql.connect()</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/SQL%20%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.html">SQL 查询语句</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pd.read_excel.html"><small>上一张</small>pd.read_excel</a><a class="next" href="../c/pd.read_table.html"><small>下一张</small>pd.read_table</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.read_sql</h1><div class="aliases">read_sql · 读取 SQL 数据 · pandas 读数据库</div><p class="lede">执行 SQL 查询并把结果直接转成 DataFrame 的 pandas 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.read_sql(sql, con, index_col=None, coerce_float=True, params=None, parse_dates=None, columns=None, chunksize=None)</code> <strong>参数</strong>：</p>
+<ul><li><code>sql</code>：SQL 查询语句字符串，执行结果就是返回的 DataFrame</li><li><code>con</code>：数据库连接对象，如 <code>sqlite3.Connection</code> 或 SQLAlchemy 的 Engine（<code>pymysql.connect()</code> 连接 MySQL）</li><li><code>index_col</code>：把结果集中某一列设为 DataFrame 的索引</li><li><code>columns</code>：只读取指定列名的列表（配合 sql 里的 SELECT 使用）</li><li><code>parse_dates</code>：需要解析成 datetime 的列名或列名列表</li><li><code>chunksize</code>：设置后返回可迭代的读取器，按块处理大结果集</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+import sqlite3
+
+con = sqlite3.connect(&quot;:memory:&quot;)  # 内存库代替 MySQL，模式完全一致
+pd.DataFrame({&quot;姓名&quot;: [&quot;小明&quot;, &quot;小红&quot;], &quot;分数&quot;: [90, 85]}).to_sql(&quot;score&quot;, con, index=False)
+
+df = pd.read_sql(&quot;SELECT * FROM score&quot;, con)
+print(df)
+#    姓名  分数
+# 0  小明  90
+# 1  小红  85
+
+df2 = pd.read_sql(&quot;SELECT * FROM score&quot;, con, index_col=&quot;姓名&quot;)
+print(df2)
+#       分数
+# 姓名
+# 小明   90
+# 小红   85</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>read_sql(sql, con) 把 SQL 语句交给连接对象执行，返回结果集并自动整理为 DataFrame，省去手工建表的步骤。它是 read_csv 的数据库版本，用法结构高度相似。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>从 MySQL 等数据库直接取数进 DataFrame</li><li>替代导出 CSV 再读取的中间步骤</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>第一个参数 sql 是查询语句字符串</li><li>第二个参数 con 是数据库连接对象</li><li>支持索引相关等参数，与 read_csv 思路相近</li><li>核心模式：连接对象 + SQL + read_sql</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只负责取数，复杂清洗仍需后续 pandas 操作；SQL 写错会在执行时报错。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_csv.html">pd.read_csv</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/pymysql.connect%28%29.html">pymysql.connect()</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-down">下位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>read_sql 和 read_csv 在用法结构上最大的共同点是什么？</summary><div class="quiz-a">都是 pd.read_xxx(数据源) 的形式，返回 DataFrame，后续处理完全一致。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>它省去了「先取游标再逐行取值再拼表」的繁琐流程，一条查询就能拿到结构化表。第一个位置参数放 SQL 语句说明查什么，con 参数放连接对象说明连哪里。</p>
+<p>- 第一个参数是 SQL 字符串，第二个是 con=连接对象</p>
+<p>- 返回结果本身就是 DataFrame，可直接套用后续 pandas 方法</p>
+<p>- 与读文件的 read_csv 用法相似，索引类参数思路一致</p>
+<details class="quiz"><summary>read_sql 返回的是游标还是 DataFrame？</summary><div class="quiz-a">DataFrame，可直接继续用 pandas 方法处理。</div></details>
+<details class="quiz"><summary>同一份数据，用 read_csv 和 read_sql 读，主要差别在哪？</summary><div class="quiz-a">数据来源和连接方式不同：前者读本地文件，后者需要 SQL 语句加数据库连接对象。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=18" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p18 S02E03.读取Mysql文件</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/con%20%E5%8F%82%E6%95%B0.html">con 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pymysql.html">pymysql</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pymysql.connect%28%29.html">pymysql.connect()</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/MySQL.html">MySQL</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/SQL%20%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.html">SQL 查询语句</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pd.read_excel.html"><small>上一张</small>pd.read_excel</a><a class="next" href="../c/pd.read_table.html"><small>下一张</small>pd.read_table</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

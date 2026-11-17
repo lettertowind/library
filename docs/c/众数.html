@@ -24,11 +24,18 @@
 <p>- Pandas 用 mode() 计算</p>
 <p>- 可能有多个众数</p>
 <p>- 对分类数据也适用</p>
-<details class="quiz"><summary>一组数据 [1,2,2,3,3,4] 的众数是什么？</summary><div class="quiz-a">2 和 3，都出现两次，属于多众数。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.bincount.html">np.bincount</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/np.median.html">np.median</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/SQL%20%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.html"><small>上一张</small>SQL 查询语句</a><a class="next" href="../c/%E5%88%86%E4%BD%8D%E6%95%B0.html"><small>下一张</small>分位数</a></nav></article>
+<details class="quiz"><summary>一组数据 [1,2,2,3,3,4] 的众数是什么？</summary><div class="quiz-a">2 和 3，都出现两次，属于多众数。</div></details>
+<p>众数用于描述出现频率最高的取值，特别适合分类数据和投票式问题——这类数据既不能求平均，也不适合求中位数。NumPy 没有现成的众数函数，Pandas 的 mode() 一行就能算。</p>
+<p>- 统计对象是出现次数，不是数值大小</p>
+<p>- 分类数据优先用众数，而不是平均数或中位数</p>
+<p>- NumPy 无直接函数：只能 bincount + argmax 凑，且限非负整数一维</p>
+<details class="quiz"><summary>班级调查大家爱吃什么水果，该用哪个统计量？</summary><div class="quiz-a">众数——答案是最多人选的那一项，求平均或中位数都没有意义。</div></details>
+<details class="quiz"><summary>为什么讲师建议众数交给 Pandas 而不是 NumPy？</summary><div class="quiz-a">NumPy 无现成函数，bincount 组合只适用非负整数一维；Pandas 一行 mode() 即可支持一维和二维。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=13" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p13 S01E12.数学和统计方法</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.bincount.html">np.bincount</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/np.median.html">np.median</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%81%8F%E6%80%81%E5%88%86%E5%B8%83.html">偏态分布</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%AE%97%E6%9C%AF%E5%B9%B3%E5%9D%87%E6%95%B0.html">算术平均数</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%8D%95%E8%8E%B7%E7%BB%84.html"><small>上一张</small>捕获组</a><a class="next" href="../c/%E5%81%8F%E6%80%81%E5%88%86%E5%B8%83.html"><small>下一张</small>偏态分布</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

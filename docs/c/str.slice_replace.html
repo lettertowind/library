@@ -18,12 +18,29 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.slice_replace</h1><div class="aliases">slice_replace · 切片替换</div><p class="lede">截取指定范围并把该范围替换为指定内容的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str.slice_replace(start, stop, repl) 先按切片取出 start 到 stop 的片段，再用 repl 替换这一段。等价于先 slice 再替换，因此不支持步长。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把字符串中间某段替换成新内容</li><li>脱敏处理固定位置的字符</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>start 到 stop 的范围被 repl 整体替换</li><li>不支持 step 步长</li><li>可理解为 slice 加替换的组合</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不能设置步长；需要隔位替换时应先用其他方式处理。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.slice.html">str.slice</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/str.replace%20%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2.html">str.replace 正则替换</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.slice_replace(1, 3, &#x27;520&#x27;) 对“满血激活”的结果是什么？</summary><div class="quiz-a">“满520活”，索引 1 到 2 的“血激”被替换为 520。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>str.slice_replace</h1><div class="aliases">slice_replace · 切片替换</div><p class="lede">截取指定范围并把该范围替换为指定内容的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.str.slice_replace(start=None, stop=None, repl=None)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>start</code>：切片起始位置（含），默认 None 表示从头</li><li><code>stop</code>：切片结束位置（不含），默认 None 表示到末尾</li><li><code>repl</code>：用来整体替换该切片范围的内容，默认 None 时相当于删除这段</li><li>不支持 <code>step</code> 步长参数，只能替换连续的一段</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+s = pd.Series([&#x27;满血激活&#x27;, &#x27;满蓝复活&#x27;])
+# 把索引 1 到 2 的“血激”整体替换为 520
+print(s.str.slice_replace(1, 3, &#x27;520&#x27;).tolist())
+# [&#x27;满520活&#x27;, &#x27;满520活&#x27;]
+
+# repl 省略时等价于删掉这一段
+print(s.str.slice_replace(1, 3).tolist())
+# [&#x27;满活&#x27;, &#x27;满活&#x27;]
+
+# 脱敏：只保留首尾，中间三位替换为 ***
+print(s.str.slice_replace(1, 4, &#x27;***&#x27;).tolist())
+# [&#x27;满***活&#x27;, &#x27;满***活&#x27;]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>str.slice_replace(start, stop, repl) 先按切片取出 start 到 stop 的片段，再用 repl 替换这一段。等价于先 slice 再替换，因此不支持步长。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把字符串中间某段替换成新内容</li><li>脱敏处理固定位置的字符</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>start 到 stop 的范围被 repl 整体替换</li><li>不支持 step 步长</li><li>可理解为 slice 加替换的组合</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不能设置步长；需要隔位替换时应先用其他方式处理。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/str.slice.html">str.slice</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/str.replace%20%E6%AD%A3%E5%88%99%E6%9B%BF%E6%8D%A2.html">str.replace 正则替换</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Series.str%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">Series.str 访问器</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>str.slice_replace(1, 3, &#x27;520&#x27;) 对“满血激活”的结果是什么？</summary><div class="quiz-a">“满520活”，索引 1 到 2 的“血激”被替换为 520。</div></details>
 <details class="quiz"><summary>为什么 slice_replace 不支持 step？</summary><div class="quiz-a">它的本质是截取一段连续范围再整体替换，步长会使范围不连续。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/str.slice.html">str.slice</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/str.slice.html"><small>上一张</small>str.slice</a><a class="next" href="../c/str.split.html"><small>下一张</small>str.split</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

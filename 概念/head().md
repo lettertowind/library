@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 17
 stage: "S02E02 · 读取txt与csv文件"
-order: 17
 ---
 
 # head()
@@ -16,6 +15,26 @@ order: 17
 > 别名：head、查看前几行
 
 **返回 DataFrame 前 n 行的预览方法，默认 5 行。**
+
+## 用法
+**语法**：`DataFrame.head(n=5)`
+
+**参数**：
+- `n`：要查看的行数，默认 `5`；传负数时表示除末尾 `|n|` 行外的全部行
+
+**示例**：
+```python
+import pandas as pd
+
+df = pd.DataFrame({"姓名": ["张三", "李四", "王五", "赵六", "钱七", "孙八"],
+                   "分数": [88, 92, 75, 60, 95, 81]})
+
+print(df.head())      # 输出前 5 行（默认）
+print(df.head(3))     # 输出前 3 行
+print(len(df))        # 输出 6，head() 未改变原数据行数
+```
+
+> 提示：`head()` 只影响显示，不会真正少读数据；读文件时想减少读取量，应改用 `pd.read_csv(path, nrows=100)`。无表头的文件被当作表头后，预览时看起来会多一行。
 
 ## 解释
 

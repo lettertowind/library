@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="生成指定区间内的随机整数数组，区间左闭右开。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>np.random.randint · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.random.randint</h1><div class="aliases">randint · 随机整数数组 · random.randint</div><p class="lede">生成指定区间内的随机整数数组，区间左闭右开。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.random.randint(low, high=None, size=None, dtype=int)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>low</code>：随机整数下界；若只给一个参数，则从 <code>0</code> 到 <code>low-1</code></li><li><code>high</code>：上界（不含），给定时范围为 <code>[low, high)</code></li><li><code>size</code>：输出形状，整数或元组</li><li><code>dtype</code>：数据类型，默认 <code>int</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+np.random.seed(42)
+print(np.random.randint(1, 10))        # 单个 1–9 的随机整数，如 7
+print(np.random.randint(1, 10, 5))     # 5 个随机整数，如 [9 4 8 5 7]
+print(np.random.randint(0, 2, (2, 3))) # 2 行 3 列的 0/1 矩阵</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>调用形式为 np.random.randint(low, high, size)，在 [low, high) 内等概率取整数，size 决定生成个数或形状。常用于快速造测试数据来演示索引、排序、统计等操作。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>构造随机测试数组</li><li>模拟抽样数据</li><li>演示排序和统计函数</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数顺序为低值、高值、size，高值取不到</li><li>size 可为整数，也可为形状元组如 (3,4)</li><li>生成的是整数，与 np.random.rand 的 0~1 浮点不同</li><li>与 np.random.seed 配合可复现结果</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>上界不包含在内，写 randint(1,100) 得到的是 1~99；需要浮点随机数应换用 rand 或 uniform。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Numpy%20random%20%E9%9A%8F%E6%9C%BA%E5%87%BD%E6%95%B0.html">Numpy random 随机函数</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/np.random.rand.html">np.random.rand</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.random.randint(1, 100, 10) 生成的数据范围是什么？</summary><div class="quiz-a">10 个 1 到 99 之间的整数，不含 100</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=9" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p09 S01E08.神奇索引</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/np.random.rand.html"><small>上一张</small>np.random.rand</a><a class="next" href="../c/np.sqrt.html"><small>下一张</small>np.sqrt</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

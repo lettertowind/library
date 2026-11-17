@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 list() 把字符串按字符拆成列表，省去手写引号和逗号。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>list() 字符串转列表 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>list() 字符串转列表</h1><div class="aliases">list(xyz) · 字符串拆成列表 · str to list</div><p class="lede">用 list() 把字符串按字符拆成列表，省去手写引号和逗号。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>list(&#x27;xyz&#x27;) 得到 [&#x27;x&#x27;,&#x27;y&#x27;,&#x27;z&#x27;]。建 DataFrame 时写 columns=list(&#x27;xyz&#x27;)、index=list(&#x27;abc&#x27;) 就能快速给出列名和行索引，列一多时代码明显更短更干净。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>建表时快速生成列名、行索引列表</li><li>批量造短字符串列表</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>按字符逐个拆，空格标点也会成为元素</li><li>等价于列表推导 [c for c in &#x27;xyz&#x27;]</li><li>columns 与 index 都是关键字参数，先后顺序无关</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只适合单字符的短名字；列名是多字符单词时必须手写列表</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame%20%E6%9E%84%E9%80%A0.html">DataFrame 构造</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>list(&#x27;abc&#x27;) 的结果是什么？</summary><div class="quiz-a">[&#x27;a&#x27;,&#x27;b&#x27;,&#x27;c&#x27;]，按字符拆开的列表。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=26" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p26 S02E11.列与列之间的计算</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.html"><small>上一张</small>lambda 表达式</a><a class="next" href="../c/openpyxl.html"><small>下一张</small>openpyxl</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

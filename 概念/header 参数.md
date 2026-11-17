@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 17
 stage: "S02E02 · 读取txt与csv文件"
-order: 17
 ---
 
 # header 参数
@@ -69,6 +68,31 @@ header 默认取第 0 行作列名；设为 None 表示文件没有表头，Pand
 - 无表头时列名自动变为 0、1、2…
 - 参数名大小写敏感，写错会报错或失效
 header=None 之后列名是什么？还需要做什么？::列名变成 0、1、2… 的整数，通常再用 names=[...] 指定有意义的列名。
+
+header 默认为 0，即第一行当列名。header=None 表示文件无表头，让 pandas 自动编号；header=[0, 1] 表示前两行共同作列名，生成多级列索引。
+
+- 默认第 0 行是表头，因此“看到的第一行”就是第 0 行
+- 几行表头就把 header 写到几，如两行写 [0, 1]
+- header=None 与 names 搭配可自行指定列名
+文件前两行都是表头，header=[0, 1] 后取“销售部”下面那列该怎么取？::按两级列名取，如 数据[("上半年", "销售部")]；或者先把层级拍平再按单层列名取。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p40 S02E25.Excel文件的拆分与合并](https://www.bilibili.com/video/BV1ji4y157uB?p=40) · 2026-11-17
+
+默认 header=0，即把第一行数据当成列名，这对无表头文件是灾难：真实首行数据被吃掉、列名变成数字值。设成 None 后第一行重新变回数据行。
+
+- header=None 表示原文件没有表头，首行仍作为数据
+- None 必须大写，写小写 none 会直接报错
+- 默认 header=0，把第一行当列名
+一个没有表头的 Excel 忘了设 header=None，读出来会是什么样？::第一行真实数据被当成列名，列名变成数据值，且数据行数少一行。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p19 S02E04.读取与修改Excel文件](https://www.bilibili.com/video/BV1ji4y157uB?p=19) · 2026-11-17
+
+默认 header=0 把第一行当作列名。设置 header=[0,1] 可把前两行读成多层列索引，外层是第一行，内层是第二行。它与 index_col 分工明确：header 管列标签，index_col 管行标签。
+
+- header=0 表示用第一行做列名，是默认行为。
+- header=[0,1] 把第 0、1 行读成两层列标签。
+- header 管列标签，index_col 管行标签，勿混。
+header=[0,1] 后数据的列索引变成什么结构？::变成两层列索引，第 0 行是外层，第 1 行是内层。
+header 与 index_col 分别管什么？::header 管列标签，index_col 管行标签。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p35 S02E20.多层索引与多层索引计算](https://www.bilibili.com/video/BV1ji4y157uB?p=35) · 2026-11-17
 
 ## 出处
 

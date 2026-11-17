@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把序列首项追加到末尾，使雷达图折线首尾相接成环的处理。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>雷达图首尾闭合 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>雷达图首尾闭合</h1><div class="aliases">首尾闭合 · 闭合处理 · 闭合雷达图 · close the loop</div><p class="lede">把序列首项追加到末尾，使雷达图折线首尾相接成环的处理。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>极坐标折线按数据点顺序连接，默认不会回到起点，画出来是开口的。需要给角度、分数、科目三个序列的末尾各追加自己的第一项，且三者长度保持一致，才能围成完整的多边形。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>绘制雷达图前准备数据</li><li>任何需要闭合轮廓的极坐标绘图</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>用 np.concatenate((arr, [arr[0]])) 把首项接到末尾</li><li>角度、分数、科目三个序列都要闭合，且长度必须相同</li><li>读取数据时设 index_col=&#x27;姓名&#x27;，才能用 a02[0] 稳定取到本人第一项</li><li>也可用 Python 列表拼接或切片实现，np.concatenate 只是顺带练习 NumPy</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只适用于环形/闭合图形；普通折线图不需闭合，闭合后反而多出一条回连的首段。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E9%9B%B7%E8%BE%BE%E5%9B%BE.html">雷达图</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.concatenate.html">np.concatenate</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/index_col%20%E5%8F%82%E6%95%B0.html">index_col 参数</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/np.linspace.html">np.linspace</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>如果只闭合了分数序列，但角度序列没有闭合，画出来会是什么效果？</summary><div class="quiz-a">折线末端不会回到起点，雷达图开口、区域填不满一圈，因为角度与分数的点数对不上。</div></details>
+<details class="quiz"><summary>为什么讲师强调要在 read_excel 时设置姓名索引？</summary><div class="quiz-a">否则不同姓名筛选出来的行索引起点不同（如 a02 从 5 开始），a02[0] 取不到自己的第一项，闭合就取错值。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=71" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p71 S03E22.雷达图</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E9%9B%B7%E8%BE%BE%E5%9B%BE.html"><small>上一张</small>雷达图</a><a class="next" href="../c/%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BB%98%E5%9B%BE%E6%8E%A5%E5%8F%A3%EF%BC%88Axes%20%E6%96%B9%E6%B3%95%EF%BC%89.html"><small>下一张</small>面向对象绘图接口（Axes 方法）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用各层累计高度作 y 基准再向下减一个偏移量，把数值写进对应层内部的方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>叠加柱状图数据标签定位 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>叠加柱状图数据标签定位</h1><div class="aliases">堆叠图标签偏移法 · 累计高度减偏移 · 堆叠柱数据标签</div><p class="lede">用各层累计高度作 y 基准再向下减一个偏移量，把数值写进对应层内部的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>堆叠柱每层的中点位置要靠累计高度推算，直接算层高一半很麻烦。简化做法是：y 取该层顶部的累计高度，再减 10 或 20，让文字落进本层内部。文本内容仍取该层单科数值，不能直接用累计值。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给堆叠柱状图每层加数值标签</li><li>柱子分层多、逐个精确计算中点代价过高时的快速方案</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>第一层最简：for x1, y1 in zip(x, 语文) 时 y 取 y1-10</li><li>第二层 y 基准是 语文+数学 的累计高度，文本取数学单科分数</li><li>第三层 y 基准是 语文+数学+英语 累计高度，文本取英语单科分数</li><li>定位高度与显示文本是两个东西，直接 str(y2) 会把累计总分写进层里</li><li>精确居中应减该层高度的一半，偏移法只是近似，属课程里的偷懒办法</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>偏移量是固定像素式的经验值，换数据量级、字号或 y 轴范围都要重调；层很薄时文字会溢出到相邻层。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.text%20%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE.html">plt.text 数据标签</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/bottom%20%E5%8F%82%E6%95%B0%EF%BC%88plt.bar%20%E5%A0%86%E5%8F%A0%E8%B5%B7%E5%A7%8B%E4%BD%8D%E7%BD%AE%EF%BC%89.html">bottom 参数（plt.bar 堆叠起始位置）</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%A0%86%E7%A7%AF%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">堆积柱形图</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/zip.html">zip</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>第二层数学标签的 y 坐标该基于什么算？显示的文本又该取什么？</summary><div class="quiz-a">y 基于 语文+数学 的累计高度再减偏移；文本取数学单科分数而非累计值</div></details>
+<details class="quiz"><summary>为什么说第二层标签最难，第三层反而不难？</summary><div class="quiz-a">第二层要同时理清累计高度和本层数据两套值，第三层沿用同样套路只是再多加一层累计</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=52" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p52 S03E05.叠加柱状图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/bottom%20%E5%8F%82%E6%95%B0%EF%BC%88plt.bar%20%E5%A0%86%E5%8F%A0%E8%B5%B7%E5%A7%8B%E4%BD%8D%E7%BD%AE%EF%BC%89.html">bottom 参数（plt.bar 堆叠起始位置）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%8F%A0%E5%8A%A0%E6%9D%A1%E5%BD%A2%E5%9B%BE.html"><small>上一张</small>叠加条形图</a><a class="next" href="../c/%E5%9B%BE%E4%BE%8B%E4%BD%BF%E7%94%A8%E6%97%B6%E6%9C%BA.html"><small>下一张</small>图例使用时机</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

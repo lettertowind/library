@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在 x 轴指定区间内填充一条贯穿 y 方向的垂直带状区域。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.axvspan 垂直带状填充 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.axvspan 垂直带状填充</h1><div class="aliases">axvspan · plt.axvspan() · 垂直区域填充 · 垂直带状填充</div><p class="lede">在 x 轴指定区间内填充一条贯穿 y 方向的垂直带状区域。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>axvspan(xmin, xmax) 接收 x 轴起止值，在两者之间铺一层色带，y 方向默认覆盖整个绘图区；v 代表 vertical。与 axhspan 相反，它强调 x 轴上的区间范围。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>突出显示 x 轴上的某个区间</li><li>标记时间段、阈值区间或分类范围</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数为 xmin、xmax，填充的是 x 轴范围</li><li>用 facecolor 指定填充色，如 facecolor=&#x27;blue&#x27;</li><li>支持 alpha 透明度</li><li>v 表示垂直，与 axhspan 的水平填充相对</li><li>常配合 plt.axis 设置显示范围</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>填充范围由 x 轴起止值决定，不是 y 轴。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.axhspan%20%E6%B0%B4%E5%B9%B3%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html">plt.axhspan 水平带状填充</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/alpha%20%E9%80%8F%E6%98%8E%E5%BA%A6.html">alpha 透明度</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/ax.axis%EF%BC%88%E4%B8%80%E6%AC%A1%E8%AE%BE%E7%BD%AE%E5%9D%90%E6%A0%87%E8%BD%B4%E5%9B%9B%E8%BE%B9%E7%95%8C%EF%BC%89.html">ax.axis（一次设置坐标轴四边界）</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>plt.axvspan(1, 1.3) 填充的是哪个轴的范围？</summary><div class="quiz-a">x 轴，从 x=1 到 x=1.3。</div></details>
+<details class="quiz"><summary>axvspan 中的 v 代表什么方向？</summary><div class="quiz-a">vertical，垂直方向，即填充 x 轴区间。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=74" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p74 S03E25.填充</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.axhspan%20%E6%B0%B4%E5%B9%B3%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html">plt.axhspan 水平带状填充</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.axvline%20%E5%9E%82%E7%9B%B4%E5%8F%82%E8%80%83%E7%BA%BF.html"><small>上一张</small>plt.axvline 垂直参考线</a><a class="next" href="../c/plt.barh.html"><small>下一张</small>plt.barh</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

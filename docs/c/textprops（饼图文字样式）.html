@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="以字典形式统一设置饼图中标签与百分比文字样式的参数">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>textprops（饼图文字样式） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>textprops（饼图文字样式）</h1><div class="aliases">textprops · 文字样式字典 · textprops={fontsize:20}</div><p class="lede">以字典形式统一设置饼图中标签与百分比文字样式的参数</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>textprops 接收一个字典，键是文字属性名、值是属性值，作用于饼图上所有文字。常用字号 fontsize、颜色 color，需要加粗再补相应键。字典写法让样式集中配置，不用逐个文字改。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>饼图文字太小或与扇区颜色对比不足时</li><li>统一调整字号、颜色、粗细</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>写法是字典：textprops={&#x27;fontsize&#x27;: 20, &#x27;color&#x27;: &#x27;w&#x27;}</li><li>fontsize 控字号，color 接受颜色简写如 &#x27;w&#x27;</li><li>可继续加入加粗等其他文字属性键</li><li>字号放大后标签可能超出边界，需配合 labeldistance 调整</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>textprops 只管饼图上的文字，图例文字要用 plt.legend 的 fontsize，两者互不影响。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E9%A5%BC%E5%9B%BE.html">饼图</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E5%AD%97%E5%85%B8.html">字典</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/Matplotlib%20%E9%A2%9C%E8%89%B2%E7%AE%80%E5%86%99.html">Matplotlib 颜色简写</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想同时把饼图文字改成白色、字号 16，怎么写？</summary><div class="quiz-a">textprops={&#x27;fontsize&#x27;: 16, &#x27;color&#x27;: &#x27;w&#x27;}。</div></details>
+<details class="quiz"><summary>textprops 里的设置会影响图例文字吗？</summary><div class="quiz-a">不会，图例字号要用 plt.legend 的 fontsize 单独设。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=54" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p54 S03E07.饼图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/autopct%EF%BC%88%E9%A5%BC%E5%9B%BE%E7%99%BE%E5%88%86%E6%AF%94%E6%98%BE%E7%A4%BA%EF%BC%89.html">autopct（饼图百分比显示）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/startangle%20%E4%B8%8E%20counterclock%EF%BC%88%E8%B5%B7%E5%A7%8B%E8%A7%92%E5%BA%A6%E4%B8%8E%E7%BB%98%E5%88%B6%E6%96%B9%E5%90%91%EF%BC%89.html"><small>上一张</small>startangle 与 counterclock（起始角度与绘制方向）</a><a class="next" href="../c/%E4%B8%BB%E6%AC%A1%E5%9D%90%E6%A0%87%E8%BD%B4.html"><small>下一张</small>主次坐标轴</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

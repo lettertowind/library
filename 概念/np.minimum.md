@@ -63,6 +63,17 @@ np.minimum 接收两个数组，逐位置比较，谁小取谁，返回新数组
 
 想实现「所有值不超过 100」，用哪个函数？::np.minimum(x, 100)，逐元素与 100 比较取较小值。
 
+
+### 补充 · 2026-11-17
+
+np.minimum 是 np.maximum 的镜像操作，数学上为 z_i = min(x_i, y_i)。用法与 maximum 完全对称，掌握其中一个即可推出另一个。
+
+- 对位比大小，谁小取谁，返回新数组
+- 数学表达 z_i = min(x_i, y_i)
+- 与 np.maximum 用法完全对称，可举一反三
+为什么学会 np.maximum 就等于学会了 np.minimum？::两者结构相同，只是比较方向相反，输入输出形态与调用方式完全一致。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p12 S01E11.通用函数：快速的逐元素数组函数](https://www.bilibili.com/video/BV1ji4y157uB?p=12) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

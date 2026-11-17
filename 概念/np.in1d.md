@@ -33,12 +33,12 @@ import numpy as np
 a = np.array([1, 2, 3, 4, 5])
 b = np.array([2, 4, 6])
 
-print(np.in1d(a, b))                 # [False  True False  True False]
-print(a[np.in1d(a, b)])              # [2 4]
-print(np.in1d(a, b, invert=True))    # [ True False  True False  True]
+print(np.isin(a, b))                 # [False  True False  True False]
+print(a[np.isin(a, b)])              # [2 4]
+print(~np.isin(a, b))    # [ True False  True False  True]
 ```
 
-注意函数名中的 `1` 表示数字 1，并非字母 `l`；它只返回成员关系的布尔数组，不直接返回交集本身。
+注意：函数原名 `np.in1d`（中间是数字 1），numpy 2.0 起已移除，改用 `np.isin`，语义完全一致。
 
 ## 解释
 
@@ -67,7 +67,7 @@ np.in1d(ar1, ar2) 对 ar1 的每个元素检查是否属于 ar2，返回与 ar1 
 
 ## 自测
 
-np.in1d(a, b) 返回的是什么？::与 a 同形状的布尔数组，表示每个元素是否在 b 中。
+np.isin(a, b) 返回的是什么？::与 a 同形状的布尔数组，表示每个元素是否在 b 中。
 
 ## 出处
 

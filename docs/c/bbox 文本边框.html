@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="给文字套上边框和背景色的字典参数，配合 plt.text 形成醒目标签。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>bbox 文本边框 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>bbox 文本边框</h1><div class="aliases">bbox · bbox=dict()、set_bbox · 带边框的文本标签</div><p class="lede">给文字套上边框和背景色的字典参数，配合 plt.text 形成醒目标签。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>普通数据标签只有文字，压在折线上容易看不清。bbox 用字典描述边框样式（圆角/方角）、填充色、边框颜色和线宽，把文字变成一块带底色的“贴纸”，让标签在任何背景下都醒目。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>强调图中某个关键数据点</li><li>在密集折线图上标出文字仍能看清</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>boxstyle 选边框形状，如 &#x27;round&#x27; 为圆角</li><li>fc（facecolor）设背景填充色，可用 &#x27;0.8&#x27; 这样的灰度值</li><li>ec（edgecolor）设边框线色，lw / linewidth 设边框线宽</li><li>必须作为参数传给 plt.text()，只定义字典不会显示任何东西</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>bbox 只是文本装饰，不会自动避让数据点，位置仍需手动调整（如上移到 y=2.5）以免遮挡。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.text%20%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE.html">plt.text 数据标签</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.annotate%20%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A.html">plt.annotate 文本注释</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>写了 bbox = dict(boxstyle=&#x27;round&#x27;, fc=&#x27;0.8&#x27;) 但图上什么都没出现，原因是什么？</summary><div class="quiz-a">字典只是定义样式，必须把它作为 bbox 参数传给 plt.text() 或 plt.annotate() 才会绘制。</div></details>
+<details class="quiz"><summary>fc 和 ec 分别控制边框的什么？</summary><div class="quiz-a">fc 是 facecolor，控制框内背景填充；ec 是 edgecolor，控制边框线条颜色。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>bbox 不是单个样式值，而是一个字典，内部的键决定背景框的外观。常用键有 facecolor（填充色）、alpha（透明度）、pad（背景框相对文字的留白大小）。写好字典后作为 bbox=字典 传给 title、xlabel、ylabel、text、annotate 等函数即可生效。</p>
+<p>- 建议先写 bbox = dict(...) 变量再传入，结构更清晰</p>
+<p>- facecolor 设背景填充色，alpha 设透明度（0~1）</p>
+<p>- pad 控制背景框相对文字的留白，值越大框越大</p>
+<details class="quiz"><summary>bbox=dict(facecolor=&#x27;yellow&#x27;, alpha=0.2, pad=50) 中，把 pad 改成 5 会看到什么变化？</summary><div class="quiz-a">背景框相对文字变小、留白变少，文字几乎贴着框边。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=72" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p72 S03E23.标题及轴标签</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=76" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p76 S03E27.文本注释</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.annotate%20%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A.html">plt.annotate 文本注释</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.text%20%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE.html">plt.text 数据标签</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.xlabel%20%E4%B8%8E%20plt.ylabel.html">plt.xlabel 与 plt.ylabel</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/axes.unicode_minus%EF%BC%88%E8%B4%9F%E5%8F%B7%E6%98%BE%E7%A4%BA%E9%85%8D%E7%BD%AE%EF%BC%89.html"><small>上一张</small>axes.unicode_minus（负号显示配置）</a><a class="next" href="../c/bottom%20%E5%8F%82%E6%95%B0%EF%BC%88plt.bar%20%E5%A0%86%E5%8F%A0%E8%B5%B7%E5%A7%8B%E4%BD%8D%E7%BD%AE%EF%BC%89.html"><small>下一张</small>bottom 参数（plt.bar 堆叠起始位置）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

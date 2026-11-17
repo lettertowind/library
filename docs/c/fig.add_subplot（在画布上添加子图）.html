@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在已经存在的 figure 对象上添加并返回一个子图 axes 的方法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>fig.add_subplot（在画布上添加子图） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>fig.add_subplot（在画布上添加子图）</h1><div class="aliases">add_subplot · fig.add_subplot(221) · 添加子图方法</div><p class="lede">在已经存在的 figure 对象上添加并返回一个子图 axes 的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>这是面向对象的写法：先有 fig，再 fig.add_subplot(行, 列, 位置) 往里加子图。它与 pyplot 风格下的 plt.subplot(221) 效果完全一样，区别只在调用入口是画布对象还是 plt 状态机。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>已经持有 fig 对象时，在其上逐个添加子图</li><li>阅读别人面向对象风格的绘图代码</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数仍是行、列、位置三要素，如 add_subplot(221)</li><li>调用前必须先有 fig 对象</li><li>与 plt.subplot 等价，只是写法不同</li><li>子图多时可循环调用 add_subplot 批量添加</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>add_subplot 每次只加一个子图，要一次生成多个子图应改用 plt.subplots(行, 列)。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.subplot%20%E5%AD%90%E5%9B%BE%E5%B8%83%E5%B1%80.html">plt.subplot 子图布局</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/plt.figure%EF%BC%88%E5%88%9B%E5%BB%BA%E7%94%BB%E5%B8%83%EF%BC%89.html">plt.figure（创建画布）</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/figure%20%E4%B8%8E%20axes%EF%BC%88%E7%94%BB%E5%B8%83%E4%B8%8E%E5%AD%90%E5%9B%BE%EF%BC%89.html">figure 与 axes（画布与子图）</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>fig.add_subplot(223) 和 plt.subplot(223) 画出来的位置一样吗？</summary><div class="quiz-a">完全一样，都是 2 行 2 列中的第 3 个位置，只是调用风格不同</div></details>
+<details class="quiz"><summary>为什么 add_subplot 必须先有 fig？</summary><div class="quiz-a">它是画布对象的方法，子图要挂在具体画布上，没有 fig 就没有调用对象</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>参数描述『几行几列第几个图』：三位数 221 即 2 行 2 列的第 1 个，也可写成逗号形式 fig.add_subplot(2, 2, 1)，两种写法等价。它既负责划分布局，也把该子图设为当前子图，返回的 ax 对象可用于后续面向对象绘图。</p>
+<p>- 221 = 2 行 2 列中的第 1 个图；223 = 第 3 个</p>
+<p>- 可写 fig.add_subplot(221)，也可写 (2, 2, 1)，等价</p>
+<p>- 子图编号不必连续使用，可留空某些位置</p>
+<details class="quiz"><summary>布局为 3 行 3 列时，第 5 个位置的子图编号是多少？</summary><div class="quiz-a">335（3 行 3 列第 5 个），也可写 add_subplot(3, 3, 5)。</div></details>
+<details class="quiz"><summary>只想要 2×2 布局中的第 1、3、4 个图，需要为第 2 个位置写 add_subplot 吗？</summary><div class="quiz-a">不需要，不创建的位置就自然留白。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=58" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p58 S03E10.画布和子图</a> · 2026-11-17</p>
+<p>add_subplot(nrows, ncols, index) 把画布切成规则网格，并按序号返回对应 Axes。它适合规则多图布局，与 add_axes 的自由矩形定位形成对比。</p>
+<p>- index 从 1 开始，按行优先计数。</p>
+<p>- 2,1,1 表示 2 行 1 列的第 1 个；2,2,4 表示 2 行 2 列的第 4 个。</p>
+<p>- 返回 Axes 对象，可独立调用 bar、plot、set_title。</p>
+<details class="quiz"><summary>add_subplot(2, 1, 1) 表示什么布局？</summary><div class="quiz-a">把画布分成 2 行 1 列，取第 1 个子图，即上半部分。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=60" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p60 S03E12.新增子图或区域</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=59" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p59 S03E11.创建多个子图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fig.add_axes%EF%BC%88%E6%8C%89%E7%9F%A9%E5%BD%A2%E6%B7%BB%E5%8A%A0%E8%BD%B4%EF%BC%89.html">fig.add_axes（按矩形添加轴）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%AD%90%E5%9B%BE%EF%BC%88subplot%EF%BC%89.html">子图（subplot）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%BD%93%E5%89%8D%E5%AD%90%E5%9B%BE%EF%BC%88current%20axes%EF%BC%89.html">当前子图（current axes）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/fig.add_axes%EF%BC%88%E6%8C%89%E7%9F%A9%E5%BD%A2%E6%B7%BB%E5%8A%A0%E8%BD%B4%EF%BC%89.html"><small>上一张</small>fig.add_axes（按矩形添加轴）</a><a class="next" href="../c/figsize%EF%BC%88%E7%94%BB%E5%B8%83%E5%B0%BA%E5%AF%B8%EF%BC%89.html"><small>下一张</small>figsize（画布尺寸）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

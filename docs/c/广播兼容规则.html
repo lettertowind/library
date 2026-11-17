@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="从后缘维度起逐维比较，各维相等或其中一方为 1 才能广播。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>广播兼容规则 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>广播兼容规则</h1><div class="aliases">不兼容广播 · 广播判断规则 · broadcast compatibility · 广播规则</div><p class="lede">从后缘维度起逐维比较，各维相等或其中一方为 1 才能广播。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：两个数组从<strong>末尾维度</strong>开始逐维比较，相等或其中一方为 <code>1</code> 才能广播</p>
+<p><strong>参数</strong>：</p>
+<ul><li>维度数不同：短数组左侧补 <code>1</code> 再比较</li><li>某维长度为 <code>1</code>：可沿该维拉伸匹配另一数组</li><li>任一维既不相等也不为 <code>1</code>：报 <code>ValueError</code></li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+a = np.ones((2, 3))
+print((a + np.array([1, 2, 3])).shape)       # (2, 3)，末尾维 3 匹配
+print((a + np.array([[1], [2]])).shape)      # (2, 3)，列向量沿第 0 维拉伸
+print((a + np.ones((3,))).shape)             # (2, 3)
+# a + np.ones((2,)) 会报错：末尾维 3 与 2 不兼容</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>两个形状不同的数组要直接加减乘除，NumPy 会先做一次兼容性判断：从形状最右边一维开始向左逐维对齐比较，每一维都要求「相等」或「其中一方为 1」，全部通过才会自动扩展并计算。只要有一维不满足，整个运算直接报错，不会做部分计算。它是判断「形状不同能不能算」的唯一标准，而不是看两个数组差几维、前面几维是否相同。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>判断两个不同形状的数组能否直接运算</li><li>解释 ValueError: operands could not be broadcast 报错的根因</li><li>用 reshape 主动调形状来凑成可广播的形式</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>比较方向固定：从最后一维（后缘）开始，向左逐维推进</li><li>每一维必须相等，或其中一方为 1，二者满足其一即可</li><li>任意一维不满足条件，整体广播失败并直接报错</li><li>前导维度相同不能弥补后缘维度的不匹配</li><li>维度个数不同时，维数少的一方在左侧补 1 再逐维比较</li><li>扩展由 NumPy 自动完成，不需要手写扩展后的数组</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>常见误解是「形状不同就能广播」或「前面维度相同就行」。(3,2,3) 与 (2,4) 前面有 (2,) 对齐但后缘 3 与 4 不等且都不为 1，因此无法计算。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6.html">广播机制</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E5%90%8E%E7%BC%98%E7%BB%B4%E5%BA%A6.html">后缘维度</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E4%B8%89%E7%BB%B4%E6%95%B0%E7%BB%84%E5%B9%BF%E6%92%AD.html">三维数组广播</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/%E5%88%97%E5%90%91%E9%87%8F%E5%B9%BF%E6%92%AD.html">列向量广播</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/shape%20%E5%B1%9E%E6%80%A7.html">shape 属性</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>形状 (3,2,3) 与 (2,4) 的两个数组能否相加？为什么？</summary><div class="quiz-a">不能。从后缘比较，3 与 4 不相等且都不为 1，广播不兼容，前面的 (2,) 对齐也无法弥补。</div></details>
+<details class="quiz"><summary>形状 (5,1) 与 (1,4) 能否广播？结果形状是什么？</summary><div class="quiz-a">可以。后缘 1 与 4（含 1）、次维 5 与 1（含 1）均通过，结果形状为 (5,4)。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=6" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p06 S01E05.数组计算</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84%E6%B1%82%E5%92%8C%E8%AE%A1%E6%95%B0.html"><small>上一张</small>布尔数组求和计数</a><a class="next" href="../c/%E5%B9%BF%E6%92%AD%E6%9C%BA%E5%88%B6.html"><small>下一张</small>广播机制</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

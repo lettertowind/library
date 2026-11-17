@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在折线图上标出每个数据点位置的符号，如 &#x27;o&#x27; 表示实心圆点。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>标记点（marker） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>标记点（marker）</h1><div class="aliases">marker · 标记点 · 数据点标记 · o · markersize</div><p class="lede">在折线图上标出每个数据点位置的符号，如 &#x27;o&#x27; 表示实心圆点。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认折线只画线不画点，加上 marker 后每个数据点都会显示一个符号，读者能一眼看出具体取值落在哪里。它和颜色、线型一样，是 plt.plot 中相互独立的样式维度，可以自由组合。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>数据点较少时突出每个点的位置</li><li>同图对比多条曲线时，用不同标记点加以区分</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>最常用的是 &#x27;o&#x27;（实心圆点），另有 &#x27;*&#x27;、&#x27;s&#x27;、&#x27;^&#x27;、&#x27;+&#x27; 等</li><li>可写进格式字符串简写，如 &#x27;ro-&#x27; 表示红色圆点加实线</li><li>点太多时可调小 markersize 或干脆不设标记</li><li>标记点、颜色、线型是三个互不冲突的样式维度</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>数据点密集时标记会互相重叠、显得杂乱，此时宁可只用线型区分。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plot%20%E6%A0%BC%E5%BC%8F%E5%AD%97%E7%AC%A6%E4%B8%B2.html">plot 格式字符串</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/linestyle%20%E7%BA%BF%E5%9E%8B%E5%8F%82%E6%95%B0.html">linestyle 线型参数</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>&#x27;ro-&#x27; 这三个字符分别代表什么？</summary><div class="quiz-a">r 表示红色，o 表示用圆点标记数据点，- 表示实线连接。</div></details>
+<details class="quiz"><summary>折线图上数据点很多时，加 marker 有什么风险？</summary><div class="quiz-a">标记会彼此重叠、显得杂乱，应缩小 markersize 或不用标记。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>marker 决定符号样式（如 &#x27;o&#x27; 圆点、&#x27;*&#x27; 星号），markersize 决定符号大小。加上标记点后，即使折线很密也能一眼看出实际采样了哪些数据点。它只影响视觉呈现，不改变数据。</p>
+<p>- marker 设样式：&#x27;*&#x27; 星号、&#x27;o&#x27; 圆点等</p>
+<p>- markersize 设标记大小，如 markersize=10</p>
+<p>- 仅影响视觉表现，不改变数据</p>
+<details class="quiz"><summary>折线图里想让数据点用星号且放大一些，该写哪些参数？</summary><div class="quiz-a">marker=&#x27;*&#x27; 与 markersize=10。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=58" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p58 S03E10.画布和子图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=73" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p73 S03E24.样式</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html"><small>上一张</small>柱形图</a><a class="next" href="../c/%E6%A0%91%E7%8A%B6%E5%9B%BE.html"><small>下一张</small>树状图</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

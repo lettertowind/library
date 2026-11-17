@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="控制图形元素不透明程度的参数，取值 0 到 1。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>alpha 透明度 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>alpha 透明度</h1><div class="aliases">alpha · 透明度参数 · 透明度</div><p class="lede">控制图形元素不透明程度的参数，取值 0 到 1。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>alpha=0 表示完全透明，alpha=1 表示完全不透明。数据点或柱子重叠较多时，降低 alpha 能看清重叠密度，比不透明配色更容易读。它不只用于柱形图，散点、填充区域、文本背景等图形元素都支持。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>柱子或散点大量重叠时提升可读性</li><li>让辅助元素（标注、背景）不喧宾夺主</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>取值范围 0~1，越接近 0 越透明</li><li>重叠数据多时用低 alpha 能看出分布密度</li><li>柱形图、散点图、文本背景等处通用</li><li>颜色由 color 决定，透明度由 alpha 单独控制</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>和颜色本身无关：改 alpha 不改变色相，只改变不透明程度。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">柱形图</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%95%A3%E7%82%B9%E5%9B%BE.html">散点图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>两组柱形图想叠在同一位置并同时看清，应该调哪个参数？</summary><div class="quiz-a">alpha，把两组柱子设为半透明即可看到重叠部分。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>在区域填充和叠加图中，alpha 用来避免上层颜色完全遮住下层内容。取值 0.3 表示 30% 不透明度，多个半透明区域重叠时颜色会叠加混合，类似 Photoshop 两个图层叠加。</p>
+<p>- 取值范围 0~1，常用 0.3 这类中间值做区域填充</p>
+<p>- 两个 30% 透明度的区域重叠会混出中间色</p>
+<p>- 只调整透明度不改变数据，只影响视觉层次</p>
+<details class="quiz"><summary>为什么叠加区域图里常用 alpha=0.3 而不是 1？</summary><div class="quiz-a">让下层折线与区域仍可见，重叠处形成层次色；alpha=1 会把下方内容完全遮住。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=69" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p69 S03E20.叠加区域图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=58" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p58 S03E10.画布和子图</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fill%20%E5%8C%BA%E5%9F%9F%E5%A1%AB%E5%85%85.html">fill 区域填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.axhspan%20%E6%B0%B4%E5%B9%B3%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html">plt.axhspan 水平带状填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.axvspan%20%E5%9E%82%E7%9B%B4%E5%B8%A6%E7%8A%B6%E5%A1%AB%E5%85%85.html">plt.axvspan 垂直带状填充</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E5%8C%BA%E5%9F%9F%E5%9B%BE.html">叠加区域图</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/PercentFormatter.html"><small>上一张</small>PercentFormatter</a><a class="next" href="../c/arrowprops.html"><small>下一张</small>arrowprops</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

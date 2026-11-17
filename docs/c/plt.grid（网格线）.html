@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Matplotlib 中开启并设置图表背景网格线的函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.grid（网格线） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.grid（网格线）</h1><div class="aliases">grid · plt.grid() · 网格线 · Matplotlib 网格线函数</div><p class="lede">Matplotlib 中开启并设置图表背景网格线的函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>plt.grid() 在绘图区叠加与刻度对齐的参考线，帮助读图时对齐数值。它本身不产生新图形，只影响已有坐标轴的背景线，样式通过 axis、color、linestyle、linewidth 等参数统一控制。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>折线图、散点图中辅助读数</li><li>需要按 x 或 y 单方向加参考线时</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>不想要网格线就不调用 plt.grid()，不必特意传 False 关闭</li><li>axis=&#x27;x&#x27; 控制竖直网格线，axis=&#x27;y&#x27; 控制横向网格线，省略则两个方向一起生效</li><li>color、linestyle、linewidth 可同时传入，一次设置颜色、线型、线宽</li><li>线宽过大会显笨重，linewidth=3 左右视觉较协调</li><li>网格线方向按所属轴命名，不是按视觉方向命名</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 plt.plot 等绘图函数的 linestyle/linewidth 同名但作用对象不同：plt.grid 的参数只影响网格线，不影响数据曲线。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/linestyle%20%E7%BA%BF%E5%9E%8B%E5%8F%82%E6%95%B0.html">linestyle 线型参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/linewidth%20%E7%BA%BF%E5%AE%BD%E5%8F%82%E6%95%B0.html">linewidth 线宽参数</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E6%8A%98%E7%BA%BF%E5%9B%BE.html">折线图</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>只想保留横向网格线并设为红色虚线，代码怎么写？</summary><div class="quiz-a">plt.grid(axis=&#x27;y&#x27;, color=&#x27;red&#x27;, linestyle=&#x27;:&#x27;)</div></details>
+<details class="quiz"><summary>为什么 axis=&#x27;x&#x27; 得到的是竖直网格线？</summary><div class="quiz-a">这些线从 x 轴上各刻度位置向上延伸，按所属轴归属命名，与视觉方向无关。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>plt.grid(True) 一键开启全图网格，但有时只需横向参考线——这时通过 plt.gca() 拿到坐标轴对象，调用 ax.yaxis.grid(...) 只对 y 轴生效，参数可设虚线、颜色、透明度。</p>
+<p>- 只画 y 轴网格：ax = plt.gca(); ax.yaxis.grid(True, linestyle=&#x27;--&#x27;, color=&#x27;gray&#x27;, alpha=0.5)</p>
+<p>- linestyle=&#x27;--&#x27; 虚线比实线更不抢眼</p>
+<p>- alpha 控制透明度，常用于弱化网格</p>
+<details class="quiz"><summary>只想要横向虚线网格，最简写法是什么？</summary><div class="quiz-a">ax = plt.gca(); ax.yaxis.grid(True, linestyle=&#x27;--&#x27;)。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=77" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p77 S03E28.瀑布图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=64" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p64 S03E15.网格线</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/linestyle%20%E7%BA%BF%E5%9E%8B%E5%8F%82%E6%95%B0.html">linestyle 线型参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/linewidth%20%E7%BA%BF%E5%AE%BD%E5%8F%82%E6%95%B0.html">linewidth 线宽参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html"><small>上一张</small>plt.gca 与 plt.gcf</a><a class="next" href="../c/plt.hist.html"><small>下一张</small>plt.hist</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

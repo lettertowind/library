@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 31
 stage: "S02E16 · 处理缺失值"
-order: 31
 ---
 
 # notna
@@ -16,6 +15,34 @@ order: 31
 > 别名：notnull、df.notna、判断非缺失值
 
 **逐元素判断是否为非缺失值，返回布尔表，True 表示非空。**
+
+## 用法
+**语法**：`DataFrame.notna()` / `Series.notna()`（别名 `notnull()`）
+
+**参数**：无
+
+**示例**：
+```python
+import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({'A': [1, np.nan, 3], 'B': ['x', None, 'z']})
+print(df.notna())
+#        A      B
+# 0   True   True
+# 1  False  False
+# 2   True   True
+
+print(df.notna().sum())      # 每列有效值数量
+# A    2
+# B    2
+# dtype: int64
+
+print(df[df['A'].notna()])   # 布尔索引保留 A 列非空的行
+#      A     B
+# 0  1.0     x
+# 2  3.0     z
+```
 
 ## 解释
 
@@ -46,6 +73,17 @@ notna() 与 notnull() 等价，是 isna 的取反。用于保留有效数据、�
 
 想统计每列有效值个数，用哪个函数？::df.notna().sum()。
 notna 与 notnull 有区别吗？::没有，是同一函数的别名。
+
+
+### 补充 · 2026-11-17
+
+notnull() 是 isnull() 的取反版本，常用于只保留有效数据的过滤条件，语义上比「取反 isnull」更直观。
+
+- 与 isnull() 结果互补，True/False 完全颠倒
+- 函数名后必须带括号
+- notna 是同义写法
+同一张表上 isnull() 与 notnull() 的结果有什么关系？::逐元素取反，True/False 完全相反。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p20 S02E05.数据结构之Series](https://www.bilibili.com/video/BV1ji4y157uB?p=20) · 2026-11-17
 
 ## 出处
 

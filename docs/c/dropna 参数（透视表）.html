@@ -25,11 +25,24 @@
 <p>- how=&#x27;all&#x27;：整行/整列全空才删</p>
 <p>- thresh=n：非缺失值少于 n 才删除</p>
 <details class="quiz"><summary>dropna(thresh=2) 的含义是什么？</summary><div class="quiz-a">保留至少有两个非缺失值的行/列，非缺失值少于 2 的才删除。</div></details>
-<details class="quiz"><summary>想只根据语文、数学两列判断是否删除行，怎么写？</summary><div class="quiz-a">df.dropna(subset=[&#x27;语文&#x27;,&#x27;数学&#x27;])。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/subset%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">subset 参数（dropna）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/thresh%20%E5%8F%82%E6%95%B0.html">thresh 参数</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/drop_duplicates.html"><small>上一张</small>drop_duplicates</a><a class="next" href="../c/dt%20%E8%AE%BF%E9%97%AE%E5%99%A8.html"><small>下一张</small>dt 访问器</a></nav></article>
+<details class="quiz"><summary>想只根据语文、数学两列判断是否删除行，怎么写？</summary><div class="quiz-a">df.dropna(subset=[&#x27;语文&#x27;,&#x27;数学&#x27;])。</div></details>
+<p>当某列在透视结果中全部为空时，显示出来没有意义。dropna=True 会把这类全空列移除；默认是 False。它只处理全空列，不会随便删除有部分数据的列。</p>
+<p>- 默认值为 False。</p>
+<p>- 设为 True 时删除所有条目均为空的列。</p>
+<p>- 只删全空列，不影响正常计算。</p>
+<details class="quiz"><summary>dropna=True 会删除有部分缺失值的列吗？</summary><div class="quiz-a">不会，只删除所有条目均为空的列。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=43" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p43 S02E28.数据透视表</a> · 2026-11-17</p>
+<p>dropna 默认 axis=0、how=&#x27;any&#x27;，会删掉任何含空值的行，是容易误删数据的默认行为。通过 axis、how、thresh、subset 四个参数，可以精确控制「在哪个方向删、什么条件下才删、依据哪些列判断」。</p>
+<p>- data.dropna() 默认删除含任一空值的行</p>
+<p>- axis=1 时按列删，某列只要有一个空值该列就被删</p>
+<p>- how=&#x27;all&#x27; 只有整行或整列全空时才删除</p>
+<details class="quiz"><summary>为什么 data.dropna(how=&#x27;all&#x27;) 运行后数据常常没有任何变化？</summary><div class="quiz-a">因为大多数行都至少有一个有效字段（如姓名），不存在整行全空的情况，所以没有行满足删除条件。</div></details>
+<details class="quiz"><summary>要删除「整列都是空」的列，应该怎么写？</summary><div class="quiz-a">data.dropna(axis=1, how=&#x27;all&#x27;)，先切到列方向，再要求整列全空才删。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=31" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p31 S02E16.处理缺失值</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">how 参数（dropna）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/subset%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">subset 参数（dropna）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/thresh%20%E5%8F%82%E6%95%B0.html">thresh 参数</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/drop_duplicates.html"><small>上一张</small>drop_duplicates</a><a class="next" href="../c/dt%20%E8%AE%BF%E9%97%AE%E5%99%A8.html"><small>下一张</small>dt 访问器</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

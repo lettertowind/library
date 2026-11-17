@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="返回 DataFrame 剥离行列标签后的纯数据 ndarray。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>values 属性 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>values 属性</h1><div class="aliases">df.values · 查询值 · 纯数据数组</div><p class="lede">返回 DataFrame 剥离行列标签后的纯数据 ndarray。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>df.values 把表变成 NumPy 二维数组，只留数据、丢掉行索引和列名。适合交给只认数组的下游函数（如 sklearn、matplotlib）。代价是丢失标签信息，且混合类型会被统一成 object 或 float。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>把表格数据喂给 NumPy/sklearn 接口</li><li>查看底层数组形态</li><li>做纯数值计算前的转换</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回 numpy.ndarray，不再带行名和列名</li><li>混合数据类型时整体 dtype 可能退化为 object</li><li>需要保留标签就别用 values，直接操作 DataFrame</li><li>新版更推荐 to_numpy()，行为更明确</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>转换后列顺序仍按原列序，但一旦下游改动数组，原 DataFrame 的标签就对不上了。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/columns%20%E5%B1%9E%E6%80%A7.html">columns 属性</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/Numpy%20%E4%BA%8C%E7%BB%B4%E6%95%B0%E7%BB%84.html">Numpy 二维数组</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df.values 之后还能知道第 2 列叫什么名字吗？</summary><div class="quiz-a">不能，标签信息已丢失，只能靠原列顺序推断</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=21" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p21 S02E06.数据结构之DataFrame</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/value_counts.html"><small>上一张</small>value_counts</a><a class="next" href="../c/%E5%86%99%E5%9B%9E%E5%8E%9F%20Excel%20%E6%96%87%E4%BB%B6.html"><small>下一张</small>写回原 Excel 文件</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

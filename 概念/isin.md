@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 42
 stage: "S02E27 · 分组对象和创建"
-order: 42
 ---
 
 # isin
@@ -16,6 +15,36 @@ order: 42
 > 别名：Series.isin、df['列'].isin、成员判断
 
 **判断 Series 每个元素是否属于给定列表，返回布尔序列。**
+
+## 用法
+**语法**：`Series.isin(values)`
+**参数**：
+- `values`：候选值集合，可以是 list、tuple、set、Series，也可以传单个标量；只做精确的成员判断，不支持正则，模糊匹配用 `str.contains`
+
+**示例**：
+```python
+import pandas as pd
+
+df = pd.DataFrame({'班级': ['一班', '二班', '三班', '一班'],
+                   '姓名': ['张三', '李四', '王五', '赵六']})
+
+print(df['班级'].isin(['一班', '二班']))
+# 0     True
+# 1     True
+# 2    False
+# 3     True
+# Name: 班级, dtype: bool
+
+print(df[~df['班级'].isin(['一班', '二班'])])
+#    班级  姓名
+# 2  三班  王五
+
+print(df.groupby(df['班级'].isin(['一班', '二班']))['姓名'].count())
+# 班级
+# False    1
+# True     3
+# Name: 姓名, dtype: int64
+```
 
 ## 解释
 
@@ -48,6 +77,18 @@ isin 用于「某列的值是否在候选集合中」的筛选或分组。它替
 
 如何选出班级不属于一班、二班的所有行？::df[~df['班级'].isin(['一班','二班'])]。
 isin 和 == 的区别是什么？::== 只能比单个值，isin 可一次比一个列表中的多个值。
+
+
+### 补充 · 2026-11-17
+
+isin 接受一个列表（或集合），逐元素比对，返回等长的 True / False。它既能用于筛选行，也能直接作为 groupby 的分组键，把数据分成“在集合内”和“不在集合内”两组。
+
+- 取反写 ~df['列'].isin([...])，波浪号加在整个表达式前面。
+- Pandas 没有 is not in 这种写法，不要照搬 Python 的 in / not in。
+- 返回布尔 Series，既可做行筛选，也可做分组键。
+要统计“不属于一班和二班”的人的成绩，isin 该怎么写？::~data['班级'].isin(['一班','二班'])，作为分组键或筛选条件。
+为什么不能写 data['班级'] is not in ['一班','二班']？::Python 的 in 不能作用于 Series 逐元素判断，Pandas 里用 ~isin。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p42 S02E27.分组对象和创建](https://www.bilibili.com/video/BV1ji4y157uB?p=42) · 2026-11-17
 
 ## 出处
 

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.slice_replace
@@ -16,6 +15,33 @@ order: 38
 > 别名：slice_replace、切片替换
 
 **截取指定范围并把该范围替换为指定内容的方法。**
+
+## 用法
+**语法**：`Series.str.slice_replace(start=None, stop=None, repl=None)`
+
+**参数**：
+- `start`：切片起始位置（含），默认 None 表示从头
+- `stop`：切片结束位置（不含），默认 None 表示到末尾
+- `repl`：用来整体替换该切片范围的内容，默认 None 时相当于删除这段
+- 不支持 `step` 步长参数，只能替换连续的一段
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['满血激活', '满蓝复活'])
+# 把索引 1 到 2 的“血激”整体替换为 520
+print(s.str.slice_replace(1, 3, '520').tolist())
+# ['满520活', '满520活']
+
+# repl 省略时等价于删掉这一段
+print(s.str.slice_replace(1, 3).tolist())
+# ['满活', '满活']
+
+# 脱敏：只保留首尾，中间三位替换为 ***
+print(s.str.slice_replace(1, 4, '***').tolist())
+# ['满***活', '满***活']
+```
 
 ## 解释
 

@@ -18,18 +18,49 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pivot_table</h1><div class="aliases">pd.pivot_table · 数据透视表</div><p class="lede">按行、列维度分组聚合并生成交叉表的 Pandas 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>pivot_table 用 index 指定行、columns 指定列、values 指定值、aggfunc 指定聚合方式，等价于 Excel 数据透视表。计算同比时用它把年份展开成列，再在列间做加减除。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按店号和年份构造交叉表</li><li>多维度汇总与透视分析</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>index 行、columns 列、values 值、aggfunc 聚合</li><li>默认聚合可能是平均值，须显式 aggfunc=&quot;sum&quot;</li><li>columns 传变量时不要加引号，加引号会当字符串</li><li>结果可直接做列间运算算同比</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>columns 传变量名与传字符串含义不同，是最常见的报错来源。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%90%8C%E6%AF%94.html">同比</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>pivot_table 不写 aggfunc 可能出什么问题？</summary><div class="quiz-a">默认可能按平均值聚合，得到的不是求和结果，同比就算错了。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pivot_table</h1><div class="aliases">pd.pivot_table · 数据透视表</div><p class="lede">按行、列维度分组聚合并生成交叉表的 Pandas 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.pivot_table(data, values=None, index=None, columns=None, aggfunc=&#x27;mean&#x27;, fill_value=None, margins=False, dropna=True)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>data</code>：待透视的 DataFrame</li><li><code>values</code>：要聚合的数值列，建议显式指定，避免输出过多列</li><li><code>index</code>：行分组列名，可传列表形成多层行索引</li><li><code>columns</code>：列分组列名，展开为结果表的列；传变量时不要加引号</li><li><code>aggfunc</code>：聚合函数，默认是 <code>&#x27;mean&#x27;</code>，求和务必写 <code>&#x27;sum&#x27;</code></li><li><code>fill_value</code>：替换结果中的缺失值，常写 <code>0</code></li><li><code>margins</code>：是否追加行列小计/总计，小计方式跟随 <code>aggfunc</code></li><li><code>dropna</code>：默认 <code>True</code>，为 <code>True</code> 时丢弃全空列</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+
+df = pd.DataFrame({
+    &quot;店号&quot;: [&quot;A&quot;, &quot;A&quot;, &quot;B&quot;, &quot;B&quot;],
+    &quot;年份&quot;: [2019, 2020, 2019, 2020],
+    &quot;销量&quot;: [10, 15, 20, 30],
+})
+
+pt = pd.pivot_table(df, values=&quot;销量&quot;, index=&quot;店号&quot;,
+                    columns=&quot;年份&quot;, aggfunc=&quot;sum&quot;, fill_value=0)
+print(pt)
+# 年份   2019  2020
+# 店号
+# A        10    15
+# B        20    30
+
+pt[&quot;同比&quot;] = pt[2020] / pt[2019] - 1
+print(pt[&quot;同比&quot;])
+# 店号
+# A    0.5
+# B    0.5
+# Name: 同比, dtype: float64</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>pivot_table 用 index 指定行、columns 指定列、values 指定值、aggfunc 指定聚合方式，等价于 Excel 数据透视表。计算同比时用它把年份展开成列，再在列间做加减除。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按店号和年份构造交叉表</li><li>多维度汇总与透视分析</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>index 行、columns 列、values 值、aggfunc 聚合</li><li>默认聚合可能是平均值，须显式 aggfunc=&quot;sum&quot;</li><li>columns 传变量时不要加引号，加引号会当字符串</li><li>结果可直接做列间运算算同比</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>columns 传变量名与传字符串含义不同，是最常见的报错来源。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%90%8C%E6%AF%94.html">同比</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>pivot_table 不写 aggfunc 可能出什么问题？</summary><div class="quiz-a">默认可能按平均值聚合，得到的不是求和结果，同比就算错了。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>pivot_table 是 Pandas 实现数据透视表的核心方法，思路与 Excel 数据透视表一致。它通过 index 指定行分组、columns 指定列分组、values 指定聚合列、aggfunc 指定聚合方式，把明细数据压缩成多维汇总表。多条件分组统计时应优先使用它。</p>
 <p>- 四个核心参数：index、values、columns、aggfunc</p>
 <p>- index 可传列名列表，形成多层行索引</p>
 <p>- values 应显式指定，避免几十列全部显示</p>
 <details class="quiz"><summary>想让透视表行方向先按部门再按销售人员分组，index 应该怎么写？</summary><div class="quiz-a">index=[&#x27;部门&#x27;, &#x27;销售人员&#x27;]，传列名列表形成多层行索引。</div></details>
-<details class="quiz"><summary>pivot_table 的 margins=True 得到的小计一定是求和吗？</summary><div class="quiz-a">不一定，小计方式跟随 aggfunc，用 mean 时小计就是平均。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/aggfunc%20%E5%8F%82%E6%95%B0.html">aggfunc 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/crosstab.html">crosstab</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/dropna%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%80%8F%E8%A7%86%E8%A1%A8%EF%BC%89.html">dropna 参数（透视表）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/dt%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">dt 访问器</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/fill_value%20%E5%8F%82%E6%95%B0.html">fill_value 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/get_dummies.html">get_dummies</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/margins%20%E5%8F%82%E6%95%B0.html">margins 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%90%8C%E6%AF%94.html">同比</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pipe.html"><small>上一张</small>pipe</a><a class="next" href="../c/query%20%E6%96%B9%E6%B3%95.html"><small>下一张</small>query 方法</a></nav></article>
+<details class="quiz"><summary>pivot_table 的 margins=True 得到的小计一定是求和吗？</summary><div class="quiz-a">不一定，小计方式跟随 aggfunc，用 mean 时小计就是平均。</div></details>
+<p>它把分组、聚合和行列重排合成一步，适合多条件汇总。核心是 index 决定行分组，columns 决定列分组，values 选数值列，aggfunc 定聚合方式。相比 groupby，结果更接近 Excel 数据透视表。</p>
+<p>- 四个核心参数：index、values、columns、aggfunc。</p>
+<p>- 补充参数：fill_value 填缺失、dropna 删全空列、margins 加小计。</p>
+<p>- values 选显示数值列；columns 在列方向加分组，二者易混。</p>
+<details class="quiz"><summary>pivot_table 中 values 和 columns 分别控制什么？</summary><div class="quiz-a">values 选结果中显示的数值列；columns 在列方向增加分组字段。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=43" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p43 S02E28.数据透视表</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/aggfunc%20%E5%8F%82%E6%95%B0.html">aggfunc 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/crosstab.html">crosstab</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/dropna%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%80%8F%E8%A7%86%E8%A1%A8%EF%BC%89.html">dropna 参数（透视表）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/dt%20%E8%AE%BF%E9%97%AE%E5%99%A8.html">dt 访问器</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/fill_value%20%E5%8F%82%E6%95%B0.html">fill_value 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/get_dummies.html">get_dummies</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/groupby.html">groupby</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/margins%20%E5%8F%82%E6%95%B0.html">margins 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%90%8C%E6%AF%94.html">同比</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pipe.html"><small>上一张</small>pipe</a><a class="next" href="../c/query%20%E6%96%B9%E6%B3%95.html"><small>下一张</small>query 方法</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 39
 stage: "S02E24 · 字符串操作（下）"
-order: 39
 ---
 
 # find rfind
@@ -16,6 +15,26 @@ order: 39
 > 别名：str.find、str.rfind、查找字符位置
 
 **返回子串首次出现位置的字符串方法，找不到返回 -1。**
+
+## 用法
+
+**语法**：`Series.str.find(sub, start=0, end=None)` 和 `Series.str.rfind(sub, start=0, end=None)`
+**参数**：
+- `sub`：要查找的子串
+- `start`：开始查找的位置，默认 0（含该位置）
+- `end`：结束查找的位置，默认 None 表示一直查到末尾（不含该位置）
+- 返回：整数 Series，是子串首次出现的索引；找不到时返回 `-1`，不会报错
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['2020-05-01', '2021-12', 'no-dash'])
+print(s.str.find('-').tolist())      # [4, 4, 2]  从左往右，首次出现
+print(s.str.rfind('-').tolist())     # [7, 4, 2]  从右往左，最后一次出现
+print(s.str.find('-', 5).tolist())   # [7, -1, -1] 从位置 5 起找，找不到返回 -1
+print('2020-05-01'.find('-', 5))     # 7  纯字符串用法与 str 方法一致
+```
 
 ## 解释
 

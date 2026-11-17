@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 35
 stage: "S02E20 · 多层索引与多层索引计算"
-order: 35
 ---
 
 # is_lexsorted
@@ -16,6 +15,27 @@ order: 35
 > 别名：index.is_lexsorted、索引有序性检查
 
 **检查多层索引是否按字典序排好序的方法。**
+
+
+## 用法
+**语法**：`df.index.is_lexsorted()`（Index 对象的方法，返回布尔值）
+
+**参数**：无。对当前索引检查是否已按字典序（升序）排列。
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series([10, 20, 30], index=["a", "b", "c"])
+# 旧版用 index.is_lexsorted()，pandas 2.1 起已移除
+print(s.index.is_monotonic_increasing)    # True，索引已按字典序排列
+
+s2 = pd.Series([1, 2, 3], index=["c", "a", "b"])
+print(s2.index.is_monotonic_increasing)   # False，索引乱序
+
+s2 = s2.sort_index()             # 先排序再查询更稳妥
+print(s2.index.is_monotonic_increasing)   # True
+```
 
 ## 解释
 

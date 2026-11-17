@@ -72,6 +72,15 @@ np.unique 对数组去重，输出每个值只出现一次的新数组。默认�
 - 类似 Power BI 的去重建新表
 np.unique 的结果默认是原始出现顺序吗？::不是，默认会排序。
 
+unique 最初在 NumPy 中学到，用在 Pandas 的某一列上时返回该列的唯一值列表，顺序通常是出现顺序（np.unique 会排序）。它只输出值本身，不携带其他列的信息，因此不适合需要保留整行明细的场景。
+
+- 用法：tt['姓名'].unique()，返回唯一值列表
+- 只给值不给行，其他列信息会丢失
+- 需要保留分数等字段时应改用 drop_duplicates
+想看到每个姓名及其分数、只要每人一条记录，用 unique 可以吗？::不行，unique 只返回唯一值列表，丢掉分数等字段，应使用 drop_duplicates(subset='姓名')
+unique 和 value_counts 的输出差别是什么？::unique 输出去重后的取值列表；value_counts 输出每个取值及其出现次数
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p33 S02E18.删除重复和提取重复](https://www.bilibili.com/video/BV1ji4y157uB?p=33) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

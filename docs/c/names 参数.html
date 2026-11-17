@@ -24,11 +24,17 @@
 <p>- 传入列表，顺序对应数据列顺序</p>
 <p>- 列表长度应与实际列数一致</p>
 <p>- 与 header=None 组合是处理无表头文件的标准写法</p>
-<details class="quiz"><summary>names 列表长度和实际列数不一致会怎样？</summary><div class="quiz-a">列名与数据对不齐，通常报错或产生错位的列名，必须先确认列数。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Excel%20%E6%97%A0%E8%A1%A8%E5%A4%B4%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86.html">Excel 无表头文件处理</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html"><small>上一张</small>method 参数（fillna）</a><a class="next" href="../c/notna.html"><small>下一张</small>notna</a></nav></article>
+<details class="quiz"><summary>names 列表长度和实际列数不一致会怎样？</summary><div class="quiz-a">列名与数据对不齐，通常报错或产生错位的列名，必须先确认列数。</div></details>
+<p>当原文件没有表头或表头不规范时，用 names=[...] 直接给出规范列名，一步得到可用 DataFrame，不必读入后再改 columns。</p>
+<p>- 传入列表，长度要与数据列数一致</p>
+<p>- 与 header=None 是标准搭配：先声明无表头，再给新列名</p>
+<p>- 会覆盖文件原有的列名</p>
+<details class="quiz"><summary>names 与 header 各自管什么？</summary><div class="quiz-a">header 指定哪一行当表头（或声明没有表头），names 指定最终列名叫什么。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=19" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p19 S02E04.读取与修改Excel文件</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Excel%20%E6%97%A0%E8%A1%A8%E5%A4%B4%E6%96%87%E4%BB%B6%E5%A4%84%E7%90%86.html">Excel 无表头文件处理</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/na%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>na 参数</a><a class="next" href="../c/notna.html"><small>下一张</small>notna</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

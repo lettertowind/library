@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 38
 stage: "S02E23 · 字符串操作（上）"
-order: 38
 ---
 
 # str.endswith
@@ -16,6 +15,31 @@ order: 38
 > 别名：endswith、结尾判断
 
 **判断字符串是否以指定内容结尾的方法。**
+
+## 用法
+**语法**：`Series.str.endswith(pat, na=None)`
+
+**参数**：
+- `pat`：要判断的后缀，str 或 tuple（可一次传入多个后缀）
+- `na`：遇到缺失值（NaN）时返回的值，默认 None，此时缺失位置返回 NaN 而非 False
+
+**示例**：
+```python
+import pandas as pd
+
+s = pd.Series(['data.csv', 'report.xlsx', 'notes.txt', None])
+print(s.str.endswith('.csv').tolist())
+# [True, False, False, False]
+
+print(s.str.endswith(('.csv', '.txt'), na=False).tolist())
+# [True, False, True, False]
+
+df = pd.DataFrame({'file': ['a.csv', 'b.xlsx', 'c.csv']})
+print(df[df['file'].str.endswith('.csv')])
+#    file
+# 0  a.csv
+# 2  c.csv
+```
 
 ## 解释
 

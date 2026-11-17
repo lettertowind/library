@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="建立 MySQL 连接时指定字符编码的参数，取值写 utf8。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>charset 参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>数据库</span></nav><article class="card"><h1>charset 参数</h1><div class="aliases">charset · charset=utf8 · MySQL 编码参数</div><p class="lede">建立 MySQL 连接时指定字符编码的参数，取值写 utf8。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>它决定 Python 与 MySQL 之间传输文本使用的字符集，写错会出现中文乱码或写入失败。最容易踩的坑是照搬 Python 习惯写成 utf-8——在 MySQL 语境里要写 utf8。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>pymysql.connect() 中设置客户端字符集</li><li>读取含中文的表时防止乱码</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>MySQL 中写 charset=&#x27;utf8&#x27;，不要写 &#x27;utf-8&#x27;</li><li>与 pandas 读文件的 encoding=&#x27;utf-8&#x27; 是两套写法，别混</li><li>通常与数据库建库时的字符集保持一致</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>charset 属于数据库连接参数，只作用于 pymysql.connect()；pandas 读写本地文件的编码由 encoding 参数控制。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pymysql.connect%28%29.html">pymysql.connect()</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/encoding%20%E5%8F%82%E6%95%B0.html">encoding 参数</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 pymysql.connect() 里写 charset=&#x27;utf-8&#x27; 可能出问题？</summary><div class="quiz-a">MySQL 的字符集名是 utf8 而非 utf-8，写错会导致连接报错或中文乱码。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=18" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p18 S02E03.读取Mysql文件</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/SQL%20%E6%9F%A5%E8%AF%A2%E8%AF%AD%E5%8F%A5.html"><small>上一张</small>SQL 查询语句</a><a class="next" href="../c/%E5%85%A8%E5%A4%96%E8%BF%9E%E6%8E%A5.html"><small>下一张</small>全外连接</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 22
 stage: "S02E07 · 连接查询之Merge"
-order: 22
 ---
 
 # left_on right_on
@@ -44,6 +43,17 @@ left_on/right_on 与 on 互斥，不要同时使用。
 ## 自测
 
 左表键列叫「姓名」、右表叫「名字」，怎么连接？::pd.merge(a, b, left_on='姓名', right_on='名字')。
+
+
+### 补充 · 2026-11-17
+
+当两表的键列名不一致（如左表「姓名」、右表「name」）时，on 无法表达，需要用 left_on 和 right_on 分别写明。这也是 left_on 搭配 right_index 做索引连接时的固定写法。
+
+- left_on 指定左表字段，right_on 指定右表字段，可同名可不同名
+- 键名相同时直接用 on 更简洁
+- 与 right_index=True 配合时只需写 left_on
+左表字段叫「姓名」、右表叫「name」，该怎么连？::用 left_on='姓名', right_on='name'，然后用 how 指定连接方式。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p22 S02E07.连接查询之Merge](https://www.bilibili.com/video/BV1ji4y157uB?p=22) · 2026-11-17
 
 ## 出处
 

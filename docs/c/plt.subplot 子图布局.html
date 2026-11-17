@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用行列编号把同一画布切分为多个区域，并激活其中一个用于绘图。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.subplot 子图布局 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.subplot 子图布局</h1><div class="aliases">subplot · 221 · 2×2 子图 · 子图网格</div><p class="lede">用行列编号把同一画布切分为多个区域，并激活其中一个用于绘图。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>plt.subplot(221) 一次性表达了「2 行 2 列、选第 1 个」两件事。调用后该区域成为当前 Axes，后续所有 plot、title、xlabel 都只作用在它上面，直到再次调用 subplot 切换到别的区域。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>一张图上并排对比多个图表</li><li>分面展示不同类别的数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>三位数字依次表示行数、列数、子图序号</li><li>每次调用都会激活对应子图，绘图函数只落在激活的子图上</li><li>切换子图后需重新设置标题和轴标签</li><li>子图多时标题与标签容易重叠，配合 tight_layout 使用</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>数字写法的序号不能超过行×列；面向对象的 fig, axes = plt.subplots() 是另一种更灵活的等价写法。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.title.html">plt.title</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.tight_layout.html">plt.tight_layout</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>已经调用 plt.subplot(221) 画完图，再想往第 4 个区域画东西，先要做什么？</summary><div class="quiz-a">先调用 plt.subplot(224) 激活第 4 个子图，再执行绘图和标签设置。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>plt.subplot(221) 表示把画布分成 2 行 2 列并选中第 1 个位置。每次调用都会切换当前激活的子图，因此后面紧跟的 plt.bar、plt.pie、plt.plot 才会画到对应位置。它与面向对象的 fig.add_subplot(221) 效果一致。</p>
+<p>- 三位数编号 221 = 2 行 2 列第 1 个</p>
+<p>- 与 fig.add_subplot(221) 效果相同，写法不同</p>
+<p>- 可只用部分位置，如跳过 222 则第二格留白</p>
+<details class="quiz"><summary>先 plt.subplot(223) 再 plt.plot(...)，折线画在哪一格？</summary><div class="quiz-a">2 行 2 列布局中的第 3 格（左下）</div></details>
+<details class="quiz"><summary>如果想在 2×2 布局里只画第 1、3、4 格，需要特殊处理吗？</summary><div class="quiz-a">不需要，正常调用 221、223、224 即可，222 位置自然留空</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=59" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p59 S03E11.创建多个子图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=72" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p72 S03E23.标题及轴标签</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/fig.add_subplot%EF%BC%88%E5%9C%A8%E7%94%BB%E5%B8%83%E4%B8%8A%E6%B7%BB%E5%8A%A0%E5%AD%90%E5%9B%BE%EF%BC%89.html">fig.add_subplot（在画布上添加子图）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plt.gca%20%E4%B8%8E%20plt.gcf.html">plt.gca 与 plt.gcf</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.subplots_adjust.html">plt.subplots_adjust</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.tight_layout.html">plt.tight_layout</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.title.html">plt.title</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.show.html"><small>上一张</small>plt.show</a><a class="next" href="../c/plt.subplots.html"><small>下一张</small>plt.subplots</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

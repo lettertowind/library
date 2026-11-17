@@ -39,11 +39,23 @@ print(arr2d)                # [[1 0] [7 2]]</code></pre></section><section class
 <p>- 语法为 df.loc[条件, 列标签] = 值</p>
 <p>- 只修改满足条件的行，其余行不变</p>
 <p>- 目标列不存在时自动新建</p>
-<details class="quiz"><summary>如何用一行代码把语文&gt;=60 的行的&#x27;及格&#x27;列设为&#x27;是&#x27;？</summary><div class="quiz-a">df.loc[df[&#x27;语文&#x27;]&gt;=60, &#x27;及格&#x27;] = &#x27;是&#x27;。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.where.html">np.where</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E4%BA%8C%E6%AC%A1%E5%88%87%E7%89%87.html">二次切片</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%9B%B6%E4%B8%80%E5%8C%96.html">零一化</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B0%E7%BB%84%E4%B8%8E%E7%9F%A9%E9%98%B5%E7%9A%84%E5%8C%BA%E5%88%AB.html"><small>上一张</small>数组与矩阵的区别</a><a class="next" href="../c/%E6%B2%BF%E8%BD%B4%E5%88%87%E7%89%87.html"><small>下一张</small>沿轴切片</a></nav></article>
+<details class="quiz"><summary>如何用一行代码把语文&gt;=60 的行的&#x27;及格&#x27;列设为&#x27;是&#x27;？</summary><div class="quiz-a">df.loc[df[&#x27;语文&#x27;]&gt;=60, &#x27;及格&#x27;] = &#x27;是&#x27;。</div></details>
+<p>典型形态是 df.loc[条件, 列名] = 值：条件负责选行，列名指定目标列。若该列名原本不存在，Pandas 会自动创建这一列，因此一条赋值语句就完成了「新建列 + 分类填充」，比逐行 if 循环快得多。</p>
+<p>- 写法为 df.loc[行条件, &#x27;列名&#x27;] = 值，不必写 if</p>
+<p>- 目标列不存在时会自动新建列</p>
+<p>- 多个分支需要多条语句，每条对应一个条件</p>
+<details class="quiz"><summary>执行 数据.loc[数据[&#x27;性别&#x27;] == &#x27;男&#x27;, &#x27;称呼&#x27;] = &#x27;先生&#x27; 时，原表并没有「称呼」列，会发生什么？</summary><div class="quiz-a">Pandas 会新建「称呼」列，只把性别为男的行填成「先生」，其余行为 NaN，再由第二条语句补成「女士」。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=28" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p28 S02E13.数据查询</a> · 2026-11-17</p>
+<p>布尔索引不只用于取值，还能定位要写入的位置。arr[arr &gt; 5] = 1 表示仅对大于 5 的元素写入 1，其余元素保持不变。配合增强赋值 += 还能做「满足条件的元素各自加上某个值」的条件自增量。</p>
+<p>- 条件写在中括号里，等号右侧的值只写入 True 位置</p>
+<p>- arr[arr &gt; 5] += 520 等价于 arr[arr &gt; 5] = arr[arr &gt; 5] + 520</p>
+<p>- += 是增强赋值，a += b 即 a = a + b</p>
+<details class="quiz"><summary>arr = np.arange(10)，执行 arr[arr % 2 == 1] *= 10 后，数组变成什么？</summary><div class="quiz-a">奇数位元素被乘以 10，偶数位不变，结果为 [0, 10, 2, 30, 4, 50, 6, 70, 8, 90]。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=8" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p08 S01E07.布尔索引</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/np.where.html">np.where</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E4%BA%8C%E6%AC%A1%E5%88%87%E7%89%87.html">二次切片</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%9B%B6%E4%B8%80%E5%8C%96.html">零一化</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E9%80%BB%E8%BE%91%E4%B8%8E%E8%BF%90%E7%AE%97%E7%AC%A6%20%26%EF%BC%88%E5%A4%9A%E6%9D%A1%E4%BB%B6%E7%BB%84%E5%90%88%EF%BC%89.html">逻辑与运算符 &amp;（多条件组合）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%95%B4%E8%A1%8C%E6%95%B4%E5%88%97%E9%80%89%E5%8F%96.html"><small>上一张</small>整行整列选取</a><a class="next" href="../c/%E6%B2%BF%E8%BD%B4%E5%88%87%E7%89%87.html"><small>下一张</small>沿轴切片</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -79,6 +79,18 @@ ndarray.sort(axis=-1, kind=None, order=None) 是原地排序方法，调用后�
 a.sort() 之后原数组 a 会变吗？::会，sort 是原地排序。
 二维数组 axis=0 排序是按行还是按列？::按列，即每一列内部各自排序。
 
+
+### 补充 · 2026-11-17
+
+调用后原数组内部顺序被改变，无返回值，因此不要写 a = a.sort()。一维默认升序；二维要靠 axis 指定按行还是按列排序。
+
+- 原地修改，调用后打印原数组即可看到结果
+- 一维数组默认从小到大升序
+- axis=0 每列内部排序，axis=1 每行内部排序
+执行 a.sort() 后，a 本身变了吗？应该怎么接住结果？::变了，是原地排序；不需要接返回值，直接打印 a 即可，写 a = a.sort() 会得到 None。
+对二维数组按每一行内部排序，axis 应设为多少？::axis=1，默认的 axis=-1 在二维下同样等价于 1。
+- 出处：[孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p14 S01E13.条件计算，排序，深潜拷贝【本季完】](https://www.bilibili.com/video/BV1ji4y157uB?p=14) · 2026-11-17
+
 ## 出处
 
 - 孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17

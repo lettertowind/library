@@ -25,11 +25,18 @@
 <p>- on=&#x27;姓名&#x27; 为单键连接</p>
 <p>- on=[&#x27;姓名&#x27;,&#x27;班级&#x27;] 为多键连接，需全部键相等</p>
 <p>- 同名列存在时 Pandas 可自动识别，但显式写更清楚</p>
-<details class="quiz"><summary>两表都有姓名和班级列，只想「姓名+班级」同时相同才匹配，怎么写？</summary><div class="quiz-a">pd.merge(a, b, on=[&#x27;姓名&#x27;,&#x27;班级&#x27;])。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html">VLOOKUP 式匹配</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0.html">how 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/left_on%20right_on.html">left_on right_on</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/suffixes%20%E5%8F%82%E6%95%B0.html">suffixes 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/nrows%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>nrows 参数</a><a class="next" href="../c/pd.ExcelWriter.html"><small>下一张</small>pd.ExcelWriter</a></nav></article>
+<details class="quiz"><summary>两表都有姓名和班级列，只想「姓名+班级」同时相同才匹配，怎么写？</summary><div class="quiz-a">pd.merge(a, b, on=[&#x27;姓名&#x27;,&#x27;班级&#x27;])。</div></details>
+<p>在 merge 中，on 直接写出左右表共有的列名，可传列表做多键连接；列名必须两边都存在，否则报错。在 join 中，on 的含义不同：它指定左表的某一列，去匹配右表的索引。</p>
+<p>- merge 的 on 必须是两表都存在的同名列</p>
+<p>- 多键连接写成 on=[&#x27;k1&#x27;,&#x27;k2&#x27;]，只有两键同时相等才算匹配</p>
+<p>- 列名不一致时不能靠 on 解决，需先 rename 或改用 left_on/right_on</p>
+<details class="quiz"><summary>左表列叫 user_id、右表列叫 id，用 on=&#x27;user_id&#x27; 能连上吗？</summary><div class="quiz-a">不能，会报错说右表没有该列；应改用 left_on=&#x27;user_id&#x27;, right_on=&#x27;id&#x27;。</div></details>
+<details class="quiz"><summary>on=[&#x27;k1&#x27;,&#x27;k2&#x27;] 时，只要 k1 相等就算匹配吗？</summary><div class="quiz-a">不是，必须 k1 和 k2 同时相等才算匹配成功。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=23" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p23 S02E08.连接查询之join与Merge总结</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/VLOOKUP%20%E5%BC%8F%E5%8C%B9%E9%85%8D.html">VLOOKUP 式匹配</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0.html">how 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/left_on%20right_on.html">left_on right_on</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/suffixes%20%E5%8F%82%E6%95%B0.html">suffixes 参数</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/object%20%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B.html"><small>上一张</small>object 数据类型</a><a class="next" href="../c/pd.ExcelWriter.html"><small>下一张</small>pd.ExcelWriter</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 14:04</span>
+  <span>更新于 2026-11-17 19:11</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

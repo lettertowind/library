@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="为当前子图（Axes）顶部添加标题文字的 Matplotlib 函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.title · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.title</h1><div class="aliases">title · plt.title() · 图表标题 · 图标题</div><p class="lede">为当前子图（Axes）顶部添加标题文字的 Matplotlib 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>plt.title(&#x27;文本&#x27;) 会在当前激活的子图上方居中绘制标题。它和轴标签一样，支持 fontsize、fontweight、color 等文字样式参数，写法与 plt.text 家族一致。多子图场景下，标题只落在最后被 subplot 激活的那个子图上。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给单张图或某个子图加说明性标题</li><li>通过样式参数突出主标题（加大、加粗、变色）</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>plt.title(&#x27;文本&#x27;) 设置的是当前 Axes 的标题，不是整张画布的标题</li><li>fontsize 控制字号，fontweight=&#x27;bold&#x27; 加粗，color 控制颜色</li><li>参数名拼错（如 fontsize 少字母）通常不报错，只是样式不生效</li><li>创建多个子图后，标题只加到最后一次 subplot 选中的子图上</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>口语常说“给画布加标题”，但从对象模型看作用于当前 Axes；整图级别的标题要用 suptitle。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.subplot%20%E5%AD%90%E5%9B%BE%E5%B8%83%E5%B1%80.html">plt.subplot 子图布局</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/plt.xlabel%20%E4%B8%8E%20plt.ylabel.html">plt.xlabel 与 plt.ylabel</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>画了 2×2 四个子图，最后调用了一次 plt.subplot(223)，此时执行 plt.title(&#x27;A&#x27;) 会显示在哪里？</summary><div class="quiz-a">只显示在第 3 个子图（左下）上方，因为 title 作用于当前激活的 Axes。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>plt.title(&#x27;三年二班学生成绩&#x27;) 写在绘图之后，作为整张图的总标题，区别于描述单轴的 xlabel/ylabel。常用修饰参数是 fontsize 控制字号、fontweight=&#x27;bold&#x27; 加粗，让标题在视觉层级上高于轴标签。</p>
+<p>- 第一参数是标题文本，位置参数直接传即可</p>
+<p>- fontsize=16 调字号，fontweight=&#x27;bold&#x27; 加粗</p>
+<p>- 与 xlabel/ylabel 分工不同：一个统管全图，一个描述单轴</p>
+<details class="quiz"><summary>想让标题比轴标签更醒目，除了调大 fontsize 还能做什么？</summary><div class="quiz-a">设 fontweight=&#x27;bold&#x27; 加粗，形成字号与粗细双重视觉层级。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=48" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p48 S03E01.柱状图</a> · 2026-11-17</p>
+<p>plt.title(&#x27;销售情况&#x27;) 添加标题，若需改字号、颜色、粗细，把样式写成字典传给 fontdict。fontdict 只管标题文字，方块内部的文字样式由 squarify.plot 的 text_kwargs 控制，两者格式相似但作用对象不同。</p>
+<p>- fontdict={&#x27;fontsize&#x27;:20,&#x27;color&#x27;:&#x27;black&#x27;} 用字典设置标题样式</p>
+<p>- fontdict 中的键与 text_kwargs 类似：fontsize、color、fontweight 等</p>
+<p>- 标题颜色要根据背景选，白底上设白色标题会看不见</p>
+<details class="quiz"><summary>想把树状图标题改成 20 号字，应该用哪个参数？</summary><div class="quiz-a">plt.title(&#x27;销售情况&#x27;, fontdict={&#x27;fontsize&#x27;: 20})，标题样式走 fontdict，而不是 text_kwargs。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=78" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p78 S03E29.树状图</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=72" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p72 S03E23.标题及轴标签</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/plt.subplot%20%E5%AD%90%E5%9B%BE%E5%B8%83%E5%B1%80.html">plt.subplot 子图布局</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.xlabel%20%E4%B8%8E%20plt.ylabel.html">plt.xlabel 与 plt.ylabel</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/squarify.plot.html">squarify.plot</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.tight_layout.html"><small>上一张</small>plt.tight_layout</a><a class="next" href="../c/plt.title%EF%BC%88%E5%9B%BE%E8%A1%A8%E6%A0%87%E9%A2%98%EF%BC%89.html"><small>下一张</small>plt.title（图表标题）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 &#x27;ro-&#x27; 这类短字符串同时指定颜色、标记点和线型的简写写法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plot 格式字符串 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plot 格式字符串</h1><div class="aliases">fmt · ro- · ro · o · 颜色标记线型简写</div><p class="lede">用 &#x27;ro-&#x27; 这类短字符串同时指定颜色、标记点和线型的简写写法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>plt.plot(x, y, &#x27;ro-&#x27;) 中的每个字符各管一件事：r 是红色，o 是圆点标记，- 是实线连接。它等价于分别写 color=&#x27;red&#x27;、marker=&#x27;o&#x27;、linestyle=&#x27;-&#x27;，但更紧凑，是快速出图时最常用的写法。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>快速指定点的颜色和标记形状</li><li>把散点和连线一次性画出来</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>颜色字符如 r/g/b，标记字符如 o/s/^，线型字符如 -、--、:</li><li>只写 &#x27;o&#x27; 时不画连线，相当于只画散点</li><li>&#x27;ro&#x27; 与 &#x27;or&#x27; 解析结果相同，惯例顺序是颜色→标记→线型</li><li>线宽、标记大小等细节仍需 linewidth、markersize 单独设置</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>格式字符串只能表达颜色/标记/线型三类，与关键字参数同时出现时关键字参数优先。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/linestyle%20%E7%BA%BF%E5%9E%8B%E5%8F%82%E6%95%B0.html">linestyle 线型参数</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/linewidth%20%E7%BA%BF%E5%AE%BD%E5%8F%82%E6%95%B0.html">linewidth 线宽参数</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>plt.plot(x, y, &#x27;ro-&#x27;) 和 plt.plot(x, y, &#x27;o&#x27;) 画出来的图有什么区别？</summary><div class="quiz-a">前者是红色圆点并用线连起来，后者只画点不连线。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=72" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p72 S03E23.标题及轴标签</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E6%A0%87%E8%AE%B0%E7%82%B9%EF%BC%88marker%EF%BC%89.html">标记点（marker）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/matplotlib.ticker%20%E6%A8%A1%E5%9D%97.html"><small>上一张</small>matplotlib.ticker 模块</a><a class="next" href="../c/plt.annotate%20%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A.html"><small>下一张</small>plt.annotate 文本注释</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

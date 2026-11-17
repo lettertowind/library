@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="在指定坐标处直接绘制一段文字，最常用于标出数据点的数值。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>plt.text 数据标签 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Matplotlib.html">Matplotlib</a></nav><article class="card"><h1>plt.text 数据标签</h1><div class="aliases">text · plt.text() · 数据标签</div><p class="lede">在指定坐标处直接绘制一段文字，最常用于标出数据点的数值。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>text 只负责“在某个位置写字”，不做箭头和指向关系，因此是加数据标签最轻量的方式。配合 bbox 可以升级为带底色的醒目标签，靠 size 参数控制字号。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给柱子或数据点标注具体数值</li><li>在图上补充说明性文字</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数顺序为 x, y, 文本内容</li><li>size 控制字号，放大后标签更清楚</li><li>传入 bbox 字典即可获得带边框背景的标签</li><li>与 annotate 的区别：text 无箭头指向能力</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>需要说明“文字指代哪个对象”时不要用 text，改用 annotate 加箭头，否则读者无法确定文字归属。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/plt.annotate%20%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A.html">plt.annotate 文本注释</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/bbox%20%E6%96%87%E6%9C%AC%E8%BE%B9%E6%A1%86.html">bbox 文本边框</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>要标出每个点的数值，用 plt.text 还是 plt.annotate 更合适？</summary><div class="quiz-a">plt.text。数据标签只需在点上写字，不需要箭头指向关系。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>plt.text(x, y, s) 在坐标 (x, y) 处绘制文字 s，常配合 zip 遍历为每个数据点写数值。相比只看折线高度，标签让读者直接读到精确值。文字的位置微调、对齐、字号和旋转都由参数控制。</p>
+<p>- 第三个参数是文字内容，数值需用 str(y) 转成字符串</p>
+<p>- ha/va 控制水平/垂直对齐，常用 ha=&#x27;center&#x27; 让标签居中于数据点</p>
+<p>- fontsize 设置字号，rotation 设置旋转角度（0 表示不旋转）</p>
+<details class="quiz"><summary>标签为什么老挡住数据点，怎么解决？</summary><div class="quiz-a">因为直接写在与点相同坐标上，把 y 加一个合适的偏移量上移即可，偏移量需按数据量级试出。</div></details>
+<details class="quiz"><summary>多系列打标签时，为什么用 zip 而不是手写每个坐标？</summary><div class="quiz-a">zip 把时间列与当前系列列自动配对，配合 for 循环即可复用同一套标签逻辑，避免重复代码。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=56" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p56 S03E08.折线图</a> · 2026-11-17</p>
+<p>给条形或柱形标注具体数值。s 是显示内容，ha/va 控制文字相对坐标点的对齐方式，fontsize 与 color 控制外观。图形方向一变，坐标含义随之改变，标签极易接反。</p>
+<p>- 堆积条形图中 x 用该层数值或累计和，y 用类别（姓名），与柱形图相反</p>
+<p>- ha=&#x27;center&#x27;、va=&#x27;center&#x27; 让文字居中压在条带里</p>
+<p>- fontsize 调字号，color=&#x27;white&#x27; 让文字在深色条带上可读</p>
+<details class="quiz"><summary>堆积条形图里给数学层加标签，x 应取什么？</summary><div class="quiz-a">data.语文 + data.数学（该层累计末端）再做偏移微调。</div></details>
+<details class="quiz"><summary>照搬柱形图的 x=姓名、y=语文 会出什么问题？</summary><div class="quiz-a">坐标接反，文字跑到图外或看不见，因为条形图纵轴才是类别。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=53" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p53 S03E06.叠加条形图</a> · 2026-11-17</p>
+<p>柱形图默认只给高度不给数字，读者只能估读。plt.text(x, y, s, ...) 把数值文本钉到坐标位置上，配合 for 循环可批量标注。x、y 决定位置，s 是内容，通常要把数值 str() 一下。</p>
+<p>- 三个必需参数：x 坐标、y 坐标、要显示的文字（数值需先 str() 转换）</p>
+<p>- ha=&#x27;center&#x27; 让文字水平居中对齐到 x 坐标，字号用 fontsize 控制</p>
+<p>- 常与 zip 配合：for x1, y1 in zip(x, 数值序列) 批量标注</p>
+<details class="quiz"><summary>plt.text 的 y 参数直接传柱子数值会有什么问题？</summary><div class="quiz-a">文字会贴在柱子顶端甚至落进上一层区域，需向下减偏移量才落进柱子内部</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=52" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p52 S03E05.叠加柱状图</a> · 2026-11-17</p>
+<p>plt.text(x, y, s) 在数据坐标 (x, y) 处渲染一段字符串。柱形图、折线图上的「柱子顶上那个数字」就是用它逐点写出来的。它不影响数据本身，只是在图上叠一层文字，因此位置全靠自己算。</p>
+<p>- 三个必填参数依次是 x 坐标、y 坐标、要显示的文字</p>
+<p>- 每根柱子都要调一次 plt.text，所以必须写在 for 循环里</p>
+<p>- 数值需用 str() 转成字符串才能作为文字参数传入</p>
+<details class="quiz"><summary>为什么添加柱形图标签要用 for 循环，而不能一次调用搞定？</summary><div class="quiz-a">plt.text 一次只画一段文字，每根柱子位置不同，必须逐根柱子调用一次</div></details>
+<details class="quiz"><summary>柱子高度 y1=8，想让标签浮在柱顶上方 1 个单位，第二个参数写什么？</summary><div class="quiz-a">y1 + 1</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=51" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p51 S03E04.添加数据标签</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=76" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p76 S03E27.文本注释</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/bbox%20%E6%96%87%E6%9C%AC%E8%BE%B9%E6%A1%86.html">bbox 文本边框</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/ha%20%E4%B8%8E%20va%20%E5%AF%B9%E9%BD%90%E5%8F%82%E6%95%B0.html">ha 与 va 对齐参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/left%20%E5%8F%82%E6%95%B0.html">left 参数</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/plt.annotate%20%E6%96%87%E6%9C%AC%E6%B3%A8%E9%87%8A.html">plt.annotate 文本注释</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/plt.barh.html">plt.barh</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.plot.html">plt.plot</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/plt.ylim%EF%BC%88y%20%E8%BD%B4%E6%98%BE%E7%A4%BA%E8%8C%83%E5%9B%B4%EF%BC%89.html">plt.ylim（y 轴显示范围）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/set_axis_off.html">set_axis_off</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%88%86%E7%BB%84%E6%9F%B1%E5%BD%A2%E5%9B%BE.html">分组柱形图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9D%A1%E5%BD%A2%E5%9B%BE.html">叠加条形图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%8F%A0%E5%8A%A0%E6%9F%B1%E7%8A%B6%E5%9B%BE%E6%95%B0%E6%8D%AE%E6%A0%87%E7%AD%BE%E5%AE%9A%E4%BD%8D.html">叠加柱状图数据标签定位</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%8A%98%E7%BA%BF%E5%9B%BE.html">折线图</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/enumerate.html">enumerate</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/zip.html">zip</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/plt.subplots_adjust.html"><small>上一张</small>plt.subplots_adjust</a><a class="next" href="../c/plt.tight_layout.html"><small>下一张</small>plt.tight_layout</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 19:11</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>
