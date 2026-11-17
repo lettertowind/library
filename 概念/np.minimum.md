@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 12
 stage: "S01E11 · 通用函数：快速的逐元素数组函数"
-order: 12
 ---
 
 # np.minimum
@@ -16,6 +15,24 @@ order: 12
 > 别名：minimum、逐元素最小值
 
 **对两个数组对应位置逐元素取较小值的二元通用函数。**
+
+## 用法
+**语法**：`np.minimum(x1, x2, /, out=None, *, where=True)`
+**参数**：
+- `x1, x2`：参与比较的两个数组（或标量），需可广播到同一形状，逐位置比较取较小值
+- `out`：可选，存放结果的数组；提供时结果写入其中并返回
+- `where`：可选，布尔数组或条件，为 True 的位置才计算取小，否则保留 `out` 原值
+**示例**：
+```python
+import numpy as np
+
+x = np.array([3, 1, 4, 1, 5])
+y = np.array([2, 7, 1, 8, 5])
+
+print(np.minimum(x, y))        # [2 1 1 1 5]
+print(np.minimum(x, 3))        # [3 1 3 1 3]  —— 上限截断为 3
+print(np.min(x))               # 1  —— 对比：np.min 汇总为标量
+```
 
 ## 解释
 

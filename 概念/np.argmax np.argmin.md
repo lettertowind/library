@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.argmax np.argmin
@@ -16,6 +15,26 @@ order: 13
 > 别名：argmax、argmin、最大值下标、最小值下标
 
 **返回最大值或最小值所在的位置下标，而非数值本身。**
+
+## 用法
+**语法**：`np.argmax(a, axis=None)` / `np.argmin(a, axis=None)`
+**参数**：
+- `a`：输入数组，可以是列表或多维数组
+- `axis`：沿哪个轴查找极值下标；不写（默认 `None`）时把数组展平，返回行优先遍历下的一维下标；`axis=0` 按列找、`axis=1` 按行找，返回下标数组
+**示例**：
+```python
+import numpy as np
+
+a = np.array([[3, 9, 1],
+              [8, 2, 5]])
+print(np.argmax(a))          # 1  —— 展平后 [3,9,1,8,2,5] 的最大值 9 在下标 1
+print(np.argmin(a))          # 2  —— 最小值 1 在下标 2
+print(np.argmax(a, axis=0))  # [1 0 1] —— 每列最大值所在的行号
+print(np.argmax(a, axis=1))  # [1 0]   —— 每行最大值所在的列号
+
+b = np.array([4, 7, 7, 2])
+print(np.argmax(b))          # 1  —— 有并列最大值时返回第一次出现的位置
+```
 
 ## 解释
 

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.mean
@@ -16,6 +15,28 @@ order: 13
 > 别名：mean、平均数、算术平均
 
 **计算算术平均数，即总和除以元素个数。**
+
+## 用法
+**语法**：`np.mean(a, axis=None, dtype=None, keepdims=False)`
+
+**参数**：
+- `a`：待计算的数组或可转换为数组的序列
+- `axis`：沿哪个轴求均值；`None`（默认）表示对整个数组求均值，`0` 表示按列求均值，`1` 表示按行求均值
+- `dtype`：计算时使用的数据类型，默认沿用输入数组的类型
+- `keepdims`：是否保留被约简的维度，默认 `False` 表示不保留
+
+**示例**：
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 3, 3, 4, 5, 6])
+print(np.mean(a))            # 3.375
+
+b = np.array([[1, 2], [3, 4]])
+print(np.mean(b))            # 2.5
+print(np.mean(b, axis=0))    # [2. 3.]
+print(np.mean(b, axis=1))    # [1.5 3.5]
+```
 
 ## 解释
 

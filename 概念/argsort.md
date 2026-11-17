@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 14
 stage: "S01E13 · 条件计算，排序，深潜拷贝【本季完】"
-order: 14
 ---
 
 # argsort
@@ -16,6 +15,31 @@ order: 14
 > 别名：np.argsort、排序后下标
 
 **返回将数组升序排列后各元素对应的原始下标。**
+
+## 用法
+**语法**：`np.argsort(a, axis=-1)`
+
+**参数**：
+- `a`：要排序的数组（array_like）
+- `axis`：沿哪个轴排序，默认 `-1`，对于一维数组就是唯一的那一维；二维数组常用 `axis=0`（按列方向）或 `axis=1`（按行方向）
+
+**示例**：
+```python
+import numpy as np
+
+a = np.array([59, 29, 39])
+idx = np.argsort(a)
+print(idx)              # [1 2 0]：升序排列对应的原始下标
+print(a[idx])           # [29 39 59]：用下标回原数组取值，得到升序结果
+
+arr = np.array([85, 42, 91, 7, 67, 89])
+top_idx = arr.argsort()[-3:]   # 末尾 3 个下标即最大的 3 个元素
+print(top_idx)          # [5 2 4]
+print(arr[top_idx])     # [89 91 67] -> 排序后为 [67 89 91]
+
+print(a[np.argsort(-a)])       # [59 39 29]：取负数实现降序
+print(a[np.argsort(a)[::-1]])  # [59 39 29]：把下标反转，同样得到降序
+```
 
 ## 解释
 

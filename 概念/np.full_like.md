@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 5
 stage: "S01E04 · 多维数组"
-order: 5
 ---
 
 # np.full_like
@@ -16,6 +15,36 @@ order: 5
 > 别名：full_like、按形状填充指定值
 
 **根据已有数组的形状创建新数组，并全部填充为指定值。**
+
+## 用法
+
+**语法**：`np.full_like(a, fill_value, dtype=None)`
+
+**参数**：
+- `a`：参照数组，新数组的形状与它完全一致，`a` 本身不会被修改
+- `fill_value`：必填，要填充的数值；漏写会直接报错，这与 `np.full` 相同
+- `dtype`：可选，新数组的数据类型；默认沿用 `a` 的数据类型，因此整数数组里填 `1.5` 会被截断，需要小数时显式写 `dtype=float`
+
+**示例**：
+```python
+import numpy as np
+
+a = np.array([[1, 2, 3], [4, 5, 6]])
+b = np.full_like(a, 520)          # 复用形状，全部填 520
+print(b)
+# [[520 520 520]
+#  [520 520 520]]
+print(b.shape, a.shape)           # 形状一致，原数组不变
+# (2, 3) (2, 3)
+
+c = np.full_like(a, 1.5, dtype=float)   # 不指定 dtype 会得到全 1
+print(c)
+# [[1.5 1.5 1.5]
+#  [1.5 1.5 1.5]]
+print(a)                          # a 仍是原值
+# [[1 2 3]
+#  [4 5 6]]
+```
 
 ## 解释
 

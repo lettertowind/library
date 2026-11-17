@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # np.ones
@@ -16,6 +15,37 @@ order: 4
 > 别名：ones、全 1 数组
 
 **创建元素全为 1 的数组，形状由参数指定。**
+
+## 用法
+
+**语法**：`np.ones(shape, dtype=None, order='C')`
+
+**参数**：
+- `shape`：形状。一维可传一个整数如 `3`，也可传元组 `(3,)`；二维及以上必须传元组，如 `(2, 3)`
+- `dtype`：可选，指定元素数据类型；不指定时为浮点型（通常 `float64`）
+- `order`：可选，默认 `'C'`，表示按 C 语言内存顺序存储，基础阶段无需改动
+
+**示例**：
+```python
+import numpy as np
+
+a = np.ones(3)              # 一维，传一个整数
+print(a)                    # [1. 1. 1.]
+print(a.dtype)              # float64
+
+b = np.ones((2, 3))         # 二维，必须传元组
+print(b)
+# [[1. 1. 1.]
+#  [1. 1. 1.]]
+print(b.shape)              # (2, 3)
+
+c = np.ones((2, 2), dtype=int)   # 指定整型
+print(c)                    # [[1 1]
+                            #  [1 1]]
+print(c.dtype)              # int64
+
+print(np.ones((2, 3, 3)).shape)  # (2, 3, 3)，2 块 3 行 3 列
+```
 
 ## 解释
 

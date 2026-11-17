@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 14
 stage: "S01E13 · 条件计算，排序，深潜拷贝【本季完】"
-order: 14
 ---
 
 # np.all
@@ -16,6 +15,25 @@ order: 14
 > 别名：all、全部为真
 
 **判断数组中是否所有元素都为 True，返回单个布尔值。**
+
+## 用法
+**语法**：`np.all(a, axis=None, out=None, keepdims=False)`
+**参数**：
+- `a`：输入的数组或可转换为数组的对象；通常会传入布尔数组或条件表达式的结果
+- `axis`：指定沿哪个轴进行归约；`None`（默认）表示对全部元素归约并返回单个布尔值，`0` 表示按列，`1` 表示按行
+- `out`：用于存放结果的输出数组；对于普通调用，一般不需要传入
+- `keepdims`：设为 `True` 时保留被归约的维度，且长度为 1
+**示例**：
+```python
+import numpy as np
+
+a = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(np.all(a > 0))            # True
+print(np.all(a > 3))            # False
+print(np.all(a > 0, axis=1))    # [ True  True]
+print(np.all(np.array([])))     # True
+```
 
 ## 解释
 

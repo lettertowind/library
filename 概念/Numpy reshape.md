@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 5
 stage: "S01E04 · 多维数组"
-order: 5
 ---
 
 # Numpy reshape
@@ -16,6 +15,32 @@ order: 5
 > 别名：reshape、np.arange().reshape、改变数组形状
 
 **在不改变数据的前提下把数组重排为指定形状。**
+
+## 用法
+**语法**：`ndarray.reshape(shape)` 或 `np.reshape(a, newshape)`
+
+**参数**：
+- `shape`：目标形状。可以写成多个整数（如 `9, 4`），也可以写成元组 `(9, 4)`。其中某一维可以填 `-1`，让 NumPy 根据元素总数自动推断该维大小
+- `order`：填充顺序，默认为 `'C'`（按行优先填充）；可填 `'F'`（按列优先填充）
+
+**示例**：
+```python
+import numpy as np
+
+a = np.arange(36)
+b = a.reshape(9, 4)          # 或 a.reshape((9, 4))
+print(b.shape)               # (9, 4)
+print(b[4])                  # [16 17 18 19]
+print(b[0])                  # [0 1 2 3]
+
+c = a.reshape(4, -1)         # -1 自动推断为 9
+print(c.shape)               # (4, 9)
+print(c[1])                  # [ 9 10 11 12 13 14 15 16 17]
+
+d = np.arange(6).reshape(2, 3, order='F')
+print(d)                     # [[0 2 4]
+                             #  [1 3 5]]
+```
 
 ## 解释
 

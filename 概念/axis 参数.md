@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 10
 stage: "S01E09 · 数组的轴和转置"
-order: 10
 ---
 
 # axis 参数

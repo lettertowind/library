@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # np.zeros
@@ -16,6 +15,24 @@ order: 4
 > 别名：zeros、全 0 数组
 
 **创建元素全为 0 的数组，形状由参数指定。**
+
+## 用法
+**语法**：`np.zeros(shape, dtype=float)`
+
+**参数**：
+- `shape`：形状。一维传一个整数（如 `3`），二维及以上传元组（如 `(3, 3)`、`(2, 3, 3)`）
+- `dtype`：可选，指定元素数据类型；不指定时默认为浮点型 `float64`
+- `order`：可选，默认 `C`，表示按 C 语言的内存顺序存储；基础阶段可以忽略
+
+**示例**：
+```python
+import numpy as np
+
+print(np.zeros(3))            # [0. 0. 0.]
+print(np.zeros((3, 3)))       # 3 行 3 列全 0 的二维数组
+print(np.zeros((2, 3, 3)))    # 2 块 3 行 3 列的三维数组
+print(np.zeros((2, 3), dtype=int))  # 指定整型，元素为 0 而非 0.
+```
 
 ## 解释
 

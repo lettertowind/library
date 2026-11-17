@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.cumsum
@@ -16,6 +15,30 @@ order: 13
 > 别名：cumsum、累计和
 
 **从首元素开始逐步累加，返回与展平后等长的一维数组。**
+
+## 用法
+**语法**：`np.cumsum(a, axis=None, dtype=None)`
+**参数**：
+- `a`：输入数组，可为列表或 ndarray
+- `axis`：累计方向；`None`（默认）表示先按行优先把数组展平成一维再累计，返回一维数组；对二维数组传 `0` 沿列累计、传 `1` 沿行累计
+- `dtype`：指定输出元素的数据类型，默认与输入一致
+
+**示例**：
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4])
+print(np.cumsum(a))
+# [ 1  3  6 10]
+
+b = np.array([[1, 2, 3],
+              [4, 5, 6]])
+print(np.cumsum(b))        # 展平后累计，长度 6
+# [ 1  3  6 10 15 21]
+print(np.cumsum(b, axis=1))  # 沿行累计，shape 不变
+# [[ 1  3  6]
+#  [ 4  9 15]]
+```
 
 ## 解释
 

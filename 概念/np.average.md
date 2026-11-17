@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.average
@@ -16,6 +15,29 @@ order: 13
 > 别名：average、加权平均、weights
 
 **按权重计算加权平均，权重通过 weights 参数传入。**
+
+## 用法
+
+**语法**：`np.average(a, axis=None, weights=None, returned=False)`
+
+**参数**：
+- `a`：待求平均的数组，也可以是列表
+- `axis`：沿指定轴求平均，默认 `None`，即对全部元素求平均
+- `weights`：权重数组，形状需与 `a` 一致（指定 `axis` 时可为一维）；不传则退化为算术平均
+- `returned`：为 `True` 时返回 `(平均值, 权重之和)` 元组，默认只返回平均值
+
+**示例**：
+
+```python
+import numpy as np
+
+scores = np.array([80, 90, 70])
+weights = np.array([0.5, 0.3, 0.2])   # 权重之和不必为 1
+
+print(np.average(scores, weights=weights))  # 81.0
+print(np.average(scores))                   # 80.0，不传 weights 退化为算术平均
+print(np.average(scores, weights=weights, returned=True))  # (81.0, 1.0)
+```
 
 ## 解释
 

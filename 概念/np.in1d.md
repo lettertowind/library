@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 14
 stage: "S01E13 · 条件计算，排序，深潜拷贝【本季完】"
-order: 14
 ---
 
 # np.in1d
@@ -16,6 +15,30 @@ order: 14
 > 别名：in1d、元素存在判断、成员判断
 
 **逐元素判断第一个数组的元素是否出现在第二个数组中，返回布尔数组。**
+
+## 用法
+
+**语法**：`np.in1d(ar1, ar2, assume_unique=False, invert=False)`
+**参数**：
+- `ar1`：待检查的数组，返回的布尔数组与它形状相同
+- `ar2`：作为“集合”的数组，用来判断 `ar1` 中的元素是否属于它
+- `assume_unique`：布尔值，默认 `False`；设为 `True` 时假定两个数组均已去重，可加快判断速度（前提是确实唯一，否则结果可能不准）
+- `invert`：布尔值，默认 `False`；设为 `True` 时对结果取反，即返回“不属于”的布尔数组
+
+**示例**：
+
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5])
+b = np.array([2, 4, 6])
+
+print(np.in1d(a, b))                 # [False  True False  True False]
+print(a[np.in1d(a, b)])              # [2 4]
+print(np.in1d(a, b, invert=True))    # [ True False  True False  True]
+```
+
+注意函数名中的 `1` 表示数字 1，并非字母 `l`；它只返回成员关系的布尔数组，不直接返回交集本身。
 
 ## 解释
 

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.prod
@@ -16,6 +15,28 @@ order: 13
 > 别名：prod、求积
 
 **对数组所有元素求乘积，可指定 axis。**
+
+## 用法
+**语法**：`np.prod(a, axis=None)`
+
+**参数**：
+- `a`：输入数组或类似数组的对象
+- `axis`：沿哪个轴求积；不指定时计算全部元素的乘积，二维数组中 `axis=0` 按列求积、`axis=1` 按行求积
+
+**示例**：
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 3, 5, 3, 6])
+print(np.prod(a))          # 6480
+
+b = np.array([[1, 2], [3, 4]])
+print(np.prod(b))          # 24
+print(np.prod(b, axis=0))  # [3 8]（按列求积）
+print(np.prod(b, axis=1))  # [2 12]（按行求积）
+
+print(np.prod([1, 2, 0, 4]))  # 0，含 0 则结果为 0
+```
 
 ## 解释
 

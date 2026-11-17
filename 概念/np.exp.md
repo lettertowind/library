@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 12
 stage: "S01E11 · 通用函数：快速的逐元素数组函数"
-order: 12
 ---
 
 # np.exp
@@ -16,6 +15,26 @@ order: 12
 > 别名：exp、指数函数
 
 **对数组每个元素计算 e 的 x 次方的一元通用函数。**
+
+## 用法
+**语法**：`np.exp(x, /, out=None, *, where=True, dtype=None)`
+
+**参数**：
+- `x`：输入数组或标量，逐元素计算 e 的 x 次方
+- `out`：可选，用于存放结果的数组，形状需与返回值一致
+- `where`：可选，布尔数组或条件，为 True 的位置才参与计算
+- `dtype`：可选，指定输出数据类型
+
+**示例**：
+```python
+import numpy as np
+
+a = np.array([0, 1, 2])
+print(np.exp(a))          # [1.         2.71828183 7.3890561 ]
+print(np.exp(0))          # 1.0
+print(np.exp(a).shape)    # (3,)，输入输出形状一致
+print(np.exp(np.array([1000.0])))  # [inf]，大数值溢出
+```
 
 ## 解释
 

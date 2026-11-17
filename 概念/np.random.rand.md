@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 11
 stage: "S01E10 · random 随机函数"
-order: 11
 ---
 
 # np.random.rand
@@ -16,6 +15,29 @@ order: 11
 > 别名：random.rand、rand、随机数数组生成
 
 **按参数个数生成对应维度的 [0,1) 均匀分布随机浮点数组。**
+
+## 用法
+**语法**：`np.random.rand(d0, d1, ..., dn)`
+
+**参数**：
+- `d0, d1, ..., dn`：各个维度的长度，必须是正整数；参数个数决定输出数组的维度
+- 不传任何参数时返回一个随机浮点数
+
+**示例**：
+```python
+import numpy as np
+
+# 不传参数：返回单个随机浮点数
+print(np.random.rand())        # 例如 0.417022004702574
+
+# 传两个参数：生成 2 行 3 列二维数组
+arr = np.random.rand(2, 3)
+print(arr.shape)               # (2, 3)
+print((arr >= 0).all() and (arr < 1).all())  # True
+
+# 传三个参数：生成 (2, 3, 3) 三维数组
+print(np.random.rand(2, 3, 3).ndim)  # 3
+```
 
 ## 解释
 

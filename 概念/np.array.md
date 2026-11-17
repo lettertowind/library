@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # np.array
@@ -16,6 +15,39 @@ order: 4
 > 别名：array、创建数组
 
 **NumPy 中把列表、元组、range 等序列转换为 ndarray 的通用创建函数。**
+
+## 用法
+
+**语法**：`np.array(object, dtype=None)`
+
+**参数**：
+- `object`：任意可迭代序列，如列表、元组、range，也可以是嵌套列表（构造二维数组）
+- `dtype`：可选，指定元素类型如 `np.float64`、`np.int32`；不写时 NumPy 自动探测
+
+**示例**：
+```python
+import numpy as np
+
+# range 转数组，等价于 np.arange(1, 6)
+a = np.array(range(1, 6))
+print(a)            # [1 2 3 4 5]
+
+# 元组转数组
+b = np.array((1.5, 2.5, 3.5))
+print(b)            # [1.5 2.5 3.5]
+
+# 嵌套列表构造四行五列的二维数组
+A = np.array([[0, 1, 2, 3, 4],
+              [5, 6, 7, 8, 9],
+              [10, 11, 12, 13, 14],
+              [15, 16, 17, 18, 19]])
+print(A.shape)      # (4, 5)
+print(A[-1, 2])     # 12
+
+# 手动指定 dtype
+c = np.array([1, 2, 3], dtype=np.float64)
+print(c)            # [1. 2. 3.]
+```
 
 ## 解释
 

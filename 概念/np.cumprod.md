@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.cumprod
@@ -16,6 +15,29 @@ order: 13
 > 别名：cumprod、累计积
 
 **从首元素开始逐步累乘，返回展平后等长的一维数组。**
+
+## 用法
+**语法**：`np.cumprod(a, axis=None, dtype=None)`
+
+**参数**：
+- `a`：输入数组，可以是列表或 ndarray，元素按数组的存储顺序依次参与连乘
+- `axis`：沿哪个轴累乘；默认为 `None`，此时先展平数组，再按展平顺序累乘，返回一维数组
+- `dtype`：指定返回数组的数据类型，默认沿用 `a` 的 dtype
+
+**示例**：
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 4, 5])
+print(np.cumprod(a))            # [  1   2   6  24 120]
+
+b = np.array([[1, 2], [3, 4]])
+print(np.cumprod(b))            # [ 1  2  6 24]，二维按展平顺序累乘
+print(np.cumprod(b, axis=0))    # [[1 2]
+                                #  [3 8]]，沿行方向逐列累乘
+
+print(np.cumprod(np.array([0, 2, 3])))  # [0 0 0]，首项为 0 则后续全为 0
+```
 
 ## 解释
 

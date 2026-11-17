@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 3
 stage: "S01E02 · 体验Numpy与for循环的区别"
-order: 3
 ---
 
 # import numpy as np
@@ -16,6 +15,23 @@ order: 3
 > 别名：导入 NumPy、np 别名、import numpy
 
 **导入 NumPy 库并约定俗成地简写为 np。**
+
+## 用法
+
+**语法**：`import numpy as np`
+
+**参数**：无（`as np` 是导入别名，不是函数参数，可换成其他别名，但社区约定用 `np`）
+
+**示例**：
+
+```python
+import numpy as np
+
+a = np.arange(5)
+print(a)          # [0 1 2 3 4]
+print(a.mean())   # 2.0
+print(type(a))    # <class 'numpy.ndarray'>
+```
 
 ## 解释
 

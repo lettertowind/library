@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # np.arange
@@ -16,6 +15,26 @@ order: 4
 > 别名：arange、数组版 range
 
 **NumPy 中按 start/stop/step 生成等差一维数组的函数，相当于 range 的数组版。**
+
+## 用法
+
+**语法**：`np.arange([start, ]stop, [step], dtype=None)`
+
+**参数**：
+- `start`：起始值，包含在生成的序列里；只传一个参数时默认为 0
+- `stop`：结束值，不包含在生成的序列里，要取到 n 就要写 n+1
+- `step`：步长，默认为 1，取值可为负，也允许为浮点数
+- `dtype`：可选，指定输出数组的元素类型，不写就按传入的数值自动推断
+
+**示例**：
+```python
+import numpy as np
+
+print(np.arange(5))           # [0 1 2 3 4]
+print(np.arange(1, 6))        # [1 2 3 4 5]
+print(np.arange(1, 10, 2))    # [1 3 5 7 9]
+print(np.arange(0, 1, 0.25))  # [0.   0.25 0.5  0.75]
+```
 
 ## 解释
 

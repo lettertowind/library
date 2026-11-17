@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.sum
@@ -16,6 +15,28 @@ order: 13
 > 别名：sum、求和
 
 **对数组元素求和，可用 axis 指定沿哪个轴汇总。**
+
+## 用法
+**语法**：`np.sum(a, axis=None, dtype=None, keepdims=False)`
+**参数**：
+- `a`：待求和的数组或类数组对象。
+- `axis`：指定沿哪个轴汇总；不指定时对所有元素求和，`axis=0` 跨行按列求和，`axis=1` 行内求和。
+- `dtype`：指定累加时使用的数据类型，例如 `dtype=np.float64`。
+- `keepdims`：是否保留被汇总轴的维度，设为 `True` 时该轴长度变为 1。
+
+**示例**：
+```python
+import numpy as np
+
+A = np.array([[1, 2, 3],
+              [4, 5, 6]])
+
+print(np.sum(A))                 # 21
+print(np.sum(A, axis=0))         # [5 7 9]
+print(np.sum(A, axis=1))         # [6 15]
+print(np.sum(A, axis=1, keepdims=True))  # [[ 6]
+                                          #  [15]]
+```
 
 ## 解释
 

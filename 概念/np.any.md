@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 14
 stage: "S01E13 · 条件计算，排序，深潜拷贝【本季完】"
-order: 14
 ---
 
 # np.any
@@ -16,6 +15,33 @@ order: 14
 > 别名：any、任一为真
 
 **判断数组中是否至少存在一个 True，返回单个布尔值。**
+
+## 用法
+**语法**：`np.any(a, axis=None, keepdims=False)`
+**参数**：
+- `a`：输入数组或可转换为数组的对象，通常为布尔数组或条件表达式的结果
+- `axis`：归约的轴，默认为 `None` 表示把整个数组归约为一个布尔值；取 `0`、`1` 等时按轴返回布尔数组
+- `keepdims`：布尔值，默认为 `False`；为 `True` 时保留被归约的维度（长度为 1）
+**示例**：
+```python
+import numpy as np
+
+a = np.array([[1, 3, 2],
+              [6, 5, 4]])
+
+# 条件表达式生成布尔数组，再做存在性判断
+print(np.any(a > 5))          # True
+
+# 整个数组是否至少有一个大于 5
+print(np.any(a > 9))          # False
+
+# 按列归约：每列是否存在大于 5 的元素
+print(np.any(a > 5, axis=0))  # [ True False False]
+
+# 按行归约并保留维度
+print(np.any(a > 5, axis=1, keepdims=True))  # [[False]
+                                             #  [ True]]
+```
 
 ## 解释
 

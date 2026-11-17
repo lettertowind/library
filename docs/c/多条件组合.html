@@ -18,7 +18,21 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>多条件组合</h1><div class="aliases">复合条件 · 按位与或 · &amp; | 组合条件</div><p class="lede">用 &amp; 表示且、| 表示或，把多个布尔条件组合成一个掩码。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Numpy 中多条件不能直接用 Python 的 and/or，要用按位运算符 &amp; 和 |，并且每个条件要加括号避免优先级错误。例如 (arr % 2 == 0) | (arr &lt; 7)。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选满足任一条件的元素</li><li>筛选同时满足多个条件的元素</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>且用 &amp;，或用 |</li><li>不要用 Python 的 and / or</li><li>每个条件加括号，防止优先级错误</li><li>示例：(arr % 2 == 0) | (arr &lt; 7)</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>&amp; 和 | 是按位运算符，对布尔数组逐元素运算；对整数数组直接使用会得到按位结果而非逻辑结果。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html">布尔数组</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 Numpy 多条件组合不能用 and/or？</summary><div class="quiz-a">and/or 是 Python 标量逻辑运算符，无法对数组逐元素运算，会报真值歧义错误；应使用 &amp; 和 |。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>多条件组合</h1><div class="aliases">复合条件 · 按位与或 · &amp; | 组合条件</div><p class="lede">用 &amp; 表示且、| 表示或，把多个布尔条件组合成一个掩码。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>(cond1) &amp; (cond2)</code> 或 <code>(cond1) | (cond2)</code>，其中 <code>cond1</code>、<code>cond2</code> 这两个条件表达式分别用括号括起来；组合后生成一个布尔掩码，再传给 <code>arr[mask]</code> 进行筛选</p>
+<p><strong>参数</strong>：</p>
+<ul><li>左操作数：任意一个逐元素比较表达式，例如 <code>arr % 2 == 0</code>，必须用小括号括起来</li><li>右操作数：另一个逐元素比较表达式，例如 <code>arr &lt; 7</code>，同样必须用小括号括起来</li><li><code>&amp;</code>：表示“且”，两个条件的对应结果都为 True，结果才为 True</li><li><code>|</code>：表示“或”，只要任一条件的对应结果为 True，结果就为 True</li><li>注意：<code>&amp;</code>、<code>|</code> 是按位运算符，如果直接作用于整数数组，会得到按位结果，而不是逻辑结果，所以两侧必须是布尔数组</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+arr = np.arange(10)
+mask = (arr % 2 == 0) | (arr &lt; 7)   # 偶数 或 小于7
+print(mask)
+# [ True  True  True  True  True  True  True False  True False]
+print(arr[mask])
+# [0 1 2 3 4 5 6 8]
+
+print(arr[(arr % 2 == 0) &amp; (arr &lt; 7)])   # 偶数 且 小于7
+# [0 2 4 6]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>Numpy 中多条件不能直接用 Python 的 and/or，要用按位运算符 &amp; 和 |，并且每个条件要加括号避免优先级错误。例如 (arr % 2 == 0) | (arr &lt; 7)。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>筛选满足任一条件的元素</li><li>筛选同时满足多个条件的元素</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>且用 &amp;，或用 |</li><li>不要用 Python 的 and / or</li><li>每个条件加括号，防止优先级错误</li><li>示例：(arr % 2 == 0) | (arr &lt; 7)</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>&amp; 和 | 是按位运算符，对布尔数组逐元素运算；对整数数组直接使用会得到按位结果而非逻辑结果。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html">布尔数组</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 Numpy 多条件组合不能用 and/or？</summary><div class="quiz-a">and/or 是 Python 标量逻辑运算符，无法对数组逐元素运算，会报真值歧义错误；应使用 &amp; 和 |。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>Pandas 中不能直接用 Python 的 and/or 组合条件，要用按位运算符 &amp; 和 |，且每个条件用小括号包裹，避免优先级错误。</p>
 <p>- &amp; 表示且，| 表示或</p>
@@ -28,7 +42,7 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 11:01</span>
+  <span>更新于 2026-11-17 14:04</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

@@ -18,12 +18,32 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.where</h1><div class="aliases">where · 条件替换函数</div><p class="lede">按条件从两个候选值中逐元素选取，返回同形状新数组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>np.where(condition, x, y) 等价于向量化的 if-else：条件为真取 x，为假取 y。它不修改原数组，而是返回新数组，适合批量条件替换。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按条件批量替换数组元素</li><li>把布尔条件转成两档取值</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法为 np.where(条件, 真值, 假值)</li><li>返回新数组，原数组不变</li><li>条件通常是布尔数组，如 a &gt; 3</li><li>与布尔赋值不同，它是取值而非就地修改</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只支持两分支；多分支需嵌套 where 或改用 np.select。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html">布尔数组</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html">条件赋值</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.where(a&gt;3, 520, 1314) 中 a 本身会被修改吗？</summary><div class="quiz-a">不会，返回的是新数组。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.where</h1><div class="aliases">where · 条件替换函数</div><p class="lede">按条件从两个候选值中逐元素选取，返回同形状新数组。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.where(condition, x, y)</code></p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>condition</code>：布尔数组（或可广播为布尔值的表达式，如 <code>a &gt; 3</code>），作为逐元素判断的条件</li><li><code>x</code>：条件为 True 时取的候选值，可以是标量，也可以是数组（可广播）</li><li><code>y</code>：条件为 False 时取的候选值，可以是标量，也可以是数组（可广播）</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import numpy as np
+
+a = np.array([[1, 3, 6],
+              [9, 4, 2],
+              [3, 8, 5]])
+
+# 条件为真取 520，为假取 1314
+print(np.where(a &gt; 3, 520, 1314))
+# [[1314 1314  520]
+#  [ 520  520 1314]
+#  [1314  520  520]]
+
+# 返回新数组，原数组不变
+print(a)
+# [[1 3 6]
+#  [9 4 2]
+#  [3 8 5]]</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p>np.where(condition, x, y) 等价于向量化的 if-else：条件为真取 x，为假取 y。它不修改原数组，而是返回新数组，适合批量条件替换。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按条件批量替换数组元素</li><li>把布尔条件转成两档取值</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>语法为 np.where(条件, 真值, 假值)</li><li>返回新数组，原数组不变</li><li>条件通常是布尔数组，如 a &gt; 3</li><li>与布尔赋值不同，它是取值而非就地修改</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只支持两分支；多分支需嵌套 where 或改用 np.select。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E6%95%B0%E7%BB%84.html">布尔数组</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E6%9D%A1%E4%BB%B6%E8%B5%8B%E5%80%BC.html">条件赋值</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>np.where(a&gt;3, 520, 1314) 中 a 本身会被修改吗？</summary><div class="quiz-a">不会，返回的是新数组。</div></details>
 <details class="quiz"><summary>要按条件把元素分成三档，np.where 够用吗？</summary><div class="quiz-a">不够，需要嵌套 where 或使用 np.select。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E4%B8%89%E7%9B%AE%E8%BF%90%E7%AE%97.html">三目运算</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/np.sum.html"><small>上一张</small>np.sum</a><a class="next" href="../c/np.zeros.html"><small>下一张</small>np.zeros</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-17 11:01</span>
+  <span>更新于 2026-11-17 14:04</span>
 </footer>
 <script src="../assets/app.js?v=cf795595" defer></script>
 </body>

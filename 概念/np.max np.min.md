@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.max np.min
@@ -16,6 +15,29 @@ order: 13
 > 别名：max、min、最大值、最小值
 
 **返回数组中的最大值或最小值，可指定 axis。**
+
+## 用法
+**语法**：`np.max(a, axis=None)` / `np.min(a, axis=None)`
+**参数**：
+- `a`：输入数组（array_like），被求极值的数据。
+- `axis`：默认为 `None`，返回整个数组的全局极值；`axis=0` 返回每列极值，`axis=1` 返回每行极值。
+- 注意：数组含 NaN 时结果为 NaN，需改用 `np.nanmax` / `np.nanmin`。
+**示例**：
+```python
+import numpy as np
+
+A = np.array([[3, 1, 4, 1],
+              [5, 9, 2, 6],
+              [5, 3, 5, 8]])
+
+print(np.max(A))            # 9
+print(np.min(A))            # 1
+print(np.max(A, axis=0))    # [5 9 5 8]  每列最大值
+print(np.max(A, axis=1))    # [4 9 8]    每行最大值
+print(np.min(A, axis=1))    # [1 2 3]    每行最小值
+print(np.argmax(A))         # 5          展平后的最大值下标
+```
+配合 `argmax` / `argmin` 可同时拿到极值及其位置。
 
 ## 解释
 

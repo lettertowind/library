@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # np.zeros_like
@@ -16,6 +15,33 @@ order: 4
 > 别名：zeros_like、按形状创建全 0 数组
 
 **根据已有数组的形状创建元素全为 0 的新数组。**
+
+## 用法
+
+**语法**：`np.zeros_like(a, dtype=None)`
+
+**参数**：
+- `a`：用于提供形状的参考数组，新数组的 shape 与它一致，原数组不会被修改
+- `dtype`：可选，指定新数组的数据类型；默认沿用 `a` 的 dtype，`a` 是整型就得到整型，需要别的类型时显式传 `dtype=float` 等
+
+**示例**：
+
+```python
+import numpy as np
+
+a = np.array([[1, 2, 3],
+              [4, 5, 6]])
+z = np.zeros_like(a)
+
+print(a.shape)        # (2, 3)
+print(z)              # [[0 0 0]
+                      #  [0 0 0]]
+print(z.dtype)        # int64（沿用 a 的整型 dtype）
+
+b = np.zeros_like(a, dtype=float)
+print(b.dtype)        # float64
+print(a[0, 0])        # 1（原数组未被改动）
+```
 
 ## 解释
 

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.median
@@ -16,6 +15,27 @@ order: 13
 > 别名：median、中位数
 
 **排序后取中间位置的值，偶数个取中间两数平均。**
+
+## 用法
+**语法**：`np.median(a, axis=None, out=None, overwrite_input=False, keepdims=False)`
+**参数**：
+- `a`：输入数组或类数组，即要计算中位数的数据；内部先排序再取中间位置
+- `axis`：沿哪个轴计算，默认 `None` 表示先展平再算整体中位数；`axis=0` 按列、`axis=1` 按行
+- `out`：可选，用来存放结果的输出数组
+- `overwrite_input`：为 `True` 时允许覆盖输入数组以节省内存，此时原数组会被修改
+- `keepdims`：为 `True` 时保留被约简的维度，结果在该位置为 1
+**示例**：
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 3, 3, 4, 5, 6])
+print(np.median(a))                # 3.0  偶数个，中间两个 3 平均仍是 3
+print(np.median([1, 2, 3, 100]))   # 2.5  极端值 100 不影响中位数
+
+b = np.array([[1, 2, 3], [10, 20, 30]])
+print(np.median(b, axis=0))        # [ 5.5 11.  16.5]  按列
+print(np.median(b, axis=1))        # [ 2. 20.]         按行
+```
 
 ## 解释
 

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 14
 stage: "S01E13 · 条件计算，排序，深潜拷贝【本季完】"
-order: 14
 ---
 
 # ndarray.sort
@@ -16,6 +15,39 @@ order: 14
 > 别名：sort、数组排序、原地排序
 
 **对数组按指定轴原地升序排序，直接修改原数组。**
+
+## 用法
+
+**语法**：`ndarray.sort(axis=-1, kind=None, order=None)`
+
+**参数**：
+- `axis`：指定排序沿哪个轴进行，默认 `-1`，即最后一个轴；对二维数组，`axis=0` 表示每一列内部各自排序，`axis=1` 表示每一行内部各自排序
+- `kind`：指定排序算法，可选 `'quicksort'`、`'mergesort'`、`'heapsort'`、`'stable'`，默认 `None`，即使用 quicksort
+- `order`：仅在结构化数组中使用，用于指定按哪个字段排序
+
+**示例**：
+
+```python
+import numpy as np
+
+a = np.array([3, 1, 2])
+a.sort()            # 原地排序，返回 None
+print(a)            # [1 2 3]
+
+b = np.array([[3, 1], [2, 4]])
+b.sort(axis=0)      # 每列内部各自升序
+print(b)
+# [[2 1]
+#  [3 4]]
+
+c = b.copy()        # 要保留原数组需先 copy
+c.sort()            # 默认 axis=-1，每行内部各自升序
+print(c)
+# [[1 2]
+#  [3 4]]
+```
+
+注意：`sort` 会直接改写原数组，且没有可用的返回值。如果希望保留原数组并得到排序结果，应改用 `np.sort`。
 
 ## 解释
 

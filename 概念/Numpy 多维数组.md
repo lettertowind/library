@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 5
 stage: "S01E04 · 多维数组"
-order: 5
 ---
 
 # Numpy 多维数组

@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # np.full
@@ -16,6 +15,30 @@ order: 4
 > 别名：full、指定值数组
 
 **创建用指定数值填充的数组，形状和填充值都由参数给出。**
+
+## 用法
+**语法**：`np.full(shape, fill_value, dtype=None)`
+
+**参数**：
+- `shape`：形状，一维传一个整数（如 `3`），二维及以上传元组（如 `(3, 3)`）
+- `fill_value`：填充值，数组中每个元素都取这个数值
+- `dtype`：可选，指定元素数据类型，不写则由 `fill_value` 推断
+
+**示例**：
+```python
+import numpy as np
+
+print(np.full(3, 520))
+# [520 520 520]
+
+print(np.full((3, 3), 520))
+# [[520 520 520]
+#  [520 520 520]
+#  [520 520 520]]
+
+print(np.full((2, 3), 1.5).dtype)
+# float64
+```
 
 ## 解释
 

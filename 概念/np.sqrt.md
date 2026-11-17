@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 12
 stage: "S01E11 · 通用函数：快速的逐元素数组函数"
-order: 12
 ---
 
 # np.sqrt
@@ -16,6 +15,31 @@ order: 12
 > 别名：sqrt、平方根函数
 
 **对数组每个元素计算非负平方根的一元通用函数。**
+
+## 用法
+
+**语法**：`np.sqrt(x, /, out=None, *, where=True, dtype=None)`
+
+**参数**：
+- `x`：输入数组或标量，逐元素计算非负平方根，输入输出形状一致
+- `out`：可选，用于存放结果的数组，形状需与返回值匹配
+- `where`：可选，布尔数组，为 True 的位置才计算，否则保留 `out` 原值
+- `dtype`：可选，指定输出数据类型
+
+**示例**：
+
+```python
+import numpy as np
+
+a = np.array([1, 4, 9, 16])
+print(np.sqrt(a))          # [1. 2. 3. 4.]
+
+b = np.array([4, -1])
+print(np.sqrt(b))          # [ 2. nan]，负数处触发 RuntimeWarning
+
+# 配合 pandas 对整个表逐元素开方
+# 数据.apply(np.sqrt)
+```
 
 ## 解释
 

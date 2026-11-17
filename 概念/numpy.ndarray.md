@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # numpy.ndarray
@@ -16,6 +15,24 @@ order: 4
 > 别名：ndarray、NumPy 数组类型
 
 **NumPy 的核心多维数组对象类型，所有创建函数最终都返回它。**
+
+## 用法
+**语法**：`np.ndarray(shape, dtype=float, order='C')`
+**参数**：
+- `shape`：整数或整数元组，指定各维度的长度，如 `(2, 3)`
+- `dtype`：数组元素的数据类型，默认 `float`（即 float64），也可写 `np.int32`、`np.float32` 等
+- `order`：内存布局，`'C'` 为行优先（默认），`'F'` 为列优先
+**示例**：
+```python
+import numpy as np
+
+a = np.ndarray(shape=(2, 3), dtype=np.int32)
+print(type(a))                          # <class 'numpy.ndarray'>
+print(a.shape, a.ndim, a.size, a.dtype) # (2, 3) 2 6 int32
+
+b = np.array([1, 2, 3])
+print(type(b) is np.ndarray)            # True
+```
 
 ## 解释
 

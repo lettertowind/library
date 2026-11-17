@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 4
 stage: "S01E03 · 创建数组"
-order: 4
 ---
 
 # np.ones_like
@@ -16,6 +15,33 @@ order: 4
 > 别名：ones_like、按形状创建全 1 数组
 
 **根据已有数组的形状创建元素全为 1 的新数组。**
+
+## 用法
+**语法**：`np.ones_like(a, dtype=None)`
+**参数**：
+- `a`：参照数组，新数组的形状与 `a` 的 shape 完全一致，原数组不会被修改
+- `dtype`：可选，指定新数组的数据类型，如 `dtype=int`；不传时通常为 float64，与 `a` 的 dtype 无关
+**示例**：
+```python
+import numpy as np
+
+a = np.array([[1, 2, 3],
+              [4, 5, 6]])
+b = np.ones_like(a)
+
+print(a.shape)        # (2, 3)
+print(b.shape)        # (2, 3)
+print(b)              # [[1. 1. 1.]
+                      #  [1. 1. 1.]]
+print(b.dtype)        # float64
+
+c = np.ones_like(a, dtype=int)
+print(c)              # [[1 1 1]
+                      #  [1 1 1]]
+print(c.dtype)        # int64
+print(a)              # [[1 2 3]
+                      #  [4 5 6]]  原数组未被修改
+```
 
 ## 解释
 

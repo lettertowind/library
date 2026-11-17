@@ -8,7 +8,6 @@ created: 2026-11-17
 updated: 2026-11-17
 order: 13
 stage: "S01E12 · 数学和统计方法"
-order: 13
 ---
 
 # np.bincount
@@ -16,6 +15,23 @@ order: 13
 > 别名：bincount、频次统计
 
 **统计非负整数数组中每个值出现的次数。**
+
+## 用法
+**语法**：`np.bincount(x, weights=None, minlength=0)`
+**参数**：
+- `x`：一维、非负整数数组，元素值即频次数组的下标
+- `weights`：可选，与 `x` 等长的权重数组；给出时按下标累加权重而非计数
+- `minlength`：可选，指定输出数组的最小长度，默认 0（即 `max(x)+1`）
+**示例**：
+```python
+import numpy as np
+
+a = np.array([1, 2, 3, 3, 3, 4, 5, 6])
+counts = np.bincount(a)
+print(counts)                        # [0 1 1 3 1 1 1]
+print(np.argmax(counts))             # 3
+print(np.bincount(a, minlength=10))  # [0 1 1 3 1 1 1 0 0 0]
+```
 
 ## 解释
 
