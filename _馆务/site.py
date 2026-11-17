@@ -512,7 +512,6 @@ def page(title, content, root="", desc="", extra_head=""):
 <header class="top">
   <a class="brand" href="{root}index.html">{SITE_TITLE}</a>
   <nav class="topnav">
-    <a href="{root}all.html">全部</a>
     <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
   </nav>
 </header>
@@ -669,7 +668,11 @@ def gen_home(cards, domains):
             )
         parts.append("</ul></section>")
 
-    parts.append('<section class="sec"><h2>全部概念</h2><div class="grid">')
+    parts.append(
+        '<section class="sec"><h2>全部概念</h2>'
+        f'<p class="hint">按领域分组的紧凑索引见 <a class="wl" href="all.html">概念索引</a>；'
+        '这里是可点的卡片墙。</p><div class="grid">'
+    )
     for c in sorted(cards, key=lambda x: (0 if x["group"] == "concept" else 1,
                                           x["domain"] or "\uffff", x["term"])):
         kind = c["kind"] or c["group"]
