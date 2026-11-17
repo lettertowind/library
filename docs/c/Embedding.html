@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用专门模型把一段文字转成一长串数字向量，意思越近向量越近。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Embedding · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>AI</span> <span class="sep">/</span> <span>大模型</span></nav><article class="card"><h1>Embedding</h1><div class="aliases">向量化 · 嵌入 · embedding</div><p class="lede">用专门模型把一段文字转成一长串数字向量，意思越近向量越近。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Embedding 把文本映射到高维向量空间，语义相近的文本向量距离也近。这样系统能按意思而不是按字面查找，是 RAG 检索的基础。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>语义检索</li><li>文本聚类与相似度计算</li><li>RAG 中的片段向量化</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>输出通常是一千多维的数字向量</li><li>转换规则：语义越接近，向量越接近</li><li>让检索从字面匹配升级为语义匹配</li><li>问题和文档片段要用同一个模型向量化</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>向量相似不等于事实正确，检索结果仍需模型判断使用。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/RAG.html">RAG</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93.html">向量数据库</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>Embedding 解决了检索中的什么问题？</summary><div class="quiz-a">让系统按语义相似度查找，而不是只按字面关键词匹配。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/RAG.html">RAG</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93.html">向量数据库</a><span class="rel rel-plain">前置知识</span></li></ul></section><nav class="pager"><a class="prev" href="../c/Benchmark.html"><small>上一张</small>Benchmark</a><a class="next" href="../c/LoRA.html"><small>下一张</small>LoRA</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 10:24</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="包在模型外面、负责组织上下文和执行工具的一整套程序。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>Harness · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>AI</span> <span class="sep">/</span> <span>智能体</span></nav><article class="card"><h1>Harness</h1><div class="aliases">智能体框架 · Agent 框架 · harness</div><p class="lede">包在模型外面、负责组织上下文和执行工具的一整套程序。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Harness 负责组织上下文、提供工具清单、执行工具调用、判断任务是否完成、压缩过长上下文、危险操作前征求同意。模型只负责思考和决策。原意是马具：模型是马，Harness 是让它干活的装备。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>支撑 Agent 运行</li><li>决定同一模型的实际任务能力</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>公式：Agent = 模型 + Harness</li><li>Claude Code 是 Harness，Claude 是里面的模型</li><li>同一模型配不同 Harness，能力差别可能很大</li><li>Agent 框架、Agent 平台基本都指这一层</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>Harness 本身不是模型；DeepSeek Harness 是框架，里面接入的才是模型。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/AI%20Agent.html">Agent</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8.html">工具调用</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/MCP.html">MCP</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B.html">上下文工程</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么厂商公布 Agent 成绩时要注明用的 Harness？</summary><div class="quiz-a">同一模型配不同 Harness 表现差别很大，不注明就无法公平比较。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Benchmark.html">Benchmark</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/Vibe%20Coding.html">Vibe Coding</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B.html">上下文工程</a><span class="rel rel-plain">下位概念</span></li><li><a class="wl" href="../c/%E5%B7%A5%E5%85%B7%E8%B0%83%E7%94%A8.html">工具调用</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/MCP.html">MCP</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/AI%20Agent.html"><small>上一张</small>AI Agent</a><a class="next" href="../c/MCP.html"><small>下一张</small>MCP</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 10:24</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

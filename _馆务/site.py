@@ -794,17 +794,12 @@ def build_search(cards):
 
 
 def clean_out():
-    """清掉上一次的产物。逐个删文件而不是 rmtree ——
-    整目录删除在部分环境下会走回收站并失败，这里失败也继续，宁可留旧文件也不中断生成。"""
-    if not OUT.exists():
-        OUT.mkdir(parents=True, exist_ok=True)
-        return
-    for p in sorted(OUT.rglob("*"), key=lambda x: len(x.parts), reverse=True):
-        try:
-            if p.is_file():
-                p.unlink()
-        except OSError:
-            pass
+    """就地覆盖，不清空目录。
+
+    原来的实现每次都把 docs/ 整个删光再重写，卡片只增不删的情况下纯属多余，
+    还会触发环境的批量删除保护（一次 50 个文件就中断）。产物按固定路径写入，
+    重跑自然覆盖；万一以后真的删了卡片，残留页面用下面的 orphan 检查提示，
+    由人确认后再清，不让脚本擅自批量删文件。"""
     OUT.mkdir(parents=True, exist_ok=True)
 
 

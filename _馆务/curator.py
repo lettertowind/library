@@ -432,6 +432,30 @@ def write_log(rows):
 
 # ---------- 主流程 ----------
 
+def split_body(body, max_chars=8000):
+    """长笔记按小节切块，避免 body[:9000] 把后半截整段丢掉。
+
+    优先在 `##` 标题处断开；小节本身超长才硬切，保证每块都能完整喂给模型。
+    """
+    if len(body) <= max_chars:
+        return [body]
+    chunks, cur, cur_len = [], [], 0
+    for line in body.splitlines(keepends=True):
+        is_section = bool(re.match(r"^##\s", line))
+        if is_section and cur and cur_len + len(line) > max_chars:
+            chunks.append("".join(cur))
+            cur, cur_len = [], 0
+        cur.append(line)
+        cur_len += len(line)
+        if cur_len >= max_chars and not is_section:
+            # 当前小节过长，在任意行边界断开
+            chunks.append("".join(cur))
+            cur, cur_len = [], 0
+    if cur:
+        chunks.append("".join(cur))
+    return chunks
+
+
 def process(cfg, md_path, known, dry_run=False):
     body = md_path.read_text(encoding="utf-8", errors="ignore")
     meta = pick_meta(md_path)
@@ -440,22 +464,32 @@ def process(cfg, md_path, known, dry_run=False):
         f"- {v['term']}（{v['domain']}）{' 别名:' + '、'.join(v['aliases']) if v['aliases'] else ''}"
         for v in known.values()) or "_（空库）_"
 
-    prompt = f"""已有概念（用于判断哪些是新的、哪些要补充）：
+    chunks = split_body(body)
+    concepts = []
+    seen = set()
+    for i, chunk in enumerate(chunks, 1):
+        if len(chunks) > 1:
+            print(f"    分段 {i}/{len(chunks)}（{len(chunk)} 字）", flush=True)
+        prompt = f"""已有概念（用于判断哪些是新的、哪些要补充）：
 {exist_lines}
 
 素材来源：{md_path.name}
 视频标题：{meta[0] or '（未知）'}
 链接：{meta[1] or '（未知）'}
+{'这是长笔记的第 %d/%d 段，只抽本段出现的新概念，不要重复别的段落。' % (i, len(chunks)) if len(chunks) > 1 else ''}
 
 正文：
 ---
-{body[:9000]}
+{chunk}
 ---
 
 请抽取概念并输出 JSON。已有概念如果这次有新信息，也要一并输出（会走补充流程）。"""
-
-    data = parse_json(call_llm(cfg, prompt))
-    concepts = data.get("concepts") or []
+        data = parse_json(call_llm(cfg, prompt))
+        for c in (data.get("concepts") or []):
+            name = norm_name(c.get("term", ""))
+            if name and name not in seen:
+                seen.add(name)
+                concepts.append(c)
     rows, created, updated = [], [], []
 
     for c in concepts:

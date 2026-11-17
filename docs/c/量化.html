@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="降低每个参数的存储精度以缩小模型体积、代价是精度下降。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>量化 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>AI</span> <span class="sep">/</span> <span>大模型</span></nav><article class="card"><h1>量化</h1><div class="aliases">Quantization · quantization · Q4 · Q8</div><p class="lede">降低每个参数的存储精度以缩小模型体积、代价是精度下降。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>量化通过降低参数精度来压缩模型：原本每参数 16 位，量化到 8 位体积减半，4 位只剩四分之一。70B 模型量化到 4 位后约需 35GB。代价是精度降低、表现下降。下载模型看到的 Q4、Q8、FP8 就是量化位数和格式。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>在有限显存上运行大模型</li><li>降低本地部署门槛</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>16 位→8 位体积减半，→4 位剩四分之一</li><li>70B 量化到 4 位约需 35GB</li><li>Q4、Q8、FP8 是量化格式标识</li><li>代价是模型表现下降</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>量化不改变模型结构，只降低数值精度，与蒸馏不同。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2.html">本地部署</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E8%92%B8%E9%A6%8F.html">蒸馏</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%8F%82%E6%95%B0.html">参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么量化能让 70B 模型在消费级显卡上跑起来？</summary><div class="quiz-a">量化到 4 位后权重体积从约 140GB 降到约 35GB，显存需求大幅下降。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>原本每个参数用 16 位存储，量化到 8 位体积减半，到 4 位只剩四分之一。70B 模型量化到 4 位后约只需 35GB。代价是精度下降、表现略降。下载模型时看到的 Q4、Q8、FP8 就是量化位数和格式。</p>
+<p>- 降低参数存储位数</p>
+<p>- 16 位→8 位体积减半，→4 位剩四分之一</p>
+<p>- Q4/Q8/FP8 是量化格式标识</p>
+<details class="quiz"><summary>70B 模型量化到 4 位后大约需要多少显存？</summary><div class="quiz-a">约 35GB。</div></details>
+<details class="quiz"><summary>量化的代价是什么？</summary><div class="quiz-a">精度降低，模型表现会下降一些。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/MoE.html">MoE</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E5%8F%82%E6%95%B0.html">参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%9C%AC%E5%9C%B0%E9%83%A8%E7%BD%B2.html">本地部署</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E8%92%B8%E9%A6%8F.html">蒸馏</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E8%AE%B0%E5%BF%86.html"><small>上一张</small>记忆</a><a class="next" href="../c/%E9%97%AD%E6%BA%90%E6%A8%A1%E5%9E%8B.html"><small>下一张</small>闭源模型</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 10:24</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

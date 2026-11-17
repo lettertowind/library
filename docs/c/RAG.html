@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="让模型回答前先从外部资料库检索相关片段，再据此生成答案。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>RAG · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>AI</span> <span class="sep">/</span> <span>大模型</span></nav><article class="card"><h1>RAG</h1><div class="aliases">检索增强生成 · Retrieval-Augmented Generation</div><p class="lede">让模型回答前先从外部资料库检索相关片段，再据此生成答案。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>RAG 把资料放在模型外部，提问时先检索最相关的片段塞进上下文，模型据此作答。它不改变模型参数，资料更新后立即生效，回答还能标出处。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>让模型回答私有知识库里的问题</li><li>需要答案可溯源、资料常更新的场景</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>核心在检索：怎么找到最相关的片段</li><li>只按关键词匹配会漏掉同义不同词的文档</li><li>不需要重新训练模型，资料更新马上生效</li><li>完整流程：切片段→向量化→入库→问题向量化→找最近片段→生成</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>RAG 只补充知识，不改变模型能力；要学固定格式或风格应改用微调。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Embedding.html">Embedding</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93.html">向量数据库</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%BE%AE%E8%B0%83.html">微调</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B.html">上下文工程</a><span class="rel rel-down">下位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么关键词检索在 RAG 里不够用？</summary><div class="quiz-a">用户问法和文档用词可能不同，字面匹配找不到语义相同的片段。</div></details>
+<details class="quiz"><summary>资料每周更新，该用 RAG 还是微调？</summary><div class="quiz-a">RAG，因为不用重训模型，资料更新立即生效。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Embedding.html">Embedding</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E4%B8%8A%E4%B8%8B%E6%96%87%E5%B7%A5%E7%A8%8B.html">上下文工程</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AA%97%E5%8F%A3.html">上下文窗口</a><span class="rel rel-plain">用检索替代塞满窗口</span></li><li><a class="wl" href="../c/%E5%90%91%E9%87%8F%E6%95%B0%E6%8D%AE%E5%BA%93.html">向量数据库</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%B9%BB%E8%A7%89.html">幻觉</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%BE%AE%E8%B0%83.html">微调</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%9F%A5%E8%AF%86%E6%88%AA%E6%AD%A2.html">知识截止</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E8%AE%B0%E5%BF%86.html">记忆</a><span class="rel rel-plain">另一种给模型补充信息的方式</span></li></ul></section><nav class="pager"><a class="prev" href="../c/MoE.html"><small>上一张</small>MoE</a><a class="next" href="../c/RLHF.html"><small>下一张</small>RLHF</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 10:24</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

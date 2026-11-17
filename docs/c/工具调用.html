@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="模型输出结构化指令要求调用外部工具，由外部程序执行并回传结果。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>工具调用 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>AI</span> <span class="sep">/</span> <span>大模型</span></nav><article class="card"><h1>工具调用</h1><div class="aliases">Tool Calling · Function Calling · 函数调用</div><p class="lede">模型输出结构化指令要求调用外部工具，由外部程序执行并回传结果。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>模型本身只能输出文字，不能上网或读文件。工具调用让程序先把可用工具清单告诉模型，模型判断需要时输出调用指令，程序执行后把结果放回上下文。决定用什么工具的是模型，真正执行的是模型外的程序。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>让 AI 搜索、计算、查数据库、操作软件</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>三步：告知工具清单→模型输出调用指令→程序执行并回填结果</li><li>OpenAI 2023 年 6 月推出时叫 Function Calling</li><li>模型决定调用什么，程序负责真正执行</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>工具调用是机制，不是工具本身；具体工具由 Harness 提供。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/AI%20Agent.html">Agent</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/Harness.html">Harness</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/MCP.html">MCP</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>工具调用中，谁决定调用哪个工具，谁真正执行？</summary><div class="quiz-a">模型决定调用哪个工具和参数，模型外面的程序真正执行。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Harness.html">Harness</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%A4%A7%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B.html"><small>上一张</small>大语言模型</a><a class="next" href="../c/%E5%B9%BB%E8%A7%89.html"><small>下一张</small>幻觉</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 10:24</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>

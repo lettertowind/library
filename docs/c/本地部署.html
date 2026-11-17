@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把模型权重下载到自己的电脑上运行，数据不出本地。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>本地部署 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=cf795595">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <a href="../all.html">全部</a>
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>AI</span> <span class="sep">/</span> <span>大模型</span></nav><article class="card"><h1>本地部署</h1><div class="aliases">local deployment · 本地运行</div><p class="lede">把模型权重下载到自己的电脑上运行，数据不出本地。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>本地部署是把模型放到自己电脑上运行。优点是数据不离开电脑、不需联网、不按 Token 付费。常用工具是 Ollama、LM Studio。能否跑起来主要看显卡显存。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>处理敏感数据</li><li>离线使用模型</li><li>避免按量付费</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>常用工具为 Ollama、LM Studio</li><li>瓶颈是显卡显存</li><li>一个参数约占 2 字节</li><li>70B 模型约需 140GB 显存</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>开源不等于用得上，普通电脑装不下大参数模型。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B.html">开源模型</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/%E9%87%8F%E5%8C%96.html">量化</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%8F%82%E6%95%B0.html">参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想在本机跑 70B 模型，最直接的硬件瓶颈是什么？</summary><div class="quiz-a">显存，70B 权重约需 140GB，普通显卡装不下。</div></details>
+<p>### 补充 · 2026-11-17</p>
+<p>本地部署的优点是数据不离开电脑、不需联网、不按 Token 付费。常用工具是 Ollama、LM Studio。能否跑起来主要看显卡显存。</p>
+<p>- 数据不出本机、免联网、免 Token 费</p>
+<p>- 常用工具：Ollama、LM Studio</p>
+<p>- 瓶颈是显存：一个参数约 2 字节</p>
+<details class="quiz"><summary>为什么普通电脑跑不动 70B 模型？</summary><div class="quiz-a">一个参数约 2 字节，70B 光权重就要约 140GB 显存，远超普通显卡。</div></details>
+<details class="quiz"><summary>本地部署相比云端 API 的主要优势是什么？</summary><div class="quiz-a">数据不出本机、不需联网、不按 Token 付费。</div></details>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1VQWb6eEeo?p=1" target="_blank" rel="noopener noreferrer">全网最详细的 AI 入门课：一期视频搞懂 58 个 AI 术语，从大模型到 Agent、MCP、Skill</a> · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E5%8F%82%E6%95%B0.html">参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%BC%80%E6%BA%90%E6%A8%A1%E5%9E%8B.html">开源模型</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E7%AE%97%E5%8A%9B.html">算力</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E9%87%8F%E5%8C%96.html">量化</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E6%8E%A8%E7%90%86%EF%BC%88inference%EF%BC%89.html"><small>上一张</small>推理（inference）</a><a class="next" href="../c/%E6%9D%83%E9%87%8D%E6%96%87%E4%BB%B6.html"><small>下一张</small>权重文件</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-17 10:24</span>
+</footer>
+<script src="../assets/app.js?v=cf795595" defer></script>
+</body>
+</html>
