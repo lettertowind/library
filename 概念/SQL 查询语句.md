@@ -6,6 +6,8 @@ domain: 计算机/数据分析/数据库
 tags: [概念/concept, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+stage: "S02E03 · 读取Mysql文件"
+order: 18
 ---
 
 # SQL 查询语句

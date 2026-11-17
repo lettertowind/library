@@ -99,9 +99,13 @@ def scan_concepts():
             term = m.group(1).strip()
         dm = re.search(r"^domain:\s*(.+)$", head, re.M)
         am = re.search(r"^aliases:\s*\[(.*?)\]", head, re.M)
+        om = re.search(r"^order:\s*(\d+)", head, re.M)
+        sm = re.search(r'^stage:\s*"?([^"\r\n]+)', head, re.M)
         aliases = [x.strip() for x in am.group(1).split(",") if x.strip()] if am else []
         out[f.stem] = {"path": f, "term": term, "domain": (dm.group(1).strip() if dm else ""),
-                       "aliases": aliases}
+                       "aliases": aliases,
+                       "order": int(om.group(1)) if om else 9999,
+                       "stage": sm.group(1).strip() if sm else ""}
     return out
 
 
@@ -298,21 +302,29 @@ def append_to_card(path, c, meta):
 # ---------- 索引 ----------
 
 def rebuild_index():
+    """按领域分组，组内按课程学习顺序（order）排，没标顺序的排最后。
+
+    by_dom 里各表已经排好序，rebuild_moc / rebuild_home 不要再 sorted。
+    """
     items = []
     for stem, info in scan_concepts().items():
-        items.append((info["domain"] or "未分类", info["term"], stem))
+        items.append((info["domain"] or "未分类", info.get("order", 9999),
+                      info["term"], stem, info.get("stage", "")))
     items.sort()
     by_dom = {}
-    for dom, term, stem in items:
-        by_dom.setdefault(dom, []).append((term, stem))
+    for dom, order, term, stem, stage in items:
+        by_dom.setdefault(dom, []).append((term, stem, stage))
 
     L = ["# 概念索引", "",
          f"> 共 {len(items)} 个概念 · 更新于 {datetime.now().strftime('%Y-%m-%d %H:%M')}", ""]
     for dom in sorted(by_dom):
         L.append(f"## {dom}（{len(by_dom[dom])}）")
         L.append("")
-        for term, stem in sorted(by_dom[dom]):
-            L.append(f"- [[{stem}]]" + ("" if stem == term else f" — {term}"))
+        for term, stem, stage in by_dom[dom]:
+            row = f"- [[{stem}]]" + ("" if stem == term else f" — {term}")
+            if stage:
+                row += f" · {stage}"
+            L.append(row)
         L.append("")
     INDEX_MD.write_text("\n".join(L) + "\n", encoding="utf-8")
     return by_dom
@@ -329,12 +341,12 @@ def rebuild_moc(by_dom):
         L = [f"# {top}", "",
              f"> 本领域 {len(arr)} 个概念 · 更新于 {datetime.now().strftime('%Y-%m-%d')}", ""]
         sub = {}
-        for dom, (term, stem) in arr:
+        for dom, (term, stem, stage) in arr:
             sub.setdefault(dom, []).append((term, stem))
         for dom in sorted(sub):
             if dom != top:
                 L += [f"## {dom}", ""]
-            for term, stem in sorted(sub[dom]):
+            for term, stem in sub[dom]:          # 已在 rebuild_index 里按学习顺序排好
                 L.append(f"- [[{stem}]]" + ("" if stem == term else f" — {term}"))
             L.append("")
         (MOC_DIR / f"{top}.md").write_text("\n".join(L), encoding="utf-8")

@@ -458,6 +458,9 @@ def parse_card(path, group):
         "created": meta.get("created", ""),
         "updated": meta.get("updated", "") or meta.get("created", ""),
         "source": meta.get("source", ""),
+        # 课程学习顺序：有 order 的按分P排，没有的排最后
+        "order": int(meta["order"]) if str(meta.get("order", "")).isdigit() else 9999,
+        "stage": meta.get("stage", ""),
         "lede": extract_lede(head["lines"]),
         "aliases_line": extract_aliases_line(head["lines"]),
         "sections": sections,
@@ -693,9 +696,10 @@ def gen_all(cards):
              f'<p class="sub">共 {len(cards)} 张卡片</p></section>']
     for dom in sorted(groups):
         parts.append(f'<section class="sec"><h2>{esc(dom)}</h2><ul class="plain">')
-        for c in sorted(groups[dom], key=lambda x: x["term"]):
+        for c in sorted(groups[dom], key=lambda x: (x["order"], x["term"])):
             extra = f' — {esc(c["aliases_line"])}' if c["aliases_line"] else ""
-            parts.append(f'<li><a href="{c["url"]}">{esc(c["term"])}</a>{extra}</li>')
+            stage = f' <span class="tile-dom">{esc(c["stage"])}</span>' if c["stage"] else ""
+            parts.append(f'<li><a href="{c["url"]}">{esc(c["term"])}</a>{extra}{stage}</li>')
         parts.append("</ul></section>")
     return page("全部概念", "".join(parts), root=root)
 
@@ -716,11 +720,13 @@ def gen_domain(dom, items):
              f'<p class="sub">{len(items)} 个概念 · {len(groups)} 个子类</p></section>']
     for sub in sorted(groups):
         parts.append(f'<section class="sec"><h2>{esc(sub)}</h2><div class="grid">')
-        for c in sorted(groups[sub], key=lambda x: x["term"]):
+        for c in sorted(groups[sub], key=lambda x: (x["order"], x["term"])):
+            # 有课程阶段的卡显示「S01E03 · 创建数组」，其余仍显示一句话定义
+            label = c["stage"] or c["lede"][:40] or c["kind"]
             parts.append(
                 f'<a class="tile" href="{root}{c["url"]}">'
                 f'<span class="tile-term">{esc(c["term"])}</span>'
-                f'<span class="tile-dom">{esc(c["lede"][:40] or c["kind"])}</span></a>'
+                f'<span class="tile-dom">{esc(label)}</span></a>'
             )
         parts.append("</div></section>")
     return page(dom, "".join(parts), root=root, desc=f"{dom} 领域下的概念")

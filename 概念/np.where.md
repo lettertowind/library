@@ -6,6 +6,9 @@ domain: 计算机/数据分析/Numpy
 tags: [概念/method, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+order: 14
+stage: "S01E13 · 条件计算，排序，深潜拷贝【本季完】"
+order: 14
 ---
 
 # np.where

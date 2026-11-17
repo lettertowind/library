@@ -6,6 +6,9 @@ domain: 计算机/数据分析/Pandas
 tags: [概念/concept, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+order: 27
+stage: "S02E12 · 数据排序【已修证】"
+order: 27
 ---
 
 # ascending 参数

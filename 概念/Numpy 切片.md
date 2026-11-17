@@ -2,10 +2,12 @@
 term: Numpy 切片
 aliases: [Slicing, start:stop]
 kind: concept
-domain: 计算机/数据分析/Python
+domain: 计算机/数据分析/Numpy
 tags: [概念/concept, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+stage: "S01E06 · 基础索引与切片"
+order: 7
 ---
 
 # Numpy 切片

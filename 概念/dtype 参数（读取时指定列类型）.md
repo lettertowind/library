@@ -6,6 +6,9 @@ domain: 计算机/数据分析/Pandas
 tags: [概念/concept, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+order: 25
+stage: "S02E10 · 各种数据自动填充"
+order: 25
 ---
 
 # dtype 参数（读取时指定列类型）

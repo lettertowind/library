@@ -6,6 +6,9 @@ domain: 计算机/数据分析/Pandas
 tags: [概念/method, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+order: 26
+stage: "S01E11 · 通用函数：快速的逐元素数组函数"
+order: 12
 ---
 
 # NumPy 函数在 pandas 中的应用

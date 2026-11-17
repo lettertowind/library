@@ -6,6 +6,8 @@ domain: 计算机/数据分析/Python
 tags: [概念/method, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+stage: "S01E01 · 参考书籍及安装方法"
+order: 2
 ---
 
 # pip3 install numpy

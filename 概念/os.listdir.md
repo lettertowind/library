@@ -6,6 +6,8 @@ domain: 计算机/数据分析/Python
 tags: [概念/method, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+stage: "S02E25 · Excel文件的拆分与合并"
+order: 40
 ---
 
 # os.listdir

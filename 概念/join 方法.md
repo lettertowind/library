@@ -6,6 +6,9 @@ domain: 计算机/数据分析/Pandas
 tags: [概念/method, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+order: 23
+stage: "S02E08 · 连接查询之join与Merge总结"
+order: 23
 ---
 
 # join 方法

@@ -6,6 +6,8 @@ domain: 计算机/数据分析/指标
 tags: [概念/method, 领域/商业]
 created: 2026-11-17
 updated: 2026-11-17
+stage: "S02E11 · 列与列之间的计算"
+order: 26
 ---
 
 # BMI 计算

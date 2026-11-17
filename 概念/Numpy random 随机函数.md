@@ -6,6 +6,9 @@ domain: 计算机/数据分析/Numpy
 tags: [概念/tool, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+order: 11
+stage: "S01E10 · random随机函数"
+order: 11
 ---
 
 # Numpy random 随机函数

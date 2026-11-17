@@ -6,6 +6,9 @@ domain: 计算机/数据分析/Pandas
 tags: [概念/method, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
+order: 16
+stage: "S02E01 · 数据类型与新建文件"
+order: 16
 ---
 
 # import pandas as pd
