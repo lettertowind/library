@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="只在特定语法上下文中当关键字、其他位置可作标识符的关键字。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>软关键字 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>软关键字</h1><div class="aliases">soft keywords · soft keyword</div><p class="lede">只在特定语法上下文中当关键字、其他位置可作标识符的关键字。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>Python 3.12 的软关键字有 _、case、match、type。它们为模式匹配、类型别名等新语法服务，同时尽量不破坏旧代码命名。滥用会造成可读性下降，如 match match。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>理解 match/case 与 type 别名语法</li><li>判断某个名字能否作变量名</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>3.12 软关键字：_、case、match、type</li><li>type 自 3.12 起成为软关键字</li><li>可在非关键字位置作变量名</li><li>软关键字可读性风险较高</li><li>普通关键字与软关键字规则不同</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>软关键字不是弱关键字，其关键字含义仍严格由语法位置决定。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Python%20%E5%85%B3%E9%94%AE%E5%AD%97.html">Python 关键字</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%EF%BC%88matchcase%EF%BC%89.html">模式匹配（matchcase）</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 type 在 3.12 之前不计入软关键字？</summary><div class="quiz-a">因为 3.12 才引入 type 类型别名语法，使其成为软关键字。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV17pLUzdEtw" target="_blank" rel="noopener noreferrer">40分钟带你了解Python中所有的关键字</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Python%20%E5%85%B3%E9%94%AE%E5%AD%97.html">Python 关键字</a><span class="rel rel-plain">下位概念</span></li><li><a class="wl" href="../c/%E6%A8%A1%E5%BC%8F%E5%8C%B9%E9%85%8D%EF%BC%88matchcase%EF%BC%89.html">模式匹配（matchcase）</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E8%B7%AF%E5%BE%84%E5%8F%98%E9%87%8F.html"><small>上一张</small>路径变量</a><a class="next" href="../c/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE%EF%BC%88iter%20%E4%B8%8E%20next%EF%BC%89.html"><small>下一张</small>迭代器协议（iter 与 next）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:38</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Python 3.10+ 用 match 和 case 对值做结构化分支匹配的语法。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>模式匹配（matchcase） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>模式匹配（matchcase）</h1><div class="aliases">match/case · 模式匹配 · structural pattern matching</div><p class="lede">Python 3.10+ 用 match 和 case 对值做结构化分支匹配的语法。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>match 后接待匹配表达式，case 定义模式和可选守卫条件。它比 if/elif 更适合解构列表、字典、对象等结构。match 与 case 是软关键字，_ 可作通配模式。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>多分支条件判断</li><li>解构并匹配数据结构</li><li>替代冗长 if/elif 链</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>3.10 引入，需注意版本</li><li>case 可带守卫条件</li><li>支持结构化模式与通配符 _</li><li>match/case 是软关键字</li><li>可读性优先，避免 match match</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不是所有多分支都该用；简单条件用 if/elif 更清晰。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E8%BD%AF%E5%85%B3%E9%94%AE%E5%AD%97.html">软关键字</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/Python%20%E5%85%B3%E9%94%AE%E5%AD%97.html">Python 关键字</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>match/case 相比 if/elif 的优势场景？</summary><div class="quiz-a">需要按数据结构解构匹配、或需要模式守卫时更清晰。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV17pLUzdEtw" target="_blank" rel="noopener noreferrer">40分钟带你了解Python中所有的关键字</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/Python%20%E5%85%B3%E9%94%AE%E5%AD%97.html">Python 关键字</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E8%BD%AF%E5%85%B3%E9%94%AE%E5%AD%97.html">软关键字</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86%EF%BC%88tryexceptfinally%EF%BC%89.html"><small>上一张</small>异常处理（tryexceptfinally）</a><a class="next" href="../c/%E7%9C%9F%E5%80%BC%E5%88%A4%E6%96%AD%EF%BC%88Truthiness%EF%BC%89.html"><small>下一张</small>真值判断（Truthiness）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:38</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="用 async def 定义协程、用 await 等待异步结果，实现单线程并发。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>asyncawait 异步语法 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>asyncawait 异步语法</h1><div class="aliases">async · await · 异步函数 · 协程语法</div><p class="lede">用 async def 定义协程、用 await 等待异步结果，实现单线程并发。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>async def 声明的函数调用后返回协程对象，需事件循环运行。await 用于等待可等待对象完成并取结果，常用于 IO 密集任务。它不是多线程，也不会自动并行 CPU 计算。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>网络请求、数据库访问等 IO 并发</li><li>用 asyncio 组织异步任务</li><li>避免阻塞事件循环</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>async def 定义协程函数</li><li>await 等待可等待对象</li><li>需 asyncio 等事件循环运行</li><li>适合 IO 密集而非 CPU 密集</li><li>阻塞调用会卡住事件循环</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>async/await 不等于多线程或多进程；CPU 密集任务仍需并行方案。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Python%20%E5%85%B3%E9%94%AE%E5%AD%97.html">Python 关键字</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/yield%20%E7%94%9F%E6%88%90%E5%99%A8.html">yield 生成器</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>调用 async def 函数会直接执行函数体吗？</summary><div class="quiz-a">不会，返回协程对象，需事件循环调度执行。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV17pLUzdEtw" target="_blank" rel="noopener noreferrer">40分钟带你了解Python中所有的关键字</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/yield%20%E7%94%9F%E6%88%90%E5%99%A8.html">yield 生成器</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/assert%20%E6%96%AD%E8%A8%80.html"><small>上一张</small>assert 断言</a><a class="next" href="../c/datetime.date.html"><small>下一张</small>datetime.date</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:38</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>
