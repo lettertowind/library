@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>keys 参数 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>keys 参数</h1><div class="aliases">keys · 层次索引标识 · 来源标识</div><p class="lede">concat 中用于为每个连接对象添加层次索引标签的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>keys 参数接收一个列表，列表元素与传入 concat 的对象顺序一一对应，生成外层索引以标识数据来源。添加后可通过外层索引筛选特定来源的数据，也便于后续分组分析。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>合并多张表时标识每行数据来自哪张表</li><li>为后续按来源筛选或分组提供依据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>keys 列表顺序与传入对象顺序对应</li><li>生成 MultiIndex 的外层索引</li><li>可用字典替代 keys 列表，字典 key 作为分组标识</li><li>便于按来源表筛选数据</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>keys 只增加索引层级，不改变数据内容；与 ignore_index=True 同时使用时，keys 仍会保留外层索引。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.concat.html">pd.concat</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>pd.concat([df1, df2], keys=[&#x27;x&#x27;,&#x27;y&#x27;]) 后，如何取出 df2 对应的数据？</summary><div class="quiz-a">使用 loc 按外层索引 &#x27;y&#x27; 选取，如 result.loc[&#x27;y&#x27;]。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>keys 参数</h1><div class="aliases">keys · 层次索引标识 · 来源标识</div><p class="lede">concat 中用于为每个连接对象添加层次索引标签的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>keys 参数接收一个列表，列表元素与传入 concat 的对象顺序一一对应，生成外层索引以标识数据来源。添加后可通过外层索引筛选特定来源的数据，也便于后续分组分析。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>合并多张表时标识每行数据来自哪张表</li><li>为后续按来源筛选或分组提供依据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>keys 列表顺序与传入对象顺序对应</li><li>生成 MultiIndex 的外层索引</li><li>可用字典替代 keys 列表，字典 key 作为分组标识</li><li>便于按来源表筛选数据</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>keys 只增加索引层级，不改变数据内容；与 ignore_index=True 同时使用时，keys 仍会保留外层索引。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.concat.html">pd.concat</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%88%86%E5%B1%82%E7%B4%A2%E5%BC%95.html">分层索引</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>pd.concat([df1, df2], keys=[&#x27;x&#x27;,&#x27;y&#x27;]) 后，如何取出 df2 对应的数据？</summary><div class="quiz-a">使用 loc 按外层索引 &#x27;y&#x27; 选取，如 result.loc[&#x27;y&#x27;]。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>读取全部 sheet 后得到 dict，数据.keys() 返回所有键（即 sheet 名），再用 list() 转成列表就能遍历，用 数据[名字] 逐个取 DataFrame。</p>
 <p>- keys() 返回的是 dict_keys 视图，遍历前常 list() 落成列表</p>
@@ -35,8 +35,8 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

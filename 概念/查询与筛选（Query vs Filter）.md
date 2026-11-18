@@ -2,8 +2,8 @@
 term: 查询与筛选（Query vs Filter）
 aliases: [查询 vs 筛选, query and filter]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

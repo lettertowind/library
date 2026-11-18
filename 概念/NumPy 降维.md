@@ -2,8 +2,8 @@
 term: NumPy 降维
 aliases: [索引降维, 返回一维数组, 维度降低]
 kind: concept
-domain: 数据分析/Numpy
-tags: [概念/concept, 领域/数据分析]
+domain: Numpy
+tags: [概念/concept, 领域/Numpy]
 created: 2026-11-17
 updated: 2026-11-17
 ---

@@ -2,8 +2,8 @@
 term: append 方法
 aliases: [append, 追加, DataFrame.append, Series.append]
 kind: method
-domain: 数据分析/Pandas
-tags: [概念/method, 领域/数据分析]
+domain: Pandas
+tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 24

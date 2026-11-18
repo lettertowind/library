@@ -2,8 +2,8 @@
 term: NaT
 aliases: [Not a Time, 时间空值]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

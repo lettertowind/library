@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>数据筛选 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>数据筛选</h1><div class="aliases">筛选 · Filter</div><p class="lede">按条件或范围从表中挑出符合条件的行或列的操作。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>筛选面向大范围日期、复杂条件组合等场景，通常借助布尔条件表达式完成。它与查询结果可能重叠，但更强调条件驱动而非标签定位。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按多条件挑出符合业务规则的行</li><li>按日期区间取大范围数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>筛选由条件驱动，不依赖已知具体标签</li><li>多条件用 &amp; 和 | 组合</li><li>大范围日期更适合用筛选</li><li>与查询是互补关系而非替代</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只查单个已知标签时用查询更直接，不必上复杂条件。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2.html">数据查询</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>筛选和查询最核心的区别是什么？</summary><div class="quiz-a">查询按已知标签精确定位少量数据，筛选按条件或范围挑出数据。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>数据筛选</h1><div class="aliases">筛选 · Filter</div><p class="lede">按条件或范围从表中挑出符合条件的行或列的操作。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>筛选面向大范围日期、复杂条件组合等场景，通常借助布尔条件表达式完成。它与查询结果可能重叠，但更强调条件驱动而非标签定位。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>按多条件挑出符合业务规则的行</li><li>按日期区间取大范围数据</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>筛选由条件驱动，不依赖已知具体标签</li><li>多条件用 &amp; 和 | 组合</li><li>大范围日期更适合用筛选</li><li>与查询是互补关系而非替代</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只查单个已知标签时用查询更直接，不必上复杂条件。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E6%9F%A5%E8%AF%A2.html">数据查询</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E5%B8%83%E5%B0%94%E7%B4%A2%E5%BC%95%E7%AD%9B%E9%80%89.html">布尔索引筛选</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>筛选和查询最核心的区别是什么？</summary><div class="quiz-a">查询按已知标签精确定位少量数据，筛选按条件或范围挑出数据。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>写法是 数据[数据[&quot;部门&quot;] == i]：内层比较返回同长度的 True/False 序列，外层用它作行选择。外层方括号负责选行，内层负责判断，形成双层切片。</p>
 <p>- 条件判断必须用 ==，写成 = 会当成赋值直接报错或出错</p>
@@ -29,8 +29,8 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

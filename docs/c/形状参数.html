@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>形状参数 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>形状参数</h1><div class="aliases">shape 参数 · 数组形状参数</div><p class="lede">创建数组时描述各维度大小的参数：一维传整数，二维及以上传元组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>np.ones、np.zeros、np.full 的第一个参数都是形状。一维可以写一个整数，二维必须写 (行,列) 元组，三维写 (块,行,列) 元组。元组中数字表示各维度大小。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>正确调用 np.ones/np.zeros/np.full</li><li>理解多维数组的维度顺序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>一维可写整数，也可写 (n,)</li><li>二维必须写两个数的元组 (行,列)</li><li>三维写三个数的元组</li><li>元组数字表示各维度大小</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>二维及以上漏写元组括号（如 np.ones(2,3)）会被当成多个参数而报错。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.ones.html">np.ones</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/shape%20%E5%B1%9E%E6%80%A7.html">shape 属性</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 np.ones(2,3) 会报错而 np.ones((2,3)) 不会？</summary><div class="quiz-a">二维形状必须作为一个元组整体传入，np.ones(2,3) 被解析成两个位置参数。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>形状参数</h1><div class="aliases">shape 参数 · 数组形状参数</div><p class="lede">创建数组时描述各维度大小的参数：一维传整数，二维及以上传元组。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>np.ones、np.zeros、np.full 的第一个参数都是形状。一维可以写一个整数，二维必须写 (行,列) 元组，三维写 (块,行,列) 元组。元组中数字表示各维度大小。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>正确调用 np.ones/np.zeros/np.full</li><li>理解多维数组的维度顺序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>一维可写整数，也可写 (n,)</li><li>二维必须写两个数的元组 (行,列)</li><li>三维写三个数的元组</li><li>元组数字表示各维度大小</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>二维及以上漏写元组括号（如 np.ones(2,3)）会被当成多个参数而报错。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/np.ones.html">np.ones</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/shape%20%E5%B1%9E%E6%80%A7.html">shape 属性</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 np.ones(2,3) 会报错而 np.ones((2,3)) 不会？</summary><div class="quiz-a">二维形状必须作为一个元组整体传入，np.ones(2,3) 被解析成两个位置参数。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>ones、zeros、full 这类创建函数需要你告诉它数组长什么样，方式就是传一个元组：一维写 (n,)，二维写 (行, 列)，三维写 (块, 行, 列)。注意必须打成元组形式 (3,3)，而不是两个分开的参数。_like 系列则不用传形状，直接复用已有数组的 shape。</p>
 <p>- 形状用元组表示，如 np.ones((3,3))、np.zeros((2,3,3))</p>
@@ -36,8 +36,8 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

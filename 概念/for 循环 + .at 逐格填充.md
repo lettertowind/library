@@ -2,8 +2,8 @@
 term: for 循环 + .at 逐格填充
 aliases: [循环填充, 遍历索引填值, for i in 数据.index]
 kind: method
-domain: 数据分析/Pandas
-tags: [概念/method, 领域/数据分析]
+domain: Pandas
+tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

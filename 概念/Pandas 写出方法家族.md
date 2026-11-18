@@ -2,8 +2,8 @@
 term: Pandas 写出方法家族
 aliases: [to_* 方法, 文件写出方法]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 16

@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>args 参数 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,13 +18,13 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>args 参数</h1><div class="aliases">args · apply 额外参数</div><p class="lede">apply 中把额外位置参数以元组形式透传给目标函数的关键字参数</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>调用 apply 时，pandas 先把列元素或行 Series 作为函数的第一个参数，再把 args 元组里的元素按顺序展开为后续参数。它让同一个函数可以通过改参数值复用于不同运算，是 apply 优于 map 的关键。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给整列成绩统一加 5 分、减 5 分等参数化运算</li><li>复用同一个函数但换不同阈值或系数</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>args 必须是元组，单参数也要写成 (5,)，逗号不能省</li><li>写成 (5) 只是普通括号，无法正确传参</li><li>可与 axis 同时使用，例如 df.apply(函数, axis=1, args=(系数,))</li><li>map 不支持额外参数，因此多参数需求首选 apply</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>args 只负责按位置透传，顺序必须与函数形参一致；关键字方式传参不在其覆盖范围内。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/map.html">map</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df[&quot;语文&quot;].apply(修改分数, args=(5,)) 里 5 传给了函数的哪个形参？</summary><div class="quiz-a">传给第二个形参（误差值），第一个形参 x 接收的是列里的每个分数</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>args 参数</h1><div class="aliases">args · apply 额外参数</div><p class="lede">apply 中把额外位置参数以元组形式透传给目标函数的关键字参数</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>调用 apply 时，pandas 先把列元素或行 Series 作为函数的第一个参数，再把 args 元组里的元素按顺序展开为后续参数。它让同一个函数可以通过改参数值复用于不同运算，是 apply 优于 map 的关键。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>给整列成绩统一加 5 分、减 5 分等参数化运算</li><li>复用同一个函数但换不同阈值或系数</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>args 必须是元组，单参数也要写成 (5,)，逗号不能省</li><li>写成 (5) 只是普通括号，无法正确传参</li><li>可与 axis 同时使用，例如 df.apply(函数, axis=1, args=(系数,))</li><li>map 不支持额外参数，因此多参数需求首选 apply</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>args 只负责按位置透传，顺序必须与函数形参一致；关键字方式传参不在其覆盖范围内。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/apply.html">apply</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/map.html">map</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/axis%20%E5%8F%82%E6%95%B0.html">axis 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df[&quot;语文&quot;].apply(修改分数, args=(5,)) 里 5 传给了函数的哪个形参？</summary><div class="quiz-a">传给第二个形参（误差值），第一个形参 x 接收的是列里的每个分数</div></details>
 <details class="quiz"><summary>args=(-5,) 与 args=(-5) 有何区别？</summary><div class="quiz-a">前者是单元素元组，能正确透传；后者不是元组，参数无法被正确展开</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1ji4y157uB?p=45" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p45 S02E30.数据处理的三板斧</a> · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/applymap.html"><small>上一张</small>applymap</a><a class="next" href="../c/ascending%20%E5%8F%82%E6%95%B0.html"><small>下一张</small>ascending 参数</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

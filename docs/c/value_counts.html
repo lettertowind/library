@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>value_counts · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>value_counts</h1><div class="aliases">df[列].value_counts · 频数统计 · 出现次数统计</div><p class="lede">统计 Series 中每个取值出现的次数并按频数排序。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.value_counts(normalize=False, sort=True, ascending=False, dropna=True)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>value_counts</h1><div class="aliases">df[列].value_counts · 频数统计 · 出现次数统计</div><p class="lede">统计 Series 中每个取值出现的次数并按频数排序。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.value_counts(normalize=False, sort=True, ascending=False, dropna=True)</code> <strong>参数</strong>：</p>
 <ul><li><code>normalize</code>：默认 <code>False</code> 返回频数；设为 <code>True</code> 返回占比（总和为 1）</li><li><code>sort</code>：默认 <code>True</code> 按频数排序</li><li><code>ascending</code>：默认 <code>False</code> 降序；设为 <code>True</code> 则升序</li><li><code>dropna</code>：默认 <code>True</code> 不统计缺失值；设为 <code>False</code> 会把 NaN 也计入</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -53,8 +53,8 @@ print(df[&#x27;姓名&#x27;].value_counts(normalize=True))
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>聚合函数 NA 忽略特性 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,13 +18,13 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>聚合函数 NA 忽略特性</h1><div class="aliases">skipna · 聚合忽略缺失值 · 非 NA 聚合</div><p class="lede">Pandas 聚合函数默认跳过 NA 值，只对非缺失值计算。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>count、sum、mean、median、std、var、max、min、prod、first、last 等聚合默认忽略 NA。这意味着 count 统计的是非空个数，sum 不会因缺失而变 NaN，与空值传播的算术运算不同。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>分组聚合前评估缺失影响</li><li>理解 count 与 size 的差异</li><li>决定是否需要先 fillna</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>count 返回非 NA 个数，size 返回全部行数</li><li>sum/mean 等默认 skipna=True，跳过缺失值</li><li>first/last 取第一个/最后一个非 NA 值</li><li>聚合前应先检查数据是否存在 NA</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与普通算术运算的 NaN 传播行为不同，容易混淆。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Pandas%20%E6%95%B0%E5%AD%A6%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.html">Pandas 数学统计函数</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E7%A9%BA%E5%80%BC%E4%BC%A0%E6%92%AD.html">空值传播</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>某组有 5 行、其中 2 个成绩为 NaN，count 和 size 分别返回多少？</summary><div class="quiz-a">count 返回 3，size 返回 5。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>聚合函数 NA 忽略特性</h1><div class="aliases">skipna · 聚合忽略缺失值 · 非 NA 聚合</div><p class="lede">Pandas 聚合函数默认跳过 NA 值，只对非缺失值计算。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>count、sum、mean、median、std、var、max、min、prod、first、last 等聚合默认忽略 NA。这意味着 count 统计的是非空个数，sum 不会因缺失而变 NaN，与空值传播的算术运算不同。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>分组聚合前评估缺失影响</li><li>理解 count 与 size 的差异</li><li>决定是否需要先 fillna</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>count 返回非 NA 个数，size 返回全部行数</li><li>sum/mean 等默认 skipna=True，跳过缺失值</li><li>first/last 取第一个/最后一个非 NA 值</li><li>聚合前应先检查数据是否存在 NA</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与普通算术运算的 NaN 传播行为不同，容易混淆。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Pandas%20%E6%95%B0%E5%AD%A6%E7%BB%9F%E8%AE%A1%E5%87%BD%E6%95%B0.html">Pandas 数学统计函数</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/%E7%A9%BA%E5%80%BC%E4%BC%A0%E6%92%AD.html">空值传播</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>某组有 5 行、其中 2 个成绩为 NaN，count 和 size 分别返回多少？</summary><div class="quiz-a">count 返回 3，size 返回 5。</div></details>
 <details class="quiz"><summary>为什么 sum 遇到 NaN 不会返回 NaN？</summary><div class="quiz-a">聚合函数默认 skipna=True，跳过缺失值计算。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%AF%BC%E8%87%B4%E7%9A%84%E7%B1%BB%E5%9E%8B%E6%8F%90%E5%8D%87.html"><small>上一张</small>缺失值导致的类型提升</a><a class="next" href="../c/%E8%87%AA%E5%8A%A8%E5%A1%AB%E5%85%85.html"><small>下一张</small>自动填充</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

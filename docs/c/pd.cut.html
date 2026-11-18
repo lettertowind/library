@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>pd.cut · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.cut</h1><div class="aliases">cut · 按值分箱 · 指定分界点分箱</div><p class="lede">按指定的分界点或区间把连续一维数据分箱。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.cut(x, bins, right=True, labels=None, retbins=False, include_lowest=False)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>pd.cut</h1><div class="aliases">cut · 按值分箱 · 指定分界点分箱</div><p class="lede">按指定的分界点或区间把连续一维数据分箱。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.cut(x, bins, right=True, labels=None, retbins=False, include_lowest=False)</code> <strong>参数</strong>：</p>
 <ul><li><code>x</code>：一维类数组（列表或 Series），不能直接传入整张表，需先用 <code>df[&#x27;某列&#x27;]</code> 取出。</li><li><code>bins</code>：分界点列表，如 <code>[1900, 1950, 2000]</code> 形成两个箱；也可传入整数，表示等宽箱数。</li><li><code>right</code>：默认 <code>True</code>，区间右闭，即 <code>(a, b]</code>；设为 <code>False</code> 则为左闭右开。</li><li><code>labels</code>：箱子名称列表，长度必须等于箱数；传 <code>False</code> 返回从 0 开始的整数箱号。</li><li><code>retbins</code>：默认 <code>False</code>；设为 <code>True</code> 时返回 <code>(分箱结果, 分界点数组)</code> 元组。</li><li><code>include_lowest</code>：默认 <code>False</code>，设为 <code>True</code> 时最左区间包含左端点。</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -37,12 +37,12 @@ print(pd.cut(df[&#x27;year&#x27;], bins=[1900, 1950, 2000], include_lowest=True,
 <p>- 分界点要用业务逻辑确定，示例中的 1900/1950 只是演示</p>
 <p>- 箱子按下标从 0 编号，0 号箱对应第一段区间</p>
 <details class="quiz"><summary>把年龄列切成 0~15、16~30、31~45、45 以上四段，为什么不能直接写 pd.cut(df, [...])？</summary><div class="quiz-a">cut 只处理一维数据，df 是二维表，必须先取 df[&#x27;年龄&#x27;] 得到 Series 再分箱。</div></details>
-<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=37" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p37 S02E22.离散化和分箱</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/SWITCH%20%E5%87%BD%E6%95%B0.html">SWITCH 函数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/labels%20%E5%8F%82%E6%95%B0%EF%BC%88cutqcut%EF%BC%89.html">labels 参数（cutqcut）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pd.qcut.html">pd.qcut</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%88%86%E7%AE%B1.html">离散化与分箱</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pd.concat.html"><small>上一张</small>pd.concat</a><a class="next" href="../c/pd.qcut.html"><small>下一张</small>pd.qcut</a></nav></article>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=37" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p37 S02E22.离散化和分箱</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/labels%20%E5%8F%82%E6%95%B0%EF%BC%88cutqcut%EF%BC%89.html">labels 参数（cutqcut）</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/pd.qcut.html">pd.qcut</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%A6%BB%E6%95%A3%E5%8C%96%E4%B8%8E%E5%88%86%E7%AE%B1.html">离散化与分箱</a><span class="rel rel-plain">下位概念</span></li><li><a class="wl" href="../c/SWITCH%20%E5%87%BD%E6%95%B0.html">SWITCH 函数</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/pd.concat.html"><small>上一张</small>pd.concat</a><a class="next" href="../c/pd.qcut.html"><small>下一张</small>pd.qcut</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

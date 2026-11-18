@@ -2,8 +2,8 @@
 term: 整数列被提升为 float64
 aliases: [int 变 float, 缺失值导致类型提升, 1 显示成 1.0]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

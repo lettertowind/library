@@ -2,8 +2,8 @@
 term: Numpy 数据类型位宽
 aliases: [int32, int64, float32, float64, 数据类型位数]
 kind: concept
-domain: 数据分析/Numpy
-tags: [概念/concept, 领域/数据分析]
+domain: Numpy
+tags: [概念/concept, 领域/Numpy]
 created: 2026-11-17
 updated: 2026-11-17
 ---

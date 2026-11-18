@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>Numpy 二维数组 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>Numpy 二维数组</h1><div class="aliases">ndarray 二维 · 矩阵</div><p class="lede">用 np.array 创建、按行和列组织数据的二维数据结构。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>二维数组是 Numpy 处理表格型数据的核心结构，用行索引和列索引定位元素。可类比 Excel 的 offset 函数，按行偏移、列偏移定位区域。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>表示表格型/矩阵型数据</li><li>作为索引与切片的操作对象</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>用 np.array 嵌套列表创建</li><li>定位思想是“先行后列”</li><li>可类比 Excel offset 的行列偏移</li><li>取单列后结果退化为一维数组</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>二维索引规则建立在一维索引与切片之上，一维不熟应先补 Python 基础。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Numpy%20%E7%B4%A2%E5%BC%95.html">Numpy 索引</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/Numpy%20%E5%88%87%E7%89%87.html">Numpy 切片</a><span class="rel rel-down">下位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么说二维数组索引可以类比 Excel 的 offset？</summary><div class="quiz-a">两者都通过行偏移和列偏移来定位元素或区域，核心都是先行后列的定位思想。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>Numpy 二维数组</h1><div class="aliases">ndarray 二维 · 矩阵</div><p class="lede">用 np.array 创建、按行和列组织数据的二维数据结构。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>二维数组是 Numpy 处理表格型数据的核心结构，用行索引和列索引定位元素。可类比 Excel 的 offset 函数，按行偏移、列偏移定位区域。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>表示表格型/矩阵型数据</li><li>作为索引与切片的操作对象</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>用 np.array 嵌套列表创建</li><li>定位思想是“先行后列”</li><li>可类比 Excel offset 的行列偏移</li><li>取单列后结果退化为一维数组</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>二维索引规则建立在一维索引与切片之上，一维不熟应先补 Python 基础。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/Numpy%20%E7%B4%A2%E5%BC%95.html">Numpy 索引</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/Numpy%20%E5%88%87%E7%89%87.html">Numpy 切片</a><span class="rel rel-down">下位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么说二维数组索引可以类比 Excel 的 offset？</summary><div class="quiz-a">两者都通过行偏移和列偏移来定位元素或区域，核心都是先行后列的定位思想。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>二维数组常被称作矩阵或行列式，但它的本质是“数组中的数组”：外层数组的每个元素本身又是一个一维数组。因此创建方式仍是 np.array，只是把若干一维数组作为元素嵌套放进外层数组。它的元素总数等于行数乘列数。</p>
 <p>- 本质是数组中的数组，不是独立的矩阵类型</p>
@@ -37,8 +37,8 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

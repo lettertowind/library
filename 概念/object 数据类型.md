@@ -2,8 +2,8 @@
 term: object 数据类型
 aliases: [object dtype, 字符型, 字符串类型列]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

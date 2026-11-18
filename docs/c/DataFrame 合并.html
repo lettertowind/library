@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>DataFrame 合并 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>DataFrame 合并</h1><div class="aliases">merge · 连接查询 · DataFrame join</div><p class="lede">按共同键把两个 DataFrame 连接成一张表的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.merge(left, right, how=&#x27;inner&#x27;, on=None, left_on=None, right_on=None, left_index=False, right_index=False, suffixes=(&#x27;_x&#x27;, &#x27;_y&#x27;))</code></p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>DataFrame 合并</h1><div class="aliases">merge · 连接查询 · DataFrame join</div><p class="lede">按共同键把两个 DataFrame 连接成一张表的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.merge(left, right, how=&#x27;inner&#x27;, on=None, left_on=None, right_on=None, left_index=False, right_index=False, suffixes=(&#x27;_x&#x27;, &#x27;_y&#x27;))</code></p>
 <p><strong>参数</strong>：</p>
 <ul><li><code>left</code> / <code>right</code>：要连接的两个 DataFrame，左右顺序决定 left/right 连接的基准表</li><li><code>how</code>：连接方式，<code>&#x27;inner&#x27;</code>（默认，只保留键匹配的行）、<code>&#x27;left&#x27;</code>、<code>&#x27;right&#x27;</code>、<code>&#x27;outer&#x27;</code>（全外连接，两侧全保留）</li><li><code>on</code>：连接键列名，单列名做单键连接，传列表如 <code>[&#x27;姓名&#x27;,&#x27;门派&#x27;]</code> 做多键连接；不写时默认取两表同名列</li><li><code>left_on</code> / <code>right_on</code>：两表连接列名不同时分别指定</li><li><code>left_index</code> / <code>right_index</code>：设为 <code>True</code> 时用索引作连接键，如左表列连右表索引写 <code>left_on=&#x27;姓名&#x27;, right_index=True</code></li><li><code>suffixes</code>：两表存在同名非键列时加的后缀，默认 <code>(&#x27;_x&#x27;, &#x27;_y&#x27;)</code></li></ul>
 <p><strong>示例</strong>：</p>
@@ -73,8 +73,8 @@ print(pd.merge(left, right, on=&#x27;姓名&#x27;, how=&#x27;outer&#x27;))  # 4 
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

@@ -2,8 +2,8 @@
 term: limit 参数（fillna）
 aliases: [limit, 填充数量限制, fillna limit]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 31

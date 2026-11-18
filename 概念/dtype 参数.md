@@ -2,8 +2,8 @@
 term: dtype 参数
 aliases: [dtype, 数据类型参数, 元素数据类型]
 kind: concept
-domain: 数据分析/Numpy
-tags: [概念/concept, 领域/数据分析]
+domain: Numpy
+tags: [概念/concept, 领域/Numpy]
 created: 2026-11-17
 updated: 2026-11-17
 order: 4

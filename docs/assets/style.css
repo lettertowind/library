@@ -251,6 +251,9 @@ mark { background: transparent; color: var(--mark); font-weight: 700; }
   font-size: .8rem;
 }
 
+/* 只用下拉时（课程阶段）铺满整行 */
+.quicknav.solo #jump { max-width: none; flex: 1 1 auto; }
+
 /* 分组小标题 */
 .sub { margin-top: 26px; }
 

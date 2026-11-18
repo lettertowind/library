@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>np.average · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.average</h1><div class="aliases">average · 加权平均 · weights</div><p class="lede">按权重计算加权平均，权重通过 weights 参数传入。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.average(a, axis=None, weights=None, returned=False)</code></p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>np.average</h1><div class="aliases">average · 加权平均 · weights</div><p class="lede">按权重计算加权平均，权重通过 weights 参数传入。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.average(a, axis=None, weights=None, returned=False)</code></p>
 <p><strong>参数</strong>：</p>
 <ul><li><code>a</code>：待求平均的数组，也可以是列表</li><li><code>axis</code>：沿指定轴求平均，默认 <code>None</code>，即对全部元素求平均</li><li><code>weights</code>：权重数组，形状需与 <code>a</code> 一致（指定 <code>axis</code> 时可为一维）；不传则退化为算术平均</li><li><code>returned</code>：为 <code>True</code> 时返回 <code>(平均值, 权重之和)</code> 元组，默认只返回平均值</li></ul>
 <p><strong>示例</strong>：</p>
@@ -40,8 +40,8 @@ print(np.average(scores, weights=weights, returned=True))  # (81.0, 1.0)</code><
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

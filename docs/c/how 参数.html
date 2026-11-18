@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>how 参数 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>how 参数</h1><div class="aliases">how · 连接类型参数 · how=left · how=outer</div><p class="lede">merge 中指定连接类型的参数，取 inner/left/right/outer。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>how 决定合并时保留哪些记录：inner 取交集，left/right 以一侧为基准，outer 取并集。它是控制合并结果范围的关键开关。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>控制合并后保留的记录范围</li><li>实现类似 VLOOKUP 的补字段</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>inner：交集，默认值，可省略不写</li><li>left：以左表为基准，右表匹配不到补空值</li><li>right：以右表为基准，与 left 对称</li><li>outer：并集，保留两侧全部记录，缺失处为 NaN</li><li>outer 可理解为左连接与右连接结果的组合</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>left/right 对表顺序敏感；outer 结果范围与顺序无关，但列顺序仍受左右表位置影响。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/on%20%E5%8F%82%E6%95%B0.html">on 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想给主表补充维度字段、且主表记录一条不能少，应选哪种 how？</summary><div class="quiz-a">how=&#x27;left&#x27;，以主表为左表做左连接。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>how 参数</h1><div class="aliases">how · 连接类型参数 · how=left · how=outer</div><p class="lede">merge 中指定连接类型的参数，取 inner/left/right/outer。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>how 决定合并时保留哪些记录：inner 取交集，left/right 以一侧为基准，outer 取并集。它是控制合并结果范围的关键开关。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>控制合并后保留的记录范围</li><li>实现类似 VLOOKUP 的补字段</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>inner：交集，默认值，可省略不写</li><li>left：以左表为基准，右表匹配不到补空值</li><li>right：以右表为基准，与 left 对称</li><li>outer：并集，保留两侧全部记录，缺失处为 NaN</li><li>outer 可理解为左连接与右连接结果的组合</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>left/right 对表顺序敏感；outer 结果范围与顺序无关，但列顺序仍受左右表位置影响。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/DataFrame%20%E5%90%88%E5%B9%B6.html">DataFrame 合并</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/on%20%E5%8F%82%E6%95%B0.html">on 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>想给主表补充维度字段、且主表记录一条不能少，应选哪种 how？</summary><div class="quiz-a">how=&#x27;left&#x27;，以主表为左表做左连接。</div></details>
 <details class="quiz"><summary>outer 连接后某行右表字段为 NaN，说明什么？</summary><div class="quiz-a">该行连接键在右表中没有匹配记录。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>how 决定哪些行被保留：inner 取交集，left 以左表为准，right 以右表为准，outer 取并集。默认 inner，其他三种必须显式写出。</p>
@@ -35,8 +35,8 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

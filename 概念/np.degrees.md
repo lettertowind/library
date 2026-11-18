@@ -2,8 +2,8 @@
 term: np.degrees
 aliases: [degrees, 弧度转角度, rad2deg]
 kind: method
-domain: 数据分析/Numpy
-tags: [概念/method, 领域/数据分析]
+domain: Numpy
+tags: [概念/method, 领域/Numpy]
 created: 2026-11-17
 updated: 2026-11-17
 ---

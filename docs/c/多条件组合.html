@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>多条件组合 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>多条件组合</h1><div class="aliases">复合条件 · 按位与或 · &amp; | 组合条件</div><p class="lede">用 &amp; 表示且、| 表示或，把多个布尔条件组合成一个掩码。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>(cond1) &amp; (cond2)</code> 或 <code>(cond1) | (cond2)</code>，其中 <code>cond1</code>、<code>cond2</code> 这两个条件表达式分别用括号括起来；组合后生成一个布尔掩码，再传给 <code>arr[mask]</code> 进行筛选</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>多条件组合</h1><div class="aliases">复合条件 · 按位与或 · &amp; | 组合条件</div><p class="lede">用 &amp; 表示且、| 表示或，把多个布尔条件组合成一个掩码。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>(cond1) &amp; (cond2)</code> 或 <code>(cond1) | (cond2)</code>，其中 <code>cond1</code>、<code>cond2</code> 这两个条件表达式分别用括号括起来；组合后生成一个布尔掩码，再传给 <code>arr[mask]</code> 进行筛选</p>
 <p><strong>参数</strong>：</p>
 <ul><li>左操作数：任意一个逐元素比较表达式，例如 <code>arr % 2 == 0</code>，必须用小括号括起来</li><li>右操作数：另一个逐元素比较表达式，例如 <code>arr &lt; 7</code>，同样必须用小括号括起来</li><li><code>&amp;</code>：表示“且”，两个条件的对应结果都为 True，结果才为 True</li><li><code>|</code>：表示“或”，只要任一条件的对应结果为 True，结果就为 True</li><li>注意：<code>&amp;</code>、<code>|</code> 是按位运算符，如果直接作用于整数数组，会得到按位结果，而不是逻辑结果，所以两侧必须是布尔数组</li></ul>
 <p><strong>示例</strong>：</p>
@@ -48,8 +48,8 @@ print(arr[(arr % 2 == 0) &amp; (arr &lt; 7)])   # 偶数 且 小于7
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

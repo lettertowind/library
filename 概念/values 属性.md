@@ -2,8 +2,8 @@
 term: values 属性
 aliases: [df.values, 查询值, 纯数据数组]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

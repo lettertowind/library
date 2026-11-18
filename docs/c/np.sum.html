@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>np.sum · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>np.sum</h1><div class="aliases">sum · 求和</div><p class="lede">对数组元素求和，可用 axis 指定沿哪个轴汇总。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.sum(a, axis=None, dtype=None, keepdims=False)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>np.sum</h1><div class="aliases">sum · 求和</div><p class="lede">对数组元素求和，可用 axis 指定沿哪个轴汇总。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>np.sum(a, axis=None, dtype=None, keepdims=False)</code> <strong>参数</strong>：</p>
 <ul><li><code>a</code>：待求和的数组或类数组对象。</li><li><code>axis</code>：指定沿哪个轴汇总；不指定时对所有元素求和，<code>axis=0</code> 跨行按列求和，<code>axis=1</code> 行内求和。</li><li><code>dtype</code>：指定累加时使用的数据类型，例如 <code>dtype=np.float64</code>。</li><li><code>keepdims</code>：是否保留被汇总轴的维度，设为 <code>True</code> 时该轴长度变为 1。</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import numpy as np
@@ -35,8 +35,8 @@ print(np.sum(A, axis=1, keepdims=True))  # [[ 6]
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

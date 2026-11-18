@@ -113,7 +113,10 @@ def parse_frontmatter(text):
         if ":" not in line:
             continue
         k, v = line.split(":", 1)
-        meta[k.strip()] = v.strip()
+        v = v.strip()
+        if len(v) >= 2 and v[0] == v[-1] and v[0] in "\"'":   # stage: "S01E03 · 创建数组"
+            v = v[1:-1]
+        meta[k.strip()] = v
     body = "\n".join(parts[end + 1:])
     return meta, body
 
@@ -782,30 +785,64 @@ def gen_domain(dom, items):
     for c in items:
         groups[c["domain"] or dom].append(c)
 
-    def short(d):
-        return "/".join([s for s in d.split("/")[1:]]) or "总类"
+    # 单一分类的课程类领域（Pandas 220 张、Matplotlib 118 张）按课程阶段二次分组，
+    # 否则一页几百张没法找。
+    staged = sum(1 for c in items if c["stage"]) >= 10
+    if len(groups) == 1 and staged:
+        groups = defaultdict(list)
+        for c in items:
+            groups[c["stage"] or "其它"].append(c)
+        mode = "stage"
+    else:
+        mode = "sub"
 
-    chips = "".join(
-        f'<a class="chip" href="#{anchor(d)}">{esc(short(d))}<i>{len(groups[d])}</i></a>'
-        for d in sorted(groups)
-    )
+    def label(d):
+        return d if mode == "stage" else ("/".join([s for s in d.split("/")[1:]]) or "总类")
+
+    def code(d):                                  # chips 只放集号，省宽度
+        return (d.split(" ")[0] or d) if mode == "stage" else label(d)
+
+    def opt_label(d):
+        t = label(d)
+        return t if len(t) <= 26 else t[:25] + "…"
+
+    def order(d):
+        return (1 if d in ("其它", "未分类") else 0, d)
+
+    chips, opts = [], []
+    for d in sorted(groups, key=order):
+        if mode != "stage":                       # 阶段太多，chips 排不下，交给下拉
+            chips.append(f'<a class="chip" href="#{anchor(d)}">{esc(code(d))}<i>{len(groups[d])}</i></a>')
+        opts.append(f'<option value="{anchor(d)}">{esc(opt_label(d))} · {len(groups[d])}</option>')
+
+    unit = "个课程阶段" if mode == "stage" else "个子类"
     parts = [f'<nav class="crumb"><a href="{root}index.html">首页</a> '
              f'<span class="sep">/</span> <span>{esc(dom)}</span></nav>',
              f'<section class="hero"><h1>{esc(dom)}</h1>'
-             f'<p class="sub">{len(items)} 个概念 · {len(groups)} 个子类</p></section>']
-    if len(chips) and len(groups) > 1:
-        parts.append(f'<div class="quicknav"><div class="chips">{chips}</div></div>')
-    for d in sorted(groups):
+             f'<p class="sub">{len(items)} 个概念 · {len(groups)}{unit}</p></section>']
+    if len(groups) > 1:
+        ph = f"跳到课程阶段（共 {len(groups)} 集）" if mode == "stage" else "跳到子类"
+        solo = " solo" if mode == "stage" else ""
+        parts.append(
+            f'<div class="quicknav{solo}"><div class="chips">' + "".join(chips) + "</div>"
+            '<select id="jump" aria-label="页内跳转">'
+            f'<option value="">{ph}</option>'
+            + "".join(opts) + "</select></div>"
+        )
+    for d in sorted(groups, key=order):
         parts.append(f'<section class="sec sub" id="{anchor(d)}">'
-                     f'<h3 class="subh">{esc(short(d))}<span class="cnt">{len(groups[d])}</span></h3>'
+                     f'<h3 class="subh">{esc(label(d))}<span class="cnt">{len(groups[d])}</span></h3>'
                      '<div class="grid">')
         for c in sorted(groups[d], key=lambda x: (x["order"], x["term"])):
-            # 有课程阶段的卡显示「S01E03 · 创建数组」，其余仍显示一句话定义
-            label = c["stage"] or c["lede"][:40] or c["kind"]
+            # 阶段分组里阶段名已在标题，卡片改显示一句话定义
+            if mode == "stage":
+                label_txt = c["lede"][:40] or c["kind"]
+            else:
+                label_txt = c["stage"] or c["lede"][:40] or c["kind"]
             parts.append(
                 f'<a class="tile" href="{root}{c["url"]}">'
                 f'<span class="tile-term">{esc(c["term"])}</span>'
-                f'<span class="tile-dom">{esc(label)}</span></a>'
+                f'<span class="tile-dom">{esc(label_txt)}</span></a>'
             )
         parts.append("</div></section>")
     return page(dom, "".join(parts), root=root, desc=f"{dom} 领域下的概念")

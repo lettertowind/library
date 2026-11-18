@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>margins 参数 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,12 +18,12 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>margins 参数</h1><div class="aliases">margins · 小计总计参数</div><p class="lede">pivot_table/crosstab 中控制是否添加行列小计总计的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>margins 默认 False，设为 True 后在行和列方向增加小计与总计。关键点是小计方式跟随 aggfunc：求和时小计是求和，平均时小计是平均，计数时小计是计数，不能简单理解为固定求和。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>透视表/交叉表需要行列合计时</li><li>报表中展示分组小计</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认 False，不显示小计</li><li>设为 True 增加行列小计总计</li><li>小计方式跟随 aggfunc，不是固定求和</li><li>pivot_table 和 crosstab 都支持</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易错点：误以为 margins 永远是对行列求和。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pivot_table.html">pivot_table</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/crosstab.html">crosstab</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/aggfunc%20%E5%8F%82%E6%95%B0.html">aggfunc 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>aggfunc=&#x27;mean&#x27; 且 margins=True 时，小计行是什么值？</summary><div class="quiz-a">按平均聚合得到的小计，不是求和。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/map.html"><small>上一张</small>map</a><a class="next" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html"><small>下一张</small>method 参数（fillna）</a></nav></article>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>margins 参数</h1><div class="aliases">margins · 小计总计参数</div><p class="lede">pivot_table/crosstab 中控制是否添加行列小计总计的参数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>margins 默认 False，设为 True 后在行和列方向增加小计与总计。关键点是小计方式跟随 aggfunc：求和时小计是求和，平均时小计是平均，计数时小计是计数，不能简单理解为固定求和。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>透视表/交叉表需要行列合计时</li><li>报表中展示分组小计</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认 False，不显示小计</li><li>设为 True 增加行列小计总计</li><li>小计方式跟随 aggfunc，不是固定求和</li><li>pivot_table 和 crosstab 都支持</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>易错点：误以为 margins 永远是对行列求和。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pivot_table.html">pivot_table</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/crosstab.html">crosstab</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/aggfunc%20%E5%8F%82%E6%95%B0.html">aggfunc 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>aggfunc=&#x27;mean&#x27; 且 margins=True 时，小计行是什么值？</summary><div class="quiz-a">按平均聚合得到的小计，不是求和。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/map.html"><small>上一张</small>map</a><a class="next" href="../c/method%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html"><small>下一张</small>method 参数（fillna）</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

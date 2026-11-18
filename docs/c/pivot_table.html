@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>pivot_table · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pivot_table</h1><div class="aliases">pd.pivot_table · 数据透视表</div><p class="lede">按行、列维度分组聚合并生成交叉表的 Pandas 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.pivot_table(data, values=None, index=None, columns=None, aggfunc=&#x27;mean&#x27;, fill_value=None, margins=False, dropna=True)</code></p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>pivot_table</h1><div class="aliases">pd.pivot_table · 数据透视表</div><p class="lede">按行、列维度分组聚合并生成交叉表的 Pandas 函数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.pivot_table(data, values=None, index=None, columns=None, aggfunc=&#x27;mean&#x27;, fill_value=None, margins=False, dropna=True)</code></p>
 <p><strong>参数</strong>：</p>
 <ul><li><code>data</code>：待透视的 DataFrame</li><li><code>values</code>：要聚合的数值列，建议显式指定，避免输出过多列</li><li><code>index</code>：行分组列名，可传列表形成多层行索引</li><li><code>columns</code>：列分组列名，展开为结果表的列；传变量时不要加引号</li><li><code>aggfunc</code>：聚合函数，默认是 <code>&#x27;mean&#x27;</code>，求和务必写 <code>&#x27;sum&#x27;</code></li><li><code>fill_value</code>：替换结果中的缺失值，常写 <code>0</code></li><li><code>margins</code>：是否追加行列小计/总计，小计方式跟随 <code>aggfunc</code></li><li><code>dropna</code>：默认 <code>True</code>，为 <code>True</code> 时丢弃全空列</li></ul>
 <p><strong>示例</strong>：</p>
@@ -60,8 +60,8 @@ print(pt[&quot;同比&quot;])
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

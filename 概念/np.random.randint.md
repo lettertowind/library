@@ -2,8 +2,8 @@
 term: np.random.randint
 aliases: [randint, 随机整数数组, random.randint]
 kind: method
-domain: 数据分析/Numpy
-tags: [概念/method, 领域/数据分析]
+domain: Numpy
+tags: [概念/method, 领域/Numpy]
 created: 2026-11-17
 updated: 2026-11-17
 ---

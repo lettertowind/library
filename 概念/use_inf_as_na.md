@@ -2,8 +2,8 @@
 term: use_inf_as_na
 aliases: [pd.options.mode.use_inf_as_na, inf 视为空值]
 kind: method
-domain: 数据分析/Pandas
-tags: [概念/method, 领域/数据分析]
+domain: Pandas
+tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 34

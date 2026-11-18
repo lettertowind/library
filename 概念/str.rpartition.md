@@ -2,8 +2,8 @@
 term: str.rpartition
 aliases: [rpartition, 从右三分拆分]
 kind: method
-domain: 数据分析/Pandas
-tags: [概念/method, 领域/数据分析]
+domain: Pandas
+tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>pd.concat · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.concat</h1><div class="aliases">concat · pandas 连接 · 纵向连接</div><p class="lede">pandas 中沿指定轴把多个 DataFrame 拼接成一个的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.concat(objs, axis=0, join=&#x27;outer&#x27;, ignore_index=False, keys=None)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>pd.concat</h1><div class="aliases">concat · pandas 连接 · 纵向连接</div><p class="lede">pandas 中沿指定轴把多个 DataFrame 拼接成一个的方法。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.concat(objs, axis=0, join=&#x27;outer&#x27;, ignore_index=False, keys=None)</code> <strong>参数</strong>：</p>
 <ul><li><code>objs</code>：待拼接对象的列表或字典，如 <code>[df1, df2]</code>，不是两个位置参数</li><li><code>axis</code>：拼接方向，<code>0</code> 表示纵向堆叠（默认），<code>1</code> 表示横向按行索引对齐</li><li><code>join</code>：索引对齐方式，<code>&#x27;outer&#x27;</code> 保留并集（默认），<code>&#x27;inner&#x27;</code> 只保留交集</li><li><code>ignore_index</code>：为 <code>True</code> 时重建 0..n-1 连续索引，默认 <code>False</code> 保留原索引</li><li><code>keys</code>：传入列表可为结果增加层次索引，标识每块数据来源</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -69,8 +69,8 @@ print(pd.concat([df1, df2], keys=[&#x27;一店&#x27;, &#x27;二店&#x27;]).loc[&
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

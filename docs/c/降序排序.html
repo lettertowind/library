@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>降序排序 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>降序排序</h1><div class="aliases">argsort 取负 · np.argsort(-x) · 倒序排列</div><p class="lede">把数组元素取负后再调用 argsort，使最大值排到最前，从而得到从大到小的排列。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>x[np.argsort(-x)]</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>降序排序</h1><div class="aliases">argsort 取负 · np.argsort(-x) · 倒序排列</div><p class="lede">把数组元素取负后再调用 argsort，使最大值排到最前，从而得到从大到小的排列。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>x[np.argsort(-x)]</code> <strong>参数</strong>：</p>
 <ul><li><code>x</code>：要降序排列的一维或多维数值型数组，必须支持取负运算（int、float 等），字符串数组不适用</li><li><code>-x</code>：取负后，原最大值变成最小值，<code>argsort</code> 返回的升序索引即原数组的降序顺序</li><li><code>np.argsort(...)</code>：返回从小到大排序后的原下标数组，默认使用快速排序</li><li><code>[::-1]</code>：非数值数组的替代方案，即 <code>x[np.argsort(x)[::-1]]</code>，直接反转升序索引</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import numpy as np
@@ -34,8 +34,8 @@ print(s[np.argsort(s)[::-1]])  # [&#x27;d&#x27; &#x27;b&#x27; &#x27;a&#x27;]</co
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

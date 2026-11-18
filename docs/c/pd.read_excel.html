@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>pd.read_excel · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>pd.read_excel</h1><div class="aliases">read_excel · 读取 Excel</div><p class="lede">pandas 读取 Excel 文件为 DataFrame 的函数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecols=None, nrows=None)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>pd.read_excel</h1><div class="aliases">read_excel · 读取 Excel</div><p class="lede">pandas 读取 Excel 文件为 DataFrame 的函数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.read_excel(io, sheet_name=0, header=0, names=None, index_col=None, usecols=None, nrows=None)</code> <strong>参数</strong>：</p>
 <ul><li><code>io</code>：文件路径或类文件对象</li><li><code>sheet_name</code>：默认 0，读取第一个工作表；可传入表名、索引或列表；传 <code>None</code> 会读取全部工作表，并返回字典</li><li><code>header</code>：表头所在行号，默认 0；<code>header=None</code> 表示没有表头，<code>header=[0,1]</code> 表示前两行都作为表头</li><li><code>names</code>：自定义列名列表，常与 <code>header=None</code> 配合使用</li><li><code>index_col</code>：指定某列作为行索引</li><li><code>usecols</code>：只读取指定的列</li><li><code>nrows</code>：只读取前 n 行</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -46,8 +46,8 @@ print(sheets[&quot;二班&quot;][&quot;分数&quot;].tolist())                 #
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

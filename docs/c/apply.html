@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>apply · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>apply</h1><div class="aliases">Series.apply · DataFrame.apply</div><p class="lede">对 Series 逐元素或对 DataFrame 按轴（行/列）执行函数并整合结果。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.apply(func, args=())</code> / <code>DataFrame.apply(func, axis=0, args=(), raw=False)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>apply</h1><div class="aliases">Series.apply · DataFrame.apply</div><p class="lede">对 Series 逐元素或对 DataFrame 按轴（行/列）执行函数并整合结果。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.apply(func, args=())</code> / <code>DataFrame.apply(func, axis=0, args=(), raw=False)</code> <strong>参数</strong>：</p>
 <ul><li><code>func</code>：要应用的函数，可以是自定义函数、lambda 或内置函数（如 <code>len</code>），函数必须有 <code>return</code>，否则会得到 None</li><li><code>axis</code>：仅 DataFrame 显示。<code>0</code>（默认）按列执行，<code>1</code> 按行执行；此时每列或每行都会作为 Series 传入，索引就是列名或行索引</li><li><code>args</code>：传给 <code>func</code> 的额外位置参数，单元素元组中逗号不能省，写成 <code>args=(0.5,)</code></li><li><code>raw</code>：仅 DataFrame 显示。默认 <code>False</code> 时传入 Series，<code>True</code> 时传入 ndarray</li><li><code>result_type</code>：仅 DataFrame 显示，用来控制返回类型，比如设为 <code>&#x27;expand&#x27;</code> 会把结果展开成 DataFrame</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -56,8 +56,8 @@ print(df[&#x27;BMI&#x27;].tolist())       # [23.4, 20.0]</code></pre></section><
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

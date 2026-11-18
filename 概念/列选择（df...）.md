@@ -2,8 +2,8 @@
 term: 列选择（df...）
 aliases: [中括号选列, df[['列名']], 多列选择]
 kind: method
-domain: 数据分析/Pandas
-tags: [概念/method, 领域/数据分析]
+domain: Pandas
+tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 ---

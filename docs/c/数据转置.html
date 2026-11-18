@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>数据转置 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>数据转置</h1><div class="aliases">Transpose · 行列转换 · .values.T</div><p class="lede">把 DataFrame 的行与列互换，行标签变列标签、列标签变行标签。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.DataFrame(df.values.T, index=df.columns, columns=df.index)</code>（教材标准写法）；现代等价写法：<code>df.T</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>数据转置</h1><div class="aliases">Transpose · 行列转换 · .values.T</div><p class="lede">把 DataFrame 的行与列互换，行标签变列标签、列标签变行标签。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.DataFrame(df.values.T, index=df.columns, columns=df.index)</code>（教材标准写法）；现代等价写法：<code>df.T</code> <strong>参数</strong>：</p>
 <ul><li><code>data</code>：二维数组或 DataFrame，传 <code>df.values.T</code>，即只转置数值部分</li><li><code>index</code>：新表的行标签，必须传原表的 <code>columns</code>，否则标签错位</li><li><code>columns</code>：新表的列标签，必须传原表的 <code>index</code></li><li><code>df.T</code>：无参数，行列标签与数值一并互换，是上面写法的等价简写</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -49,8 +49,8 @@ print(df.T.equals(t))  # True</code></pre></section><section class="sec"><h2 id=
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

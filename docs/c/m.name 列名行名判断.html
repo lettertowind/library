@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>m.name 列名行名判断 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>m.name 列名行名判断</h1><div class="aliases">m.name · Series.name · 按名称选择性应用</div><p class="lede">在 apply 回调中用 Series 的 name 属性判断当前列名或行索引名，实现只对指定列/行运算。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.apply(func, axis=0, raw=False, result_type=None)</code>，回调里用 <code>m.name</code> 取列名或行索引名 <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>m.name 列名行名判断</h1><div class="aliases">m.name · Series.name · 按名称选择性应用</div><p class="lede">在 apply 回调中用 Series 的 name 属性判断当前列名或行索引名，实现只对指定列/行运算。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.apply(func, axis=0, raw=False, result_type=None)</code>，回调里用 <code>m.name</code> 取列名或行索引名 <strong>参数</strong>：</p>
 <ul><li><code>func</code>：作用于每列或每行的函数，接收到的参数是 Series，含 <code>name</code> 属性</li><li><code>axis</code>：<code>0</code> 或 <code>&#x27;index&#x27;</code> 按列传入，<code>m.name</code> 是列名；<code>1</code> 或 <code>&#x27;columns&#x27;</code> 按行传入，<code>m.name</code> 是行索引名</li><li><code>raw</code>：为 True 时传入 ndarray 而非 Series，此时没有 <code>m.name</code></li><li><code>result_type</code>：<code>&#x27;expand&#x27;</code>/<code>&#x27;reduce&#x27;</code>/<code>&#x27;broadcast&#x27;</code>，控制返回结果的展开方式，一般默认即可</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -51,8 +51,8 @@ print(df.apply(lambda m: m * 10 if m.name == &#x27;a&#x27; else m, axis=1))
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

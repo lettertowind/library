@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>姓名首字分组 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>姓名首字分组</h1><div class="aliases">str[0] 分组 · 按姓氏分组 · 字符串位置取值分组</div><p class="lede">用 str[0] 取姓名第一个字符作为分组键，实现按姓氏汇总。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>df.groupby(df[&#x27;姓名&#x27;].str[0])[列].聚合函数()</code></p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>姓名首字分组</h1><div class="aliases">str[0] 分组 · 按姓氏分组 · 字符串位置取值分组</div><p class="lede">用 str[0] 取姓名第一个字符作为分组键，实现按姓氏汇总。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>df.groupby(df[&#x27;姓名&#x27;].str[0])[列].聚合函数()</code></p>
 <p><strong>参数</strong>：</p>
 <ul><li><code>df[&#x27;姓名&#x27;].str[0]</code>：分组键，用 <code>.str</code> 访问器按下标取字符串首字（即姓氏），返回 Series</li><li><code>[df[&#x27;姓名&#x27;].str[0], df[&#x27;姓名&#x27;].str[1]]</code>：传入列表即多级分组，<code>str[1]</code> 取第二个字符；不要用切片 <code>str[1:2]</code> 代替 <code>str[1]</code></li><li><code>[列]</code>：分组后选取要聚合的数值列</li><li>末尾聚合函数：如 <code>.sum()</code>、<code>.mean()</code>、<code>.count()</code>，按需替换</li></ul>
 <p><strong>示例</strong>：</p>
@@ -57,8 +57,8 @@ print(df.groupby([df[&#x27;姓名&#x27;].str[0], df[&#x27;姓名&#x27;].str[1]])
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

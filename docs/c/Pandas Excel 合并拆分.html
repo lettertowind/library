@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>Pandas Excel 合并拆分 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>Pandas Excel 合并拆分</h1><div class="aliases">Excel 拆分与合并 · 多工作簿合并 · 按列拆分</div><p class="lede">用 pandas 批量合并多个 Excel 或按某列拆成多表/多文件的套路。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.concat(objs, ignore_index=True)</code>；<code>pd.ExcelWriter(path)</code> + <code>df.to_excel(writer, sheet_name=键)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>Pandas Excel 合并拆分</h1><div class="aliases">Excel 拆分与合并 · 多工作簿合并 · 按列拆分</div><p class="lede">用 pandas 批量合并多个 Excel 或按某列拆成多表/多文件的套路。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>pd.concat(objs, ignore_index=True)</code>；<code>pd.ExcelWriter(path)</code> + <code>df.to_excel(writer, sheet_name=键)</code> <strong>参数</strong>：</p>
 <ul><li><code>objs</code>：待合并的 DataFrame 列表，通常由 for 循环逐个 append 进空列表</li><li><code>ignore_index</code>：True 时重置合并后的行索引，避免原索引重复</li><li><code>ExcelWriter(path)</code>：一次性写多个 sheet 的上下文管理器，配合 <code>with</code> 使用</li><li><code>sheet_name</code>：目标工作表名，拆分时传入分组键</li><li><code>index=False</code>：to_excel 常用参数，写出时不带行号</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -50,8 +50,8 @@ print(len(merged))  # 4</code></pre></section><section class="sec"><h2 id="解�
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

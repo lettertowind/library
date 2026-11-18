@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>通过函数分组 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>通过函数分组</h1><div class="aliases">groupby(len) · 函数作为分组键 · 函数分组</div><p class="lede">把函数作为 groupby 的分组键，对索引值逐个调用函数并按返回值分组。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.groupby(by=None, level=None, sort=True)</code></p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>通过函数分组</h1><div class="aliases">groupby(len) · 函数作为分组键 · 函数分组</div><p class="lede">把函数作为 groupby 的分组键，对索引值逐个调用函数并按返回值分组。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>DataFrame.groupby(by=None, level=None, sort=True)</code></p>
 <p><strong>参数</strong>：</p>
 <ul><li><code>by</code>：分组键；传入函数时，会对每个索引值逐个调用该函数，并按函数的返回值分组（函数作用于索引值而非列值）</li><li><code>level</code>：按多级索引的指定层级分组；用函数分组时一般不用</li><li><code>sort</code>：是否对分组键排序，默认 <code>True</code></li></ul>
 <p><strong>示例</strong>：</p>
@@ -41,8 +41,8 @@ print(df.groupby(len)[&quot;销售额&quot;].sum())   # 按城市名长度分组
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

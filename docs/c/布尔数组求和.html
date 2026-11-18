@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>布尔数组求和 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>布尔数组求和</h1><div class="aliases">条件计数 · (a&gt;3).sum() · True 求和 · 布尔掩码求和</div><p class="lede">对布尔数组求 sum，用 True=1、False=0 的规则统计满足条件的元素个数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>(条件).sum()</code>，也可写成 <code>np.sum(条件)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>布尔数组求和</h1><div class="aliases">条件计数 · (a&gt;3).sum() · True 求和 · 布尔掩码求和</div><p class="lede">对布尔数组求 sum，用 True=1、False=0 的规则统计满足条件的元素个数。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>(条件).sum()</code>，也可写成 <code>np.sum(条件)</code> <strong>参数</strong>：</p>
 <ul><li>条件：由比较运算（如 <code>a &gt; 3</code>）得到、与原数组形状相同的布尔数组</li><li><code>axis</code>：按轴求和，得到的结果是沿该轴满足条件的计数；文档未说明时，默认统计全部元素</li><li><code>keepdims</code>：是否保留原数组的维度，默认 <code>False</code></li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import numpy as np
@@ -38,8 +38,8 @@ print((a &gt; 3).sum(axis=1))  # [1 2]，按行统计</code></pre></section><sec
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

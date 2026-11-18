@@ -2,8 +2,8 @@
 term: sort 参数（concat）
 aliases: [sort, sort=True, 排序参数]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 24

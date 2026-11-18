@@ -2,8 +2,8 @@
 term: 字典构造 DataFrame
 aliases: [dict 建表, pd.DataFrame(dict)]
 kind: method
-domain: 数据分析/Pandas
-tags: [概念/method, 领域/数据分析]
+domain: Pandas
+tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 21

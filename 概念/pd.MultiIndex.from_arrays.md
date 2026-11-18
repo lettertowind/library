@@ -2,8 +2,8 @@
 term: pd.MultiIndex.from_arrays
 aliases: [from_arrays, 数组创建 MultiIndex]
 kind: method
-domain: 数据分析/Pandas
-tags: [概念/method, 领域/数据分析]
+domain: Pandas
+tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 35

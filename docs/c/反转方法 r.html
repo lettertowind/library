@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>反转方法 r · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>反转方法 r</h1><div class="aliases">radd · rsub · rdiv · rpow · r 前缀方法</div><p class="lede">灵活算术方法中带 r 前缀的版本，交换左右操作数顺序。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.rsub(other, level=None, fill_value=None, axis=0)</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>反转方法 r</h1><div class="aliases">radd · rsub · rdiv · rpow · r 前缀方法</div><p class="lede">灵活算术方法中带 r 前缀的版本，交换左右操作数顺序。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>Series.rsub(other, level=None, fill_value=None, axis=0)</code> <strong>参数</strong>：</p>
 <ul><li><code>other</code>：参与运算的标量、Series 或数组；在带 r 前缀的方法里它作为左操作数（被减数、被除数、底数）</li><li><code>level</code>：多层索引下指定对齐的层级，默认 <code>None</code></li><li><code>fill_value</code>：运算前用来补齐缺失值的值，默认 <code>None</code> 表示不填充</li><li><code>axis</code>：对齐方向，Series 中默认 <code>0</code></li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import pandas as pd
@@ -41,8 +41,8 @@ print(t.rsub(s, fill_value=0))  # → -8, -16, 8（对齐后 s - t，索引 2 �
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

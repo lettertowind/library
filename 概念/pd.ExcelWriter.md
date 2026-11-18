@@ -2,8 +2,8 @@
 term: pd.ExcelWriter
 aliases: [ExcelWriter, Excel 写入对象]
 kind: tool
-domain: 数据分析/Pandas
-tags: [概念/tool, 领域/数据分析]
+domain: Pandas
+tags: [概念/tool, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 40

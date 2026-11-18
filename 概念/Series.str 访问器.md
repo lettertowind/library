@@ -2,8 +2,8 @@
 term: Series.str 访问器
 aliases: [.str, str 访问器, 字符串方法访问器]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 39

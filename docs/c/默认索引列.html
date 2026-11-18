@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>默认索引列 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>默认索引列</h1><div class="aliases">RangeIndex · 0 · 1 · 2 索引 · 默认行号</div><p class="lede">DataFrame 自带的从 0 开始的整数行号，不是业务字段。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>新建 DataFrame 时 Pandas 自动分配 0、1、2… 的行索引。写出到 Excel/CSV 时它默认会被当作一列输出，造成表格里多出一列无意义数字，通常需要处理掉。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>理解导出文件为何多一列数字</li><li>决定是否保留或替换索引</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认从 0 开始递增，与业务数据无关</li><li>to_excel/to_csv 默认会把它写成一列</li><li>可用 set_index 换成业务字段</li><li>也可在写出时用 index=False 关闭</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>它是索引不是列，用列名访问不到，需用 df.index。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/set_index.html">set_index</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么导出的 Excel 第一列是 0、1、2？</summary><div class="quiz-a">因为 DataFrame 默认带整数行索引，写出时被当作一列输出。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>默认索引列</h1><div class="aliases">RangeIndex · 0 · 1 · 2 索引 · 默认行号</div><p class="lede">DataFrame 自带的从 0 开始的整数行号，不是业务字段。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>新建 DataFrame 时 Pandas 自动分配 0、1、2… 的行索引。写出到 Excel/CSV 时它默认会被当作一列输出，造成表格里多出一列无意义数字，通常需要处理掉。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>理解导出文件为何多一列数字</li><li>决定是否保留或替换索引</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认从 0 开始递增，与业务数据无关</li><li>to_excel/to_csv 默认会把它写成一列</li><li>可用 set_index 换成业务字段</li><li>也可在写出时用 index=False 关闭</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>它是索引不是列，用列名访问不到，需用 df.index。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/set_index.html">set_index</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.html">DataFrame</a><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么导出的 Excel 第一列是 0、1、2？</summary><div class="quiz-a">因为 DataFrame 默认带整数行索引，写出时被当作一列输出。</div></details>
 <details class="quiz"><summary>除了 set_index，还有什么办法让导出时不出现这列？</summary><div class="quiz-a">在 to_excel/to_csv 中设置 index=False。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>不指定 index 时 pandas 会自动补一列 0、1、2… 的索引，本质与 Python 的 range 规则一致：左闭右开。4 个元素的 Series 索引是 0、1、2、3，讲到「4」其实到「3」为止。</p>
@@ -32,12 +32,12 @@
 <p>- to_excel/to_csv 默认会把索引一起写出</p>
 <p>- 多数业务表格不需要这一列</p>
 <details class="quiz"><summary>导出的 Excel 第一列出现 0、1、2，这是数据出错了吗？</summary><div class="quiz-a">不是。那是 DataFrame 的默认索引被一并写入了，导出前 set_index 或关闭索引即可。</div></details>
-<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=16" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p16 S02E01.数据类型与新建文件</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E9%83%A8%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B4%A2%E5%BC%95.html"><small>上一张</small>部分字符串索引</a><a class="next" href="../c/None.html"><small>下一张</small>None</a></nav></article>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=16" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p16 S02E01.数据类型与新建文件</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><nav class="pager"><a class="prev" href="../c/%E9%83%A8%E5%88%86%E5%AD%97%E7%AC%A6%E4%B8%B2%E7%B4%A2%E5%BC%95.html"><small>上一张</small>部分字符串索引</a><a class="next" href="../c/Power%20BI.html"><small>下一张</small>Power BI</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

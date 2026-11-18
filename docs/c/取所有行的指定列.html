@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>取所有行的指定列 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Numpy</span></nav><article class="card"><h1>取所有行的指定列</h1><div class="aliases">数组[: · [列索引]] · 列子集抽取 · d[: · [1 · 2]]</div><p class="lede">用冒号取全部行、用整数数组取指定列，得到列子集。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>d[:, [列索引1, 列索引2, ...]]</code> <strong>参数</strong>：</p>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Numpy.html">Numpy</a></nav><article class="card"><h1>取所有行的指定列</h1><div class="aliases">数组[: · [列索引]] · 列子集抽取 · d[: · [1 · 2]]</div><p class="lede">用冒号取全部行、用整数数组取指定列，得到列子集。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：<code>d[:, [列索引1, 列索引2, ...]]</code> <strong>参数</strong>：</p>
 <ul><li><code>:</code>（逗号前）：表示取该维全部，这里指所有行</li><li><code>[列索引...]</code>（逗号后）：一个整数数组（或列表），指定要保留的列，列的顺序和是否连续都可以任意指定</li><li><code>d</code>：二维 numpy 数组，行数不限</li></ul>
 <p><strong>示例</strong>：</p>
 <pre><code class="lang-python">import numpy as np
@@ -44,8 +44,8 @@ print(d[:, [2, 0]])     # 列索引可以不连续、可以乱序
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>subset 参数（dropna） · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>subset 参数（dropna）</h1><div class="aliases">subset · 按列判断缺失 · dropna subset</div><p class="lede">dropna 中指定只在哪些列范围内检查缺失值。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认 dropna 检查整张表，subset 可以把判断范围缩小到指定列，只有这些列出现缺失时才触发删除，其他列不参与判断。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>只关心关键字段是否缺失时</li><li>避免无关列的空值误删样本</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>subset 接收列名列表</li><li>只在指定列中检查缺失</li><li>其他列的缺失不影响删除判断</li><li>是 dropna 的重点参数</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>subset 只缩小检查范围，不改变 how/thresh 的判断逻辑。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/dropna%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%80%8F%E8%A7%86%E8%A1%A8%EF%BC%89.html">dropna 参数（透视表）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0.html">how 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df.dropna(subset=[&#x27;语文&#x27;,&#x27;数学&#x27;]) 的删除依据是什么？</summary><div class="quiz-a">只看语文、数学两列是否有缺失，有则删除对应行。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>subset 参数（dropna）</h1><div class="aliases">subset · 按列判断缺失 · dropna subset</div><p class="lede">dropna 中指定只在哪些列范围内检查缺失值。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>默认 dropna 检查整张表，subset 可以把判断范围缩小到指定列，只有这些列出现缺失时才触发删除，其他列不参与判断。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>只关心关键字段是否缺失时</li><li>避免无关列的空值误删样本</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>subset 接收列名列表</li><li>只在指定列中检查缺失</li><li>其他列的缺失不影响删除判断</li><li>是 dropna 的重点参数</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>subset 只缩小检查范围，不改变 how/thresh 的判断逻辑。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/dropna%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%80%8F%E8%A7%86%E8%A1%A8%EF%BC%89.html">dropna 参数（透视表）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0.html">how 参数</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>df.dropna(subset=[&#x27;语文&#x27;,&#x27;数学&#x27;]) 的删除依据是什么？</summary><div class="quiz-a">只看语文、数学两列是否有缺失，有则删除对应行。</div></details>
 <details class="quiz"><summary>subset 和直接选列再 dropna 有什么区别？</summary><div class="quiz-a">subset 保留整表其他列，只缩小判断范围；选列会丢掉其他列。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>整表逐列检查往往过于苛刻，subset 把判断范围收窄到关键列：data.dropna(subset=[&#x27;语文&#x27;,&#x27;数学&#x27;]) 只在这两列里找空值，命中就删整行，其他列是否为空不影响判断。这是讲师反复强调的重点参数。</p>
@@ -30,8 +30,8 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

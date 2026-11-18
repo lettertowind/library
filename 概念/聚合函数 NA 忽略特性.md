@@ -2,8 +2,8 @@
 term: 聚合函数 NA 忽略特性
 aliases: [skipna, 聚合忽略缺失值, 非 NA 聚合]
 kind: concept
-domain: 数据分析/Pandas
-tags: [概念/concept, 领域/数据分析]
+domain: Pandas
+tags: [概念/concept, 领域/Pandas]
 created: 2026-11-17
 updated: 2026-11-17
 order: 31

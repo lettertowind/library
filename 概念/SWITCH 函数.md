@@ -2,8 +2,8 @@
 term: SWITCH 函数
 aliases: [SWITCH, Excel SWITCH, DAX SWITCH]
 kind: method
-domain: 数据分析/Excel
-tags: [概念/method, 领域/数据分析]
+domain: 计算机/办公软件/Excel
+tags: [概念/method, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
 ---

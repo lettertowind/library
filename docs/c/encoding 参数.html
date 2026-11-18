@@ -7,7 +7,7 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>encoding 参数 · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=2de0384b">
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
@@ -18,7 +18,7 @@
   </nav>
 </header>
 <main>
-<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90.html">数据分析</a> <span class="sep">/</span> <span>Pandas</span></nav><article class="card"><h1>encoding 参数</h1><div class="aliases">encoding · 编码参数 · encoding=utf-8</div><p class="lede">读写文件时指定字符编码的参数，常用 utf-8 解决乱码。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>文件保存编码与读取编码不一致时会出现乱码，尤其中国大陆系统默认编码非 utf-8。读取时传 encoding=&#x27;utf-8&#x27;，写出时 to_csv 也可指定。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>解决中文乱码</li><li>统一读写编码</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>读取与写出都可指定 encoding</li><li>中文乱码常见原因是编码不匹配</li><li>utf-8 是常用统一编码</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>编码需与文件实际保存编码一致，猜错仍会乱码。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_csv.html">pd.read_csv</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>读取 txt 出现乱码，最直接的参数修正是什么？</summary><div class="quiz-a">加 encoding=&#x27;utf-8&#x27;（或文件实际编码）。</div></details>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>encoding 参数</h1><div class="aliases">encoding · 编码参数 · encoding=utf-8</div><p class="lede">读写文件时指定字符编码的参数，常用 utf-8 解决乱码。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>文件保存编码与读取编码不一致时会出现乱码，尤其中国大陆系统默认编码非 utf-8。读取时传 encoding=&#x27;utf-8&#x27;，写出时 to_csv 也可指定。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>解决中文乱码</li><li>统一读写编码</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>读取与写出都可指定 encoding</li><li>中文乱码常见原因是编码不匹配</li><li>utf-8 是常用统一编码</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>编码需与文件实际保存编码一致，猜错仍会乱码。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/pd.read_csv.html">pd.read_csv</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/DataFrame.to_excel.html">DataFrame.to_excel</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>读取 txt 出现乱码，最直接的参数修正是什么？</summary><div class="quiz-a">加 encoding=&#x27;utf-8&#x27;（或文件实际编码）。</div></details>
 <p>### 补充 · 2026-11-17</p>
 <p>CSV 另存时若不是 UTF-8，read_csv 会直接抛错。修法有两种：在外部把文件另存为 UTF-8，或在代码里写 pd.read_csv(路径, encoding=&#x27;utf-8&#x27;)。真实的大数据文件往往无法在外部改编码，只能靠代码指定。</p>
 <p>- 标准写法 encoding=&#x27;utf-8&#x27;，口述里的「uf 8 / utf 杠八」即此</p>
@@ -29,8 +29,8 @@
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-18 12:55</span>
+  <span>更新于 2026-11-18 13:02</span>
 </footer>
-<script src="../assets/app.js?v=2de0384b" defer></script>
+<script src="../assets/app.js?v=6e753876" defer></script>
 </body>
 </html>

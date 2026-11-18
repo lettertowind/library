@@ -2,8 +2,8 @@
 term: Numpy 切片
 aliases: [Slicing, start:stop]
 kind: concept
-domain: 数据分析/Numpy
-tags: [概念/concept, 领域/数据分析]
+domain: Numpy
+tags: [概念/concept, 领域/Numpy]
 created: 2026-11-17
 updated: 2026-11-17
 stage: "S01E06 · 基础索引与切片"

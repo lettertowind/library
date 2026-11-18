@@ -2,8 +2,8 @@
 term: Excel 自动化工具选型
 aliases: [Pandas vs VBA, Excel 自动化方案选择]
 kind: concept
-domain: 数据分析/Excel 自动化
-tags: [概念/concept, 领域/数据分析]
+domain: 计算机/办公软件/Excel
+tags: [概念/concept, 领域/计算机]
 created: 2026-11-17
 updated: 2026-11-17
 ---
