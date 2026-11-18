@@ -630,19 +630,24 @@ def anchor(name):
     return "a-" + re.sub(r"[^\w]+", "-", name).strip("-")
 
 
+def disp(name):
+    """没有 domain 的分析卡，展示为「分析」比「未分类」清楚"""
+    return "分析" if name == "未分类" else name
+
+
 def quicknav(tops, by_dom):
     """页内跳转：顶级领域 chips（横滑）+ 完整分类下拉。"""
     chips, opts = [], []
     for t in sorted(tops):
         n = sum(len(by_dom[d]) for d in tops[t])
-        chips.append(f'<a class="chip" href="#{anchor(t)}">{esc(t)}<i>{n}</i></a>')
+        chips.append(f'<a class="chip" href="#{anchor(t)}">{esc(disp(t))}<i>{n}</i></a>')
         subs = sorted(tops[t])
         if len(subs) == 1:
             d = subs[0]
-            label = "/".join([s for s in d.split("/")[1:]]) or d
+            label = "/".join([s for s in d.split("/")[1:]]) or disp(d)
             opts.append(f'<option value="{anchor(d)}">{esc(label)} · {len(by_dom[d])}</option>')
         else:
-            opts.append(f'<optgroup label="{esc(t)}">')
+            opts.append(f'<optgroup label="{esc(disp(t))}">')
             for d in subs:
                 label = "/".join([s for s in d.split("/")[1:]]) or "总类"
                 opts.append(f'<option value="{anchor(d)}">{esc(label)} · {len(by_dom[d])}</option>')
@@ -721,7 +726,7 @@ def gen_home(cards, domains):
                 if d != "未分类" else "")
         parts.append(
             f'<section class="sec sub" id="{anchor(d)}">{pre}'
-            f'<h3 class="subh">{esc(d)}<span class="cnt">{len(items)}</span>{more}</h3>'
+            f'<h3 class="subh">{esc(disp(d))}<span class="cnt">{len(items)}</span>{more}</h3>'
             '<div class="grid">'
         )
         for c in items:
@@ -759,7 +764,7 @@ def gen_all(cards):
             seen.add(top)
             pre = f'<span class="anchor" id="{anchor(top)}"></span>'
         parts.append(f'<section class="sec sub" id="{anchor(dom)}">{pre}'
-                     f'<h3 class="subh">{esc(dom)}<span class="cnt">{len(groups[dom])}</span></h3>'
+                     f'<h3 class="subh">{esc(disp(dom))}<span class="cnt">{len(groups[dom])}</span></h3>'
                      '<ul class="plain">')
         for c in sorted(groups[dom], key=lambda x: (x["order"], x["term"])):
             extra = f' — {esc(c["aliases_line"])}' if c["aliases_line"] else ""
