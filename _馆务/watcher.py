@@ -30,32 +30,38 @@ CONCEPTS = BASE / "概念"
 TASK_LOG = OFFICE / "整理日志.md"
 WATCH_LOG = OFFICE / "监听日志.txt"
 LOCK_PATH = OFFICE / ".watcher.lock"
+MUTEX_NAME = "Local\\KnowledgeBaseWatcher"
+_MUTEX = None                                # 持住互斥体句柄，保证进程生命周期内不释放
 
 
 def acquire_lock():
-    """单实例锁：开机自启和手动双击同时存在时，只允许一个监听进程。
+    """单实例：Windows 命名互斥体。
 
-    必须锁文件的第 0 个字节。用 "a+" 打开时文件指针在末尾，两个进程会锁到
-    不同区间、互不冲突（曾因此同时跑起两个监听）。这里用 "r+" 并显式 seek(0)。
+    之前用文件字节锁踩过两次坑（"a+" 模式下指针在末尾导致锁到不同区间；
+    截断写入又可能让锁定区域失效），实际会同时跑起两个监听。互斥体由系统维护，
+    进程退出（含崩溃、被杀）时自动释放，不会残留。
     """
-    if not LOCK_PATH.exists():
-        LOCK_PATH.write_text("0", encoding="utf-8")
-    f = open(LOCK_PATH, "r+")
-    try:
-        import msvcrt
-        f.seek(0)
-        msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
-        f.seek(0)
-        f.truncate()
-        f.write(str(os.getpid()))
-        f.flush()
-        return f
-    except OSError:
-        try:
-            f.close()
-        except Exception:
-            pass
+    global _MUTEX
+    import ctypes
+    from ctypes import wintypes
+
+    k32 = ctypes.WinDLL("kernel32", use_last_error=True)
+    k32.CreateMutexW.argtypes = [wintypes.LPVOID, wintypes.BOOL, wintypes.LPCWSTR]
+    k32.CreateMutexW.restype = wintypes.HANDLE
+
+    h = k32.CreateMutexW(None, False, MUTEX_NAME)
+    if not h:
         return None
+    if ctypes.get_last_error() == 183:        # ERROR_ALREADY_EXISTS
+        k32.CloseHandle(h)
+        return None
+
+    _MUTEX = h                                # 全程持有，防被回收
+    try:                                      # PID 只用于人工查看与 stop.py
+        LOCK_PATH.write_text(str(os.getpid()), encoding="utf-8")
+    except Exception:
+        pass
+    return h
 
 
 def run(script, *args):

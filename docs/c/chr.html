@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把 Unicode 码点整数转换成对应的单个字符。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>chr · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>chr</h1><div class="aliases">chr() · 码点转字符 · Unicode 码点转字符</div><p class="lede">把 Unicode 码点整数转换成对应的单个字符。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>chr 是 ord 的逆操作。传入一个整数，返回该编号在 Unicode 表中对应的字符：<code>chr(65)</code> 得到 <code>&#x27;A&#x27;</code>，<code>chr(97)</code> 得到 <code>&#x27;a&#x27;</code>。两者满足 <code>chr(ord(c)) == c</code>。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>由编号生成字符，例如按序号生成 a、b、c</li><li>处理编码、字符集转换时做码点与字符的互转</li><li>加密、混淆等需要按码点运算的小工具</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>参数必须是整数，合法范围是 <code>0</code> 到 <code>0x10FFFF</code>（1114111）</li><li>超出范围抛 <code>ValueError</code>，传字符串抛 <code>TypeError</code></li><li><code>chr(ord(c)) == c</code>，与 ord 严格互逆</li><li>常见码点：<code>chr(10)</code> 是换行 <code>\n</code>，<code>chr(9)</code> 是制表符</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 <code>bytes.decode</code> 不同：chr 处理的是单个码点，decode 处理的是字节序列按编码规则还原文本。另外 <code>chr(0)</code> 返回空字符 <code>\x00</code>，不是空字符串。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/ord%EF%BC%88%E5%AD%97%E7%AC%A6%E8%BD%AC%E7%A0%81%E7%82%B9%EF%BC%89.html">ord（字符转码点）</a><span class="rel rel-rel">互逆操作</span></li><li><a class="wl" href="../c/str.html">str</a><span class="rel rel-rel">返回值的类型</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary><code>chr(97)</code> 返回什么？</summary><div class="quiz-a">返回小写字母 <code>&#x27;a&#x27;</code>，因为 97 是 a 的 Unicode 码点。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/ord%EF%BC%88%E5%AD%97%E7%AC%A6%E8%BD%AC%E7%A0%81%E7%82%B9%EF%BC%89.html">ord（字符转码点）</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/str.html">str</a><span class="rel rel-plain">由码点生成字符</span></li></ul></section><nav class="pager"><a class="prev" href="../c/asyncawait%20%E5%BC%82%E6%AD%A5%E8%AF%AD%E6%B3%95.html"><small>上一张</small>asyncawait 异步语法</a><a class="next" href="../c/datetime.date.html"><small>下一张</small>datetime.date</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:47</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

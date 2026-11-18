@@ -18,31 +18,27 @@ LOG = OFFICE / "监听日志.txt"
 SITE = BASE / "docs" / "index.html"
 
 
-def watcher_running():
-    """能拿到锁文件第 0 字节的独占锁 → 没有实例在跑；拿不到 → 有实例持锁。
+MUTEX_NAME = "Local\\KnowledgeBaseWatcher"
 
-    注意必须 seek(0)：锁有偏移，不定位就锁不到同一区间，会误判为「未运行」。
+
+def watcher_running():
+    """通过命名互斥体判断监听是否在跑：已存在同名互斥体 → 有实例持有着。
+
+    只创建再关闭，不影响正在运行的那个实例（引用计数不会归零）。
     """
-    if not LOCK_PATH.exists():
-        return False
-    try:
-        f = open(LOCK_PATH, "r+")
-    except Exception:
+    import ctypes
+    from ctypes import wintypes
+
+    k32 = ctypes.WinDLL("kernel32", use_last_error=True)
+    k32.CreateMutexW.argtypes = [wintypes.LPVOID, wintypes.BOOL, wintypes.LPCWSTR]
+    k32.CreateMutexW.restype = wintypes.HANDLE
+
+    h = k32.CreateMutexW(None, False, MUTEX_NAME)
+    if not h:
         return None
-    try:
-        import msvcrt
-        f.seek(0)
-        msvcrt.locking(f.fileno(), msvcrt.LK_NBLCK, 1)
-    except OSError:
-        f.close()
-        return True                      # 锁被占用 → 正在运行
-    else:
-        try:
-            msvcrt.locking(f.fileno(), msvcrt.LK_UNLCK, 1)
-        except Exception:
-            pass
-        f.close()
-        return False
+    exists = ctypes.get_last_error() == 183   # ERROR_ALREADY_EXISTS
+    k32.CloseHandle(h)
+    return exists
 
 
 def ago(ts):

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Python 中表示文本的不可变序列类型，元素是 Unicode 码点。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>str · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>str</h1><div class="aliases">字符串 · 字符串类型 · Python 字符串</div><p class="lede">Python 中表示文本的不可变序列类型，元素是 Unicode 码点。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>str 是 Python 3 的内置文本类型。它不可变——任何&quot;修改&quot;操作都会返回新对象，原对象不变。下标访问 <code>s[i]</code> 取单个字符，切片 <code>s[a:b:step]</code> 取子串，<code>len(s)</code> 返回码点数量。文本与字节严格分离：网络和文件里的是 <code>bytes</code>，需要用 <code>encode</code> / <code>decode</code> 互转。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>处理一切文本：日志、网页、CSV、用户输入</li><li>拼接、格式化、查找、替换、切分</li><li>与 bytes 互转，处理编码问题（UTF-8、GBK）</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>不可变：<code>s += x</code> 实际新建对象，大量拼接用 <code>&quot;&quot;.join(parts)</code></li><li><code>len()</code> 数的是码点，不是显示宽度，emoji 和组合字符会与直觉不符</li><li>优先用 f-string 格式化：<code>f&quot;{name} 共 {n} 条&quot;</code></li><li>三个引号 <code>&#x27;&#x27;&#x27;...&#x27;&#x27;&#x27;</code> 保留换行，适合多行文本</li><li><code>str</code> 与 <code>bytes</code> 不能直接相加，必须先 encode 或 decode</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 <code>bytes</code> 的核心区别：str 是码点序列，bytes 是字节序列。<code>&quot;中&quot;.encode(&quot;utf-8&quot;)</code> 是 3 个字节，<code>len</code> 却是 1。用错误的编码 decode 会得到乱码或 <code>UnicodeDecodeError</code>。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/ord%EF%BC%88%E5%AD%97%E7%AC%A6%E8%BD%AC%E7%A0%81%E7%82%B9%EF%BC%89.html">ord（字符转码点）</a><span class="rel rel-rel">取单字符的码点</span></li><li><a class="wl" href="../c/chr.html">chr</a><span class="rel rel-rel">由码点生成字符</span></li><li><a class="wl" href="../c/slice%EF%BC%88%E5%88%87%E7%89%87%E5%AF%B9%E8%B1%A1%EF%BC%89.html">slice（切片对象）</a><span class="rel rel-rel">切片语法</span></li><li><a class="wl" href="../c/%E5%8E%9F%E5%A7%8B%E5%AD%97%E7%AC%A6%E4%B8%B2.html">原始字符串</a><span class="rel rel-rel">不转义的字面量写法</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>Python 3 里 str 和 bytes 的关键区别是什么？</summary><div class="quiz-a">str 是 Unicode 码点序列，bytes 是字节序列；两者必须用 encode / decode 互转，不能直接拼接。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/chr.html">chr</a><span class="rel rel-plain">返回值的类型</span></li><li><a class="wl" href="../c/ord%EF%BC%88%E5%AD%97%E7%AC%A6%E8%BD%AC%E7%A0%81%E7%82%B9%EF%BC%89.html">ord（字符转码点）</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/sorted%EF%BC%88%E6%8E%92%E5%BA%8F%EF%BC%89.html"><small>上一张</small>sorted（排序）</a><a class="next" href="../c/tuple%EF%BC%88%E5%85%83%E7%BB%84%EF%BC%89.html"><small>下一张</small>tuple（元组）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:47</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

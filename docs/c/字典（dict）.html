@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Python 中按键值对存储数据的可变映射类型，靠键的哈希值直接定位。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>字典（dict） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>字典（dict）</h1><div class="aliases">dict · 字典 · 映射类型 · 哈希表</div><p class="lede">Python 中按键值对存储数据的可变映射类型，靠键的哈希值直接定位。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>dict 底层是哈希表，查找、插入、删除的平均复杂度都是 O(1)。键必须可哈希，值任意。从 Python 3.7 起保证按插入顺序迭代，这一点已经成为语言规范而非实现细节。它是 Python 里用得最多的数据结构之一——模块命名空间、函数关键字参数、JSON 对象在内存中都对应字典。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>查表映射：名字到数值、ID 到记录</li><li>计数与分组：<code>counts[k] = counts.get(k, 0) + 1</code></li><li>缓存（记忆化）</li><li>表示结构化数据，JSON 解析后就是嵌套 dict</li><li>接收任意关键字参数 <code>**kwargs</code></li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>键必须可哈希：<code>str</code>、<code>int</code>、<code>tuple</code> 可以，<code>list</code>、<code>dict</code>、<code>set</code> 不行</li><li><code>d[k]</code> 取不存在的键抛 <code>KeyError</code>，<code>d.get(k, default)</code> 不抛</li><li><code>k in d</code> 判断的是键，不是值</li><li>字典推导式：<code>{k: v for k, v in pairs}</code></li><li>合并用 <code>d1 | d2</code>（3.9+），同名键取后者</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>与 <code>set</code> 同族，都依赖哈希；set 只有键没有值。与 <code>list</code> 的取舍：需要按位置索引或保持重复元素用 list，需要按键快速查找用 dict。注意 <code>d.items()</code> 返回的是视图，原字典改动会反映到视图上。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/hash%20%E4%B8%8E%E5%8F%AF%E5%93%88%E5%B8%8C.html">hash 与可哈希</a><span class="rel rel-rel">能否作键的判定依据</span></li><li><a class="wl" href="../c/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%EF%BC%88globals%20%E4%B8%8E%20locals%EF%BC%89.html">命名空间（globals 与 locals）</a><span class="rel rel-rel">模块和函数命名空间用字典实现</span></li><li><a class="wl" href="../c/set%EF%BC%88%E9%9B%86%E5%90%88%EF%BC%89.html">set（集合）</a><span class="rel rel-rel">只有键没有值的同类结构</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 list 不能做 dict 的键？</summary><div class="quiz-a">list 可变且不可哈希，内容一变哈希值就变，哈希表无法定位，因此直接抛 TypeError。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/hash%20%E4%B8%8E%E5%8F%AF%E5%93%88%E5%B8%8C.html">hash 与可哈希</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E5%91%BD%E5%90%8D%E7%A9%BA%E9%97%B4%EF%BC%88globals%20%E4%B8%8E%20locals%EF%BC%89.html">命名空间（globals 与 locals）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%AD%97%E5%85%B8.html"><small>上一张</small>字典</a><a class="next" href="../c/%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95.html"><small>下一张</small>实例方法</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:47</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

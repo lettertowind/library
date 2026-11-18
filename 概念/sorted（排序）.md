@@ -36,7 +36,7 @@ sorted 返回列表而非原类型；若想原地排序且对象是列表，用 
 
 ## 关联
 
-- [[ndarray.sort（Numpy）]] — 对比项
+- [[ndarray.sort]] — 对比项
 - [[lambda 表达式]] — 组合使用
 
 ## 自测
