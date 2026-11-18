@@ -21,6 +21,48 @@
     });
   }
 
+  /* ---------- 吸顶栏高度（供 quicknav 定位与锚点偏移）---------- */
+  var topBar = document.querySelector(".top");
+
+  function syncTop() {
+    if (topBar) {
+      document.documentElement.style.setProperty("--top-h", topBar.offsetHeight + "px");
+    }
+  }
+
+  syncTop();
+  window.addEventListener("resize", syncTop);
+
+  /* ---------- 分类下拉跳转 ---------- */
+  var jump = document.getElementById("jump");
+  if (jump) {
+    jump.addEventListener("change", function () {
+      var id = this.value;
+      if (!id) return;
+      var el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+        try { history.replaceState(null, "", "#" + id); } catch (e) {}
+      }
+      this.blur();
+    });
+  }
+
+  /* ---------- 回到顶部 ---------- */
+  var toTop = document.createElement("button");
+  toTop.className = "totop";
+  toTop.type = "button";
+  toTop.setAttribute("aria-label", "回到顶部");
+  toTop.textContent = "↑";
+  toTop.addEventListener("click", function () {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+  document.body.appendChild(toTop);
+
+  window.addEventListener("scroll", function () {
+    toTop.classList.toggle("show", window.scrollY > 700);
+  }, { passive: true });
+
   /* ---------- 搜索（只在首页有输入框时启用）---------- */
   var input = document.getElementById("q");
   var box = document.getElementById("results");

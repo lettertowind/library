@@ -625,6 +625,33 @@ def gen_card(cards, i):
     return page(card["term"], body, root=root, desc=desc)
 
 
+def anchor(name):
+    """「数据分析/Pandas」→ 可用的 HTML id：a-数据分析-Pandas"""
+    return "a-" + re.sub(r"[^\w]+", "-", name).strip("-")
+
+
+def quicknav(tops, by_dom):
+    """页内跳转：顶级领域 chips（横滑）+ 完整分类下拉。"""
+    chips, opts = [], []
+    for t in sorted(tops):
+        n = sum(len(by_dom[d]) for d in tops[t])
+        chips.append(f'<a class="chip" href="#{anchor(t)}">{esc(t)}<i>{n}</i></a>')
+        subs = sorted(tops[t])
+        if len(subs) == 1:
+            d = subs[0]
+            label = "/".join([s for s in d.split("/")[1:]]) or d
+            opts.append(f'<option value="{anchor(d)}">{esc(label)} · {len(by_dom[d])}</option>')
+        else:
+            opts.append(f'<optgroup label="{esc(t)}">')
+            for d in subs:
+                label = "/".join([s for s in d.split("/")[1:]]) or "总类"
+                opts.append(f'<option value="{anchor(d)}">{esc(label)} · {len(by_dom[d])}</option>')
+            opts.append("</optgroup>")
+    return ('<div class="quicknav"><div class="chips">' + "".join(chips) + "</div>"
+            '<select id="jump" aria-label="按分类跳转"><option value="">分类跳转</option>'
+            + "".join(opts) + "</select></div>")
+
+
 def gen_home(cards, domains):
     global CUR_ROOT
     CUR_ROOT = ""
@@ -641,6 +668,15 @@ def gen_home(cards, domains):
     <div id="results" class="results" hidden></div>
   </div>
 </section>"""]
+
+    # 按完整分类聚合，供跳转条与下方分组使用
+    by_dom = defaultdict(list)
+    for c in cards:
+        by_dom[c["domain"] or "未分类"].append(c)
+    tops = defaultdict(list)
+    for d in by_dom:
+        tops[d.split("/")[0]].append(d)
+    parts.append(quicknav(tops, by_dom))
 
     parts.append('<section class="sec"><h2>领域</h2><div class="doms">')
     for dom in sorted(domains):
@@ -670,19 +706,33 @@ def gen_home(cards, domains):
 
     parts.append(
         '<section class="sec"><h2>全部概念</h2>'
-        f'<p class="hint">按领域分组的紧凑索引见 <a class="wl" href="all.html">概念索引</a>；'
-        '这里是可点的卡片墙。</p><div class="grid">'
+        f'<p class="hint">按分类排列，共 {len(cards)} 张；顶部可跳转，'
+        '紧凑索引见 <a class="wl" href="all.html">概念索引</a>。</p></section>'
     )
-    for c in sorted(cards, key=lambda x: (0 if x["group"] == "concept" else 1,
-                                          x["domain"] or "\uffff", x["term"])):
-        kind = c["kind"] or c["group"]
+    seen = set()
+    for d in sorted(by_dom, key=lambda x: (1 if x == "未分类" else 0, x)):
+        items = sorted(by_dom[d], key=lambda x: (x["order"], x["term"]))
+        top = d.split("/")[0]
+        pre = ""
+        if top not in seen:                      # 顶级领域的锚点落在第一个子类前
+            seen.add(top)
+            pre = f'<span class="anchor" id="{anchor(top)}"></span>'
+        more = (f'<a class="more" href="d/{quote(top)}.html">领域页 →</a>'
+                if d != "未分类" else "")
         parts.append(
-            f'<a class="tile" href="{c["url"]}">'
-            f'<span class="tile-kind kind-{esc(kind)}">{esc(kind)}</span>'
-            f'<span class="tile-term">{esc(c["term"])}</span>'
-            f'<span class="tile-dom">{esc(c["domain"] or "分析")}</span></a>'
+            f'<section class="sec sub" id="{anchor(d)}">{pre}'
+            f'<h3 class="subh">{esc(d)}<span class="cnt">{len(items)}</span>{more}</h3>'
+            '<div class="grid">'
         )
-    parts.append("</div></section>")
+        for c in items:
+            kind = c["kind"] or c["group"]
+            parts.append(
+                f'<a class="tile" href="{c["url"]}">'
+                f'<span class="tile-kind kind-{esc(kind)}">{esc(kind)}</span>'
+                f'<span class="tile-term">{esc(c["term"])}</span>'
+                f'<span class="tile-dom">{esc(c["domain"] or "分析")}</span></a>'
+            )
+        parts.append("</div></section>")
 
     return page(SITE_TITLE, "".join(parts), root=root,
                 desc=f"{SITE_TITLE} · {total} 个概念")
@@ -695,10 +745,22 @@ def gen_all(cards):
     groups = defaultdict(list)
     for c in cards:
         groups[c["domain"] or "未分类"].append(c)
+    tops = defaultdict(list)
+    for d in groups:
+        tops[d.split("/")[0]].append(d)
     parts = ['<section class="hero"><h1>全部概念</h1>'
-             f'<p class="sub">共 {len(cards)} 张卡片</p></section>']
-    for dom in sorted(groups):
-        parts.append(f'<section class="sec"><h2>{esc(dom)}</h2><ul class="plain">')
+             f'<p class="sub">共 {len(cards)} 张卡片</p></section>',
+             quicknav(tops, groups)]
+    seen = set()
+    for dom in sorted(groups, key=lambda x: (1 if x == "未分类" else 0, x)):
+        top = dom.split("/")[0]
+        pre = ""
+        if top not in seen:
+            seen.add(top)
+            pre = f'<span class="anchor" id="{anchor(top)}"></span>'
+        parts.append(f'<section class="sec sub" id="{anchor(dom)}">{pre}'
+                     f'<h3 class="subh">{esc(dom)}<span class="cnt">{len(groups[dom])}</span></h3>'
+                     '<ul class="plain">')
         for c in sorted(groups[dom], key=lambda x: (x["order"], x["term"])):
             extra = f' — {esc(c["aliases_line"])}' if c["aliases_line"] else ""
             stage = f' <span class="tile-dom">{esc(c["stage"])}</span>' if c["stage"] else ""
@@ -713,17 +775,26 @@ def gen_domain(dom, items):
     root = "../"
     groups = defaultdict(list)
     for c in items:
-        segs = [s for s in c["domain"].split("/") if s]
-        key = "/".join(segs[1:]) if len(segs) > 1 else "总类"
-        groups[key].append(c)
+        groups[c["domain"] or dom].append(c)
 
+    def short(d):
+        return "/".join([s for s in d.split("/")[1:]]) or "总类"
+
+    chips = "".join(
+        f'<a class="chip" href="#{anchor(d)}">{esc(short(d))}<i>{len(groups[d])}</i></a>'
+        for d in sorted(groups)
+    )
     parts = [f'<nav class="crumb"><a href="{root}index.html">首页</a> '
              f'<span class="sep">/</span> <span>{esc(dom)}</span></nav>',
              f'<section class="hero"><h1>{esc(dom)}</h1>'
              f'<p class="sub">{len(items)} 个概念 · {len(groups)} 个子类</p></section>']
-    for sub in sorted(groups):
-        parts.append(f'<section class="sec"><h2>{esc(sub)}</h2><div class="grid">')
-        for c in sorted(groups[sub], key=lambda x: (x["order"], x["term"])):
+    if len(chips) and len(groups) > 1:
+        parts.append(f'<div class="quicknav"><div class="chips">{chips}</div></div>')
+    for d in sorted(groups):
+        parts.append(f'<section class="sec sub" id="{anchor(d)}">'
+                     f'<h3 class="subh">{esc(short(d))}<span class="cnt">{len(groups[d])}</span></h3>'
+                     '<div class="grid">')
+        for c in sorted(groups[d], key=lambda x: (x["order"], x["term"])):
             # 有课程阶段的卡显示「S01E03 · 创建数组」，其余仍显示一句话定义
             label = c["stage"] or c["lede"][:40] or c["kind"]
             parts.append(
