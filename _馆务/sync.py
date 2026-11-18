@@ -16,6 +16,7 @@
 
 import subprocess
 import sys
+import time
 from datetime import datetime
 from pathlib import Path
 
@@ -74,7 +75,24 @@ def main():
         if detail:
             msg = f"{msg}（{'，'.join(detail)}）"
 
-        run(["git", "add", "-A"])
+        # git add 偶发 "short read while indexing"——刚写完的文件立刻被索引会撞上，
+        # 重试两次即可，不必让整次自动入库失败
+        last_err = ""
+        for attempt in range(3):
+            add = run(["git", "add", "-A"], check=False)
+            if add.returncode == 0:
+                break
+            last_err = (add.stderr or add.stdout or "").strip()
+            if "short read" not in last_err and "indexing" not in last_err:
+                break
+            if attempt < 2:
+                print(f"[i] 索引冲突，{0.8 * (attempt + 1):.1f}s 后重试 git add")
+                time.sleep(0.8 * (attempt + 1))
+        else:
+            print("[!] git add 连续失败")
+            print(last_err[-500:])
+            return 1
+
         run(["git", "commit", "-m", msg])
         print(f"[√] 已提交：{msg}")
 

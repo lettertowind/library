@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-"""_在编 监听器：新素材静止后自动抽取概念。Ctrl+C 停止。"""
+"""_在编 监听器：新素材静止后自动抽取概念 → 重建站点 → 推送 GitHub。Ctrl+C 停止。"""
 import sys
 import json
 import time
@@ -16,6 +16,8 @@ OFFICE = Path(__file__).resolve().parent
 BASE = OFFICE.parent
 INBOX = BASE / "_在编"
 CURATOR = OFFICE / "curator.py"
+SITE = OFFICE / "site.py"
+SYNC = OFFICE / "sync.py"
 CONFIG = OFFICE / "config.json"
 
 STABLE = 25
@@ -24,6 +26,35 @@ MAX_RETRY = 3
 AUDIT_INTERVAL = 7 * 86400          # 每 7 天自动体检一次
 LAST_AUDIT = OFFICE / ".last_audit"
 CONCEPTS = BASE / "概念"
+TASK_LOG = OFFICE / "整理日志.md"
+
+
+def run(script, *args):
+    """跑一个子脚本，把它的输出带缩进转发到监听窗口"""
+    r = subprocess.run([sys.executable, str(script), *args],
+                       cwd=str(OFFICE), capture_output=True, text=True,
+                       encoding="utf-8", errors="ignore")
+    for line in (r.stdout or "").strip().splitlines()[-12:]:
+        stamp("    " + line)
+    return r
+
+
+def publish(source_name):
+    """抽完概念后，重建站点并推送。任何一步失败都不影响继续监听。"""
+    stamp("  重建站点…")
+    r = run(SITE)
+    if r.returncode != 0:
+        err = (r.stderr or "").strip().splitlines()
+        stamp("    [!] 建站失败" + (f"：{err[-1]}" if err else ""))
+        return
+
+    stamp("  推送到 GitHub…")
+    r = run(SYNC, f"自动入库 {Path(source_name).stem}")
+    if r.returncode != 0:
+        err = (r.stderr or "").strip().splitlines()
+        stamp("    [!] 推送失败，卡片已在本地，稍后手动发布即可" + (f"：{err[-1]}" if err else ""))
+        return
+    stamp("  已上线，约 30 秒后手机可见")
 
 
 def maybe_audit():
@@ -83,6 +114,7 @@ def main():
                 if r.returncode == 0 and not f.exists():
                     stamp("  完成")
                     fails.pop(f.name, None)
+                    publish(f.name)          # 自动建站 + 推送
                 else:
                     fails[f.name] = fails.get(f.name, 0) + 1
                     err = (r.stderr or "").strip().splitlines()
