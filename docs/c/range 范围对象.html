@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="按起始、结束、步长生成一串整数，供循环或构造序列使用。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>range 范围对象 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>range 范围对象</h1><div class="aliases">range · range() · 步长 step</div><p class="lede">按起始、结束、步长生成一串整数，供循环或构造序列使用。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>range 有三种写法：range(stop)、range(start, stop)、range(start, stop, step)。它返回的是惰性范围对象而非列表，所以内存占用小。步长可以为负，用于倒序遍历。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>for 循环控制次数</li><li>生成等差整数序列</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>结束位置永远不包含自身</li><li>第三个参数是步长，可为负实现倒序</li><li>range(10, 0) 为空，需写成 range(10, 0, -1)</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只接受整数；需要浮点步长时要借助 numpy.arange。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/range%20%E7%BB%93%E6%9D%9F%E4%BD%8D%E7%BD%AE%E4%B8%8D%E5%90%AB%E8%87%AA%E8%BA%AB.html">range 结束位置不含自身</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/reversed%EF%BC%88%E5%8F%8D%E8%BD%AC%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89.html">reversed</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 range(10, 0) 一个数都不产生？</summary><div class="quiz-a">默认步长为 +1，从 10 出发无法“增加”到小于 0 的终点，故为空。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/reversed%EF%BC%88%E5%8F%8D%E8%BD%AC%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89.html">reversed（反转迭代器）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/print%EF%BC%88%E8%BE%93%E5%87%BA%EF%BC%89.html"><small>上一张</small>print（输出）</a><a class="next" href="../c/reversed%EF%BC%88%E5%8F%8D%E8%BD%AC%E8%BF%AD%E4%BB%A3%E5%99%A8%EF%BC%89.html"><small>下一张</small>reversed（反转迭代器）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

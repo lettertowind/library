@@ -5,7 +5,7 @@ kind: method
 domain: 数据分析/Python
 tags: [概念/method, 领域/数据分析]
 created: 2026-11-17
-updated: 2026-11-17
+updated: 2026-11-18
 ---
 
 # enumerate
@@ -43,6 +43,18 @@ for i, v in enumerate(列表) 让循环一次拿到两个值：索引和元素�
 
 for x, y in enumerate([3,5,7]) 第一次循环 x 和 y 分别是多少？::x=0，y=3
 为什么说 enumerate 的下标可以直接当柱形图的 x 坐标？::因为 plt.bar 默认按 0,1,2…顺序排柱子，第 n 根柱子的中心就在 x=n
+
+
+### 补充 · 2026-11-18
+
+遍历时同时需要下标和值时，用 enumerate 就不必自己维护计数器或写 range(len(xs))。它返回的是惰性迭代器，一次性耗尽。
+
+- start 参数指定索引起始值，默认 0
+- 返回迭代器，遍历一次即耗尽，需要复用先转 list
+- list(enumerate(xs)) 可看到 [(0, 元素), ...] 结构
+enumerate(xs, start=1) 第一个元组的索引是多少？::1，start 直接决定起始编号。
+为什么 enumerate 对象打印不出内容？::它是迭代器对象，需要转 list 或遍历才能看到元素。
+- 出处：[【中文字幕】Python必须会的49个内置函数](https://www.bilibili.com/video/BV1bbGyzsECP) · 2026-11-18
 
 ## 出处
 

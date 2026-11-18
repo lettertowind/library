@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="id 是对象在内存中的身份标识，is 判断两个名字是否指向同一对象。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>对象身份（id 与 is） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>对象身份（id 与 is）</h1><div class="aliases">id() · is 运算符 · identity · 身份与相等</div><p class="lede">id 是对象在内存中的身份标识，is 判断两个名字是否指向同一对象。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>赋值 l2 = l1 会让两个名字共享同一个对象，此时 is 为 True；分别创建内容相同的两个列表时 is 为 False，但 == 为 True。身份回答「是不是同一个」，相等回答「值一不一样」。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>判断两个变量是否指向同一对象</li><li>与 None 做比较（is None）</li><li>理解可变对象的别名共享问题</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>is 比较 id，== 比较值，两者不可混用</li><li>与 None、True、False 比较要用 is</li><li>小整数和短字符串会被复用，is 可能意外为 True，不可依赖</li><li>别名共享可变对象时，改一个另一个也跟着变</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>id 值在对象销毁后可能被复用，不能当作长期唯一编号保存；判断值相等永远用 ==。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E5%AF%B9%E8%B1%A1%EF%BC%88%E5%AE%9E%E4%BE%8B%EF%BC%89.html">对象（实例）</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/hash%20%E4%B8%8E%E5%8F%AF%E5%93%88%E5%B8%8C.html">hash 与可哈希</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>l1 = [1,2,3]；l2 = [1,2,3]，l1 == l2 与 l1 is l2 分别是什么？</summary><div class="quiz-a">True 和 False：值相等，但它们是两个不同对象。</div></details>
+<details class="quiz"><summary>为什么判断空值推荐 x is None 而不是 x == None？</summary><div class="quiz-a">None 是单例，is 直接比身份更快更准确，也避免自定义 __eq__ 干扰。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/hash%20%E4%B8%8E%E5%8F%AF%E5%93%88%E5%B8%8C.html">hash 与可哈希</a><span class="rel rel-plain">对比项</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%AE%9E%E4%BE%8B%E6%96%B9%E6%B3%95.html"><small>上一张</small>实例方法</a><a class="next" href="../c/%E5%AF%B9%E8%B1%A1%EF%BC%88%E5%AE%9E%E4%BE%8B%EF%BC%89.html"><small>下一张</small>对象（实例）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

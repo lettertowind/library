@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把单个字符转换成它对应的 Unicode 码点整数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>ord（字符转码点） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>ord（字符转码点）</h1><div class="aliases">ord · ord() · ordinals · 字符转 Unicode</div><p class="lede">把单个字符转换成它对应的 Unicode 码点整数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>ord 是 chr 的逆操作，名字来自 ordinals（序数）。它接受长度为 1 的字符串，返回该字符在 Unicode 表中的编号，常用来做字符比较、编码判断或密码学小练习。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要知道字符的数字编码时</li><li>字符排序、加密、编码转换场景</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>ord(&#x27;A&#x27;) 返回 65，ord(&#x27;Ω&#x27;) 返回对应码点</li><li>参数必须是长度为 1 的字符串，多字符会报错</li><li>与 chr 互为逆操作：chr(ord(c)) == c</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只处理单个字符；中文、emoji 也各算一个码点，但组合字符可能由多个码点构成。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><span class="wl-dead">chr</span><span class="rel rel-vs">对比项</span></li><li><span class="wl-dead">str</span><span class="rel rel-up">上位概念</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么 ord 不能直接传 &#x27;AB&#x27;？</summary><div class="quiz-a">它只接受单个字符，多字符无法确定返回哪个码点，会抛 TypeError。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><nav class="pager"><a class="prev" href="../c/open%20%E4%B8%8E%20with%20%E8%AF%AD%E5%8F%A5.html"><small>上一张</small>open 与 with 语句</a><a class="next" href="../c/pow%EF%BC%88%E5%B9%82%E8%BF%90%E7%AE%97%EF%BC%89.html"><small>下一张</small>pow（幂运算）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

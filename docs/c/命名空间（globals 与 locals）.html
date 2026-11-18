@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="变量名到对象的映射关系，Python 分为全局与局部两个层级。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>命名空间（globals 与 locals） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>命名空间（globals 与 locals）</h1><div class="aliases">globals() · locals() · 全局命名空间 · 局部命名空间</div><p class="lede">变量名到对象的映射关系，Python 分为全局与局部两个层级。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>globals() 返回模块级变量的字典，locals() 返回当前局部作用域的字典。在模块顶层两者内容基本相同；进入函数后 locals 只含函数内变量，而 globals 仍是全局那份。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>调试时查看当前有哪些变量</li><li>按键名动态取变量值</li><li>理解作用域与变量生命周期</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>两者都以字典形式呈现，可按变量名取值</li><li>函数内 locals() 不包含全局变量</li><li>修改 globals() 返回的字典会真实改变全局变量</li><li>函数内调用 globals() 返回的仍是全局变量</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不要用拼变量名 + globals/locals 动态赋值来替代字典等正常数据结构，代码会难以追踪；对 locals() 写入在不同实现下行为不可靠。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><span class="wl-dead">字典（dict）</span><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E5%86%85%E7%9C%81%EF%BC%88dir%20%E4%B8%8E%20help%EF%BC%89.html">内省（dir 与 help）</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>在函数内部调用 globals() 能看到该函数的局部变量吗？</summary><div class="quiz-a">不能，globals 只返回模块级全局作用域的名称。</div></details>
+<details class="quiz"><summary>在模块顶层，globals() 与 locals() 有什么区别？</summary><div class="quiz-a">基本一致，此时局部作用域就是全局作用域。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/eval%20%E4%B8%8E%20exec.html">eval 与 exec</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E5%86%85%E7%9C%81%EF%BC%88dir%20%E4%B8%8E%20help%EF%BC%89.html">内省（dir 与 help）</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/%E5%86%85%E7%9C%81%EF%BC%88dir%20%E4%B8%8E%20help%EF%BC%89.html"><small>上一张</small>内省（dir 与 help）</a><a class="next" href="../c/%E5%9C%B0%E6%9D%BF%E9%99%A4%E4%B8%8E%E5%8F%96%E4%BD%99%EF%BC%88%20%E4%B8%8E%20%25%EF%BC%89.html"><small>下一张</small>地板除与取余（ 与 %）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

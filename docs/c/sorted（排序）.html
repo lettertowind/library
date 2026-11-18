@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="对任意可迭代对象排序并返回新的有序列表，原数据不变。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>sorted（排序） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>sorted（排序）</h1><div class="aliases">sorted · sorted() · key 排序 · reverse</div><p class="lede">对任意可迭代对象排序并返回新的有序列表，原数据不变。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>sorted 接受 key 指定排序依据（如 key=len 按长度排），reverse=True 反向。它与列表方法 list.sort 的区别是：sorted 不修改原对象，可用于元组、字符串、字典键等任何可迭代对象。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>对任意可迭代对象排序</li><li>按某个属性或长度自定义排序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>返回新列表，原对象保持不变</li><li>key 接受函数，决定按什么排序</li><li>reverse=True 实现降序</li><li>不传 key 时字符串按 Unicode 编码顺序排</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>sorted 返回列表而非原类型；若想原地排序且对象是列表，用 list.sort 更省内存。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><span class="wl-dead">ndarray.sort（Numpy）</span><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">lambda 表达式</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>sorted(t) 能对元组用，而 t.sort() 会报错，原因是什么？</summary><div class="quiz-a">sorted 是内置函数，任何可迭代对象都能吃进来并返回新列表；sort 是列表的方法，只有列表才有。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><nav class="pager"><a class="prev" href="../c/slice%EF%BC%88%E5%88%87%E7%89%87%E5%AF%B9%E8%B1%A1%EF%BC%89.html"><small>上一张</small>slice（切片对象）</a><a class="next" href="../c/tuple%EF%BC%88%E5%85%83%E7%BB%84%EF%BC%89.html"><small>下一张</small>tuple（元组）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

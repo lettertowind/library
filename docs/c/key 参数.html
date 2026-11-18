@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="传给 max/min/sorted 等函数、用来自定义比较依据的函数。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>key 参数 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>key 参数</h1><div class="aliases">key= · key function · 比较依据</div><p class="lede">传给 max/min/sorted 等函数、用来自定义比较依据的函数。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>key 函数先把每个元素映射成一个「排序值」，再比较这些值，原元素本身不改变、返回值仍是原元素。常配合内置函数（len、str.lower）或 lambda 使用。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>取长度最长的字符串</li><li>按某字段对字典列表排序</li><li>忽略大小写排序</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>只影响比较依据，不改变返回的元素本身</li><li>可以是任意单参数函数，常用 lambda</li><li>多关键字比较可让 key 返回元组</li><li>与老式 cmp 参数不同：key 只做映射，不做两两比较</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>key 返回值的类型必须可相互比较，混用数字和字符串会报错；不加 key 时按元素自身比较。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/lambda%20%E8%A1%A8%E8%BE%BE%E5%BC%8F.html">lambda 表达式</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/np.max%20np.min.html">np.max np.min</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>max(names, key=len) 返回的是什么？</summary><div class="quiz-a">长度最大的那个原始字符串，而不是它的长度值。</div></details>
+<details class="quiz"><summary>如何按「分数降序、名字升序」排序？</summary><div class="quiz-a">sorted(items, key=lambda x: (-x.score, x.name))，用元组让 key 返回多个比较维度。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><nav class="pager"><a class="prev" href="../c/hash%20%E4%B8%8E%E5%8F%AF%E5%93%88%E5%B8%8C.html"><small>上一张</small>hash 与可哈希</a><a class="next" href="../c/maxlen%EF%BC%88deque%20%E5%AE%B9%E9%87%8F%E9%99%90%E5%88%B6%EF%BC%89.html"><small>下一张</small>maxlen（deque 容量限制）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="open 打开文件返回文件对象，with 保证代码块结束时自动关闭。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>open 与 with 语句 · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>open 与 with 语句</h1><div class="aliases">open() · with open · 文件对象 · 上下文管理器</div><p class="lede">open 打开文件返回文件对象，with 保证代码块结束时自动关闭。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>open(路径, 模式) 得到可读写的文件对象，配合 with 使用可在正常结束或抛异常时都自动关闭文件，避免句柄泄漏。读大文件时按行遍历比一次性 read() 更省内存。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>读取文本、CSV 等数据文件</li><li>把处理结果写入文件</li><li>逐行处理超大文件</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>常用模式：r 读、w 覆盖写、a 追加，加 b 为二进制</li><li>with 退出即关闭文件，无需手动 close</li><li>for line in f 逐行读取，内存友好</li><li>处理中文文本建议显式指定 encoding=&#x27;utf-8&#x27;</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不用 with 就必须在 finally 中 close；二进制模式下读出的是 bytes，需要自己解码。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E8%B7%AF%E5%BE%84%E5%8F%98%E9%87%8F.html">路径变量</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E8%BF%AD%E4%BB%A3%E5%99%A8%E5%8D%8F%E8%AE%AE%EF%BC%88iter%20%E4%B8%8E%20next%EF%BC%89.html">迭代器协议（iter 与 next）</a><span class="rel rel-pre">前置知识</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么推荐 with open(...) as f 而不是 f = open(...)？</summary><div class="quiz-a">with 在代码块结束或异常时自动关闭文件，避免句柄泄漏和数据未落盘。</div></details>
+<details class="quiz"><summary>模式 &#x27;w&#x27; 和 &#x27;a&#x27; 有什么区别？</summary><div class="quiz-a">&#x27;w&#x27; 会清空原文件再写，&#x27;a&#x27; 在文件末尾追加，原内容保留。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/with%20%E8%AF%AD%E5%8F%A5%EF%BC%88%E4%B8%8A%E4%B8%8B%E6%96%87%E7%AE%A1%E7%90%86%EF%BC%89.html">with 语句（上下文管理）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/maxlen%EF%BC%88deque%20%E5%AE%B9%E9%87%8F%E9%99%90%E5%88%B6%EF%BC%89.html"><small>上一张</small>maxlen（deque 容量限制）</a><a class="next" href="../c/ord%EF%BC%88%E5%AD%97%E7%AC%A6%E8%BD%AC%E7%A0%81%E7%82%B9%EF%BC%89.html"><small>下一张</small>ord（字符转码点）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>

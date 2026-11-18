@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="对可迭代对象做「全部为真」或「至少一个为真」的聚合判断。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>all 与 any · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>all 与 any</h1><div class="aliases">all() · any() · 全真判断 · 存在真值</div><p class="lede">对可迭代对象做「全部为真」或「至少一个为真」的聚合判断。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>all 遍历元素，遇到第一个假值立刻返回 False；any 遇到第一个真值立刻返回 True。两者都建立在真值判断之上，常配合生成器表达式做批量条件校验。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>投票、勾选等全票/任意票校验</li><li>批量数据合法性检查</li><li>判断是否存在满足条件的元素</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>all([]) 为 True，any([]) 为 False，因为空集合的默认结论不同</li><li>都是短路求值，得出结果就停止遍历</li><li>直接传生成器表达式，不必先建列表</li><li>NumPy 中对应 np.all / np.any，按轴聚合</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>只看真值不看数值大小；对一次性迭代器使用会消耗掉它。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E7%9C%9F%E5%80%BC%E5%88%A4%E6%96%AD%EF%BC%88Truthiness%EF%BC%89.html">真值判断（Truthiness）</a><span class="rel rel-pre">前置知识</span></li><li><a class="wl" href="../c/np.all.html">np.all</a><span class="rel rel-vs">对比项</span></li><li><a class="wl" href="../c/np.any.html">np.any</a><span class="rel rel-vs">对比项</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>all([]) 和 any([]) 分别返回什么？</summary><div class="quiz-a">True 和 False：空集合被认为「没有反例」与「没有正例」。</div></details>
+<details class="quiz"><summary>投票列表 voters=[1,1,0,1]，如何一句判断是否全票通过？</summary><div class="quiz-a">all(voters)，因为存在 0（假值）会立即返回 False。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1bbGyzsECP" target="_blank" rel="noopener noreferrer">【中文字幕】Python必须会的49个内置函数</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/%E7%9C%9F%E5%80%BC%E5%88%A4%E6%96%AD%EF%BC%88Truthiness%EF%BC%89.html">真值判断（Truthiness）</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/__str__%20%E4%B8%8E%20__repr__.html"><small>上一张</small>__str__ 与 __repr__</a><a class="next" href="../c/datetime.date.html"><small>下一张</small>datetime.date</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:37</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>
