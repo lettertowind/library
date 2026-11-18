@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="collections 模块中支持两端高效增删的队列容器。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>deque（双端队列） · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/%E8%AE%A1%E7%AE%97%E6%9C%BA.html">计算机</a> <span class="sep">/</span> <span>编程</span> <span class="sep">/</span> <span>Python</span></nav><article class="card"><h1>deque（双端队列）</h1><div class="aliases">deque · collections.deque · 双端队列 · double-ended queue</div><p class="lede">collections 模块中支持两端高效增删的队列容器。</p><details class="toc"><summary>目录</summary><nav><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="解释">解释</h2><p>deque 是 Python 标准库 collections 提供的容器，可视为栈与队列的泛化：左右两端都能以接近 O(1) 的代价添加和弹出元素。相比 list 的头部插入需要整体搬移元素，deque 在两端操作上更省时，并具备线程安全与内存回收方面的优势。适合做任务队列、滑动窗口、最近记录等场景。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>需要频繁在两端增删元素时替代 list</li><li>实现栈、队列、生产者-消费者缓冲、滑动窗口</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>导入：from collections import deque，可用 deque([1,2,3]) 从可迭代对象初始化</li><li>支持索引 d[2]、insert、count、reverse，但不支持切片，需先转成 list(d)[1:3]</li><li>作为栈用 append + pop，作为队列用 append + popleft</li><li>视频称双端操作性能大致相同、线程安全、内存高效，但内存收益依场景而定</li><li>可用类型提示 deque[Any] 标注元素类型，只是提示不影响运行</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>不支持切片；在中间插入删除仍需移动元素，不能完全替代 list。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97.html">栈与队列</a><span class="rel rel-up">上位概念</span></li><li><a class="wl" href="../c/deque%20%E5%8F%8C%E7%AB%AF%E5%A2%9E%E5%88%A0%E6%93%8D%E4%BD%9C.html">deque 双端增删操作</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/rotate%EF%BC%88deque%20%E6%97%8B%E8%BD%AC%EF%BC%89.html">rotate（deque 旋转）</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/maxlen%EF%BC%88deque%20%E5%AE%B9%E9%87%8F%E9%99%90%E5%88%B6%EF%BC%89.html">maxlen（deque 容量限制）</a><span class="rel rel-down">下位概念</span></li><li><a class="wl" href="../c/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%20O%281%29.html">时间复杂度 O(1)</a><span class="rel rel-with">组合使用</span></li><li><a class="wl" href="../c/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8.html">线程安全</a><span class="rel rel-with">组合使用</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary>为什么把 list 改成 deque 来实现队列会更快？</summary><div class="quiz-a">list 的 pop(0) 需要把后面所有元素前移，是 O(n)；deque 的 popleft 是两端操作，代价接近 O(1)。</div></details>
+<details class="quiz"><summary>想把 deque 中间的一段元素取出来，该怎么做？</summary><div class="quiz-a">deque 不支持切片，先 list(d)[1:3] 转成列表再切。</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li><a href="https://www.bilibili.com/video/BV1S8MMzVEJ7" target="_blank" rel="noopener noreferrer">Python 双端队列 deque 实战教学！比列表更猛的 O (1) 双端操作，线程安全 + 内存优化全拿捏！</a> · 2026-11-18</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/deque%20%E5%8F%8C%E7%AB%AF%E5%A2%9E%E5%88%A0%E6%93%8D%E4%BD%9C.html">deque 双端增删操作</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/maxlen%EF%BC%88deque%20%E5%AE%B9%E9%87%8F%E9%99%90%E5%88%B6%EF%BC%89.html">maxlen（deque 容量限制）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/rotate%EF%BC%88deque%20%E6%97%8B%E8%BD%AC%EF%BC%89.html">rotate（deque 旋转）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8.html">线程安全</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%A0%88%E4%B8%8E%E9%98%9F%E5%88%97.html">栈与队列</a><span class="rel rel-plain">下位概念</span></li><li><a class="wl" href="../c/%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%20O%281%29.html">时间复杂度 O(1)</a><span class="rel rel-plain">组合使用</span></li></ul></section><nav class="pager"><a class="prev" href="../c/deque%20%E5%8F%8C%E7%AB%AF%E5%A2%9E%E5%88%A0%E6%93%8D%E4%BD%9C.html"><small>上一张</small>deque 双端增删操作</a><a class="next" href="../c/dunder%20%E6%96%B9%E6%B3%95.html"><small>下一张</small>dunder 方法</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-18 14:34</span>
+</footer>
+<script src="../assets/app.js?v=6e753876" defer></script>
+</body>
+</html>
