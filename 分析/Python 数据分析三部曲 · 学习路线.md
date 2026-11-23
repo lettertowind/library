@@ -7,20 +7,27 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 
 # Python 数据分析三部曲 · 学习路线
 
-> 361 张概念卡 · 按课程顺序从 p2 排到 p79 · 点卡片看定义、用法与自测
+> 391 张概念卡 · 按课程顺序从 p2 排到 p79 · 点卡片看定义、用法与自测
 
 这是孙兴华《Python 数据分析三部曲》的概念导航：每一集下面挂着从那集抽出来的卡片，顺着看就是一条完整的学习路径。
 
 - [[孙兴华Python数据分析三部曲-课程地图]] — 79 集完整目录、时长与精简路线
 - [[孙兴华 Python 数据分析三部曲]] — 课程总览卡
 
-## 第一季 · Numpy（68 张卡）
+## 第一季 · Numpy（82 张卡）
 
 数组的地基：创建、计算、索引、统计。
 
-### S01E02 · 体验Numpy与for循环的区别（p3，3 张）
+### S01E01 · 参考书籍及安装方法（p2，2 张）
+
+- [[pip3 install numpy]]
+- [[数据分析的数学基础]]
+
+### S01E02 · 体验Numpy与for循环的区别（p3，5 张）
 
 - [[import numpy as np]]
+- [[range 结束位置不含自身]]
+- [[列表推导式]]
 - [[向量化计算]]
 - [[数组与矩阵的区别]]
 
@@ -53,11 +60,12 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[广播机制]]
 - [[数组与标量运算]]
 
-### S01E06 · 基础索引与切片（p7，3 张）
+### S01E06 · 基础索引与切片（p7，4 张）
 
 - [[Numpy 二维数组]]
 - [[Numpy 切片]]
 - [[Numpy 索引]]
+- [[负索引]]
 
 ### S01E07 · 布尔索引（p8，5 张）
 
@@ -97,7 +105,7 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[二元通用函数]]
 - [[通用函数]]
 
-### S01E12 · 数学和统计方法（p13，10 张）
+### S01E12 · 数学和统计方法（p13，18 张）
 
 - [[np.argmax np.argmin]]
 - [[np.average]]
@@ -109,8 +117,16 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[np.median]]
 - [[np.prod]]
 - [[np.sum]]
+- [[众数]]
+- [[分位数]]
+- [[协方差]]
+- [[方差]]
+- [[标准化]]
+- [[标准差]]
+- [[样本与特征]]
+- [[相关系数]]
 
-### S01E13 · 条件计算，排序，深潜拷贝【本季完】（p14，9 张）
+### S01E13 · 条件计算，排序，深潜拷贝【本季完】（p14，10 张）
 
 - [[argsort]]
 - [[ndarray.sort]]
@@ -119,21 +135,28 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[np.in1d]]
 - [[np.where]]
 - [[unique]]
+- [[三目运算]]
 - [[布尔数组求和计数]]
 - [[浅拷贝与深拷贝]]
 
 
-## 第二季 · Pandas（175 张卡）
+## 第二季 · Pandas（191 张卡）
 
 数据处理主场：读写、清洗、连接、分组、透视。
 
-### S02E01 · 数据类型与新建文件（p16，5 张）
+### S02E00 · 安装 pandas.numpy.xlrd（p15，2 张）
+
+- [[import 验证安装]]
+- [[pip]]
+
+### S02E01 · 数据类型与新建文件（p16，6 张）
 
 - [[Pandas 写出方法家族]]
 - [[dtypes 属性]]
 - [[import pandas as pd]]
 - [[to_csv]]
 - [[to_sql]]
+- [[批量处理替代手工]]
 
 ### S02E02 · 读取 txt 与 csv 文件（p17，10 张）
 
@@ -148,14 +171,18 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[skiprows 参数]]
 - [[txt 转 csv]]
 
-### S02E03 · 读取 Mysql 文件（p18，1 张）
+### S02E03 · 读取 Mysql 文件（p18，4 张）
 
+- [[SQL 查询语句]]
 - [[pd.read_sql]]
+- [[pymysql]]
+- [[pymysql.connect()]]
 
-### S02E04 · 读取与修改 Excel 文件（p19，2 张）
+### S02E04 · 读取与修改 Excel 文件（p19，3 张）
 
 - [[Excel 无表头文件处理]]
 - [[pd.read_excel]]
+- [[xlrd]]
 
 ### S02E05 · 数据结构之 Series（p20，4 张）
 
@@ -197,18 +224,21 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[pd.concat]]
 - [[sort 参数（concat）]]
 
-### S02E10 · 各种数据自动填充（p25，4 张）
+### S02E10 · 各种数据自动填充（p25，5 张）
 
+- [[datetime 模块]]
 - [[dtype 参数（读取时指定列类型）]]
 - [[usecols 参数]]
 - [[累加月算法]]
 - [[自动填充]]
 
-### S02E11 · 列与列之间的计算（p26，5 张）
+### S02E11 · 列与列之间的计算（p26，7 张）
 
+- [[BMI 计算]]
 - [[NumPy 函数在 pandas 中的应用]]
 - [[Timedelta]]
 - [[dt 访问器]]
+- [[lambda 表达式]]
 - [[m.name 列名行名判断]]
 - [[计算列]]
 
@@ -248,10 +278,10 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 ### S02E16 · 处理缺失值（p31，10 张）
 
 - [[NaN]]
+- [[ffill 与 bfill]]
 - [[fillna]]
 - [[isna]]
 - [[limit 参数（fillna）]]
-- [[method 参数（fillna）]]
 - [[notna]]
 - [[subset 参数（dropna）]]
 - [[thresh 参数]]
@@ -309,7 +339,7 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[pd.qcut]]
 - [[离散化与分箱]]
 
-### S02E23 · 字符串操作（上）（p38，18 张）
+### S02E23 · 字符串操作（上）（p38，19 张）
 
 - [[str.cat]]
 - [[str.decode]]
@@ -329,23 +359,27 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[str.startswith]]
 - [[str.strip]]
 - [[str.zfill]]
+- [[字符串乘法]]
 
-### S02E24 · 字符串操作（下）（p39，9 张）
+### S02E24 · 字符串操作（下）（p39，11 张）
 
 - [[Series.str 访问器]]
 - [[astype(str)]]
 - [[find rfind]]
 - [[index rindex]]
 - [[str.extract]]
+- [[str.maketrans]]
 - [[str.match]]
 - [[translate]]
 - [[大小写转换方法]]
 - [[字符串内容判断方法]]
+- [[正则表达式]]
 
-### S02E25 · Excel 文件的拆分与合并（p40，5 张）
+### S02E25 · Excel 文件的拆分与合并（p40，6 张）
 
 - [[DataFrame.to_excel]]
 - [[Pandas Excel 合并拆分]]
+- [[os.listdir]]
 - [[pd.ExcelWriter]]
 - [[sheet_name 参数]]
 - [[写回原 Excel 文件]]
@@ -390,10 +424,12 @@ source: https://www.bilibili.com/video/BV1ji4y157uB
 - [[applymap]]
 - [[map]]
 
-### S02E31 · 数据的转置、计算环比与同比（p46，2 张）
+### S02E31 · 数据的转置、计算环比与同比（p46，4 张）
 
 - [[shift]]
+- [[同比]]
 - [[数据转置]]
+- [[环比]]
 
 
 ## 第三季 · Matplotlib（118 张卡）

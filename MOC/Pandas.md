@@ -1,6 +1,6 @@
 # Pandas
 
-> 本领域 220 个概念 · 更新于 2026-11-18
+> 本领域 220 个概念 · 更新于 2026-11-23
 
 - [[Pandas 写出方法家族]]
 - [[dtypes 属性]]
@@ -76,10 +76,10 @@
 - [[drop]]
 - [[labels 参数]]
 - [[NaN]]
+- [[ffill 与 bfill]]
 - [[fillna]]
 - [[isna]]
 - [[limit 参数（fillna）]]
-- [[method 参数（fillna）]]
 - [[notna]]
 - [[subset 参数（dropna）]]
 - [[thresh 参数]]

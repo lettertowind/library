@@ -5,7 +5,7 @@ kind: method
 domain: Pandas
 tags: [概念/method, 领域/Pandas]
 created: 2026-11-17
-updated: 2026-11-17
+updated: 2026-11-23
 order: 31
 stage: "S02E16 · 处理缺失值"
 ---
@@ -22,7 +22,7 @@ stage: "S02E16 · 处理缺失值"
 
 **参数**：
 - `value`：填充值，标量统一填充，字典按列名指定不同值
-- `method`：旧版写法，`'ffill'` 用前值、`'bfill'` 用后值；pandas 2.x 已废弃，改用 `df.ffill()` / `df.bfill()`
+- `method`：旧版写法，`'ffill'` 用前值、`'bfill'` 用后值；pandas 2.1 起弃用、3.0 起彻底移除，改用 `df.ffill()` / `df.bfill()`（见 [[ffill 与 bfill]]）
 - `inplace`：默认 `False` 返回新对象，`True` 则原地修改
 - `limit`：最多连续填充多少个空值
 
@@ -62,6 +62,8 @@ fillna(value) 扫描所有 NaN 位置并填入给定值，非空值保持不变�
 - [[NaN]] — 前置知识
 - [[isnull]] — 组合使用
 - [[DataFrame]] — 上位概念
+- [[ffill 与 bfill]] — 方向填充的现代写法
+- [[limit 参数（fillna）]] — 限制填充个数
 
 ## 自测
 
@@ -77,7 +79,7 @@ fillna() 支持三种主要填充方式：传常量统一填充、传字典按�
 - 传字典：按列指定不同填充值
 - method='ffill'/'pad' 用前值，'bfill'/'backfill' 用后值
 不同列要填不同值，fillna 怎么传参？::传字典，如 df.fillna({'语文':0.1,'数学':0.2})。
-fillna(method='bfill') 和 ffill 有什么区别？::bfill 用后面的有效值向上填充，ffill 用前面的有效值向下填充。
+df.bfill()（旧写法 fillna(method='bfill')）和 df.ffill() 有什么区别？::bfill 用后面的有效值向上填充，ffill 用前面的有效值向下填充。
 
 fillna 是缺失值处理中使用频率最高的一步。它支持三种填充方式：常量统一填充、字典按列指定不同值、method 按前后有效值传播填充；再配合 axis 控制方向、limit 控制数量，就能覆盖大部分补数场景。
 
