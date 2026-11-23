@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="把含缺失值的行或列整条删掉，是缺失值处理里「不补、直接丢」的那条路。">
+<meta name="color-scheme" content="light dark">
+<meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
+<title>dropna · 知识库</title>
+<link rel="stylesheet" href="../assets/style.css?v=c99d81a0">
+<script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
+</head>
+<body>
+<header class="top">
+  <a class="brand" href="../index.html">知识库</a>
+  <a class="up" href="../d/Pandas.html" title="返回Pandas"><span aria-hidden="true">↑</span>Pandas</a>
+  <nav class="topnav">
+    <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
+  </nav>
+</header>
+<main>
+<nav class="crumb"><a href="../index.html">首页</a> <span class="sep">/</span> <a href="../d/Pandas.html">Pandas</a></nav><article class="card"><h1>dropna</h1><div class="aliases">df.dropna · 删除缺失值 · 丢弃空值行 · 删除空值行列</div><p class="lede">把含缺失值的行或列整条删掉，是缺失值处理里「不补、直接丢」的那条路。</p><details class="toc"><summary>目录</summary><nav><a href="#用法">用法</a><a href="#解释">解释</a><a href="#有什么用">有什么用</a><a href="#关键要点">关键要点</a><a href="#边界与易混淆">边界与易混淆</a><a href="#关联">关联</a><a href="#自测">自测</a><a href="#出处">出处</a></nav></details><section class="sec"><h2 id="用法">用法</h2><p><strong>语法</strong>：</p>
+<pre><code class="lang-python">DataFrame.dropna(*, axis=0, how=&lt;默认 &#x27;any&#x27;&gt;, thresh=None, subset=None, inplace=False, ignore_index=False)</code></pre>
+<p>Series 也可用 <code>s.dropna()</code>，没有 <code>axis</code>/<code>subset</code> 参数。</p>
+<p><strong>参数</strong>：</p>
+<ul><li><code>axis</code>：<code>0</code>/<code>&#x27;index&#x27;</code>（默认，删行）或 <code>1</code>/<code>&#x27;columns&#x27;</code>（删列）</li><li><code>how</code>：<code>&#x27;any&#x27;</code>（默认，有一个缺失就删）或 <code>&#x27;all&#x27;</code>（整行/整列全空才删）</li><li><code>thresh</code>：保留非空值个数 ≥ 该值的行/列，优先级高于 <code>how</code></li><li><code>subset</code>：只看指定列是否缺失，其他列的缺失不影响判断</li><li><code>inplace</code>：默认 <code>False</code> 返回新对象，<code>True</code> 原地修改</li><li><code>ignore_index</code>：删完后重排索引为 0,1,2…</li></ul>
+<p><strong>示例</strong>：</p>
+<pre><code class="lang-python">import pandas as pd
+import numpy as np
+
+df = pd.DataFrame({
+    &quot;姓名&quot;: [&quot;张三&quot;, &quot;李四&quot;, &quot;王五&quot;, &quot;赵六&quot;],
+    &quot;语文&quot;: [90, np.nan, np.nan, 85],
+    &quot;数学&quot;: [88, 92, np.nan, np.nan],
+})
+print(df)
+#    姓名    语文    数学
+# 0  张三  90.0  88.0
+# 1  李四   NaN  92.0
+# 2  王五   NaN   NaN
+# 3  赵六  85.0   NaN
+
+print(df.dropna())               # 默认 how=&#x27;any&#x27;：只要有一个空值就删行
+#    姓名    语文    数学
+# 0  张三  90.0  88.0          ← 只剩完整的一行
+
+print(df.dropna(how=&quot;all&quot;))      # 整行全空才删（王五姓名非空，所以一行都没删）
+#    姓名    语文    数学
+# 0  张三  90.0  88.0
+# 1  李四   NaN  92.0
+# 2  王五   NaN   NaN
+# 3  赵六  85.0   NaN
+
+print(df.dropna(subset=[&quot;语文&quot;]))   # 只看语文列是否缺失
+#    姓名    语文    数学
+# 0  张三  90.0  88.0
+# 3  赵六  85.0   NaN
+
+print(df.dropna(thresh=2))       # 至少 2 个非空值才保留
+#    姓名    语文    数学
+# 0  张三  90.0  88.0
+# 1  李四   NaN  92.0
+# 3  赵六  85.0   NaN
+
+print(df.dropna(axis=1))         # 按列删：语文、数学都有空值，只剩姓名
+#    姓名
+# 0  张三
+# 1  李四
+# 2  王五
+# 3  赵六</code></pre></section><section class="sec"><h2 id="解释">解释</h2><p><code>dropna</code> 逐行（或逐列）检查 NaN，满足删除条件就整条丢弃。默认条件是「任一位置为空」（<code>how=&#x27;any&#x27;</code>），所以最严格；真要宽松些就换 <code>how=&#x27;all&#x27;</code>、用 <code>subset</code> 限定检查范围，或用 <code>thresh</code> 按有效值数量放行。它和 <code>fillna</code> 是互补的两条路：一个丢、一个补。</p></section><section class="sec"><h2 id="有什么用">有什么用</h2><ul><li>缺失比例极低、且缺失本身无意义时，直接删比乱补更安全</li><li>分析前先剔除关键字段缺失的记录，避免后续统计被污染</li><li>清洗宽表时按列剔除整列都不可用的字段</li></ul></section><section class="sec"><h2 id="关键要点">关键要点</h2><ul><li>默认 <code>how=&#x27;any&#x27;</code> 最严格，稍不留神就删掉大半数据</li><li><code>thresh</code> 与 <code>how</code> 同时给时，<code>thresh</code> 生效</li><li><code>subset</code> 只决定「看哪些列判断」，不改变 <code>how</code> 的语义</li><li>默认返回新对象，原表不动；要原地改加 <code>inplace=True</code></li><li>删完索引会留空档，用 <code>ignore_index=True</code> 重排</li><li>删除是不可逆的，删前先用 <code>isnull().sum()</code> 看看会删多少</li></ul></section><section class="sec"><h2 id="边界与易混淆">边界与易混淆</h2><p>和 <code>fillna</code> 方向相反：<code>fillna</code> 补值保留数据量，<code>dropna</code> 删行牺牲样本量。数据量小、缺失分散时用 <code>dropna</code> 容易把有效样本删干净，这时应优先考虑填充。</p>
+<p>注意 <code>pivot_table</code> 里也有一个叫 <code>dropna</code> 的<strong>参数</strong>，含义是「是否丢弃全空的分组列」，与这里的 <code>dropna()</code> <strong>方法</strong>不是一回事，别混淆。</p></section><section class="sec"><h2 id="关联">关联</h2><ul class="relations"><li><a class="wl" href="../c/fillna.html">fillna</a><span class="rel rel-rel">对比项：填充而非删除</span></li><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">how 参数（dropna）</a><span class="rel rel-rel">删除条件：any / all</span></li><li><a class="wl" href="../c/subset%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">subset 参数（dropna）</a><span class="rel rel-rel">限定判断范围</span></li><li><a class="wl" href="../c/thresh%20%E5%8F%82%E6%95%B0.html">thresh 参数</a><span class="rel rel-rel">按非空值个数阈值保留</span></li><li><a class="wl" href="../c/isnull.html">isnull</a><span class="rel rel-rel">删除前先统计缺失分布</span></li><li><a class="wl" href="../c/NaN.html">NaN</a><span class="rel rel-rel">处理对象</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-rel">上位主题</span></li><li><a class="wl" href="../c/dropna%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%80%8F%E8%A7%86%E8%A1%A8%EF%BC%89.html">dropna 参数（透视表）</a><span class="rel rel-rel">易混淆：同名但是参数</span></li></ul></section><section class="sec"><h2 id="自测">自测</h2><p class="hint">点开看答案，先自己想一想</p><details class="quiz"><summary><code>df.dropna()</code> 默认会删掉哪些行？</summary><div class="quiz-a">任何一个单元格为 NaN 的行（<code>how=&#x27;any&#x27;</code>），要求整行完全没有缺失才留下。</div></details>
+<details class="quiz"><summary>想只在「成绩列缺失」时才删行，其他列缺失不管，用哪个参数？</summary><div class="quiz-a"><code>subset=[&#x27;成绩&#x27;]</code>，它把判断范围限定在指定列上。</div></details>
+<details class="quiz"><summary><code>dropna(thresh=2)</code> 和 <code>dropna(how=&#x27;all&#x27;)</code> 有什么区别？</summary><div class="quiz-a">thresh 按非空值个数放行（≥2 个非空才保留），how=&#x27;all&#x27; 只在整行全空时才删，前者更严格。</div></details>
+<details class="quiz"><summary>删完行后索引出现 0、3 这样的空档，怎么让它重新连续？</summary><div class="quiz-a">加 <code>ignore_index=True</code>，结果索引会重排为 0,1,2…</div></details></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p31 · S02E16 处理缺失值（B站）· https://www.bilibili.com/video/BV1ji4y157uB?p=31 · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/how%20%E5%8F%82%E6%95%B0%EF%BC%88dropna%EF%BC%89.html">how 参数（dropna）</a><span class="rel rel-plain">上位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/drop_duplicates.html"><small>上一张</small>drop_duplicates</a><a class="next" href="../c/dropna%20%E5%8F%82%E6%95%B0%EF%BC%88%E9%80%8F%E8%A7%86%E8%A1%A8%EF%BC%89.html"><small>下一张</small>dropna 参数（透视表）</a></nav></article>
+</main>
+<footer class="foot">
+  <span>知识库</span>
+  <span>更新于 2026-11-23 13:36</span>
+</footer>
+<script src="../assets/app.js?v=c99d81a0" defer></script>
+</body>
+</html>

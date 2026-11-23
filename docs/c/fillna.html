@@ -7,12 +7,13 @@
 <meta name="color-scheme" content="light dark">
 <meta http-equiv="Cache-Control" content="no-cache, must-revalidate">
 <title>fillna · 知识库</title>
-<link rel="stylesheet" href="../assets/style.css?v=6e753876">
+<link rel="stylesheet" href="../assets/style.css?v=c99d81a0">
 <script>try{var t=localStorage.getItem("kb-theme");if(t)document.documentElement.setAttribute("data-theme",t)}catch(e){}</script>
 </head>
 <body>
 <header class="top">
   <a class="brand" href="../index.html">知识库</a>
+  <a class="up" href="../d/Pandas.html" title="返回Pandas"><span aria-hidden="true">↑</span>Pandas</a>
   <nav class="topnav">
     <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
   </nav>
@@ -42,12 +43,12 @@ print(df.ffill())                       # 用前一个非空值填充（新版�
 <p>- 字典填充：键是列名、值是填充值，如 {&#x27;语文&#x27;:0.1,&#x27;数学&#x27;:0.2}</p>
 <p>- method=&#x27;ffill&#x27; 用前面的值向下填，&#x27;bfill&#x27; 用后面的值向上填</p>
 <details class="quiz"><summary>要给语文列填 0.1、数学列填 0.2、英语列填 0.3，fillna 的参数该怎么写？</summary><div class="quiz-a">传入字典：data.fillna({&#x27;语文&#x27;:0.1,&#x27;数学&#x27;:0.2,&#x27;英语&#x27;:0.3})，键为列名、值为该列填充值。</div></details>
-<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=31" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p31 S02E16.处理缺失值</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/ffill%20%E4%B8%8E%20bfill.html">ffill 与 bfill</a><span class="rel rel-plain">上位概念，按常量或字典填充</span></li><li><a class="wl" href="../c/fill_value%20%E5%8F%82%E6%95%B0.html">fill_value 参数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/inplace%20%E5%8F%82%E6%95%B0.html">inplace 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/limit%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html">limit 参数（fillna）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/replace.html">replace</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/use_inf_as_na.html">use_inf_as_na</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E7%81%B5%E6%B4%BB%E7%AE%97%E6%9C%AF%E6%96%B9%E6%B3%95.html">灵活算术方法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%A9%BA%E5%80%BC%E4%BC%A0%E6%92%AD.html">空值传播</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.html">数据清洗</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/fill_value%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>fill_value 参数</a><a class="next" href="../c/find%20rfind.html"><small>下一张</small>find rfind</a></nav></article>
+<p>- 出处：<a href="https://www.bilibili.com/video/BV1ji4y157uB?p=31" target="_blank" rel="noopener noreferrer">孙兴华中文讲Python数据分析三部曲入门篇 Numpy教程 Pandas教程 Matplotlib教程 p31 S02E16.处理缺失值</a> · 2026-11-17</p></section><section class="sec src"><h2 id="出处">出处</h2><ul class="sources"><li>孙兴华《Python 数据分析三部曲》p2–p46（B站）· https://www.bilibili.com/video/BV1ji4y157uB · 2026-11-17</li></ul></section><section class="sec backlinks"><h2>被引用</h2><p class="hint">这些卡片引用了当前概念</p><ul class="relations"><li><a class="wl" href="../c/dropna.html">dropna</a><span class="rel rel-plain">对比项：填充而非删除</span></li><li><a class="wl" href="../c/ffill%20%E4%B8%8E%20bfill.html">ffill 与 bfill</a><span class="rel rel-plain">上位概念，按常量或字典填充</span></li><li><a class="wl" href="../c/fill_value%20%E5%8F%82%E6%95%B0.html">fill_value 参数</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/inplace%20%E5%8F%82%E6%95%B0.html">inplace 参数</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/limit%20%E5%8F%82%E6%95%B0%EF%BC%88fillna%EF%BC%89.html">limit 参数（fillna）</a><span class="rel rel-plain">上位概念</span></li><li><a class="wl" href="../c/replace.html">replace</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/use_inf_as_na.html">use_inf_as_na</a><span class="rel rel-plain">前置知识</span></li><li><a class="wl" href="../c/%E7%81%B5%E6%B4%BB%E7%AE%97%E6%9C%AF%E6%96%B9%E6%B3%95.html">灵活算术方法</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%A9%BA%E5%80%BC%E4%BC%A0%E6%92%AD.html">空值传播</a><span class="rel rel-plain">对比项</span></li><li><a class="wl" href="../c/%E7%BC%BA%E5%A4%B1%E5%80%BC%E5%A4%84%E7%90%86.html">缺失值处理</a><span class="rel rel-plain">组合使用</span></li><li><a class="wl" href="../c/%E6%95%B0%E6%8D%AE%E6%B8%85%E6%B4%97.html">数据清洗</a><span class="rel rel-plain">下位概念</span></li></ul></section><nav class="pager"><a class="prev" href="../c/fill_value%20%E5%8F%82%E6%95%B0.html"><small>上一张</small>fill_value 参数</a><a class="next" href="../c/find%20rfind.html"><small>下一张</small>find rfind</a></nav></article>
 </main>
 <footer class="foot">
   <span>知识库</span>
-  <span>更新于 2026-11-23 13:34</span>
+  <span>更新于 2026-11-23 13:36</span>
 </footer>
-<script src="../assets/app.js?v=6e753876" defer></script>
+<script src="../assets/app.js?v=c99d81a0" defer></script>
 </body>
 </html>

@@ -495,10 +495,12 @@ def build_index(cards):
 
 # ---------------------------------------------------------------- 页面骨架
 
-def page(title, content, root="", desc="", extra_head=""):
+def page(title, content, root="", desc="", extra_head="", up_url="", up_label="上一层"):
     global CUR_ROOT
     CUR_ROOT = root
     safe_desc = esc(desc or SITE_TITLE)
+    up_html = (f'  <a class="up" href="{up_url}" title="返回{esc(up_label)}">'
+               f'<span aria-hidden="true">↑</span>{esc(up_label)}</a>\n') if up_url else ""
     return f"""<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -514,7 +516,7 @@ def page(title, content, root="", desc="", extra_head=""):
 <body>
 <header class="top">
   <a class="brand" href="{root}index.html">{SITE_TITLE}</a>
-  <nav class="topnav">
+{up_html}  <nav class="topnav">
     <button id="theme-toggle" type="button" aria-label="切换主题" title="切换主题">◐</button>
   </nav>
 </header>
@@ -625,7 +627,11 @@ def gen_card(cards, i):
     body += "".join(pager) + "</article>"
 
     desc = card["lede"] or card["domain"]
-    return page(card["term"], body, root=root, desc=desc)
+    # 「上一层」指向所属领域页；分析类卡片没有领域，回首页
+    dom_top = (card.get("domain") or "").split("/")[0]
+    up_url = f"{root}d/{quote(dom_top)}.html" if dom_top else f"{root}index.html"
+    return page(card["term"], body, root=root, desc=desc,
+                up_url=up_url, up_label=dom_top or "首页")
 
 
 def anchor(name):
@@ -774,7 +780,8 @@ def gen_all(cards):
             stage = f' <span class="tile-dom">{esc(c["stage"])}</span>' if c["stage"] else ""
             parts.append(f'<li><a href="{c["url"]}">{esc(c["term"])}</a>{extra}{stage}</li>')
         parts.append("</ul></section>")
-    return page("全部概念", "".join(parts), root=root)
+    return page("全部概念", "".join(parts), root=root,
+                up_url=f"{root}index.html", up_label="首页")
 
 
 def gen_domain(dom, items):
@@ -845,7 +852,8 @@ def gen_domain(dom, items):
                 f'<span class="tile-dom">{esc(label_txt)}</span></a>'
             )
         parts.append("</div></section>")
-    return page(dom, "".join(parts), root=root, desc=f"{dom} 领域下的概念")
+    return page(dom, "".join(parts), root=root, desc=f"{dom} 领域下的概念",
+                up_url=f"{root}index.html", up_label="首页")
 
 
 def gen_agents():
@@ -868,7 +876,8 @@ def gen_agents():
         else:
             parts.append(render_markdown(sec["lines"]))
     parts.append("</article>")
-    return page("操作规则", "".join(parts), root=root)
+    return page("操作规则", "".join(parts), root=root,
+                up_url=f"{root}index.html", up_label="首页")
 
 
 # ---------------------------------------------------------------- 主流程
