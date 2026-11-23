@@ -986,6 +986,23 @@ def main():
     write(OUT / "search.json", json.dumps(build_search(cards_all), ensure_ascii=False, separators=(",", ":")))
 
     pages = len(list(OUT.rglob("*.html")))
+    # 清理孤儿页：卡片被删除/改名后，docs/c 下遗留的旧 HTML 不会自动消失
+    # （clean_out 已改为就地覆盖，不再清空目录）。只删 c/ 下没有对应概念卡的页面。
+    cdir = OUT / "c"
+    have = {c["stem"] for c in cards_all if c.get("stem")}
+    orphans = []
+    if cdir.exists():
+        for p in cdir.glob("*.html"):
+            if p.stem not in have:
+                try:
+                    p.unlink()
+                    orphans.append(p.stem)
+                except OSError:
+                    pass
+    if orphans:
+        pages = len(list(OUT.rglob("*.html")))
+        print(f"[i] 清理孤儿页 {len(orphans)} 个：{'、'.join(orphans[:5])}{'…' if len(orphans) > 5 else ''}")
+
     print(f"[√] 生成完成：{pages} 个页面，{len(cards_all)} 张卡片")
     print(f"    输出目录：{OUT}")
     print(f"    领域：{'、'.join(sorted(domains))}")
